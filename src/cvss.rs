@@ -1,8 +1,10 @@
-//! [Common Vulnerability Scoring System (CVSS)][cvss]  vector string
-//! parser and score calculator.
+//! [CVSS][cvss] vector string parser and score calculator.
 //!
-//! Supports [CVSS v2][v2], [CVSS v3][v3], and [CVSS v4][v4] vector
-//! strings.
+//! Supports multiple versions of [CVSS][]:
+//!
+//! - [CVSS v2][v2]
+//! - [CVSS v3][v3]
+//! - [CVSS v4][v4]
 //!
 //! # Examples
 //!
@@ -23,7 +25,7 @@
 //! # }
 //! ```
 //!
-//! Iterate over [`Metric`s][Metric] in a [`Vector`][]:
+//! Iterate over [`Metrics`][Metric] in a [`Vector`][]:
 //!
 //! ```
 //! # use polycvss::cvss::{Err, Vector};
