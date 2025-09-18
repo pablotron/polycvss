@@ -11,7 +11,7 @@
 //! Parse vector string:
 //!
 //! ```
-//! # use polycvss::cvss::{Err, Vector};
+//! # use polycvss::{Err, Vector};
 //! # fn main() -> Result<(), Err> {
 //! // parse CVSS v2 vector string
 //! let v2: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -28,7 +28,7 @@
 //! Iterate over [`Metrics`][Metric] in a [`Vector`][]:
 //!
 //! ```
-//! # use polycvss::cvss::{Err, Vector};
+//! # use polycvss::{Err, Vector};
 //! # fn main() -> Result<(), Err> {
 //! // parse CVSS v4 vector string
 //! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
@@ -44,7 +44,7 @@
 //! Get metric from vector:
 //!
 //! ```
-//! # use polycvss::cvss::{Err, Vector, Metric, Name, v4};
+//! # use polycvss::{Err, Vector, Metric, Name, v4};
 //! # fn main() -> Result<(), Err> {
 //! // parse CVSS v4 vector string
 //! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
@@ -61,7 +61,7 @@
 //! Get score for vector string:
 //!
 //! ```
-//! # use polycvss::cvss::{Err, Score, Vector};
+//! # use polycvss::{Err, Score, Vector};
 //! # fn main() -> Result<(), Err> {
 //! // parse CVSS v4 vector string
 //! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
@@ -78,7 +78,7 @@
 //! Get score severities:
 //!
 //! ```
-//! # use polycvss::cvss::{Err, Score, Severity};
+//! # use polycvss::{Err, Score, Severity};
 //! # fn main() -> Result<(), Err> {
 //! // get severity of first score
 //! let a = Severity::from(Score::from(2.3));
@@ -127,7 +127,7 @@ pub fn round1(val: f64) -> f64 {
 /// # Example
 ///
 /// ```
-/// # use polycvss::cvss::roundup;
+/// # use polycvss::roundup;
 /// # fn main() {
 /// assert_eq!(roundup(4.02), 4.1);
 /// assert_eq!(roundup(4.00), 4.0);
@@ -150,7 +150,7 @@ pub fn roundup(val: f64) -> f64 {
 /// # Example
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Vector};
+/// # use polycvss::{Err, Vector};
 /// # fn main() {
 /// // parse invalid string as vector
 /// let err = "asdf".parse::<Vector>();
@@ -165,7 +165,7 @@ pub enum Err {
   /// # Example
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v4::Vector};
+  /// # use polycvss::{Err, v4::Vector};
   /// # fn main() {
   /// // parse invalid string as vector, then check result
   /// assert_eq!("asdf".parse::<Vector>(), Err(Err::Len));
@@ -178,7 +178,7 @@ pub enum Err {
   /// # Example
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v4::Vector};
+  /// # use polycvss::{Err, v4::Vector};
   /// # fn main() {
   /// // parse invalid string as vector, then check result
   /// assert_eq!("CVSS:foo/".parse::<Vector>(), Err(Err::Prefix));
@@ -191,7 +191,7 @@ pub enum Err {
   /// # Example
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v4::Vector};
+  /// # use polycvss::{Err, v4::Vector};
   /// # fn main() {
   /// // parse invalid string as vector, then check result
   /// assert_eq!("CVSS:4.0/AV:N/AV:N".parse::<Vector>(), Err(Err::DuplicateName));
@@ -204,7 +204,7 @@ pub enum Err {
   /// # Example
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v4::Name};
+  /// # use polycvss::{Err, v4::Name};
   /// # fn main() {
   /// // parse unknown metric name, check result
   /// assert_eq!("asdf".parse::<Name>(), Err(Err::UnknownName));
@@ -217,7 +217,7 @@ pub enum Err {
   /// # Example
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v4::Vector};
+  /// # use polycvss::{Err, v4::Vector};
   /// # fn main() {
   /// // parse vector string with unknown metric value, then check result
   /// assert_eq!("CVSS:4.0/AV:Z".parse::<Vector>(), Err(Err::UnknownMetric));
@@ -233,7 +233,7 @@ pub enum Err {
   /// # Example
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v4::Vector};
+  /// # use polycvss::{Err, v4::Vector};
   /// # fn main() {
   /// // vector string missing mandatory metric
   /// let s = "CVSS:4.0/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H";
@@ -249,7 +249,7 @@ pub enum Err {
   /// # Example
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, Severity};
+  /// # use polycvss::{Err, Severity};
   /// # fn main() {
   /// // vector string missing mandatory metric
   /// let s = "asdf";
@@ -270,7 +270,7 @@ pub enum Err {
   /// # Example
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, Version};
+  /// # use polycvss::{Err, Version};
   /// # fn main() {
   /// // parse unknown CVSS version, check result
   /// assert_eq!("asdf".parse::<Version>(), Err(Err::UnknownVersion));
@@ -423,7 +423,7 @@ impl TryFrom<u64> for Version {
 /// Get metric name:
 ///
 /// ```
-/// # use polycvss::cvss::{Metric, Name, v4};
+/// # use polycvss::{Metric, Name, v4};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(v4::Metric::AttackVector(v4::AttackVector::Local));
@@ -507,7 +507,7 @@ impl std::fmt::Display for Name {
 /// Parse string as metric:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Metric, v4};
+/// # use polycvss::{Err, Metric, v4};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as CVSS v4 metric
 /// let metric = Metric::from("AV:N".parse::<v4::Metric>()?);
@@ -521,7 +521,7 @@ impl std::fmt::Display for Name {
 /// Convert metric to string:
 ///
 /// ```
-/// # use polycvss::cvss::{Metric, v4};
+/// # use polycvss::{Metric, v4};
 /// # fn main() {
 /// // convert CVSS v4 metric to string
 /// let s = Metric::V4(v4::Metric::AttackVector(v4::AttackVector::Adjacent)).to_string();
@@ -534,7 +534,7 @@ impl std::fmt::Display for Name {
 /// Get metric name:
 ///
 /// ```
-/// # use polycvss::cvss::{Metric, Name, v4};
+/// # use polycvss::{Metric, Name, v4};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(v4::Metric::AttackVector(v4::AttackVector::Local));
@@ -600,7 +600,7 @@ impl std::fmt::Display for Metric {
 /// to a [`std::vec::Vec`][]:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Metric, Vector, v4};
+/// # use polycvss::{Err, Metric, Vector, v4};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v4 vector string
 /// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
@@ -633,7 +633,7 @@ impl std::fmt::Display for Metric {
 /// [`Metric`][]:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Metric, Vector, v4};
+/// # use polycvss::{Err, Metric, Vector, v4};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v4 vector string
 /// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
@@ -692,7 +692,7 @@ impl Iterator for VectorIterator {
 /// Parse vector string:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Vector};
+/// # use polycvss::{Err, Vector};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v2 vector string
 /// let v2: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -709,7 +709,7 @@ impl Iterator for VectorIterator {
 /// Iterate over [`Metric`s][Metric] in a [`Vector`][]:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Vector};
+/// # use polycvss::{Err, Vector};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v4 vector string
 /// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
@@ -725,7 +725,7 @@ impl Iterator for VectorIterator {
 /// Get metric from vector:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Vector, Metric, Name, v4};
+/// # use polycvss::{Err, Vector, Metric, Name, v4};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v4 vector string
 /// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
@@ -742,7 +742,7 @@ impl Iterator for VectorIterator {
 /// Get score for several vector strings:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Score, Vector};
+/// # use polycvss::{Err, Score, Vector};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v2 vector string, get score
 /// let v2: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -762,7 +762,7 @@ impl Iterator for VectorIterator {
 /// Get base score for several vector strings:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Score, Vector};
+/// # use polycvss::{Err, Score, Vector};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v2 vector string, get base score
 /// let v2: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -784,7 +784,7 @@ impl Iterator for VectorIterator {
 /// [`Vector`][] back to a string:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Vector};
+/// # use polycvss::{Err, Vector};
 /// # fn main() -> Result<(), Err> {
 /// // vector string with first two metrics (AV and AC) swapped
 /// let s = "CVSS:4.0/AC:L/AV:N/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H";
@@ -807,7 +807,7 @@ impl Iterator for VectorIterator {
 /// [`Vector`][] back to a string:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Vector};
+/// # use polycvss::{Err, Vector};
 /// # fn main() -> Result<(), Err> {
 /// // vector string which contains an optional metric (MAV) with a
 /// // value of `Not Defined (X)`
@@ -829,7 +829,7 @@ impl Iterator for VectorIterator {
 /// Verify that a [`Vector`][] is the same size as a `u64`:
 ///
 /// ```
-/// # use polycvss::cvss::Vector;
+/// # use polycvss::Vector;
 /// # fn main() {
 /// assert_eq!(size_of::<Vector>(), size_of::<u64>());
 /// # }
@@ -838,7 +838,7 @@ impl Iterator for VectorIterator {
 /// Verify that a [`v4::Vector`][] is the same size as one `u64`:
 ///
 /// ```
-/// # use polycvss::cvss::v4;
+/// # use polycvss::v4;
 /// # fn main() {
 /// assert_eq!(size_of::<v4::Vector>(), size_of::<u64>());
 /// # }
@@ -909,7 +909,7 @@ impl Vector {
   /// Get base score for several vector strings:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, Score, Vector};
+  /// # use polycvss::{Err, Score, Vector};
   /// # fn main() -> Result<(), Err> {
   /// // parse CVSS v2 vector string, get base score
   /// let v2: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -1025,7 +1025,7 @@ impl std::fmt::Display for Vector {
 /// Create `Score` from `f32`:
 ///
 /// ```
-/// # use polycvss::cvss::Score;
+/// # use polycvss::Score;
 /// # fn main() {
 /// // create score from f32
 /// let score = Score::from(9.6_f32);
@@ -1038,7 +1038,7 @@ impl std::fmt::Display for Vector {
 /// Create `Score` from `f64`:
 ///
 /// ```
-/// # use polycvss::cvss::Score;
+/// # use polycvss::Score;
 /// # fn main() {
 /// // create score from f64
 /// let score = Score::from(8.7_f64);
@@ -1117,7 +1117,7 @@ impl std::ops::Sub for Score {
 /// Get [`Score`][] severity:
 ///
 /// ```
-/// # use polycvss::cvss::{Score, Severity};
+/// # use polycvss::{Score, Severity};
 /// # fn main() {
 /// // create severites from scores
 /// let a = Severity::from(Score::from(8.7));
@@ -1132,7 +1132,7 @@ impl std::ops::Sub for Score {
 /// Compare severities:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, Severity};
+/// # use polycvss::{Err, Severity};
 /// # fn main() -> Result<(), Err> {
 /// let a = Severity::Low;
 /// let b = Severity::High;

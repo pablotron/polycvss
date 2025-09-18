@@ -8,7 +8,7 @@
 //! Parse [vector string][vector-string], then get a [`Metric`][] by [`Name`][]:
 //!
 //! ```
-//! # use polycvss::cvss::{Err, v3::{AttackVector, Vector, Metric, Name}};
+//! # use polycvss::{Err, v3::{AttackVector, Vector, Metric, Name}};
 //! # fn main() -> Result<(), Err> {
 //! // parse vector string
 //! let v: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
@@ -26,7 +26,7 @@
 //! [`Name`s][Name]:
 //!
 //! ```
-//! # use polycvss::cvss::{Err, v3::{Name, Vector}};
+//! # use polycvss::{Err, v3::{Name, Vector}};
 //! # fn main() -> Result<(), Err> {
 //! // parse vector string
 //! let v: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
@@ -52,7 +52,7 @@
 //! Get base score for [CVSS v3][doc] vector:
 //!
 //! ```
-//! # use polycvss::cvss::{Err, Score, v3::Vector};
+//! # use polycvss::{Err, Score, v3::Vector};
 //! # fn main() -> Result<(), Err> {
 //! // parse CVSS v3 vector string
 //! let v: Vector = "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H".parse()?;
@@ -90,7 +90,7 @@ use super::{Err, Score, Version, roundup, encode::{EncodedVal, EncodedMetric}};
 /// Get metric group:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{Group, Name};
+/// # use polycvss::v3::{Group, Name};
 /// # fn main() {
 /// // get group
 /// let group = Group::from(Name::AttackVector);
@@ -151,7 +151,7 @@ impl std::fmt::Display for Group {
 /// Get metric name:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{AttackVector, Metric, Name};
+/// # use polycvss::v3::{AttackVector, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::AttackVector(AttackVector::Local));
@@ -164,7 +164,7 @@ impl std::fmt::Display for Group {
 /// Check if metric is mandatory:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{AttackVector, Name};
+/// # use polycvss::v3::{AttackVector, Name};
 /// # fn main() {
 /// // check if metric is mandatory
 /// assert_eq!(true, Name::AttackVector.is_mandatory());
@@ -244,7 +244,7 @@ impl Name {
   ///
   /// # Example
   ///
-  /// # use polycvss::cvss::v3::{AttackVector, Name};
+  /// # use polycvss::v3::{AttackVector, Name};
   /// # fn main() {
   /// // check if metric is mandatory
   /// assert_eq!(true, Name::AttackVector.is_mandatory());
@@ -369,7 +369,7 @@ impl std::fmt::Display for Name {
 /// Parse string as metric and check it:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{AttackVector, Metric}};
+/// # use polycvss::{Err, v3::{AttackVector, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "AV:N".parse()?;
@@ -383,7 +383,7 @@ impl std::fmt::Display for Name {
 /// Convert metric to string:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{AttackVector, Metric};
+/// # use polycvss::v3::{AttackVector, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::AttackVector(AttackVector::Adjacent).to_string();
@@ -396,7 +396,7 @@ impl std::fmt::Display for Name {
 /// Get metric name
 ///
 /// ```
-/// # use polycvss::cvss::v3::{AttackVector, Metric, Name};
+/// # use polycvss::v3::{AttackVector, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::AttackVector(AttackVector::Local));
@@ -524,7 +524,7 @@ pub enum ModifiedAttackVector {
 /// Parse string as metric:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{AttackComplexity, Metric}};
+/// # use polycvss::{Err, v3::{AttackComplexity, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "AC:L".parse()?;
@@ -538,7 +538,7 @@ pub enum ModifiedAttackVector {
 /// Convert metric to string:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{AttackComplexity, Metric};
+/// # use polycvss::v3::{AttackComplexity, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::AttackComplexity(AttackComplexity::High).to_string();
@@ -551,7 +551,7 @@ pub enum ModifiedAttackVector {
 /// Get metric name
 ///
 /// ```
-/// # use polycvss::cvss::v3::{AttackComplexity, Metric, Name};
+/// # use polycvss::v3::{AttackComplexity, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::AttackComplexity(AttackComplexity::High));
@@ -648,7 +648,7 @@ pub enum ModifiedAttackComplexity {
 /// Parse string as metric:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{PrivilegesRequired, Metric}};
+/// # use polycvss::{Err, v3::{PrivilegesRequired, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "PR:N".parse()?;
@@ -662,7 +662,7 @@ pub enum ModifiedAttackComplexity {
 /// Convert metric to string:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{PrivilegesRequired, Metric};
+/// # use polycvss::v3::{PrivilegesRequired, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::PrivilegesRequired(PrivilegesRequired::Low).to_string();
@@ -675,7 +675,7 @@ pub enum ModifiedAttackComplexity {
 /// Get metric name
 ///
 /// ```
-/// # use polycvss::cvss::v3::{PrivilegesRequired, Metric, Name};
+/// # use polycvss::v3::{PrivilegesRequired, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::PrivilegesRequired(PrivilegesRequired::High));
@@ -772,7 +772,7 @@ pub enum ModifiedPrivilegesRequired {
 /// Parse string as metric:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{UserInteraction, Metric}};
+/// # use polycvss::{Err, v3::{UserInteraction, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "UI:N".parse()?;
@@ -786,7 +786,7 @@ pub enum ModifiedPrivilegesRequired {
 /// Convert metric to string:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{UserInteraction, Metric};
+/// # use polycvss::v3::{UserInteraction, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::UserInteraction(UserInteraction::Required).to_string();
@@ -799,7 +799,7 @@ pub enum ModifiedPrivilegesRequired {
 /// Get metric name:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{UserInteraction, Metric, Name};
+/// # use polycvss::v3::{UserInteraction, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::UserInteraction(UserInteraction::None));
@@ -900,7 +900,7 @@ pub enum ModifiedUserInteraction {
 /// Parse string as metric:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{Scope, Metric}};
+/// # use polycvss::{Err, v3::{Scope, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "S:U".parse()?;
@@ -914,7 +914,7 @@ pub enum ModifiedUserInteraction {
 /// Convert metric to string:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{Scope, Metric};
+/// # use polycvss::v3::{Scope, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::Scope(Scope::Changed).to_string();
@@ -927,7 +927,7 @@ pub enum ModifiedUserInteraction {
 /// Get metric name:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{Scope, Metric, Name};
+/// # use polycvss::v3::{Scope, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::Scope(Scope::Changed));
@@ -1130,7 +1130,7 @@ pub enum ModifiedImpact {
 /// Parse string as metric:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{ExploitCodeMaturity, Metric}};
+/// # use polycvss::{Err, v3::{ExploitCodeMaturity, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "E:F".parse()?;
@@ -1144,7 +1144,7 @@ pub enum ModifiedImpact {
 /// Convert metric to string:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{ExploitCodeMaturity, Metric};
+/// # use polycvss::v3::{ExploitCodeMaturity, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::ExploitCodeMaturity(ExploitCodeMaturity::ProofOfConcept).to_string();
@@ -1157,7 +1157,7 @@ pub enum ModifiedImpact {
 /// Get metric name:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{ExploitCodeMaturity, Metric, Name};
+/// # use polycvss::v3::{ExploitCodeMaturity, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::ExploitCodeMaturity(ExploitCodeMaturity::High));
@@ -1234,7 +1234,7 @@ pub enum ExploitCodeMaturity {
 /// Parse string as metric:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{RemediationLevel, Metric}};
+/// # use polycvss::{Err, v3::{RemediationLevel, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "RL:U".parse()?;
@@ -1248,7 +1248,7 @@ pub enum ExploitCodeMaturity {
 /// Convert metric to string:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{RemediationLevel, Metric};
+/// # use polycvss::v3::{RemediationLevel, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::RemediationLevel(RemediationLevel::Workaround).to_string();
@@ -1261,7 +1261,7 @@ pub enum ExploitCodeMaturity {
 /// Get metric name:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{RemediationLevel, Metric, Name};
+/// # use polycvss::v3::{RemediationLevel, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::RemediationLevel(RemediationLevel::TemporaryFix));
@@ -1340,7 +1340,7 @@ pub enum RemediationLevel {
 /// Parse string as metric:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{ReportConfidence, Metric}};
+/// # use polycvss::{Err, v3::{ReportConfidence, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "RC:C".parse()?;
@@ -1354,7 +1354,7 @@ pub enum RemediationLevel {
 /// Convert metric to string:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{ReportConfidence, Metric};
+/// # use polycvss::v3::{ReportConfidence, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::ReportConfidence(ReportConfidence::Reasonable).to_string();
@@ -1367,7 +1367,7 @@ pub enum RemediationLevel {
 /// Get metric name:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{ReportConfidence, Metric, Name};
+/// # use polycvss::v3::{ReportConfidence, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::ReportConfidence(ReportConfidence::Unknown));
@@ -1514,7 +1514,7 @@ pub enum Requirement {
 /// Parse string as metric and check it:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{AttackVector, Metric}};
+/// # use polycvss::{Err, v3::{AttackVector, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "AV:N".parse()?;
@@ -1528,7 +1528,7 @@ pub enum Requirement {
 /// Convert metric to string:
 ///
 /// ```
-/// # use polycvss::cvss::v3::{AttackVector, Metric};
+/// # use polycvss::v3::{AttackVector, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::AttackVector(AttackVector::Adjacent).to_string();
@@ -1541,7 +1541,7 @@ pub enum Requirement {
 /// Get metric name
 ///
 /// ```
-/// # use polycvss::cvss::v3::{AttackVector, Metric, Name};
+/// # use polycvss::v3::{AttackVector, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::AttackVector(AttackVector::Local));
@@ -1576,7 +1576,7 @@ pub enum Metric {
   /// Parse string as metric and check it:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{AttackVector, Metric}};
+  /// # use polycvss::{Err, v3::{AttackVector, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "AV:N".parse()?;
@@ -1590,7 +1590,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{AttackVector, Metric};
+  /// # use polycvss::v3::{AttackVector, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::AttackVector(AttackVector::Adjacent).to_string();
@@ -1603,7 +1603,7 @@ pub enum Metric {
   /// Get metric name
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{AttackVector, Metric, Name};
+  /// # use polycvss::v3::{AttackVector, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::AttackVector(AttackVector::Local));
@@ -1652,7 +1652,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{PrivilegesRequired, Metric}};
+  /// # use polycvss::{Err, v3::{PrivilegesRequired, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "PR:N".parse()?;
@@ -1666,7 +1666,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{PrivilegesRequired, Metric};
+  /// # use polycvss::v3::{PrivilegesRequired, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::PrivilegesRequired(PrivilegesRequired::Low).to_string();
@@ -1679,7 +1679,7 @@ pub enum Metric {
   /// Get metric name
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{PrivilegesRequired, Metric, Name};
+  /// # use polycvss::v3::{PrivilegesRequired, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::PrivilegesRequired(PrivilegesRequired::High));
@@ -1716,7 +1716,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{UserInteraction, Metric}};
+  /// # use polycvss::{Err, v3::{UserInteraction, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "UI:N".parse()?;
@@ -1730,7 +1730,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{UserInteraction, Metric};
+  /// # use polycvss::v3::{UserInteraction, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::UserInteraction(UserInteraction::Required).to_string();
@@ -1743,7 +1743,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{UserInteraction, Metric, Name};
+  /// # use polycvss::v3::{UserInteraction, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::UserInteraction(UserInteraction::None));
@@ -1798,7 +1798,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{Scope, Metric}};
+  /// # use polycvss::{Err, v3::{Scope, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "S:U".parse()?;
@@ -1812,7 +1812,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{Scope, Metric};
+  /// # use polycvss::v3::{Scope, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::Scope(Scope::Changed).to_string();
@@ -1825,7 +1825,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{Scope, Metric, Name};
+  /// # use polycvss::v3::{Scope, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::Scope(Scope::Changed));
@@ -1862,7 +1862,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{Impact, Metric}};
+  /// # use polycvss::{Err, v3::{Impact, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "C:H".parse()?;
@@ -1876,7 +1876,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{Impact, Metric};
+  /// # use polycvss::v3::{Impact, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::Confidentiality(Impact::Low).to_string();
@@ -1889,7 +1889,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{Impact, Metric, Name};
+  /// # use polycvss::v3::{Impact, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::Confidentiality(Impact::None));
@@ -1923,7 +1923,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{Impact, Metric}};
+  /// # use polycvss::{Err, v3::{Impact, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "I:H".parse()?;
@@ -1937,7 +1937,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{Impact, Metric};
+  /// # use polycvss::v3::{Impact, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::Integrity(Impact::Low).to_string();
@@ -1950,7 +1950,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{Impact, Metric, Name};
+  /// # use polycvss::v3::{Impact, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::Integrity(Impact::None));
@@ -1992,7 +1992,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{Impact, Metric}};
+  /// # use polycvss::{Err, v3::{Impact, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "A:H".parse()?;
@@ -2006,7 +2006,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{Impact, Metric};
+  /// # use polycvss::v3::{Impact, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::Availability(Impact::Low).to_string();
@@ -2019,7 +2019,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{Impact, Metric, Name};
+  /// # use polycvss::v3::{Impact, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::Availability(Impact::None));
@@ -2065,7 +2065,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{ExploitCodeMaturity, Metric}};
+  /// # use polycvss::{Err, v3::{ExploitCodeMaturity, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "E:F".parse()?;
@@ -2079,7 +2079,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{ExploitCodeMaturity, Metric};
+  /// # use polycvss::v3::{ExploitCodeMaturity, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::ExploitCodeMaturity(ExploitCodeMaturity::ProofOfConcept).to_string();
@@ -2092,7 +2092,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{ExploitCodeMaturity, Metric, Name};
+  /// # use polycvss::v3::{ExploitCodeMaturity, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::ExploitCodeMaturity(ExploitCodeMaturity::High));
@@ -2129,7 +2129,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{RemediationLevel, Metric}};
+  /// # use polycvss::{Err, v3::{RemediationLevel, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "RL:U".parse()?;
@@ -2143,7 +2143,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{RemediationLevel, Metric};
+  /// # use polycvss::v3::{RemediationLevel, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::RemediationLevel(RemediationLevel::Workaround).to_string();
@@ -2156,7 +2156,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{RemediationLevel, Metric, Name};
+  /// # use polycvss::v3::{RemediationLevel, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::RemediationLevel(RemediationLevel::TemporaryFix));
@@ -2199,7 +2199,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{ReportConfidence, Metric}};
+  /// # use polycvss::{Err, v3::{ReportConfidence, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "RC:C".parse()?;
@@ -2213,7 +2213,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{ReportConfidence, Metric};
+  /// # use polycvss::v3::{ReportConfidence, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::ReportConfidence(ReportConfidence::Reasonable).to_string();
@@ -2226,7 +2226,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use polycvss::cvss::v3::{ReportConfidence, Metric, Name};
+  /// # use polycvss::v3::{ReportConfidence, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::ReportConfidence(ReportConfidence::Unknown));
@@ -3013,7 +3013,7 @@ const DECODES: [Decode; 22] = [
 /// to a [`std::vec::Vec`][]:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{AttackVector, AttackComplexity, PrivilegesRequired, UserInteraction, Scope, Impact, Metric, Vector}};
+/// # use polycvss::{Err, v3::{AttackVector, AttackComplexity, PrivilegesRequired, UserInteraction, Scope, Impact, Metric, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as vector
 /// let v: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
@@ -3043,7 +3043,7 @@ const DECODES: [Decode; 22] = [
 /// [`Metric`][]:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{AttackVector, Metric, Vector}};
+/// # use polycvss::{Err, v3::{AttackVector, Metric, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as vector
 /// let v: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
@@ -3120,7 +3120,7 @@ impl Iterator for VectorIterator {
 /// Parse a [`&str`][] into a [`Vector`][]:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{Vector}};
+/// # use polycvss::{Err, v3::{Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // CVSS v3.1 vector string
 /// let s = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H";
@@ -3134,7 +3134,7 @@ impl Iterator for VectorIterator {
 /// Get base score:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{Scores, Vector}};
+/// # use polycvss::{Err, v3::{Scores, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse vector string
 /// let v: Vector = "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H".parse()?;
@@ -3151,7 +3151,7 @@ impl Iterator for VectorIterator {
 /// Iterate over [`Metric`s][Metric] in a [`Vector`][]:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::Vector};
+/// # use polycvss::{Err, v3::Vector};
 /// # fn main() -> Result<(), Err> {
 /// // parse vector string
 /// let v: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
@@ -3167,7 +3167,7 @@ impl Iterator for VectorIterator {
 /// Get metric from vector:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{AttackVector, Vector, Metric, Name}};
+/// # use polycvss::{Err, v3::{AttackVector, Vector, Metric, Name}};
 /// # fn main() -> Result<(), Err> {
 /// // parse vector string
 /// let v: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
@@ -3186,7 +3186,7 @@ impl Iterator for VectorIterator {
 /// [`Vector`][] back to a string:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::Vector};
+/// # use polycvss::{Err, v3::Vector};
 /// # fn main() -> Result<(), Err> {
 /// // vector string with first two metrics (AV and AC) swapped
 /// let s = "CVSS:3.1/AC:L/AV:N/PR:N/UI:N/S:U/C:H/I:H/A:H";
@@ -3209,7 +3209,7 @@ impl Iterator for VectorIterator {
 /// [`Vector`][] back to a string:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::Vector};
+/// # use polycvss::{Err, v3::Vector};
 /// # fn main() -> Result<(), Err> {
 /// // vector string which contains an optional metric (MAV) with a
 /// // value of `Not Defined (X)`
@@ -3231,7 +3231,7 @@ impl Iterator for VectorIterator {
 /// Verify that a vector is the same size as a `u64`:
 ///
 /// ```
-/// # use polycvss::cvss::v3::Vector;
+/// # use polycvss::v3::Vector;
 /// # fn main() {
 /// assert_eq!(size_of::<Vector>(), size_of::<u64>());
 /// # }
@@ -3279,7 +3279,7 @@ impl Vector {
   /// Get metric from vector:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{AttackVector, Vector, Metric, Name}};
+  /// # use polycvss::{Err, v3::{AttackVector, Vector, Metric, Name}};
   /// # fn main() -> Result<(), Err> {
   /// // parse vector string
   /// let v: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
@@ -3296,7 +3296,7 @@ impl Vector {
   /// Get optional metric from vector:
   ///
   /// ```
-  /// # use polycvss::cvss::{Err, v3::{ModifiedAttackVector, Vector, Metric, Name}};
+  /// # use polycvss::{Err, v3::{ModifiedAttackVector, Vector, Metric, Name}};
   /// # fn main() -> Result<(), Err> {
   /// // parse vector string
   /// let v: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
@@ -3450,7 +3450,7 @@ impl std::fmt::Display for Vector {
 /// Get base score for [CVSS v3][doc] vector:
 ///
 /// ```
-/// # use polycvss::cvss::{Err, v3::{Scores, Vector}};
+/// # use polycvss::{Err, v3::{Scores, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v3 vector string
 /// let v: Vector = "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H".parse()?;
