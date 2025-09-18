@@ -7,7 +7,7 @@
 //! Parse [vector string][vector-string], then get a [`Metric`][] by [`Name`][]:
 //!
 //! ```
-//! # use crate::polycvss::cvss::{Err, v2::{AccessVector, Vector, Metric, Name}};
+//! # use polycvss::cvss::{Err, v2::{AccessVector, Vector, Metric, Name}};
 //! # fn main() -> Result<(), Err> {
 //! // parse vector string
 //! let v: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -25,7 +25,7 @@
 //! [`Name`s][Name]:
 //!
 //! ```
-//! # use crate::polycvss::cvss::{Err, v2::{Name, Vector}};
+//! # use polycvss::cvss::{Err, v2::{Name, Vector}};
 //! # fn main() -> Result<(), Err> {
 //! // parse vector string
 //! let v: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -49,7 +49,7 @@
 //! Get base score for [CVSS v2][doc] vector:
 //!
 //! ```
-//! # use crate::polycvss::cvss::{Err, Score, v2::Vector};
+//! # use polycvss::cvss::{Err, Score, v2::Vector};
 //! # fn main() -> Result<(), Err> {
 //! // parse CVSS v2 vector string
 //! let v: Vector = "AV:N/AC:L/Au:N/C:N/I:N/A:C".parse()?;
@@ -92,7 +92,7 @@ use super::{Err, Score, round1, Version, encode::{EncodedVal, EncodedMetric}};
 /// Parse string as metric and check it:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{AccessVector, Metric}};
+/// # use polycvss::cvss::{Err, v2::{AccessVector, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "AV:N".parse()?;
@@ -106,7 +106,7 @@ use super::{Err, Score, round1, Version, encode::{EncodedVal, EncodedMetric}};
 /// Convert metric to string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{AccessVector, Metric};
+/// # use polycvss::cvss::v2::{AccessVector, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::AccessVector(AccessVector::AdjacentNetwork).to_string();
@@ -119,7 +119,7 @@ use super::{Err, Score, round1, Version, encode::{EncodedVal, EncodedMetric}};
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{AccessVector, Metric, Name};
+/// # use polycvss::cvss::v2::{AccessVector, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::AccessVector(AccessVector::Local));
@@ -168,7 +168,7 @@ pub enum AccessVector {
 /// Parse string as metric:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{AccessComplexity, Metric}};
+/// # use polycvss::cvss::{Err, v2::{AccessComplexity, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "AC:L".parse()?;
@@ -182,7 +182,7 @@ pub enum AccessVector {
 /// Convert metric to string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{AccessComplexity, Metric};
+/// # use polycvss::cvss::v2::{AccessComplexity, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::AccessComplexity(AccessComplexity::High).to_string();
@@ -195,7 +195,7 @@ pub enum AccessVector {
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{AccessComplexity, Metric, Name};
+/// # use polycvss::cvss::v2::{AccessComplexity, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::AccessComplexity(AccessComplexity::High));
@@ -256,7 +256,7 @@ pub enum AccessComplexity {
 /// Parse string as metric:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{Authentication, Metric}};
+/// # use polycvss::cvss::{Err, v2::{Authentication, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "Au:M".parse()?;
@@ -270,7 +270,7 @@ pub enum AccessComplexity {
 /// Convert metric to string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{Authentication, Metric};
+/// # use polycvss::cvss::v2::{Authentication, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::Authentication(Authentication::Single).to_string();
@@ -283,7 +283,7 @@ pub enum AccessComplexity {
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{Authentication, Metric, Name};
+/// # use polycvss::cvss::v2::{Authentication, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::Authentication(Authentication::None));
@@ -335,7 +335,7 @@ pub enum Authentication {
 /// Parse string as metric:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{Impact, Metric}};
+/// # use polycvss::cvss::{Err, v2::{Impact, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "C:C".parse()?;
@@ -349,7 +349,7 @@ pub enum Authentication {
 /// Convert metric to string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{Impact, Metric};
+/// # use polycvss::cvss::v2::{Impact, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::Integrity(Impact::Partial).to_string();
@@ -362,7 +362,7 @@ pub enum Authentication {
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{Impact, Metric, Name};
+/// # use polycvss::cvss::v2::{Impact, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::Availability(Impact::None));
@@ -427,7 +427,7 @@ pub enum Impact {
 /// Parse string as metric:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{Exploitability, Metric}};
+/// # use polycvss::cvss::{Err, v2::{Exploitability, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "E:H".parse()?;
@@ -441,7 +441,7 @@ pub enum Impact {
 /// Convert metric to string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{Exploitability, Metric};
+/// # use polycvss::cvss::v2::{Exploitability, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::Exploitability(Exploitability::Functional).to_string();
@@ -454,7 +454,7 @@ pub enum Impact {
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{Exploitability, Metric, Name};
+/// # use polycvss::cvss::v2::{Exploitability, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::Exploitability(Exploitability::ProofOfConcept));
@@ -511,7 +511,7 @@ pub enum Exploitability {
 /// Parse string as metric:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{RemediationLevel, Metric}};
+/// # use polycvss::cvss::{Err, v2::{RemediationLevel, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "RL:U".parse()?;
@@ -525,7 +525,7 @@ pub enum Exploitability {
 /// Convert metric to string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{RemediationLevel, Metric};
+/// # use polycvss::cvss::v2::{RemediationLevel, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::RemediationLevel(RemediationLevel::Workaround).to_string();
@@ -538,7 +538,7 @@ pub enum Exploitability {
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{RemediationLevel, Metric, Name};
+/// # use polycvss::cvss::v2::{RemediationLevel, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::RemediationLevel(RemediationLevel::TemporaryFix));
@@ -595,7 +595,7 @@ pub enum RemediationLevel {
 /// Parse string as metric:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{ReportConfidence, Metric}};
+/// # use polycvss::cvss::{Err, v2::{ReportConfidence, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "RC:C".parse()?;
@@ -609,7 +609,7 @@ pub enum RemediationLevel {
 /// Convert metric to string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{ReportConfidence, Metric};
+/// # use polycvss::cvss::v2::{ReportConfidence, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::ReportConfidence(ReportConfidence::Uncorroborated).to_string();
@@ -622,7 +622,7 @@ pub enum RemediationLevel {
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{ReportConfidence, Metric, Name};
+/// # use polycvss::cvss::v2::{ReportConfidence, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::ReportConfidence(ReportConfidence::Unconfirmed));
@@ -674,7 +674,7 @@ pub enum ReportConfidence {
 /// Parse string as metric:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{CollateralDamagePotential, Metric}};
+/// # use polycvss::cvss::{Err, v2::{CollateralDamagePotential, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "CDP:H".parse()?;
@@ -688,7 +688,7 @@ pub enum ReportConfidence {
 /// Convert metric to string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{CollateralDamagePotential, Metric};
+/// # use polycvss::cvss::v2::{CollateralDamagePotential, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::CollateralDamagePotential(CollateralDamagePotential::MediumHigh).to_string();
@@ -701,7 +701,7 @@ pub enum ReportConfidence {
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{CollateralDamagePotential, Metric, Name};
+/// # use polycvss::cvss::v2::{CollateralDamagePotential, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::CollateralDamagePotential(CollateralDamagePotential::LowMedium));
@@ -763,7 +763,7 @@ pub enum CollateralDamagePotential {
 /// Parse string as metric:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{TargetDistribution, Metric}};
+/// # use polycvss::cvss::{Err, v2::{TargetDistribution, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "TD:H".parse()?;
@@ -777,7 +777,7 @@ pub enum CollateralDamagePotential {
 /// Convert metric to string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{TargetDistribution, Metric};
+/// # use polycvss::cvss::v2::{TargetDistribution, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::TargetDistribution(TargetDistribution::Medium).to_string();
@@ -790,7 +790,7 @@ pub enum CollateralDamagePotential {
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{TargetDistribution, Metric, Name};
+/// # use polycvss::cvss::v2::{TargetDistribution, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::TargetDistribution(TargetDistribution::Low));
@@ -859,7 +859,7 @@ pub enum TargetDistribution {
 /// Parse string as metric:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{Requirement, Metric}};
+/// # use polycvss::cvss::{Err, v2::{Requirement, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "CR:H".parse()?;
@@ -873,7 +873,7 @@ pub enum TargetDistribution {
 /// Convert metric to string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{Requirement, Metric};
+/// # use polycvss::cvss::v2::{Requirement, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::IntegrityRequirement(Requirement::Medium).to_string();
@@ -886,7 +886,7 @@ pub enum TargetDistribution {
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{Requirement, Metric, Name};
+/// # use polycvss::cvss::v2::{Requirement, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::AvailabilityRequirement(Requirement::Low));
@@ -931,7 +931,7 @@ pub enum Requirement {
 /// Get metric group:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{Group, Name};
+/// # use polycvss::cvss::v2::{Group, Name};
 /// # fn main() {
 /// // get group
 /// let group = Group::from(Name::AccessVector);
@@ -984,7 +984,7 @@ impl std::fmt::Display for Group {
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{AccessVector, Metric, Name};
+/// # use polycvss::cvss::v2::{AccessVector, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::AccessVector(AccessVector::Local));
@@ -997,7 +997,7 @@ impl std::fmt::Display for Group {
 /// Check if metric is mandatory:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{AccessVector, Name};
+/// # use polycvss::cvss::v2::{AccessVector, Name};
 /// # fn main() {
 /// // check if metric is mandatory
 /// assert_eq!(true, Name::AccessVector.is_mandatory());
@@ -1040,7 +1040,7 @@ impl Name {
   ///
   /// # Example
   ///
-  /// # use crate::polycvss::cvss::v2::{AccessVector, Name};
+  /// # use polycvss::cvss::v2::{AccessVector, Name};
   /// # fn main() {
   /// // check if metric is mandatory
   /// assert_eq!(true, Name::AccessVector.is_mandatory());
@@ -1124,7 +1124,7 @@ impl std::fmt::Display for Name {
 /// Parse string as metric and check it:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{AccessVector, Metric}};
+/// # use polycvss::cvss::{Err, v2::{AccessVector, Metric}};
 /// # fn main() -> Result<(), Err> {
 /// // parse string as metric
 /// let metric: Metric = "AV:N".parse()?;
@@ -1138,7 +1138,7 @@ impl std::fmt::Display for Name {
 /// Convert metric to string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{AccessVector, Metric};
+/// # use polycvss::cvss::v2::{AccessVector, Metric};
 /// # fn main() {
 /// // convert metric to string
 /// let s = Metric::AccessVector(AccessVector::AdjacentNetwork).to_string();
@@ -1151,7 +1151,7 @@ impl std::fmt::Display for Name {
 /// Get metric name:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::{AccessVector, Metric, Name};
+/// # use polycvss::cvss::v2::{AccessVector, Metric, Name};
 /// # fn main() {
 /// // get metric name
 /// let name = Name::from(Metric::AccessVector(AccessVector::Local));
@@ -1178,7 +1178,7 @@ pub enum Metric {
   /// Parse string as metric and check it:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{AccessVector, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{AccessVector, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "AV:N".parse()?;
@@ -1192,7 +1192,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{AccessVector, Metric};
+  /// # use polycvss::cvss::v2::{AccessVector, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::AccessVector(AccessVector::AdjacentNetwork).to_string();
@@ -1205,7 +1205,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{AccessVector, Metric, Name};
+  /// # use polycvss::cvss::v2::{AccessVector, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::AccessVector(AccessVector::Local));
@@ -1237,7 +1237,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{AccessComplexity, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{AccessComplexity, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "AC:L".parse()?;
@@ -1251,7 +1251,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{AccessComplexity, Metric};
+  /// # use polycvss::cvss::v2::{AccessComplexity, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::AccessComplexity(AccessComplexity::High).to_string();
@@ -1264,7 +1264,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{AccessComplexity, Metric, Name};
+  /// # use polycvss::cvss::v2::{AccessComplexity, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::AccessComplexity(AccessComplexity::High));
@@ -1294,7 +1294,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{Authentication, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{Authentication, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "Au:M".parse()?;
@@ -1308,7 +1308,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Authentication, Metric};
+  /// # use polycvss::cvss::v2::{Authentication, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::Authentication(Authentication::Single).to_string();
@@ -1321,7 +1321,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Authentication, Metric, Name};
+  /// # use polycvss::cvss::v2::{Authentication, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::Authentication(Authentication::None));
@@ -1351,7 +1351,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{Impact, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{Impact, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "C:C".parse()?;
@@ -1365,7 +1365,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Impact, Metric};
+  /// # use polycvss::cvss::v2::{Impact, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::Confidentiality(Impact::Partial).to_string();
@@ -1378,7 +1378,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Impact, Metric, Name};
+  /// # use polycvss::cvss::v2::{Impact, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::Confidentiality(Impact::None));
@@ -1408,7 +1408,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{Impact, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{Impact, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "I:C".parse()?;
@@ -1422,7 +1422,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Impact, Metric};
+  /// # use polycvss::cvss::v2::{Impact, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::Integrity(Impact::Partial).to_string();
@@ -1435,7 +1435,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Impact, Metric, Name};
+  /// # use polycvss::cvss::v2::{Impact, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::Integrity(Impact::None));
@@ -1465,7 +1465,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{Impact, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{Impact, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "A:C".parse()?;
@@ -1479,7 +1479,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Impact, Metric};
+  /// # use polycvss::cvss::v2::{Impact, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::Availability(Impact::Partial).to_string();
@@ -1492,7 +1492,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Impact, Metric, Name};
+  /// # use polycvss::cvss::v2::{Impact, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::Availability(Impact::None));
@@ -1524,7 +1524,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{Exploitability, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{Exploitability, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "E:H".parse()?;
@@ -1538,7 +1538,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Exploitability, Metric};
+  /// # use polycvss::cvss::v2::{Exploitability, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::Exploitability(Exploitability::Functional).to_string();
@@ -1551,7 +1551,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Exploitability, Metric, Name};
+  /// # use polycvss::cvss::v2::{Exploitability, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::Exploitability(Exploitability::ProofOfConcept));
@@ -1581,7 +1581,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{RemediationLevel, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{RemediationLevel, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "RL:U".parse()?;
@@ -1595,7 +1595,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{RemediationLevel, Metric};
+  /// # use polycvss::cvss::v2::{RemediationLevel, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::RemediationLevel(RemediationLevel::Workaround).to_string();
@@ -1608,7 +1608,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{RemediationLevel, Metric, Name};
+  /// # use polycvss::cvss::v2::{RemediationLevel, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::RemediationLevel(RemediationLevel::TemporaryFix));
@@ -1638,7 +1638,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{ReportConfidence, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{ReportConfidence, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "RC:C".parse()?;
@@ -1652,7 +1652,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{ReportConfidence, Metric};
+  /// # use polycvss::cvss::v2::{ReportConfidence, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::ReportConfidence(ReportConfidence::Uncorroborated).to_string();
@@ -1665,7 +1665,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{ReportConfidence, Metric, Name};
+  /// # use polycvss::cvss::v2::{ReportConfidence, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::ReportConfidence(ReportConfidence::Unconfirmed));
@@ -1695,7 +1695,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{CollateralDamagePotential, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{CollateralDamagePotential, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "CDP:H".parse()?;
@@ -1709,7 +1709,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{CollateralDamagePotential, Metric};
+  /// # use polycvss::cvss::v2::{CollateralDamagePotential, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::CollateralDamagePotential(CollateralDamagePotential::MediumHigh).to_string();
@@ -1722,7 +1722,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{CollateralDamagePotential, Metric, Name};
+  /// # use polycvss::cvss::v2::{CollateralDamagePotential, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::CollateralDamagePotential(CollateralDamagePotential::LowMedium));
@@ -1752,7 +1752,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{TargetDistribution, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{TargetDistribution, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "TD:H".parse()?;
@@ -1766,7 +1766,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{TargetDistribution, Metric};
+  /// # use polycvss::cvss::v2::{TargetDistribution, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::TargetDistribution(TargetDistribution::Medium).to_string();
@@ -1779,7 +1779,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{TargetDistribution, Metric, Name};
+  /// # use polycvss::cvss::v2::{TargetDistribution, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::TargetDistribution(TargetDistribution::Low));
@@ -1815,7 +1815,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{Requirement, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{Requirement, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "CR:H".parse()?;
@@ -1829,7 +1829,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Requirement, Metric};
+  /// # use polycvss::cvss::v2::{Requirement, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::ConfidentialityRequirement(Requirement::Medium).to_string();
@@ -1842,7 +1842,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Requirement, Metric, Name};
+  /// # use polycvss::cvss::v2::{Requirement, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::ConfidentialityRequirement(Requirement::Low));
@@ -1878,7 +1878,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{Requirement, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{Requirement, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "IR:H".parse()?;
@@ -1892,7 +1892,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Requirement, Metric};
+  /// # use polycvss::cvss::v2::{Requirement, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::IntegrityRequirement(Requirement::Medium).to_string();
@@ -1905,7 +1905,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Requirement, Metric, Name};
+  /// # use polycvss::cvss::v2::{Requirement, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::IntegrityRequirement(Requirement::Low));
@@ -1941,7 +1941,7 @@ pub enum Metric {
   /// Parse string as metric:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{Requirement, Metric}};
+  /// # use polycvss::cvss::{Err, v2::{Requirement, Metric}};
   /// # fn main() -> Result<(), Err> {
   /// // parse string as metric
   /// let metric: Metric = "AR:H".parse()?;
@@ -1955,7 +1955,7 @@ pub enum Metric {
   /// Convert metric to string:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Requirement, Metric};
+  /// # use polycvss::cvss::v2::{Requirement, Metric};
   /// # fn main() {
   /// // convert metric to string
   /// let s = Metric::AvailabilityRequirement(Requirement::Medium).to_string();
@@ -1968,7 +1968,7 @@ pub enum Metric {
   /// Get metric name:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::v2::{Requirement, Metric, Name};
+  /// # use polycvss::cvss::v2::{Requirement, Metric, Name};
   /// # fn main() {
   /// // get metric name
   /// let name = Name::from(Metric::AvailabilityRequirement(Requirement::Low));
@@ -2369,7 +2369,7 @@ const DECODES: [Decode; 14] = [
 /// to a [`std::vec::Vec`][]:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{AccessVector, AccessComplexity, Authentication, Impact, Metric, Vector}};
+/// # use polycvss::cvss::{Err, v2::{AccessVector, AccessComplexity, Authentication, Impact, Metric, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse vector string
 /// let v: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -2396,7 +2396,7 @@ const DECODES: [Decode; 14] = [
 /// Same as above, but shorter:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{AccessVector, AccessComplexity, Authentication, Impact, Metric, Vector}};
+/// # use polycvss::cvss::{Err, v2::{AccessVector, AccessComplexity, Authentication, Impact, Metric, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse vector string
 /// let v: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -2421,7 +2421,7 @@ const DECODES: [Decode; 14] = [
 /// [`Metric`][]:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{AccessVector, Metric, Vector}};
+/// # use polycvss::cvss::{Err, v2::{AccessVector, Metric, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse vector string
 /// let v: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -2499,7 +2499,7 @@ impl Iterator for VectorIterator {
 /// Parse a [`&str`][] into a [`Vector`][]:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::Vector};
+/// # use polycvss::cvss::{Err, v2::Vector};
 /// # fn main() -> Result<(), Err> {
 /// // CVSS v2 vector string
 /// let s = "AV:N/AC:L/Au:N/C:C/I:C/A:C";
@@ -2513,7 +2513,7 @@ impl Iterator for VectorIterator {
 /// Get base score:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{Scores, Vector}};
+/// # use polycvss::cvss::{Err, v2::{Scores, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v2 vector string
 /// let v: Vector = "AV:N/AC:L/Au:N/C:N/I:N/A:C".parse()?;
@@ -2530,7 +2530,7 @@ impl Iterator for VectorIterator {
 /// Iterate over [`Metric`s][Metric] in a [`Vector`][]:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::Vector};
+/// # use polycvss::cvss::{Err, v2::Vector};
 /// # fn main() -> Result<(), Err> {
 /// // parse vector string
 /// let v: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -2546,7 +2546,7 @@ impl Iterator for VectorIterator {
 /// Get metric from vector:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{AccessVector, Vector, Metric, Name}};
+/// # use polycvss::cvss::{Err, v2::{AccessVector, Vector, Metric, Name}};
 /// # fn main() -> Result<(), Err> {
 /// // parse vector string
 /// let v: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -2565,7 +2565,7 @@ impl Iterator for VectorIterator {
 /// [`Vector`][] back to a string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::Vector};
+/// # use polycvss::cvss::{Err, v2::Vector};
 /// # fn main() -> Result<(), Err> {
 /// // vector string with first two metrics (AV and AC) swapped
 /// let s = "AC:L/AV:N/Au:N/C:C/I:C/A:C";
@@ -2588,7 +2588,7 @@ impl Iterator for VectorIterator {
 /// [`Vector`][] back to a string:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::Vector};
+/// # use polycvss::cvss::{Err, v2::Vector};
 /// # fn main() -> Result<(), Err> {
 /// // vector string which contains an optional metric (MAV) with a
 /// // value of `Not Defined (ND)`
@@ -2610,7 +2610,7 @@ impl Iterator for VectorIterator {
 /// Verify that a vector is the same size as a `u64`:
 ///
 /// ```
-/// # use crate::polycvss::cvss::v2::Vector;
+/// # use polycvss::cvss::v2::Vector;
 /// # fn main() {
 /// assert_eq!(size_of::<Vector>(), size_of::<u64>());
 /// # }
@@ -2649,7 +2649,7 @@ impl Vector {
   /// Get metric from vector:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{AccessVector, Vector, Metric, Name}};
+  /// # use polycvss::cvss::{Err, v2::{AccessVector, Vector, Metric, Name}};
   /// # fn main() -> Result<(), Err> {
   /// // parse vector string
   /// let v: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -2666,7 +2666,7 @@ impl Vector {
   /// Get optional metric from vector:
   ///
   /// ```
-  /// # use crate::polycvss::cvss::{Err, v2::{Requirement, Vector, Metric, Name}};
+  /// # use polycvss::cvss::{Err, v2::{Requirement, Vector, Metric, Name}};
   /// # fn main() -> Result<(), Err> {
   /// // parse vector string
   /// let v: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
@@ -2831,7 +2831,7 @@ impl std::fmt::Display for Vector {
 /// Get base score for [CVSS v2][doc] vector:
 ///
 /// ```
-/// # use crate::polycvss::cvss::{Err, v2::{Scores, Vector}};
+/// # use polycvss::cvss::{Err, v2::{Scores, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v2 vector string
 /// let v: Vector = "AV:N/AC:L/Au:N/C:N/I:N/A:C".parse()?;
