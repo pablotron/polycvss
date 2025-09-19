@@ -1,14 +1,53 @@
-//! [CVSS][cvss] vector string parser and score calculator.
+//! [CVSS][cvss] [v2][doc-v2], [v3][doc-v3], and [v4][doc-v4] vector
+//! string parser and score calculator.
 //!
-//! Supports multiple versions of [CVSS][]:
+//! Parse a vector string:
 //!
-//! - [CVSS v2][v2]
-//! - [CVSS v3][v3]
-//! - [CVSS v4][v4]
+//! ```
+//! # use polycvss::{Err, Vector};
+//! # fn main() -> Result<(), Err> {
+//! let vec: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
+//! # Ok(())
+//! # }
+//! ```
+//!
+//! Calculate vector score:
+//!
+//! ```
+//! # use polycvss::{Err, Score, Vector};
+//! # fn main() -> Result<(), Err> {
+//! # let vec: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
+//! let score = Score::from(vec);
+//! # Ok(())
+//! # }
+//! ```
+//!
+//! Get score severity:
+//!
+//! ```
+//! # use polycvss::{Err, Score, Severity};
+//! # fn main() -> Result<(), Err> {
+//! # let score = Score::from(9.3);
+//! let severity = Severity::from(score);
+//! # Ok(())
+//! # }
+//! ```
+//!
+//! Vectors, scores, and severities are very small (see ["Internal
+//! Representation"][ir]):
+//!
+//! ```
+//! # use polycvss::{Score, Severity, Vector};
+//! # fn main() {
+//! assert_eq!(size_of::<Score>(), size_of::<u8>()); // 1 byte
+//! assert_eq!(size_of::<Severity>(), size_of::<u8>()); // 1 byte
+//! assert_eq!(size_of::<Vector>(), size_of::<u64>()); // 8 bytes
+//! # }
+//! ```
 //!
 //! # Examples
 //!
-//! Parse vector string:
+//! Parse vector strings:
 //!
 //! ```
 //! # use polycvss::{Err, Vector};
@@ -25,7 +64,7 @@
 //! # }
 //! ```
 //!
-//! Iterate over [`Metrics`][Metric] in a [`Vector`][]:
+//! Iterate over vector metrics:
 //!
 //! ```
 //! # use polycvss::{Err, Vector};
@@ -33,7 +72,7 @@
 //! // parse CVSS v4 vector string
 //! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
 //!
-//! // iterate over metrics and print each one
+//! // print metrics
 //! for m in v {
 //!   println!("metric: {m}");
 //! }
@@ -58,7 +97,7 @@
 //! # }
 //! ```
 //!
-//! Get score for vector string:
+//! Get vector score:
 //!
 //! ```
 //! # use polycvss::{Err, Score, Vector};
@@ -75,33 +114,71 @@
 //! # }
 //! ```
 //!
-//! Get score severities:
+//! Compare scores:
 //!
 //! ```
-//! # use polycvss::{Err, Score, Severity};
+//! # use polycvss::{Err, Score};
 //! # fn main() -> Result<(), Err> {
-//! // get severity of first score
-//! let a = Severity::from(Score::from(2.3));
-//! assert_eq!(a, Severity::Low);
-//!
-//! // get severity of second score
-//! let b = Severity::from(Score::from(7.6));
-//! assert_eq!(b, Severity::High);
-//!
-//! // compare severities
-//! assert!(a < b);
+//! let a = Score::from(1.2); // first score
+//! let b = Score::from(3.5); // second score
+//! assert!(a < b); // compare scores
 //! # Ok(())
 //! # }
 //! ```
 //!
+//! Get score severity:
+//!
+//! ```
+//! # use polycvss::{Err, Score, Severity};
+//! # fn main() -> Result<(), Err> {
+//! let severity = Severity::from(Score::from(2.3));
+//! assert_eq!(severity, Severity::Low);
+//! # Ok(())
+//! # }
+//! ```
+//!
+//! Compare severities:
+//!
+//! ```
+//! # use polycvss::{Err, Severity};
+//! # fn main() -> Result<(), Err> {
+//! let a = Severity::Low; // first severity
+//! let b = Severity::High; // second severity
+//! assert!(a < b); // compare severities
+//! # Ok(())
+//! # }
+//! ```
+//!
+//! # Internal Representation
+//!
+//! A [`Vector`][] is represented internally as a [bit field][bit-field]
+//! within a [`u64`][].  Metric values are packed in the lower 60 bits
+//! and the [CVSS][] version is packed in the in the upper 4 bits:
+//!
+//! | Bit Range | Description      |
+//! | --------- | ---------------- |
+//! | `0..60`   | Metric values    |
+//! | `60..64`  | [CVSS][] version |
+//!
+//! The metric value packing varies by version and is documented in the
+//! following modules:
+//!
+//! - [`v2` module][v2]
+//! - [`v3` module][v3]
+//! - [`v4` module][v4]
+//!
 //! [cvss]: https://www.first.org/cvss/
 //!   "Common Vulnerability Scoring System (CVSS)"
-//! [v2]: https://www.first.org/cvss/v2/guide
+//! [doc-v2]: https://www.first.org/cvss/v2/guide
 //!   "CVSS v2.0 Documentation"
-//! [v3]: https://www.first.org/cvss/v3-1/specification-document
+//! [doc-v3]: https://www.first.org/cvss/v3-1/specification-document
 //!   "CVSS v3.1 Specification"
-//! [v4]: https://www.first.org/cvss/v4-0/specification-document
+//! [doc-v4]: https://www.first.org/cvss/v4-0/specification-document
 //!   "Common Vulnerability Scoring System (CVSS) version 4.0 Specification"
+//! [bit-field]: https://en.wikipedia.org/wiki/Bit_field
+//!   "Bit field (Wikipedia)"
+//! [ir]: #internal-representation
+//!   "Internal Representation section"
 
 // TODO:
 // - populate tests::vector::{test_into_score,test_base_vector}()
@@ -145,7 +222,7 @@ pub fn roundup(val: f64) -> f64 {
   }
 }
 
-/// Vector, metric, or metric name parse error.
+/// Parse or conversion error.
 ///
 /// # Example
 ///
@@ -158,7 +235,7 @@ pub fn roundup(val: f64) -> f64 {
 /// // check result
 /// assert_eq!(err, Err(Err::Len));
 /// # }
-#[derive(Debug,PartialEq)]
+#[derive(Debug,PartialEq,Eq)]
 pub enum Err {
   /// String is too short.
   ///
@@ -313,8 +390,12 @@ impl From<Vector> for MajorVersion {
   }
 }
 
-/// CVSS version.
-#[derive(Clone,Copy,Debug,PartialEq)]
+/// [CVSS][] version.
+///
+/// [cvss]: https://www.first.org/cvss/
+///   "Common Vulnerability Scoring System (CVSS)"
+#[derive(Clone,Copy,Debug,PartialEq,Eq,PartialOrd,Ord)]
+#[repr(u8)]
 pub enum Version {
   /// CVSS v2.0
   V20,
@@ -706,7 +787,7 @@ impl Iterator for VectorIterator {
 /// # }
 /// ```
 ///
-/// Iterate over [`Metric`s][Metric] in a [`Vector`][]:
+/// Iterate over vector metrics:
 ///
 /// ```
 /// # use polycvss::{Err, Vector};
@@ -714,7 +795,7 @@ impl Iterator for VectorIterator {
 /// // parse CVSS v4 vector string
 /// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
 ///
-/// // iterate over metrics and print each one
+/// // print metrics
 /// for m in v {
 ///   println!("metric: {m}");
 /// }
@@ -1148,6 +1229,7 @@ impl std::ops::Sub for Score {
 /// [doc-v4]: https://www.first.org/cvss/v4-0/specification-document#Qualitative-Severity-Rating-Scale
 ///   "CVSS v4.0 Specification, Section 6: Qualitative Severity Rating Scale"
 #[derive(Clone,Copy,Debug,PartialEq,Eq,PartialOrd,Ord)]
+#[repr(u8)]
 pub enum Severity {
   /// None.  Score = `0.0`.
   None,
