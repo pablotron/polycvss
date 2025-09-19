@@ -400,31 +400,87 @@ impl From<Vector> for MajorVersion {
 
 /// [CVSS][] version.
 ///
+/// # Examples
+///
+/// Check version:
+///
+/// ```
+/// # use polycvss::{Err, Vector, Version};
+/// # fn main() -> Result<(), Err> {
+/// // parse CVSS v2 vector string, check version
+/// let v2: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
+/// assert_eq!(Version::from(v2), Version::V23);
+///
+/// // parse CVSS v3 vector string, check version
+/// let v3: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
+/// assert_eq!(Version::from(v3), Version::V31);
+///
+/// // parse CVSS v4 vector string, check version
+/// let v4: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+/// assert_eq!(Version::from(v4), Version::V40);
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Compare versions:
+///
+/// ```
+/// # use polycvss::{Err, Version};
+/// # fn main() -> Result<(), Err> {
+/// let a = Version::V30; // first version
+/// let b = Version::V40; // second version
+/// assert!(a < b); // compare versions
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Convert version to string:
+///
+/// ```
+/// # use polycvss::{Err, Version};
+/// # fn main() -> Result<(), Err> {
+/// let version = Version::V31;
+/// assert_eq!(version.to_string(), "3.1");
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Convert string to version:
+///
+/// ```
+/// # use polycvss::{Err, Version};
+/// # fn main() -> Result<(), Err> {
+/// let version: Version = "3.0".parse()?;
+/// assert_eq!(version, Version::V30);
+/// # Ok(())
+/// # }
+/// ```
+///
 /// [cvss]: https://www.first.org/cvss/
 ///   "Common Vulnerability Scoring System (CVSS)"
 #[derive(Clone,Copy,Debug,PartialEq,Eq,PartialOrd,Ord)]
 #[repr(u8)]
 pub enum Version {
   /// CVSS v2.0
-  V20,
+  V20 = 0,
 
   /// CVSS v2.1
-  V21,
+  V21 = 1,
 
   /// CVSS v2.2
-  V22,
+  V22 = 2,
 
   /// CVSS v2.3
-  V23,
+  V23 = 3,
 
   /// CVSS v3.0
-  V30,
+  V30 = 4,
 
   /// CVSS v3.1
-  V31,
+  V31 = 5,
 
   /// CVSS v4.0
-  V40,
+  V40 = 6,
 }
 
 impl std::fmt::Display for Version {
@@ -458,32 +514,20 @@ impl std::str::FromStr for Version {
   }
 }
 
-// FIXME: use repr(u8)
 impl From<Version> for u64 {
   fn from(v: Version) -> u64 {
-    (match v {
-      Version::V20 => 0,
-      Version::V21 => 1,
-      Version::V22 => 2,
-      Version::V23 => 3,
-      Version::V30 => 4,
-      Version::V31 => 5,
-      Version::V40 => 6,
-    }) << 60
+    (v as u64) << 60
   }
 }
 
 impl From<Vector> for Version {
   fn from(vec: Vector) -> Version {
-    match vec.0 >> 60 {
-      0 => Version::V20,
-      1 => Version::V21,
-      2 => Version::V22,
-      3 => Version::V23,
-      4 => Version::V30,
-      5 => Version::V31,
-      6 => Version::V40,
-      _ => unreachable!(),
+    match Version::try_from(vec.0) {
+      Ok(version) => version,
+
+      // should never happen; it means we have a vector with a
+      // corrupt version component
+      Err(err) => panic!("{err}"),
     }
   }
 }
@@ -1212,7 +1256,7 @@ impl std::ops::Sub for Score {
 /// let severity = Severity::from(Score::from(8.7));
 ///
 /// // check results
-/// assert_eq!(score, Severity::High);
+/// assert_eq!(severity, Severity::High);
 /// # }
 /// ```
 ///
