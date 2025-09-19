@@ -6505,7 +6505,7 @@ impl From<Vector> for Scores {
             _ => unreachable!(),
           };
 
-          println!("DEBUG: msd={msd}, sd={sd}, depth={depth}");
+          // println!("DEBUG: msd={msd}, sd={sd}, depth={depth}");
           // get proportional distance
           Some(((msd.0 as u16) * (sd as u16)) as f64 / ((10 * depth) as f64))
         } else {
@@ -6513,12 +6513,12 @@ impl From<Vector> for Scores {
         }
       });
 
-      println!("DEBUG: pds={pds:?}");
+      // println!("DEBUG: pds={pds:?}");
       // calculate mean proportional distance
       let mean_pd = {
         let sum = pds.iter().filter_map(|d| *d).sum::<f64>(); // numerator
         let count = pds.iter().filter(|d| d.is_some()).count(); // denominator
-        println!("DEBUG: sum={sum}, count={count}");
+        // println!("DEBUG: sum={sum}, count={count}");
         if count > 0 { sum / (count as f64) } else { 0.0 } // mean
       };
 
@@ -6539,7 +6539,7 @@ impl From<Vector> for Scores {
       // >    the score of the highest severity vector) minus the mean distance
       // >    so computed. This score is rounded to one decimal place.
       let mv_score_f64 = f64::from(mv_score);
-      println!("DEBUG: mv_score={mv_score} mean_pd={mean_pd:0.20}");
+      // println!("DEBUG: mv_score={mv_score} mean_pd={mean_pd:0.20}");
       Score::from(mv_score_f64 - ((100_000.0*mean_pd).round()/100_000.0))
     } else {
       // no active impact metric; return 0.0
