@@ -190,14 +190,17 @@ pub mod encode;
 
 /// Round value to nearest 10th of a decimal.
 ///
-/// Used by CVSS v2 scoring functions.
+/// Used by [CVSS v2][doc-v2] scoring functions.
+///
+/// [doc-v2]: https://www.first.org/cvss/v2/guide
+///   "CVSS v2.0 Documentation"
 pub fn round1(val: f64) -> f64 {
   (10.0 * val).round() / 10.0
 }
 
 /// Round value up to nearest 10th of a decimal.
 ///
-/// Used by CVSS v3 scoring functions.
+/// Used by [CVSS v3][doc-v3] scoring functions.
 ///
 /// See: [CVSS v3.1 Specification, Appendix A: Floating Point Rounding][doc]
 ///
@@ -213,6 +216,8 @@ pub fn round1(val: f64) -> f64 {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Appendix-A---Floating-Point-Rounding
 ///   "CVSS v3.1 Specification, Appendix A: Floating Point Rounding"
+/// [doc-v3]: https://www.first.org/cvss/v3-1/specification-document
+///   "CVSS v3.1 Specification"
 pub fn roundup(val: f64) -> f64 {
   let v: i32 = (100_000.0 * val).round() as i32;
   if v % 10_000 == 0 {
@@ -365,9 +370,12 @@ impl std::fmt::Display for Err {
 // value mask.  used to exclude top 4 version bits
 const VAL_MASK: u64 = 0x0fff_ffff_ffff_ffff;
 
-/// CVSS major version (e.g. 2.x, 3.x, or 4.x).
+/// [CVSS][] major version (e.g. 2.x, 3.x, or 4.x).
 ///
 /// Used by [`Vector`][] to dispatch to correct version-specific method.
+///
+/// [cvss]: https://www.first.org/cvss/
+///   "Common Vulnerability Scoring System (CVSS)"
 #[derive(Clone,Copy,Debug,PartialEq)]
 enum MajorVersion {
   /// CVSS v2
