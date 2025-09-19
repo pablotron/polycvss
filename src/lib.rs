@@ -160,8 +160,8 @@
 //! | `0..60`   | Metric values    |
 //! | `60..64`  | [CVSS][] version |
 //!
-//! The metric value packing varies by version and is documented in the
-//! following modules:
+//! The lower bit packing varies by [CVSS][] version and is documented
+//! in the following modules:
 //!
 //! - [`v2` module][v2]
 //! - [`v3` module][v3]
