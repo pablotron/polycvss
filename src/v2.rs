@@ -1,10 +1,8 @@
 //! [CVSS v2][doc] parser and score calculator.
 //!
-//! Parse a [CVSS v2 vector string][vector-string] into a [`Vector`][].
-//!
 //! # Examples
 //!
-//! Parse [vector string][vector-string], then get a [`Metric`][] by [`Name`][]:
+//! Parse [vector string][vector-string] and get [`Metric`] by [`Name`]:
 //!
 //! ```
 //! # use polycvss::{Err, v2::{AccessVector, Vector, Metric, Name}};
@@ -21,8 +19,7 @@
 //! # }
 //! ```
 //!
-//! Parse [vector string][vector-string], then build a list of metric
-//! [`Name`s][Name]:
+//! Build [`Vec`] of metric names:
 //!
 //! ```
 //! # use polycvss::{Err, v2::{Name, Vector}};
@@ -46,7 +43,7 @@
 //! # }
 //! ```
 //!
-//! Get base score for [CVSS v2][doc] vector:
+//! Get [CVSS v2][doc] vector score:
 //!
 //! ```
 //! # use polycvss::{Err, Score, v2::Vector};

@@ -1,8 +1,5 @@
 //! [CVSS v3][doc] parser and score calculator.
 //!
-//! Parse a [CVSS v3 vector string][vector-string] into a
-//! [`Vector`][].
-//!
 //! # Examples
 //!
 //! Parse [vector string][vector-string], then get a [`Metric`][] by [`Name`][]:
@@ -49,7 +46,7 @@
 //! # }
 //! ```
 //!
-//! Get base score for [CVSS v3][doc] vector:
+//! Get score for [CVSS v3][doc] vector:
 //!
 //! ```
 //! # use polycvss::{Err, Score, v3::Vector};

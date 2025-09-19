@@ -1200,13 +1200,11 @@ impl std::ops::Sub for Score {
 /// ```
 /// # use polycvss::{Score, Severity};
 /// # fn main() {
-/// // create severites from scores
-/// let a = Severity::from(Score::from(8.7));
-/// let b = Severity::from(Score::from(6.5));
+/// // create severity from score
+/// let severity = Severity::from(Score::from(8.7));
 ///
 /// // check results
-/// assert_eq!(a, Severity::High);
-/// assert_eq!(b, Severity::Medium);
+/// assert_eq!(score, Severity::High);
 /// # }
 /// ```
 ///
