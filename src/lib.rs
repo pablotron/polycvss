@@ -64,39 +64,6 @@
 //! # }
 //! ```
 //!
-//! Iterate over vector metrics:
-//!
-//! ```
-//! # use polycvss::{Err, Vector};
-//! # fn main() -> Result<(), Err> {
-//! // parse CVSS v4 vector string
-//! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
-//!
-//! // print metrics
-//! for m in v {
-//!   println!("metric: {m}");
-//! }
-//! # Ok(())
-//! # }
-//! ```
-//!
-//! Get metric from vector:
-//!
-//! ```
-//! # use polycvss::{Err, Vector, Metric, Name, v4};
-//! # fn main() -> Result<(), Err> {
-//! // parse CVSS v4 vector string
-//! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
-//!
-//! // get metric
-//! let metric = v.get(Name::V4(v4::Name::AttackVector))?;
-//!
-//! // check result
-//! assert_eq!(metric, Metric::V4(v4::Metric::AttackVector(v4::AttackVector::Network)));
-//! # Ok(())
-//! # }
-//! ```
-//!
 //! Get vector score:
 //!
 //! ```
@@ -145,6 +112,39 @@
 //! let a = Severity::Low; // first severity
 //! let b = Severity::High; // second severity
 //! assert!(a < b); // compare severities
+//! # Ok(())
+//! # }
+//! ```
+//!
+//! Get metric from vector by name:
+//!
+//! ```
+//! # use polycvss::{Err, Vector, Metric, Name, v4};
+//! # fn main() -> Result<(), Err> {
+//! // parse CVSS v4 vector string
+//! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+//!
+//! // get metric
+//! let metric = v.get(Name::V4(v4::Name::AttackVector))?;
+//!
+//! // check result
+//! assert_eq!(metric, Metric::V4(v4::Metric::AttackVector(v4::AttackVector::Network)));
+//! # Ok(())
+//! # }
+//! ```
+//!
+//! Iterate over vector metrics:
+//!
+//! ```
+//! # use polycvss::{Err, Vector};
+//! # fn main() -> Result<(), Err> {
+//! // parse CVSS v4 vector string
+//! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+//!
+//! // print metrics
+//! for m in v {
+//!   println!("metric: {m}");
+//! }
 //! # Ok(())
 //! # }
 //! ```
