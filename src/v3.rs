@@ -1,4 +1,4 @@
-//! [CVSS v3][doc] vector parser.
+//! [CVSS v3][doc] parser and score calculator.
 //!
 //! Parse a [CVSS v3 vector string][vector-string] into a
 //! [`Vector`][].
