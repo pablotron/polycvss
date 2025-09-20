@@ -51,7 +51,8 @@ $ cvss-score "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC:H/SI:H/SA:H"
 5.2 MEDIUM
 ```
 
-This example tool is included as [`src/bin/cvss-score.rs`][cvss-score]).
+This example tool is included in the [Git repository][] as
+[`src/bin/cvss-score.rs`][cvss-score].
 
 ## Build
 
