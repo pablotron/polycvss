@@ -1,8 +1,8 @@
 # polycvss
 
 [Rust][] library to parse and score [Common Vulnerability Scoring System
-(CVSS)][cvss] vector strings.  Supports [CVSS][] [v2][doc-v2],
-[v3][doc-v3], and [v4][doc-v4] vector strings.
+(CVSS)][cvss] vector strings.  Supports [CVSS v2][doc-v2],
+[CVSS v3][doc-v3], and [CVSS v4][doc-v4].
 
 *TODO*: document data structure sizes
 
