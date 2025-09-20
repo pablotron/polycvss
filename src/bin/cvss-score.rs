@@ -31,11 +31,10 @@
 //! [cvss]: https://first.org/cvss/
 //!   "Common Vulnerability Scoring System (CVSS)"
 
-use std::env;
 use polycvss::{Err, Score, Severity, Vector};
 
 fn main() -> Result<(), Err> {
-  let args: Vec<String> = env::args().collect(); // get cli args
+  let args: Vec<String> = std::env::args().collect(); // get cli args
 
   if args.len() == 2 {
     let vec: Vector = args[1].parse()?; // parse string
