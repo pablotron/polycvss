@@ -12,8 +12,7 @@ keywords = ["cvss", "parse", "score", "severity"]
 categories = ["security", "parser-implementations"]
 
 [dependencies]
-# TODO: remove this dependency or make it a feature
-serde = { version = "1.0", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"], optional = true }
 
 # ref: https://gist.github.com/SmallEndian/05e11181b687e0aba1cfe23475b4dc04
 # note: this does not work, but this seems to:
