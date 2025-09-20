@@ -5,18 +5,19 @@
 Features:
 
 - [CVSS v2][doc-v2], [CVSS v3][doc-v3], and [CVSS v4][doc-v4] support.
+- Version-agnostic and version-specific parsing and scoring.
 - Memory efficient: Parsed vectors are 8 bytes. Scores and severities are
   1 byte.
 - Extensive tests.  *TODO* wordify this.
 
-Example (included as [`src/bin/cvss-score.rs`][cvss-score]):
+Here is an example tool which parses the first command-line argument as
+a [CVSS][] vector string, then prints the score and severity:
 
 ```rust
-use std::env;
 use polycvss::{Err, Score, Severity, Vector};
 
 fn main() -> Result<(), Err> {
-  let args: Vec<String> = env::args().collect(); // get cli args
+  let args: Vec<String> = std::env::args().collect(); // get cli args
 
   if args.len() == 2 {
     let vec: Vector = args[1].parse()?; // parse string
@@ -32,7 +33,9 @@ fn main() -> Result<(), Err> {
 }
 ```
 
-Output:
+Here is the output produced by the example tool for a [CVSS v2][doc-v2]
+vector string, a [CVSS v3][doc-v3] vector string, and a [CVSS
+v4][doc-v4] vector string:
 
 ```sh
 # test with cvss v2 vector string
@@ -47,6 +50,8 @@ $ cvss-score "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 $ cvss-score "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC:H/SI:H/SA:H"
 5.2 MEDIUM
 ```
+
+This example tool is included as [`src/bin/cvss-score.rs`][cvss-score]).
 
 ## Build
 
