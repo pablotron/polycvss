@@ -4226,57 +4226,6 @@ pub enum Metric {
   ProviderUrgency(ProviderUrgency), // Provider Urgency (U)
 }
 
-impl Metric {
-  /// Is this metric defined?
-  ///
-  /// Always returns `true` for mandatory metrics and optional metrics
-  /// with a value that is not `Not Defined (X)`.
-  ///
-  /// # Examples
-  ///
-  /// ```
-  /// # use polycvss::v4::{Metric, AttackVector, ProviderUrgency};
-  /// # fn main() {
-  /// // check mandatory metric (always true)
-  /// let av = Metric::AttackVector(AttackVector::Network);
-  /// assert_eq!(av.is_defined(), true);
-  ///
-  /// // check defined optional metric
-  /// let pr = Metric::ProviderUrgency(ProviderUrgency::Red);
-  /// assert_eq!(pr.is_defined(), true);
-  ///
-  /// // check optional metric with a value of "Not Defined (X)"
-  /// let pr = Metric::ProviderUrgency(ProviderUrgency::NotDefined);
-  /// assert_eq!(pr.is_defined(), false);
-  /// # }
-  /// ```
-  pub fn is_defined(self) -> bool {
-    !matches!(self,
-      Metric::ExploitMaturity(ExploitMaturity::NotDefined) |
-      Metric::ConfidentialityRequirement(Requirement::NotDefined) |
-      Metric::IntegrityRequirement(Requirement::NotDefined) |
-      Metric::AvailabilityRequirement(Requirement::NotDefined) |
-      Metric::ModifiedAttackVector(ModifiedAttackVector::NotDefined) |
-      Metric::ModifiedAttackComplexity(ModifiedAttackComplexity::NotDefined) |
-      Metric::ModifiedAttackRequirements(ModifiedAttackRequirements::NotDefined) |
-      Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::NotDefined) |
-      Metric::ModifiedUserInteraction(ModifiedUserInteraction::NotDefined) |
-      Metric::ModifiedVulnerableSystemConfidentiality(ModifiedImpact::NotDefined) |
-      Metric::ModifiedVulnerableSystemIntegrity(ModifiedImpact::NotDefined) |
-      Metric::ModifiedVulnerableSystemAvailability(ModifiedImpact::NotDefined) |
-      Metric::ModifiedSubsequentSystemConfidentiality(ModifiedImpact::NotDefined) |
-      Metric::ModifiedSubsequentSystemIntegrity(ModifiedSubsequentImpact::NotDefined) |
-      Metric::ModifiedSubsequentSystemAvailability(ModifiedSubsequentImpact::NotDefined) |
-      Metric::Safety(Safety::NotDefined) |
-      Metric::Automatable(Automatable::NotDefined) |
-      Metric::Recovery(Recovery::NotDefined) |
-      Metric::ValueDensity(ValueDensity::NotDefined) |
-      Metric::VulnerabilityResponseEffort(VulnerabilityResponseEffort::NotDefined) |
-      Metric::ProviderUrgency(ProviderUrgency::NotDefined)
-    )
-  }
-}
-
 impl std::fmt::Display for Metric {
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
     write!(f, "{}", match self {

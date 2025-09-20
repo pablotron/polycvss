@@ -513,27 +513,6 @@ mod metric {
   }
 
   #[test]
-  fn test_is_defined() {
-    let tests = vec!((
-      "mandatory", // name
-      Metric::AttackVector(AttackVector::Network), // val
-      true, // exp
-    ), (
-      "optional, defined", // name
-      Metric::ProviderUrgency(ProviderUrgency::Red), // val
-      true, // exp
-    ), (
-      "optional, not defined", // name
-      Metric::ProviderUrgency(ProviderUrgency::NotDefined), // val
-      false, // exp
-    ));
-
-    for (name, val, exp) in tests {
-      assert_eq!(val.is_defined(), exp, "{name}");
-    }
-  }
-
-  #[test]
   fn test_size() {
     assert_eq!(size_of::<Metric>(), size_of::<u16>());
   }
