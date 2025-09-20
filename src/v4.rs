@@ -6196,7 +6196,7 @@ impl From<MacroVector> for Score {
       215 => 10, // 212201
       269 => 3, // 212211
       323 => 1, // 212221
-      _ => panic!("mv = {mv}"), // FIXME
+      _ => unreachable!(), // never reached
     })
   }
 }
