@@ -65,6 +65,7 @@
 //! [vector-string]: https://www.first.org/cvss/v2/guide#2-4-Base-Temporal-Environmental-Vectors
 //!   "CVSS v2.0 Documentation, Section 2.4: Base, Temporal, Environmental Vectors"
 
+#[cfg(feature="serde")]
 use serde::{self,Deserialize,Serialize};
 use super::{Err, Score, round1, Version, encode::{EncodedVal, EncodedMetric}};
 
@@ -128,8 +129,9 @@ use super::{Err, Score, round1, Version, encode::{EncodedVal, EncodedMetric}};
 ///
 /// [doc]: https://www.first.org/cvss/v2/guide#2-1-1-Access-Vector-AV
 ///   "CVSS v2.0 Documentation, Section 2.1.1: Access Vector (AV)"
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
-#[serde(rename_all = "UPPERCASE")]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum AccessVector {
   /// Local (`L`)
   ///
@@ -204,8 +206,9 @@ pub enum AccessVector {
 ///
 /// [doc]: https://www.first.org/cvss/v2/guide#2-1-2-Access-Complexity-AC
 ///   "CVSS v2.0 Documentation, Section 2.1.2: Access Complexity (AC)"
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
-#[serde(rename_all = "UPPERCASE")]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum AccessComplexity {
   /// High (`H`)
   ///
@@ -292,8 +295,9 @@ pub enum AccessComplexity {
 ///
 /// [doc]: https://www.first.org/cvss/v2/guide#2-1-3-Authentication-Au
 ///   "CVSS v2.0 Documentation, Section 2.1.3: Authentication (Au)"
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
-#[serde(rename_all = "UPPERCASE")]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum Authentication {
   /// Multiple (`M`)
   ///
@@ -375,8 +379,9 @@ pub enum Authentication {
 ///   "CVSS v2.0 Documentation, Section 2.1.5: Integrity Impact (I)"
 /// [a-doc]: https://www.first.org/cvss/v2/guide#2-1-6-Availability-Impact-A
 ///   "CVSS v2.0 Documentation, Section 2.1.6: Availability Impact (A)"
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
-#[serde(rename_all = "UPPERCASE")]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum Impact {
   /// None (`N`)
   ///
@@ -463,8 +468,9 @@ pub enum Impact {
 ///
 /// [doc]: https://www.first.org/cvss/v2/guide#2-2-1-Exploitability-E
 ///   "CVSS v2.0 Documentation, Section 2.2.1: Exploitability (E)"
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
-#[serde(rename_all = "UPPERCASE")]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum Exploitability {
   /// Not Defined (`ND`)
   ///
@@ -547,8 +553,9 @@ pub enum Exploitability {
 ///
 /// [doc]: https://www.first.org/cvss/v2/guide#2-2-2-Remediation-Level-RL
 ///   "CVSS v2.0 Documentation, Section 2.2.2: Remediation Level (RL)"
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
-#[serde(rename_all = "UPPERCASE")]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum RemediationLevel {
   /// Not Defined (`ND`)
   ///
@@ -631,8 +638,9 @@ pub enum RemediationLevel {
 ///
 /// [doc]: https://www.first.org/cvss/v2/guide#2-2-3-Report-Confidence-RC
 ///   "CVSS v2.0 Documentation, Section 2.2.3: Report Confidence (RC)"
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
-#[serde(rename_all = "UPPERCASE")]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum ReportConfidence {
   /// Not Defined (`ND`)
   ///
@@ -710,8 +718,9 @@ pub enum ReportConfidence {
 ///
 /// [doc]: https://www.first.org/cvss/v2/guide#2-3-1-Collateral-Damage-Potential-CDP
 ///   "CVSS v2.0 Documentation, Section 2.3.1: Collateral Damage Potential (CDP)"
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
-#[serde(rename_all = "UPPERCASE")]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum CollateralDamagePotential {
   /// Not Defined (`ND`)
   ///
@@ -799,8 +808,9 @@ pub enum CollateralDamagePotential {
 ///
 /// [doc]: https://www.first.org/cvss/v2/guide#2-3-2-Target-Distribution-TD
 ///   "CVSS v2.0 Documentation, Section 2.3.2: Target Distribution (TD)"
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
-#[serde(rename_all = "UPPERCASE")]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum TargetDistribution {
   /// Not Defined (`ND`)
   ///
@@ -895,8 +905,9 @@ pub enum TargetDistribution {
 ///
 /// [doc]: https://www.first.org/cvss/v2/guide#2-3-3-Security-Requirements-CR-IR-AR
 ///   "CVSS v2.0 Documentation, Section 2.3.3: Security Requirements (CR, IR, AR)"
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
-#[serde(rename_all = "UPPERCASE")]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum Requirement {
   /// Not Defined (`ND`)
   ///
@@ -940,7 +951,8 @@ pub enum Requirement {
 ///
 /// [doc]: https://www.first.org/cvss/v2/guide#Metric-Groups
 ///   "CVSS v2.0 Documentation, Section 2: Metric Groups"
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 pub enum Group {
   Base,
   Temporal,
@@ -1157,7 +1169,8 @@ impl std::fmt::Display for Name {
 /// assert_eq!(name, Name::AccessVector);
 /// # }
 /// ```
-#[derive(Clone,Copy,Debug,Deserialize,PartialEq,Serialize)]
+#[derive(Clone,Copy,Debug,PartialEq)]
+#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 pub enum Metric {
   /// Access Vector (`AV`) metric.
   ///
@@ -2633,9 +2646,9 @@ impl Iterator for VectorIterator {
 ///   "Bit field (Wikipedia)"
 /// [vector-string]: https://www.first.org/cvss/v2/guide#2-4-Base-Temporal-Environmental-Vectors
 ///   "CVSS v2.0 Documentation, Section 2.4: Base, Temporal, Environmental Vectors"
-// #[derive(Debug,Deserialize,PartialEq,Serialize)]
-// #[serde(try_from = "String")]
 #[derive(Clone,Copy,Debug,PartialEq)]
+// #[cfg_attr(feature="serde", serde(try_from="String"))]
+// #[cfg_attr(feature="serde", derive(Deserialize,Serialize)]
 pub struct Vector(u64);
 
 impl Vector {
