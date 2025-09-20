@@ -3370,7 +3370,15 @@ impl From<Vector> for super::Vector {
 
 impl From<Vector> for Score {
   fn from(vec: Vector) -> Score {
-    Scores::from(vec).environmental
+    let scores = Scores::from(vec);
+
+    if let Some(score) = scores.environmental {
+      score
+    } else if let Some(score) = scores.temporal {
+      score
+    } else {
+      scores.base
+    }
   }
 }
 
@@ -3493,8 +3501,9 @@ pub struct Scores {
   /// metrics are defined.
   pub temporal: Option<Score>,
 
-  /// Environmental Score.
-  pub environmental: Score,
+  /// Environmental Score.  Will have a value of `None` if no
+  /// environmental metrics are defined.
+  pub environmental: Option<Score>,
 }
 
 impl From<Vector> for Scores {
@@ -3841,15 +3850,15 @@ impl From<Vector> for Scores {
     //   If ModifiedScope is Changed: Roundup ( Roundup [Minimum (1.08 × [ModifiedImpact + ModifiedExploitability], 10) ] × ExploitCodeMaturity × RemediationLevel × ReportConfidence)
     let env_score = if modified_impact > 0.0 {
       let factor = if modified_scope_changed { 1.08 } else { 1.0 };
-      roundup(roundup((factor * (modified_impact + modified_exploitability)).min(10.0)) * ecm * rl * rc)
+      Some(roundup(roundup((factor * (modified_impact + modified_exploitability)).min(10.0)) * ecm * rl * rc))
     } else {
-      0.0
+      None
     };
 
     Scores {
       base: Score::from(base_score),
       temporal: temporal_score.map(Score::from),
-      environmental: Score::from(env_score),
+      environmental: env_score.map(Score::from),
     }
   }
 }
@@ -4813,7 +4822,7 @@ mod tests {
           Scores {
             base: Score::from(4.4),
             temporal: None,
-            environmental: Score::from(4.4),
+            environmental: Some(Score::from(4.4)),
           }, // exp
         ),
 
@@ -4823,13 +4832,35 @@ mod tests {
           Scores {
             base: Score::from(8.8),
             temporal: None,
-            environmental: Score::from(8.8),
+            environmental: Some(Score::from(8.8)),
           }, // exp
         ),
       );
 
       for (name, vs, exp) in tests {
         let vec: Vector = vs.parse().unwrap(); // parse vector
+        let got = Scores::from(vec); // get scores
+        assert_eq!(got, exp, "{name}, {vec}"); // check result
+      }
+    }
+
+    #[test]
+    fn test_from_vector() {
+      let tests = vec!(
+        (
+        // STUB
+          "CVE-2025-33053", // name
+          "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H", // val
+          Scores {
+            base: Score::from(8.8),
+            temporal: None,
+            environmental: Some(Score::from(8.8)),
+          }, // exp
+        )
+      );
+
+      for (name, s, exp) in tests {
+        let vec: Vector = s.parse().unwrap(); // parse vector
         let got = Scores::from(vec); // get scores
         assert_eq!(got, exp, "{name}, {vec}"); // check result
       }
