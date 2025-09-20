@@ -181,7 +181,7 @@ The generated test cases can be found in:
   "Application Programming Interface (API)"
 [linter]: https://en.wikipedia.org/wiki/Lint_(software)
   "Static code analysis tool to catch common mistakes"
-[src-v3-rs`]: src/v3.rs
+[src-v3-rs]: src/v3.rs
   "CVSS v3 parsing and scoring"
-[src-v4-rs`]: src/v4.rs
+[src-v4-rs]: src/v4.rs
   "CVSS v4 parsing and scoring"
