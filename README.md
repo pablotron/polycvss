@@ -1,12 +1,15 @@
 # polycvss
 
-[Rust][] library to parse and score [Common Vulnerability Scoring System
-(CVSS)][cvss] vector strings.  Supports [CVSS v2][doc-v2],
-[CVSS v3][doc-v3], and [CVSS v4][doc-v4].
+[Rust][] library to parse and score [CVSS][] vector strings.
 
-*TODO*: document data structure sizes
+Features:
 
-Example:
+- [CVSS v2][doc-v2], [CVSS v3][doc-v3], and [CVSS v4][doc-v4] support.
+- Memory efficient: Parsed vectors are 8 bytes. Scores and severities are
+  1 byte.
+- Extensive tests.  *TODO* wordify this.
+
+Example (included as [`src/bin/cvss-score.rs`][cvss-score]):
 
 ```rust
 use std::env;
@@ -44,9 +47,6 @@ $ cvss-score "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 $ cvss-score "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC:H/SI:H/SA:H"
 5.2 MEDIUM
 ```
-
-This example is included in the [Git repository][] as
-[`src/bin/cvss-score.rs`][cvss-score].
 
 ## Build
 
