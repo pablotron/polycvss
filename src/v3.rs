@@ -73,7 +73,6 @@ use serde::{self,Deserialize,Serialize};
 use super::{Err, Score, Version, encode::{EncodedVal, EncodedMetric}};
 
 // TODO:
-// - support v30 scoring, add tests
 // - add name tests
 // - more scores tests
 // - update scores docs
