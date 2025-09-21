@@ -3366,7 +3366,13 @@ impl Vector {
     let decode = Decode::from(name);
     let (shift, range) = (decode.1, decode.2);
     let vals = &METRICS[range.0..range.1];
-    let ofs = ((self.0 >> shift) as usize) & (vals.len() - 1);
+    let mask = match vals.len() {
+      2 => 1,
+      3 | 4 => 0b11,
+      5 => 0b111,
+      _ => unreachable!(),
+    };
+    let ofs = ((self.0 >> shift) as usize) & mask;
     vals[ofs]
   }
 }
