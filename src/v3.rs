@@ -3907,6 +3907,21 @@ impl From<Vector> for Scores {
 
 #[cfg(test)]
 mod tests {
+  #[test]
+  fn test_roundup() {
+    use super::{super::Version, roundup};
+    let tests = vec!(
+      (4.000_002, Version::V30, 4.1),
+      (4.000_002, Version::V31, 4.0),
+      (4.02, Version::V31, 4.1),
+      (4.00, Version::V31, 4.0),
+    );
+
+    for (val, version, exp) in tests {
+      assert_eq!(roundup(val, version), exp, "{val}, {version}");
+    }
+  }
+
   mod group {
     use super::super::{Name, Group};
 
