@@ -70,7 +70,7 @@
 
 #[cfg(feature="serde")]
 use serde::{self,Deserialize,Serialize};
-use super::{Err, Score, Version, roundup, encode::{EncodedVal, EncodedMetric}};
+use super::{Err, Score, Version, encode::{EncodedVal, EncodedMetric}};
 
 // TODO:
 // - support v30 scoring, add tests
@@ -78,6 +78,44 @@ use super::{Err, Score, Version, roundup, encode::{EncodedVal, EncodedMetric}};
 // - more scores tests
 // - update scores docs
 // - consistent struct/impl ordering w v40.rs
+
+/// Round value up to nearest 10th of a decimal.
+///
+/// Used for [CVSS v3][doc-v3] scoring.
+///
+/// The behavior of this function varies between CVSS v3.0 and CVSS v3.1.  See
+/// [CVSS v3.1 Specification, Appendix A: Floating Point Rounding][doc].
+///
+/// # Example
+///
+/// ```
+/// # use polycvss::{Version, v3::roundup};
+/// # fn main() {
+/// assert_eq!(roundup(4.000_002, Version::V30), 4.1);
+/// assert_eq!(roundup(4.000_002, Version::V31), 4.0);
+/// assert_eq!(roundup(4.02, Version::V31), 4.1);
+/// assert_eq!(roundup(4.00, Version::V31), 4.0);
+/// # }
+/// ```
+///
+/// [doc]: https://www.first.org/cvss/v3-1/specification-document#Appendix-A---Floating-Point-Rounding
+///   "CVSS v3.1 Specification, Appendix A: Floating Point Rounding"
+/// [doc-v3]: https://www.first.org/cvss/v3-1/specification-document
+///   "CVSS v3.1 Specification"
+pub fn roundup(val: f64, version: Version) -> f64 {
+  match version {
+    Version::V30 => (val * 10.0).ceil() / 10.0,
+    Version::V31 => {
+      let v: i32 = (val * 100_000.0).round() as i32;
+      if v % 10_000 == 0 {
+        (v as f64) / 100_000.0
+      } else {
+        (((v / 10_000) as f64) + 1.0) / 10.0
+      }
+    },
+    _ => unreachable!(),
+  }
+}
 
 /// [`Metric`][] group.
 ///
@@ -3508,6 +3546,8 @@ pub struct Scores {
 
 impl From<Vector> for Scores {
   fn from(vec: Vector) -> Scores {
+    let version = Version::from(vec);
+
     // cache scope changed
     let scope_changed = match vec.get(Name::Scope) {
       Metric::Scope(Scope::Changed) => true,
@@ -3625,9 +3665,9 @@ impl From<Vector> for Scores {
     //   If Scope is Changed  Roundup (Minimum [1.08 × (Impact + Exploitability), 10])
     let base_score = if impact > 0.0 {
       if scope_changed {
-        roundup((1.08 * (impact + exploitability)).min(10.0))
+        roundup((1.08 * (impact + exploitability)).min(10.0), version)
       } else {
-        roundup((impact + exploitability).min(10.0))
+        roundup((impact + exploitability).min(10.0), version)
       }
     } else {
       0.0
@@ -3691,7 +3731,7 @@ impl From<Vector> for Scores {
     // TemporalScore =
     //   Roundup (BaseScore × ExploitCodeMaturity × RemediationLevel × ReportConfidence)
     let temporal_score = if has_temporal_metrics {
-      Some(roundup(base_score * ecm * rl * rc))
+      Some(roundup(base_score * ecm * rl * rc, version))
     } else {
       None // no temporal metrics defined
     };
@@ -3852,7 +3892,7 @@ impl From<Vector> for Scores {
     //   If ModifiedScope is Changed: Roundup ( Roundup [Minimum (1.08 × [ModifiedImpact + ModifiedExploitability], 10) ] × ExploitCodeMaturity × RemediationLevel × ReportConfidence)
     let env_score = if modified_impact > 0.0 {
       let factor = if modified_scope_changed { 1.08 } else { 1.0 };
-      Some(roundup(roundup((factor * (modified_impact + modified_exploitability)).min(10.0)) * ecm * rl * rc))
+      Some(roundup(roundup((factor * (modified_impact + modified_exploitability)).min(10.0), version) * ecm * rl * rc, version))
     } else {
       None
     };
