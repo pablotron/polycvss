@@ -4847,16 +4847,799 @@ mod tests {
     #[test]
     fn test_from_vector() {
       let tests = vec!(
-        (
-        // STUB
-          "CVE-2025-33053", // name
-          "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H", // val
-          Scores {
-            base: Score::from(8.8),
-            temporal: None,
-            environmental: Some(Score::from(8.8)),
-          }, // exp
-        )
+(
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:C/C:N/I:H/A:H/E:U/RL:U/RC:C/CR:L/IR:H/AR:M/MAV:A/MAC:L/MPR:L/MUI:R/MS:X/MC:L/MI:N/MA:L", // name
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:C/C:N/I:H/A:H/E:U/RL:U/RC:C/CR:L/IR:H/AR:M/MAV:A/MAC:L/MPR:L/MUI:R/MS:X/MC:L/MI:N/MA:L", // vec
+  Scores {
+    base: Score::from(7.7),
+    temporal: Some(Score::from(7.1)),
+    environmental: Some(Score::from(3.8))
+  }, // exp
+), (
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:N/E:X/RL:W/RC:X/CR:H/IR:X/AR:M/MAV:P/MAC:X/MPR:H/MUI:R/MS:C/MC:H/MI:N/MA:L", // name
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:N/E:X/RL:W/RC:X/CR:H/IR:X/AR:M/MAV:P/MAC:X/MPR:H/MUI:R/MS:C/MC:H/MI:N/MA:L", // vec
+  Scores {
+    base: Score::from(0.0),
+    temporal: Some(Score::from(0.0)),
+    environmental: Some(Score::from(6.6))
+  }, // exp
+), (
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:C/C:H/I:N/A:N/E:P/RL:W/RC:R/CR:L/IR:L/AR:L/MAV:A/MAC:L/MPR:L/MUI:R/MS:C/MC:X/MI:L/MA:X", // name
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:C/C:H/I:N/A:N/E:P/RL:W/RC:R/CR:L/IR:L/AR:L/MAV:A/MAC:L/MPR:L/MUI:R/MS:C/MC:X/MI:L/MA:X", // vec
+  Scores {
+    base: Score::from(5.4),
+    temporal: Some(Score::from(4.8)),
+    environmental: Some(Score::from(4.0))
+  }, // exp
+), (
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:C/C:N/I:N/A:N/E:H/RL:W/RC:X/CR:L/IR:L/AR:X/MAV:A/MAC:X/MPR:N/MUI:N/MS:X/MC:X/MI:N/MA:L", // name
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:C/C:N/I:N/A:N/E:H/RL:W/RC:X/CR:L/IR:L/AR:X/MAV:A/MAC:X/MPR:N/MUI:N/MS:X/MC:X/MI:N/MA:L", // vec
+  Scores {
+    base: Score::from(0.0),
+    temporal: Some(Score::from(0.0)),
+    environmental: Some(Score::from(3.3))
+  }, // exp
+), (
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:L/E:U/RL:O/RC:R/CR:X/IR:M/AR:H/MAV:L/MAC:H/MPR:N/MUI:N/MS:X/MC:H/MI:L/MA:L", // name
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:L/E:U/RL:O/RC:R/CR:X/IR:M/AR:H/MAV:L/MAC:H/MPR:N/MUI:N/MS:X/MC:H/MI:L/MA:L", // vec
+  Scores {
+    base: Score::from(6.4),
+    temporal: Some(Score::from(5.4)),
+    environmental: Some(Score::from(5.4))
+  }, // exp
+), (
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:N/E:F/RL:U/RC:C/CR:M/IR:L/AR:X/MAV:X/MAC:X/MPR:L/MUI:R/MS:X/MC:H/MI:H/MA:X", // name
+  "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:N/E:F/RL:U/RC:C/CR:M/IR:L/AR:X/MAV:X/MAC:X/MPR:L/MUI:R/MS:X/MC:H/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(6.1),
+    temporal: Some(Score::from(6.0)),
+    environmental: Some(Score::from(5.2))
+  }, // exp
+), (
+  "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L/E:P/RL:X/RC:X/CR:M/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:R/MS:X/MC:H/MI:H/MA:X", // name
+  "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L/E:P/RL:X/RC:X/CR:M/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:R/MS:X/MC:H/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(5.0),
+    temporal: Some(Score::from(4.7)),
+    environmental: Some(Score::from(5.5))
+  }, // exp
+), (
+  "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:C/C:L/I:H/A:L/E:P/RL:T/RC:X/CR:X/IR:M/AR:L/MAV:A/MAC:X/MPR:H/MUI:N/MS:U/MC:N/MI:N/MA:L", // name
+  "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:C/C:L/I:H/A:L/E:P/RL:T/RC:X/CR:X/IR:M/AR:L/MAV:A/MAC:X/MPR:H/MUI:N/MS:U/MC:N/MI:N/MA:L", // vec
+  Scores {
+    base: Score::from(7.0),
+    temporal: Some(Score::from(6.4)),
+    environmental: Some(Score::from(1.2))
+  }, // exp
+), (
+  "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:H/E:P/RL:X/RC:C/CR:M/IR:L/AR:X/MAV:P/MAC:X/MPR:H/MUI:N/MS:X/MC:N/MI:X/MA:X", // name
+  "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:H/E:P/RL:X/RC:C/CR:M/IR:L/AR:X/MAV:P/MAC:X/MPR:H/MUI:N/MS:X/MC:N/MI:X/MA:X", // vec
+  Scores {
+    base: Score::from(6.4),
+    temporal: Some(Score::from(6.1)),
+    environmental: Some(Score::from(4.4))
+  }, // exp
+), (
+  "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:L/E:F/RL:T/RC:U/CR:X/IR:M/AR:X/MAV:X/MAC:H/MPR:N/MUI:N/MS:C/MC:X/MI:X/MA:H", // name
+  "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:L/E:F/RL:T/RC:U/CR:X/IR:M/AR:X/MAV:X/MAC:H/MPR:N/MUI:N/MS:C/MC:X/MI:X/MA:H", // vec
+  Scores {
+    base: Score::from(5.4),
+    temporal: Some(Score::from(4.7)),
+    environmental: Some(Score::from(6.9))
+  }, // exp
+), (
+  "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:H/E:F/RL:X/RC:X/CR:L/IR:X/AR:M/MAV:X/MAC:X/MPR:H/MUI:X/MS:C/MC:H/MI:X/MA:L", // name
+  "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:H/E:F/RL:X/RC:X/CR:L/IR:X/AR:M/MAV:X/MAC:X/MPR:H/MUI:X/MS:C/MC:H/MI:X/MA:L", // vec
+  Scores {
+    base: Score::from(8.7),
+    temporal: Some(Score::from(8.5)),
+    environmental: Some(Score::from(5.1))
+  }, // exp
+), (
+  "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:H/E:H/RL:O/RC:U/CR:L/IR:M/AR:M/MAV:P/MAC:H/MPR:H/MUI:R/MS:X/MC:H/MI:L/MA:L", // name
+  "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:H/E:H/RL:O/RC:U/CR:L/IR:M/AR:M/MAV:P/MAC:H/MPR:H/MUI:R/MS:X/MC:H/MI:L/MA:L", // vec
+  Scores {
+    base: Score::from(6.3),
+    temporal: Some(Score::from(5.6)),
+    environmental: Some(Score::from(3.4))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:H/PR:H/UI:N/S:U/C:H/I:L/A:H/E:U/RL:W/RC:C/CR:X/IR:M/AR:L/MAV:L/MAC:H/MPR:X/MUI:R/MS:U/MC:N/MI:H/MA:L", // name
+  "CVSS:3.0/AV:L/AC:H/PR:H/UI:N/S:U/C:H/I:L/A:H/E:U/RL:W/RC:C/CR:X/IR:M/AR:L/MAV:L/MAC:H/MPR:X/MUI:R/MS:U/MC:N/MI:H/MA:L", // vec
+  Scores {
+    base: Score::from(6.0),
+    temporal: Some(Score::from(5.3)),
+    environmental: Some(Score::from(3.6))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N/E:U/RL:W/RC:R/CR:L/IR:X/AR:X/MAV:L/MAC:X/MPR:X/MUI:R/MS:X/MC:H/MI:H/MA:N", // name
+  "CVSS:3.0/AV:L/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N/E:U/RL:W/RC:R/CR:L/IR:X/AR:X/MAV:L/MAC:X/MPR:X/MUI:R/MS:X/MC:H/MI:H/MA:N", // vec
+  Scores {
+    base: Score::from(1.9),
+    temporal: Some(Score::from(1.7)),
+    environmental: Some(Score::from(3.8))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:N/E:X/RL:O/RC:C/CR:M/IR:H/AR:L/MAV:P/MAC:H/MPR:N/MUI:R/MS:X/MC:L/MI:X/MA:H", // name
+  "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:N/E:X/RL:O/RC:C/CR:M/IR:H/AR:L/MAV:P/MAC:H/MPR:N/MUI:R/MS:X/MC:L/MI:X/MA:H", // vec
+  Scores {
+    base: Score::from(4.2),
+    temporal: Some(Score::from(4.0)),
+    environmental: Some(Score::from(5.1))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:N/I:L/A:N/E:P/RL:T/RC:C/CR:L/IR:L/AR:M/MAV:X/MAC:L/MPR:L/MUI:N/MS:X/MC:L/MI:H/MA:X", // name
+  "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:N/I:L/A:N/E:P/RL:T/RC:C/CR:L/IR:L/AR:M/MAV:X/MAC:L/MPR:L/MUI:N/MS:X/MC:L/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(2.8),
+    temporal: Some(Score::from(2.6)),
+    environmental: Some(Score::from(4.5))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:H/A:L/E:U/RL:U/RC:C/CR:X/IR:H/AR:X/MAV:A/MAC:L/MPR:L/MUI:N/MS:C/MC:L/MI:X/MA:N", // name
+  "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:H/A:L/E:U/RL:U/RC:C/CR:X/IR:H/AR:X/MAV:A/MAC:L/MPR:L/MUI:N/MS:C/MC:L/MI:X/MA:N", // vec
+  Scores {
+    base: Score::from(5.5),
+    temporal: Some(Score::from(5.1)),
+    environmental: Some(Score::from(8.2))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:N/A:H/E:H/RL:U/RC:U/CR:M/IR:L/AR:M/MAV:X/MAC:L/MPR:X/MUI:X/MS:C/MC:L/MI:H/MA:H", // name
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:N/A:H/E:H/RL:U/RC:U/CR:M/IR:L/AR:M/MAV:X/MAC:L/MPR:X/MUI:X/MS:C/MC:L/MI:H/MA:H", // vec
+  Scores {
+    base: Score::from(6.0),
+    temporal: Some(Score::from(5.6)),
+    environmental: Some(Score::from(6.9))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:H/E:F/RL:W/RC:R/CR:L/IR:L/AR:H/MAV:N/MAC:H/MPR:X/MUI:X/MS:U/MC:L/MI:N/MA:X", // name
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:H/E:F/RL:W/RC:R/CR:L/IR:L/AR:H/MAV:N/MAC:H/MPR:X/MUI:X/MS:U/MC:L/MI:N/MA:X", // vec
+  Scores {
+    base: Score::from(6.0),
+    temporal: Some(Score::from(5.5)),
+    environmental: Some(Score::from(5.1))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:N/E:P/RL:W/RC:U/CR:M/IR:X/AR:H/MAV:P/MAC:H/MPR:H/MUI:R/MS:C/MC:N/MI:L/MA:L", // name
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:N/E:P/RL:W/RC:U/CR:M/IR:X/AR:H/MAV:P/MAC:H/MPR:H/MUI:R/MS:C/MC:N/MI:L/MA:L", // vec
+  Scores {
+    base: Score::from(4.4),
+    temporal: Some(Score::from(3.7)),
+    environmental: Some(Score::from(3.3))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:H/E:F/RL:W/RC:X/CR:H/IR:L/AR:X/MAV:A/MAC:H/MPR:L/MUI:R/MS:C/MC:X/MI:X/MA:N", // name
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:H/E:F/RL:W/RC:X/CR:H/IR:L/AR:X/MAV:A/MAC:H/MPR:L/MUI:R/MS:C/MC:X/MI:X/MA:N", // vec
+  Scores {
+    base: Score::from(5.1),
+    temporal: Some(Score::from(4.8)),
+    environmental: Some(Score::from(1.6))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:L/E:P/RL:O/RC:R/CR:X/IR:M/AR:M/MAV:L/MAC:L/MPR:X/MUI:X/MS:U/MC:L/MI:L/MA:N", // name
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:L/E:P/RL:O/RC:R/CR:X/IR:M/AR:M/MAV:L/MAC:L/MPR:X/MUI:X/MS:U/MC:L/MI:L/MA:N", // vec
+  Scores {
+    base: Score::from(3.4),
+    temporal: Some(Score::from(3.0)),
+    environmental: Some(Score::from(2.3))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:N/E:F/RL:U/RC:R/CR:X/IR:L/AR:L/MAV:A/MAC:H/MPR:H/MUI:R/MS:C/MC:H/MI:X/MA:H", // name
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:N/E:F/RL:U/RC:R/CR:X/IR:L/AR:L/MAV:A/MAC:H/MPR:H/MUI:R/MS:C/MC:H/MI:X/MA:H", // vec
+  Scores {
+    base: Score::from(0.0),
+    temporal: Some(Score::from(0.0)),
+    environmental: Some(Score::from(5.7))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:U/C:L/I:N/A:L/E:U/RL:U/RC:X/CR:H/IR:H/AR:X/MAV:P/MAC:H/MPR:X/MUI:X/MS:X/MC:L/MI:H/MA:X", // name
+  "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:U/C:L/I:N/A:L/E:U/RL:U/RC:X/CR:H/IR:H/AR:X/MAV:P/MAC:H/MPR:X/MUI:X/MS:X/MC:L/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(3.1),
+    temporal: Some(Score::from(2.9)),
+    environmental: Some(Score::from(5.4))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N/E:F/RL:T/RC:C/CR:L/IR:X/AR:H/MAV:X/MAC:L/MPR:X/MUI:N/MS:U/MC:H/MI:N/MA:X", // name
+  "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N/E:F/RL:T/RC:C/CR:L/IR:X/AR:H/MAV:X/MAC:L/MPR:X/MUI:N/MS:U/MC:H/MI:N/MA:X", // vec
+  Scores {
+    base: Score::from(3.8),
+    temporal: Some(Score::from(3.6)),
+    environmental: Some(Score::from(3.7))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:N/I:L/A:L/E:X/RL:U/RC:U/CR:M/IR:H/AR:L/MAV:X/MAC:H/MPR:H/MUI:R/MS:C/MC:X/MI:H/MA:X", // name
+  "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:N/I:L/A:L/E:X/RL:U/RC:U/CR:M/IR:H/AR:L/MAV:X/MAC:H/MPR:H/MUI:R/MS:C/MC:X/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(5.2),
+    temporal: Some(Score::from(4.8)),
+    environmental: Some(Score::from(6.7))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:L/E:U/RL:U/RC:X/CR:L/IR:X/AR:H/MAV:P/MAC:L/MPR:X/MUI:X/MS:X/MC:N/MI:H/MA:L", // name
+  "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:L/E:U/RL:U/RC:X/CR:L/IR:X/AR:H/MAV:P/MAC:L/MPR:X/MUI:X/MS:X/MC:N/MI:H/MA:L", // vec
+  Scores {
+    base: Score::from(6.1),
+    temporal: Some(Score::from(5.6)),
+    environmental: Some(Score::from(4.2))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:L/E:X/RL:W/RC:X/CR:M/IR:L/AR:L/MAV:P/MAC:L/MPR:N/MUI:X/MS:X/MC:L/MI:L/MA:X", // name
+  "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:L/E:X/RL:W/RC:X/CR:M/IR:L/AR:L/MAV:P/MAC:L/MPR:N/MUI:X/MS:X/MC:L/MI:L/MA:X", // vec
+  Scores {
+    base: Score::from(5.6),
+    temporal: Some(Score::from(5.5)),
+    environmental: Some(Score::from(3.2))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N/E:U/RL:T/RC:R/CR:L/IR:L/AR:M/MAV:X/MAC:X/MPR:X/MUI:X/MS:C/MC:L/MI:H/MA:X", // name
+  "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N/E:U/RL:T/RC:R/CR:L/IR:L/AR:M/MAV:X/MAC:X/MPR:X/MUI:X/MS:C/MC:L/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(3.9),
+    temporal: Some(Score::from(3.3)),
+    environmental: Some(Score::from(3.7))
+  }, // exp
+), (
+  "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:L/E:P/RL:W/RC:C/CR:X/IR:X/AR:L/MAV:L/MAC:X/MPR:L/MUI:X/MS:U/MC:X/MI:H/MA:X", // name
+  "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:L/E:P/RL:W/RC:C/CR:X/IR:X/AR:L/MAV:L/MAC:X/MPR:L/MUI:X/MS:U/MC:X/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(7.9),
+    temporal: Some(Score::from(7.3)),
+    environmental: Some(Score::from(6.6))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:L/E:P/RL:O/RC:C/CR:M/IR:X/AR:X/MAV:L/MAC:X/MPR:N/MUI:R/MS:X/MC:H/MI:L/MA:X", // name
+  "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:L/E:P/RL:O/RC:C/CR:M/IR:X/AR:X/MAV:L/MAC:X/MPR:N/MUI:R/MS:X/MC:H/MI:L/MA:X", // vec
+  Scores {
+    base: Score::from(5.0),
+    temporal: Some(Score::from(4.5)),
+    environmental: Some(Score::from(5.2))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:L/E:U/RL:X/RC:C/CR:H/IR:X/AR:L/MAV:X/MAC:X/MPR:N/MUI:R/MS:X/MC:N/MI:L/MA:N", // name
+  "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:L/E:U/RL:X/RC:C/CR:H/IR:X/AR:L/MAV:X/MAC:X/MPR:N/MUI:R/MS:X/MC:N/MI:L/MA:N", // vec
+  Scores {
+    base: Score::from(5.5),
+    temporal: Some(Score::from(5.1)),
+    environmental: Some(Score::from(2.9))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:L/A:N/E:F/RL:X/RC:R/CR:L/IR:H/AR:X/MAV:L/MAC:X/MPR:N/MUI:X/MS:C/MC:L/MI:X/MA:L", // name
+  "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:L/A:N/E:F/RL:X/RC:R/CR:L/IR:H/AR:X/MAV:L/MAC:X/MPR:N/MUI:X/MS:C/MC:L/MI:X/MA:L", // vec
+  Scores {
+    base: Score::from(5.9),
+    temporal: Some(Score::from(5.5)),
+    environmental: Some(Score::from(5.4))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:H/A:H/E:U/RL:T/RC:X/CR:M/IR:M/AR:M/MAV:X/MAC:L/MPR:N/MUI:R/MS:X/MC:L/MI:H/MA:N", // name
+  "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:H/A:H/E:U/RL:T/RC:X/CR:M/IR:M/AR:M/MAV:X/MAC:L/MPR:N/MUI:R/MS:X/MC:L/MI:H/MA:N", // vec
+  Scores {
+    base: Score::from(6.8),
+    temporal: Some(Score::from(6.0)),
+    environmental: Some(Score::from(6.3))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:N/E:P/RL:O/RC:C/CR:X/IR:H/AR:X/MAV:X/MAC:H/MPR:L/MUI:N/MS:U/MC:L/MI:H/MA:X", // name
+  "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:N/E:P/RL:O/RC:C/CR:X/IR:H/AR:X/MAV:X/MAC:H/MPR:L/MUI:N/MS:U/MC:L/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(6.5),
+    temporal: Some(Score::from(5.9)),
+    environmental: Some(Score::from(6.6))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:U/C:N/I:H/A:H/E:F/RL:U/RC:X/CR:X/IR:H/AR:M/MAV:L/MAC:H/MPR:H/MUI:N/MS:U/MC:N/MI:H/MA:L", // name
+  "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:U/C:N/I:H/A:H/E:F/RL:U/RC:X/CR:X/IR:H/AR:M/MAV:L/MAC:H/MPR:H/MUI:N/MS:U/MC:N/MI:H/MA:L", // vec
+  Scores {
+    base: Score::from(6.1),
+    temporal: Some(Score::from(6.0)),
+    environmental: Some(Score::from(6.0))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:U/C:N/I:H/A:H/E:U/RL:O/RC:C/CR:H/IR:H/AR:X/MAV:P/MAC:H/MPR:L/MUI:R/MS:C/MC:X/MI:X/MA:N", // name
+  "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:U/C:N/I:H/A:H/E:U/RL:O/RC:C/CR:H/IR:H/AR:X/MAV:P/MAC:H/MPR:L/MUI:R/MS:C/MC:X/MI:X/MA:N", // vec
+  Scores {
+    base: Score::from(6.1),
+    temporal: Some(Score::from(5.3)),
+    environmental: Some(Score::from(5.9))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N/E:P/RL:U/RC:C/CR:M/IR:H/AR:H/MAV:N/MAC:X/MPR:H/MUI:R/MS:C/MC:H/MI:L/MA:L", // name
+  "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N/E:P/RL:U/RC:C/CR:M/IR:H/AR:H/MAV:N/MAC:X/MPR:H/MUI:R/MS:C/MC:H/MI:L/MA:L", // vec
+  Scores {
+    base: Score::from(6.4),
+    temporal: Some(Score::from(6.1)),
+    environmental: Some(Score::from(7.6))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H/E:X/RL:W/RC:X/CR:H/IR:M/AR:M/MAV:N/MAC:H/MPR:L/MUI:R/MS:X/MC:H/MI:L/MA:L", // name
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H/E:X/RL:W/RC:X/CR:H/IR:M/AR:M/MAV:N/MAC:H/MPR:L/MUI:R/MS:X/MC:H/MI:L/MA:L", // vec
+  Scores {
+    base: Score::from(10.0),
+    temporal: Some(Score::from(9.7)),
+    environmental: Some(Score::from(7.8))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N/E:H/RL:X/RC:R/CR:L/IR:X/AR:H/MAV:A/MAC:H/MPR:X/MUI:R/MS:C/MC:N/MI:L/MA:X", // name
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N/E:H/RL:X/RC:R/CR:L/IR:X/AR:H/MAV:A/MAC:H/MPR:X/MUI:R/MS:C/MC:N/MI:L/MA:X", // vec
+  Scores {
+    base: Score::from(10.0),
+    temporal: Some(Score::from(9.6)),
+    environmental: Some(Score::from(1.6))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L/E:F/RL:X/RC:X/CR:X/IR:M/AR:H/MAV:P/MAC:H/MPR:N/MUI:R/MS:X/MC:N/MI:X/MA:L", // name
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L/E:F/RL:X/RC:X/CR:X/IR:M/AR:H/MAV:P/MAC:H/MPR:N/MUI:R/MS:X/MC:N/MI:X/MA:L", // vec
+  Scores {
+    base: Score::from(8.6),
+    temporal: Some(Score::from(8.4)),
+    environmental: Some(Score::from(3.4))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:H/E:X/RL:U/RC:U/CR:L/IR:M/AR:L/MAV:P/MAC:L/MPR:X/MUI:X/MS:U/MC:H/MI:L/MA:X", // name
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:H/E:X/RL:U/RC:U/CR:L/IR:M/AR:L/MAV:P/MAC:L/MPR:X/MUI:X/MS:U/MC:H/MI:L/MA:X", // vec
+  Scores {
+    base: Score::from(9.4),
+    temporal: Some(Score::from(8.7)),
+    environmental: Some(Score::from(3.6))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N/E:U/RL:U/RC:U/CR:X/IR:L/AR:L/MAV:L/MAC:X/MPR:N/MUI:X/MS:X/MC:N/MI:L/MA:X", // name
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N/E:U/RL:U/RC:U/CR:X/IR:L/AR:L/MAV:L/MAC:X/MPR:N/MUI:X/MS:X/MC:N/MI:L/MA:X", // vec
+  Scores {
+    base: Score::from(6.5),
+    temporal: Some(Score::from(5.5)),
+    environmental: Some(Score::from(2.8))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N/E:H/RL:T/RC:X/CR:L/IR:L/AR:L/MAV:N/MAC:X/MPR:N/MUI:R/MS:X/MC:X/MI:N/MA:L", // name
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N/E:H/RL:T/RC:X/CR:L/IR:L/AR:L/MAV:N/MAC:X/MPR:N/MUI:R/MS:X/MC:X/MI:N/MA:L", // vec
+  Scores {
+    base: Score::from(6.1),
+    temporal: Some(Score::from(5.9)),
+    environmental: Some(Score::from(4.5))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N/E:H/RL:U/RC:R/CR:H/IR:M/AR:L/MAV:N/MAC:X/MPR:L/MUI:N/MS:U/MC:H/MI:N/MA:N", // name
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N/E:H/RL:U/RC:R/CR:H/IR:M/AR:L/MAV:N/MAC:X/MPR:L/MUI:N/MS:U/MC:H/MI:N/MA:N", // vec
+  Scores {
+    base: Score::from(4.7),
+    temporal: Some(Score::from(4.6)),
+    environmental: Some(Score::from(8.0))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:H/A:H/E:F/RL:W/RC:C/CR:M/IR:H/AR:H/MAV:P/MAC:X/MPR:H/MUI:R/MS:C/MC:L/MI:L/MA:X", // name
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:H/A:H/E:F/RL:W/RC:C/CR:M/IR:H/AR:H/MAV:P/MAC:X/MPR:H/MUI:R/MS:C/MC:L/MI:L/MA:X", // vec
+  Scores {
+    base: Score::from(9.3),
+    temporal: Some(Score::from(8.8)),
+    environmental: Some(Score::from(6.6))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:N/A:L/E:X/RL:T/RC:U/CR:H/IR:X/AR:H/MAV:P/MAC:L/MPR:L/MUI:R/MS:C/MC:H/MI:X/MA:L", // name
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:N/A:L/E:X/RL:T/RC:U/CR:H/IR:X/AR:H/MAV:P/MAC:L/MPR:L/MUI:R/MS:C/MC:H/MI:X/MA:L", // vec
+  Scores {
+    base: Score::from(4.7),
+    temporal: Some(Score::from(4.2)),
+    environmental: Some(Score::from(6.4))
+  }, // exp
+), (
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H/E:H/RL:X/RC:C/CR:X/IR:M/AR:M/MAV:X/MAC:X/MPR:H/MUI:N/MS:C/MC:L/MI:X/MA:X", // name
+  "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H/E:H/RL:X/RC:C/CR:X/IR:M/AR:M/MAV:X/MAC:X/MPR:H/MUI:N/MS:C/MC:L/MI:X/MA:X", // vec
+  Scores {
+    base: Score::from(7.6),
+    temporal: Some(Score::from(7.6)),
+    environmental: Some(Score::from(8.2))
+  }, // exp
+), (
+  "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:H/E:F/RL:T/RC:R/CR:X/IR:M/AR:L/MAV:L/MAC:H/MPR:X/MUI:X/MS:U/MC:X/MI:H/MA:X", // name
+  "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:H/E:F/RL:T/RC:R/CR:X/IR:M/AR:L/MAV:L/MAC:H/MPR:X/MUI:X/MS:U/MC:X/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(5.7),
+    temporal: Some(Score::from(5.1)),
+    environmental: Some(Score::from(4.4))
+  }, // exp
+), (
+  "CVSS:3.0/AV:P/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H/E:U/RL:O/RC:R/CR:X/IR:L/AR:M/MAV:N/MAC:H/MPR:L/MUI:R/MS:X/MC:H/MI:L/MA:X", // name
+  "CVSS:3.0/AV:P/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H/E:U/RL:O/RC:R/CR:X/IR:L/AR:M/MAV:N/MAC:H/MPR:L/MUI:R/MS:X/MC:H/MI:L/MA:X", // vec
+  Scores {
+    base: Score::from(7.0),
+    temporal: Some(Score::from(5.9)),
+    environmental: Some(Score::from(6.5))
+  }, // exp
+), (
+  "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:L/E:U/RL:W/RC:X/CR:X/IR:L/AR:H/MAV:X/MAC:H/MPR:L/MUI:X/MS:X/MC:H/MI:X/MA:L", // name
+  "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:L/E:U/RL:W/RC:X/CR:X/IR:L/AR:H/MAV:X/MAC:H/MPR:L/MUI:X/MS:X/MC:H/MI:X/MA:L", // vec
+  Scores {
+    base: Score::from(5.5),
+    temporal: Some(Score::from(4.9)),
+    environmental: Some(Score::from(5.8))
+  }, // exp
+), (
+  "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N/E:X/RL:W/RC:R/CR:H/IR:X/AR:M/MAV:A/MAC:X/MPR:L/MUI:X/MS:U/MC:N/MI:H/MA:X", // name
+  "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N/E:X/RL:W/RC:R/CR:H/IR:X/AR:M/MAV:A/MAC:X/MPR:L/MUI:X/MS:U/MC:N/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(4.6),
+    temporal: Some(Score::from(4.3)),
+    environmental: Some(Score::from(4.2))
+  }, // exp
+), (
+  "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:C/C:H/I:L/A:H/E:X/RL:U/RC:R/CR:L/IR:M/AR:H/MAV:X/MAC:L/MPR:X/MUI:X/MS:U/MC:L/MI:N/MA:N", // name
+  "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:C/C:H/I:L/A:H/E:X/RL:U/RC:R/CR:L/IR:M/AR:H/MAV:X/MAC:L/MPR:X/MUI:X/MS:U/MC:L/MI:N/MA:N", // vec
+  Scores {
+    base: Score::from(6.9),
+    temporal: Some(Score::from(6.7)),
+    environmental: Some(Score::from(1.1))
+  }, // exp
+), (
+  "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:U/C:N/I:L/A:L/E:U/RL:W/RC:U/CR:M/IR:L/AR:X/MAV:X/MAC:L/MPR:H/MUI:N/MS:C/MC:L/MI:H/MA:L", // name
+  "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:U/C:N/I:L/A:L/E:U/RL:W/RC:U/CR:M/IR:L/AR:X/MAV:X/MAC:L/MPR:H/MUI:N/MS:C/MC:L/MI:H/MA:L", // vec
+  Scores {
+    base: Score::from(2.8),
+    temporal: Some(Score::from(2.3)),
+    environmental: Some(Score::from(4.1))
+  }, // exp
+), (
+  "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:C/C:L/I:H/A:N/E:U/RL:T/RC:X/CR:L/IR:H/AR:L/MAV:A/MAC:L/MPR:N/MUI:X/MS:C/MC:L/MI:X/MA:L", // name
+  "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:C/C:L/I:H/A:N/E:U/RL:T/RC:X/CR:L/IR:H/AR:L/MAV:A/MAC:L/MPR:N/MUI:X/MS:C/MC:L/MI:X/MA:L", // vec
+  Scores {
+    base: Score::from(5.9),
+    temporal: Some(Score::from(5.2)),
+    environmental: Some(Score::from(8.4))
+  }, // exp
+), (
+  "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:C/C:N/I:N/A:H/E:F/RL:X/RC:U/CR:M/IR:X/AR:L/MAV:P/MAC:H/MPR:H/MUI:R/MS:U/MC:N/MI:X/MA:L", // name
+  "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:C/C:N/I:N/A:H/E:F/RL:X/RC:U/CR:M/IR:X/AR:L/MAV:P/MAC:H/MPR:H/MUI:R/MS:U/MC:N/MI:X/MA:L", // vec
+  Scores {
+    base: Score::from(5.2),
+    temporal: Some(Score::from(4.7)),
+    environmental: Some(Score::from(0.9))
+  }, // exp
+), (
+  "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N/E:P/RL:O/RC:U/CR:M/IR:M/AR:H/MAV:L/MAC:X/MPR:L/MUI:N/MS:C/MC:N/MI:X/MA:H", // name
+  "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N/E:P/RL:O/RC:U/CR:M/IR:M/AR:H/MAV:L/MAC:X/MPR:L/MUI:N/MS:C/MC:N/MI:X/MA:H", // vec
+  Scores {
+    base: Score::from(4.0),
+    temporal: Some(Score::from(3.3)),
+    environmental: Some(Score::from(7.3))
+  }, // exp
+), (
+  "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:L/E:P/RL:T/RC:C/CR:M/IR:M/AR:L/MAV:X/MAC:H/MPR:N/MUI:N/MS:U/MC:L/MI:X/MA:H", // name
+  "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:L/E:P/RL:T/RC:C/CR:M/IR:M/AR:L/MAV:X/MAC:H/MPR:N/MUI:N/MS:U/MC:L/MI:X/MA:H", // vec
+  Scores {
+    base: Score::from(4.9),
+    temporal: Some(Score::from(4.5)),
+    environmental: Some(Score::from(4.9))
+  }, // exp
+), (
+  "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:H/E:P/RL:W/RC:U/CR:M/IR:L/AR:X/MAV:X/MAC:L/MPR:N/MUI:N/MS:U/MC:H/MI:H/MA:N", // name
+  "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:H/E:P/RL:W/RC:U/CR:M/IR:L/AR:X/MAV:X/MAC:L/MPR:N/MUI:N/MS:U/MC:H/MI:H/MA:N", // vec
+  Scores {
+    base: Score::from(5.7),
+    temporal: Some(Score::from(4.8)),
+    environmental: Some(Score::from(6.2))
+  }, // exp
+), (
+  "CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:U/C:L/I:N/A:H/E:U/RL:X/RC:X/CR:M/IR:M/AR:H/MAV:P/MAC:H/MPR:L/MUI:R/MS:C/MC:L/MI:H/MA:L", // name
+  "CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:U/C:L/I:N/A:H/E:U/RL:X/RC:X/CR:M/IR:M/AR:H/MAV:P/MAC:H/MPR:L/MUI:R/MS:C/MC:L/MI:H/MA:L", // vec
+  Scores {
+    base: Score::from(4.6),
+    temporal: Some(Score::from(4.2)),
+    environmental: Some(Score::from(5.8))
+  }, // exp
+), (
+  "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:L/E:X/RL:T/RC:X/CR:M/IR:L/AR:M/MAV:L/MAC:L/MPR:X/MUI:R/MS:U/MC:X/MI:N/MA:L", // name
+  "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:L/E:X/RL:T/RC:X/CR:M/IR:L/AR:M/MAV:L/MAC:L/MPR:X/MUI:R/MS:U/MC:X/MI:N/MA:L", // vec
+  Scores {
+    base: Score::from(6.9),
+    temporal: Some(Score::from(6.7)),
+    environmental: Some(Score::from(1.5))
+  }, // exp
+), (
+  "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:H/I:H/A:H/E:F/RL:O/RC:C/CR:M/IR:M/AR:M/MAV:N/MAC:L/MPR:N/MUI:N/MS:U/MC:H/MI:X/MA:H", // name
+  "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:H/I:H/A:H/E:F/RL:O/RC:C/CR:M/IR:M/AR:M/MAV:N/MAC:L/MPR:N/MUI:N/MS:U/MC:H/MI:X/MA:H", // vec
+  Scores {
+    base: Score::from(7.9),
+    temporal: Some(Score::from(7.3)),
+    environmental: Some(Score::from(9.1))
+  }, // exp
+), (
+  "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:H/I:H/A:L/E:H/RL:X/RC:C/CR:H/IR:H/AR:H/MAV:A/MAC:L/MPR:H/MUI:X/MS:C/MC:H/MI:X/MA:H", // name
+  "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:H/I:H/A:L/E:H/RL:X/RC:C/CR:H/IR:H/AR:H/MAV:A/MAC:L/MPR:H/MUI:X/MS:C/MC:H/MI:X/MA:H", // vec
+  Scores {
+    base: Score::from(7.8),
+    temporal: Some(Score::from(7.8)),
+    environmental: Some(Score::from(8.0))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:L/I:N/A:L/E:X/RL:U/RC:C/CR:M/IR:X/AR:H/MAV:A/MAC:H/MPR:L/MUI:X/MS:C/MC:N/MI:H/MA:N", // name
+  "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:L/I:N/A:L/E:X/RL:U/RC:C/CR:M/IR:X/AR:H/MAV:A/MAC:H/MPR:L/MUI:X/MS:C/MC:N/MI:H/MA:N", // vec
+  Scores {
+    base: Score::from(2.9),
+    temporal: Some(Score::from(2.9)),
+    environmental: Some(Score::from(5.4))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N/E:F/RL:W/RC:U/CR:X/IR:L/AR:X/MAV:L/MAC:L/MPR:N/MUI:N/MS:C/MC:H/MI:H/MA:X", // name
+  "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N/E:F/RL:W/RC:U/CR:X/IR:L/AR:X/MAV:L/MAC:L/MPR:N/MUI:N/MS:C/MC:H/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(4.7),
+    temporal: Some(Score::from(4.1)),
+    environmental: Some(Score::from(7.1))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L/E:P/RL:U/RC:R/CR:M/IR:M/AR:H/MAV:P/MAC:X/MPR:H/MUI:R/MS:X/MC:N/MI:X/MA:L", // name
+  "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L/E:P/RL:U/RC:R/CR:M/IR:M/AR:H/MAV:P/MAC:X/MPR:H/MUI:R/MS:X/MC:N/MI:X/MA:L", // vec
+  Scores {
+    base: Score::from(2.5),
+    temporal: Some(Score::from(2.3)),
+    environmental: Some(Score::from(2.1))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:C/C:N/I:L/A:L/E:U/RL:W/RC:X/CR:X/IR:L/AR:H/MAV:P/MAC:X/MPR:N/MUI:X/MS:X/MC:X/MI:L/MA:L", // name
+  "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:C/C:N/I:L/A:L/E:U/RL:W/RC:X/CR:X/IR:L/AR:H/MAV:P/MAC:X/MPR:N/MUI:X/MS:X/MC:X/MI:L/MA:L", // vec
+  Scores {
+    base: Score::from(4.2),
+    temporal: Some(Score::from(3.8)),
+    environmental: Some(Score::from(3.4))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:U/C:L/I:N/A:L/E:F/RL:U/RC:C/CR:L/IR:X/AR:X/MAV:L/MAC:L/MPR:H/MUI:X/MS:C/MC:N/MI:H/MA:L", // name
+  "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:U/C:L/I:N/A:L/E:F/RL:U/RC:C/CR:L/IR:X/AR:X/MAV:L/MAC:L/MPR:H/MUI:X/MS:C/MC:N/MI:H/MA:L", // vec
+  Scores {
+    base: Score::from(3.1),
+    temporal: Some(Score::from(3.1)),
+    environmental: Some(Score::from(6.2))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N/E:U/RL:X/RC:X/CR:M/IR:M/AR:H/MAV:X/MAC:X/MPR:H/MUI:X/MS:U/MC:H/MI:H/MA:L", // name
+  "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N/E:U/RL:X/RC:X/CR:M/IR:M/AR:H/MAV:X/MAC:X/MPR:H/MUI:X/MS:U/MC:H/MI:H/MA:L", // vec
+  Scores {
+    base: Score::from(6.5),
+    temporal: Some(Score::from(6.0)),
+    environmental: Some(Score::from(5.9))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:L/I:H/A:L/E:P/RL:X/RC:C/CR:H/IR:L/AR:H/MAV:X/MAC:X/MPR:H/MUI:R/MS:X/MC:L/MI:L/MA:N", // name
+  "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:L/I:H/A:L/E:P/RL:X/RC:C/CR:H/IR:L/AR:H/MAV:X/MAC:X/MPR:H/MUI:R/MS:X/MC:L/MI:L/MA:N", // vec
+  Scores {
+    base: Score::from(7.3),
+    temporal: Some(Score::from(6.9)),
+    environmental: Some(Score::from(4.1))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:N/I:H/A:H/E:H/RL:T/RC:R/CR:X/IR:H/AR:L/MAV:X/MAC:H/MPR:N/MUI:N/MS:C/MC:X/MI:N/MA:L", // name
+  "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:N/I:H/A:H/E:H/RL:T/RC:R/CR:X/IR:H/AR:L/MAV:X/MAC:H/MPR:N/MUI:N/MS:C/MC:X/MI:N/MA:L", // vec
+  Scores {
+    base: Score::from(7.9),
+    temporal: Some(Score::from(7.3)),
+    environmental: Some(Score::from(2.2))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:N/I:L/A:N/E:X/RL:T/RC:R/CR:H/IR:X/AR:L/MAV:X/MAC:L/MPR:N/MUI:N/MS:X/MC:N/MI:X/MA:L", // name
+  "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:N/I:L/A:N/E:X/RL:T/RC:R/CR:H/IR:X/AR:L/MAV:X/MAC:L/MPR:N/MUI:N/MS:X/MC:N/MI:X/MA:L", // vec
+  Scores {
+    base: Score::from(3.2),
+    temporal: Some(Score::from(3.0)),
+    environmental: Some(Score::from(4.7))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:L/I:H/A:N/E:F/RL:X/RC:X/CR:X/IR:L/AR:M/MAV:P/MAC:H/MPR:H/MUI:R/MS:X/MC:H/MI:H/MA:N", // name
+  "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:L/I:H/A:N/E:F/RL:X/RC:X/CR:X/IR:L/AR:M/MAV:P/MAC:H/MPR:H/MUI:R/MS:X/MC:H/MI:H/MA:N", // vec
+  Scores {
+    base: Score::from(7.9),
+    temporal: Some(Score::from(7.7)),
+    environmental: Some(Score::from(5.5))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H/E:P/RL:X/RC:C/CR:M/IR:H/AR:X/MAV:P/MAC:X/MPR:N/MUI:N/MS:C/MC:N/MI:L/MA:N", // name
+  "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H/E:P/RL:X/RC:C/CR:M/IR:H/AR:X/MAV:P/MAC:X/MPR:N/MUI:N/MS:C/MC:N/MI:L/MA:N", // vec
+  Scores {
+    base: Score::from(6.2),
+    temporal: Some(Score::from(5.9)),
+    environmental: Some(Score::from(3.3))
+  }, // exp
+), (
+  "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:L/E:X/RL:W/RC:R/CR:M/IR:H/AR:L/MAV:A/MAC:L/MPR:X/MUI:N/MS:X/MC:H/MI:H/MA:X", // name
+  "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:L/E:X/RL:W/RC:R/CR:M/IR:H/AR:L/MAV:A/MAC:L/MPR:X/MUI:N/MS:X/MC:H/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(8.5),
+    temporal: Some(Score::from(8.0)),
+    environmental: Some(Score::from(6.3))
+  }, // exp
+), (
+  "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:C/C:L/I:L/A:N/E:P/RL:U/RC:U/CR:M/IR:L/AR:L/MAV:N/MAC:X/MPR:H/MUI:N/MS:U/MC:L/MI:X/MA:X", // name
+  "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:C/C:L/I:L/A:N/E:P/RL:U/RC:U/CR:M/IR:L/AR:L/MAV:N/MAC:X/MPR:H/MUI:N/MS:U/MC:L/MI:X/MA:X", // vec
+  Scores {
+    base: Score::from(4.0),
+    temporal: Some(Score::from(3.5)),
+    environmental: Some(Score::from(2.4))
+  }, // exp
+), (
+  "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:U/C:L/I:H/A:N/E:P/RL:T/RC:R/CR:H/IR:X/AR:X/MAV:P/MAC:L/MPR:X/MUI:X/MS:C/MC:X/MI:L/MA:N", // name
+  "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:U/C:L/I:H/A:N/E:P/RL:T/RC:R/CR:H/IR:X/AR:X/MAV:P/MAC:L/MPR:X/MUI:X/MS:C/MC:X/MI:L/MA:N", // vec
+  Scores {
+    base: Score::from(4.8),
+    temporal: Some(Score::from(4.2)),
+    environmental: Some(Score::from(3.6))
+  }, // exp
+), (
+  "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:N/I:H/A:H/E:U/RL:T/RC:C/CR:X/IR:M/AR:X/MAV:L/MAC:L/MPR:L/MUI:R/MS:U/MC:X/MI:X/MA:N", // name
+  "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:N/I:H/A:H/E:U/RL:T/RC:C/CR:X/IR:M/AR:X/MAV:L/MAC:L/MPR:L/MUI:R/MS:U/MC:X/MI:X/MA:N", // vec
+  Scores {
+    base: Score::from(8.2),
+    temporal: Some(Score::from(7.2)),
+    environmental: Some(Score::from(4.4))
+  }, // exp
+), (
+  "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:L/E:U/RL:X/RC:C/CR:X/IR:M/AR:L/MAV:N/MAC:L/MPR:H/MUI:N/MS:X/MC:H/MI:X/MA:H", // name
+  "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:L/E:U/RL:X/RC:C/CR:X/IR:M/AR:L/MAV:N/MAC:L/MPR:H/MUI:N/MS:X/MC:H/MI:X/MA:H", // vec
+  Scores {
+    base: Score::from(6.4),
+    temporal: Some(Score::from(5.9)),
+    environmental: Some(Score::from(6.2))
+  }, // exp
+), (
+  "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:N/I:N/A:N/E:F/RL:W/RC:C/CR:H/IR:X/AR:X/MAV:N/MAC:L/MPR:X/MUI:X/MS:U/MC:H/MI:L/MA:L", // name
+  "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:N/I:N/A:N/E:F/RL:W/RC:C/CR:H/IR:X/AR:X/MAV:N/MAC:L/MPR:X/MUI:X/MS:U/MC:H/MI:L/MA:L", // vec
+  Scores {
+    base: Score::from(0.0),
+    temporal: Some(Score::from(0.0)),
+    environmental: Some(Score::from(5.5))
+  }, // exp
+), (
+  "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:H/E:F/RL:W/RC:R/CR:X/IR:M/AR:M/MAV:A/MAC:L/MPR:N/MUI:N/MS:U/MC:H/MI:L/MA:X", // name
+  "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:H/E:F/RL:W/RC:R/CR:X/IR:M/AR:M/MAV:A/MAC:L/MPR:N/MUI:N/MS:U/MC:H/MI:L/MA:X", // vec
+  Scores {
+    base: Score::from(6.0),
+    temporal: Some(Score::from(5.5)),
+    environmental: Some(Score::from(7.5))
+  }, // exp
+), (
+  "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:N/E:U/RL:T/RC:R/CR:X/IR:L/AR:X/MAV:P/MAC:H/MPR:X/MUI:X/MS:U/MC:N/MI:L/MA:L", // name
+  "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:N/E:U/RL:T/RC:R/CR:X/IR:L/AR:X/MAV:P/MAC:H/MPR:X/MUI:X/MS:U/MC:N/MI:L/MA:L", // vec
+  Scores {
+    base: Score::from(9.6),
+    temporal: Some(Score::from(8.1)),
+    environmental: Some(Score::from(2.1))
+  }, // exp
+), (
+  "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:N/E:F/RL:W/RC:R/CR:L/IR:L/AR:L/MAV:N/MAC:L/MPR:L/MUI:R/MS:X/MC:N/MI:L/MA:H", // name
+  "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:N/E:F/RL:W/RC:R/CR:L/IR:L/AR:L/MAV:N/MAC:L/MPR:L/MUI:R/MS:X/MC:N/MI:L/MA:H", // vec
+  Scores {
+    base: Score::from(6.3),
+    temporal: Some(Score::from(5.7)),
+    environmental: Some(Score::from(4.0))
+  }, // exp
+), (
+  "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:N/E:X/RL:U/RC:X/CR:L/IR:H/AR:H/MAV:P/MAC:H/MPR:H/MUI:N/MS:C/MC:N/MI:N/MA:L", // name
+  "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:N/E:X/RL:U/RC:X/CR:L/IR:H/AR:H/MAV:P/MAC:H/MPR:H/MUI:N/MS:C/MC:N/MI:N/MA:L", // vec
+  Scores {
+    base: Score::from(0.0),
+    temporal: Some(Score::from(0.0)),
+    environmental: Some(Score::from(2.8))
+  }, // exp
+), (
+  "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N/E:H/RL:W/RC:C/CR:X/IR:H/AR:X/MAV:P/MAC:X/MPR:L/MUI:X/MS:X/MC:N/MI:N/MA:H", // name
+  "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N/E:H/RL:W/RC:C/CR:X/IR:H/AR:X/MAV:P/MAC:X/MPR:L/MUI:X/MS:X/MC:N/MI:N/MA:H", // vec
+  Scores {
+    base: Score::from(4.3),
+    temporal: Some(Score::from(4.2)),
+    environmental: Some(Score::from(4.0))
+  }, // exp
+), (
+  "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:L/E:P/RL:U/RC:U/CR:H/IR:M/AR:L/MAV:P/MAC:L/MPR:L/MUI:X/MS:X/MC:X/MI:H/MA:N", // name
+  "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:L/E:P/RL:U/RC:U/CR:H/IR:M/AR:L/MAV:P/MAC:L/MPR:L/MUI:X/MS:X/MC:X/MI:H/MA:N", // vec
+  Scores {
+    base: Score::from(7.1),
+    temporal: Some(Score::from(6.2)),
+    environmental: Some(Score::from(3.6))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:L/I:L/A:H/E:P/RL:U/RC:U/CR:X/IR:H/AR:L/MAV:X/MAC:X/MPR:L/MUI:X/MS:X/MC:L/MI:H/MA:L", // name
+  "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:L/I:L/A:H/E:P/RL:U/RC:U/CR:X/IR:H/AR:L/MAV:X/MAC:X/MPR:L/MUI:X/MS:X/MC:L/MI:H/MA:L", // vec
+  Scores {
+    base: Score::from(4.9),
+    temporal: Some(Score::from(4.3)),
+    environmental: Some(Score::from(5.2))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:L/A:N/E:X/RL:O/RC:U/CR:L/IR:L/AR:X/MAV:L/MAC:H/MPR:X/MUI:X/MS:X/MC:N/MI:N/MA:L", // name
+  "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:L/A:N/E:X/RL:O/RC:U/CR:L/IR:L/AR:X/MAV:L/MAC:H/MPR:X/MUI:X/MS:X/MC:N/MI:N/MA:L", // vec
+  Scores {
+    base: Score::from(1.6),
+    temporal: Some(Score::from(1.4)),
+    environmental: Some(Score::from(1.4))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:L/E:F/RL:W/RC:C/CR:L/IR:L/AR:M/MAV:A/MAC:L/MPR:N/MUI:N/MS:U/MC:X/MI:N/MA:X", // name
+  "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:L/E:F/RL:W/RC:C/CR:L/IR:L/AR:M/MAV:A/MAC:L/MPR:N/MUI:N/MS:U/MC:X/MI:N/MA:X", // vec
+  Scores {
+    base: Score::from(5.1),
+    temporal: Some(Score::from(4.8)),
+    environmental: Some(Score::from(4.6))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:L/E:X/RL:X/RC:U/CR:X/IR:L/AR:H/MAV:X/MAC:H/MPR:H/MUI:N/MS:C/MC:X/MI:H/MA:H", // name
+  "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:L/E:X/RL:X/RC:U/CR:X/IR:L/AR:H/MAV:X/MAC:H/MPR:H/MUI:N/MS:C/MC:X/MI:H/MA:H", // vec
+  Scores {
+    base: Score::from(3.8),
+    temporal: Some(Score::from(3.5)),
+    environmental: Some(Score::from(6.5))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:H/E:U/RL:W/RC:C/CR:L/IR:M/AR:H/MAV:A/MAC:H/MPR:N/MUI:X/MS:C/MC:L/MI:X/MA:X", // name
+  "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:H/E:U/RL:W/RC:C/CR:L/IR:M/AR:H/MAV:A/MAC:H/MPR:N/MUI:X/MS:C/MC:L/MI:X/MA:X", // vec
+  Scores {
+    base: Score::from(6.3),
+    temporal: Some(Score::from(5.6)),
+    environmental: Some(Score::from(7.5))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:H/E:P/RL:X/RC:X/CR:H/IR:H/AR:H/MAV:X/MAC:X/MPR:H/MUI:N/MS:C/MC:H/MI:H/MA:N", // name
+  "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:H/E:P/RL:X/RC:X/CR:H/IR:H/AR:H/MAV:X/MAC:X/MPR:H/MUI:N/MS:C/MC:H/MI:H/MA:N", // vec
+  Scores {
+    base: Score::from(6.7),
+    temporal: Some(Score::from(6.3)),
+    environmental: Some(Score::from(6.6))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:N/I:N/A:N/E:X/RL:O/RC:C/CR:X/IR:H/AR:M/MAV:X/MAC:X/MPR:X/MUI:X/MS:C/MC:L/MI:H/MA:X", // name
+  "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:N/I:N/A:N/E:X/RL:O/RC:C/CR:X/IR:H/AR:M/MAV:X/MAC:X/MPR:X/MUI:X/MS:C/MC:L/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(0.0),
+    temporal: Some(Score::from(0.0)),
+    environmental: Some(Score::from(6.3))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H/E:U/RL:O/RC:X/CR:X/IR:L/AR:X/MAV:L/MAC:H/MPR:X/MUI:N/MS:X/MC:X/MI:H/MA:N", // name
+  "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H/E:U/RL:O/RC:X/CR:X/IR:L/AR:X/MAV:L/MAC:H/MPR:X/MUI:N/MS:X/MC:X/MI:H/MA:N", // vec
+  Scores {
+    base: Score::from(4.9),
+    temporal: Some(Score::from(4.3)),
+    environmental: Some(Score::from(2.6))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:L/PR:L/UI:R/S:U/C:L/I:H/A:H/E:X/RL:X/RC:U/CR:X/IR:X/AR:L/MAV:P/MAC:H/MPR:X/MUI:N/MS:C/MC:H/MI:X/MA:H", // name
+  "CVSS:3.1/AV:P/AC:L/PR:L/UI:R/S:U/C:L/I:H/A:H/E:X/RL:X/RC:U/CR:X/IR:X/AR:L/MAV:P/MAC:H/MPR:X/MUI:N/MS:C/MC:H/MI:X/MA:H", // vec
+  Scores {
+    base: Score::from(6.0),
+    temporal: Some(Score::from(5.6)),
+    environmental: Some(Score::from(6.5))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:L/PR:L/UI:R/S:U/C:L/I:N/A:N/E:X/RL:X/RC:C/CR:H/IR:H/AR:L/MAV:L/MAC:H/MPR:N/MUI:N/MS:C/MC:X/MI:H/MA:X", // name
+  "CVSS:3.1/AV:P/AC:L/PR:L/UI:R/S:U/C:L/I:N/A:N/E:X/RL:X/RC:C/CR:H/IR:H/AR:L/MAV:L/MAC:H/MPR:N/MUI:N/MS:C/MC:X/MI:H/MA:X", // vec
+  Scores {
+    base: Score::from(1.9),
+    temporal: Some(Score::from(1.9)),
+    environmental: Some(Score::from(8.2))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:H/E:H/RL:T/RC:X/CR:X/IR:H/AR:X/MAV:L/MAC:L/MPR:X/MUI:R/MS:U/MC:H/MI:N/MA:X", // name
+  "CVSS:3.1/AV:P/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:H/E:H/RL:T/RC:X/CR:X/IR:H/AR:X/MAV:L/MAC:L/MPR:X/MUI:R/MS:U/MC:H/MI:N/MA:X", // vec
+  Scores {
+    base: Score::from(4.1),
+    temporal: Some(Score::from(4.0)),
+    environmental: Some(Score::from(5.0))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N/E:U/RL:T/RC:U/CR:M/IR:X/AR:M/MAV:X/MAC:H/MPR:H/MUI:N/MS:C/MC:L/MI:X/MA:H", // name
+  "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N/E:U/RL:T/RC:U/CR:M/IR:X/AR:M/MAV:X/MAC:H/MPR:H/MUI:N/MS:C/MC:L/MI:X/MA:H", // vec
+  Scores {
+    base: Score::from(2.4),
+    temporal: Some(Score::from(2.0)),
+    environmental: Some(Score::from(5.0))
+  }, // exp
+), (
+  "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:P/RL:W/RC:C/CR:M/IR:X/AR:X/MAV:N/MAC:H/MPR:X/MUI:X/MS:C/MC:X/MI:H/MA:H", // name
+  "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:P/RL:W/RC:C/CR:M/IR:X/AR:X/MAV:N/MAC:H/MPR:X/MUI:X/MS:C/MC:X/MI:H/MA:H", // vec
+  Scores {
+    base: Score::from(2.4),
+    temporal: Some(Score::from(2.2)),
+    environmental: Some(Score::from(5.8))
+  }, // exp
+)
       );
 
       for (name, s, exp) in tests {
