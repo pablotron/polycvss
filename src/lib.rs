@@ -198,35 +198,6 @@ pub fn round1(val: f64) -> f64 {
   (10.0 * val).round() / 10.0
 }
 
-/// Round value up to nearest 10th of a decimal.
-///
-/// Used by [CVSS v3][doc-v3] scoring functions.
-///
-/// See: [CVSS v3.1 Specification, Appendix A: Floating Point Rounding][doc]
-///
-/// # Example
-///
-/// ```
-/// # use polycvss::roundup;
-/// # fn main() {
-/// assert_eq!(roundup(4.02), 4.1);
-/// assert_eq!(roundup(4.00), 4.0);
-/// # }
-/// ```
-///
-/// [doc]: https://www.first.org/cvss/v3-1/specification-document#Appendix-A---Floating-Point-Rounding
-///   "CVSS v3.1 Specification, Appendix A: Floating Point Rounding"
-/// [doc-v3]: https://www.first.org/cvss/v3-1/specification-document
-///   "CVSS v3.1 Specification"
-pub fn roundup(val: f64) -> f64 {
-  let v: i32 = (100_000.0 * val).round() as i32;
-  if v % 10_000 == 0 {
-    (v as f64) / 100_000.0
-  } else {
-    (((v / 10_000) as f64) + 1.0) / 10.0
-  }
-}
-
 /// Parse or conversion error.
 ///
 /// # Example
