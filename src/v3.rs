@@ -4727,6 +4727,11 @@ mod tests {
         "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:N/A:N/E:U/RL:O/RC:U/CR:L/IR:L/AR:L/MAV:P/MAC:H/MPR:H/MUI:R/MS:C/MC:H/MI:H/MA:H", // val
         Name::ModifiedAttackVector, // metric name
         Metric::ModifiedAttackVector(ModifiedAttackVector::Physical), // exp
+      ), (
+        "84832a7a-I:L", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:H/E:H/RL:X/RC:C/CR:M/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:R/MS:U/MC:H/MI:L/MA:X", // val
+        Name::Integrity, // metric name
+        Metric::Integrity(Impact::Low), // exp
       ));
 
       for (test_name, s, metric_name, exp) in tests {
