@@ -3477,7 +3477,11 @@ impl std::fmt::Display for Vector {
   // Format CVSS v3 vector as a string.
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
     // write prefix
-    write!(f, "CVSS:3.1")?;
+    write!(f, "CVSS:3.{}", match Version::from(*self) {
+      Version::V30 => 0,
+      Version::V31 => 1,
+      _ => unreachable!(),
+    })?;
 
     // write metrics
     for decode in DECODES {
@@ -4698,6 +4702,12 @@ mod tests {
           "RL:O", // name
           "CVSS:3.1/RL:O/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", // val
           "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/RL:O", // exp
+        ),
+
+        (
+          "84832a7a", // name
+          "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:H/E:H/RL:X/RC:C/CR:M/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:R/MS:U/MC:H/MI:L/MA:X", // val
+          "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:H/E:H/RC:C/CR:M/AR:M/MAV:P/MPR:L/MUI:R/MS:U/MC:H/MI:L", // exp
         ),
       );
 
