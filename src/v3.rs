@@ -3910,14 +3910,46 @@ impl From<Vector> for Scores {
     //   8.22 × ModifiedAttackVector × ModifiedAttackComplexity × ModifiedPrivilegesRequired × ModifiedUserInteraction
     let modified_exploitability = 8.22 * mav * mac * mpr * mui;
 
+    // are any environmental metrics defined?
+    let has_env_metrics = {
+      // cache env metric "Not Defined" values
+      let m_cr_nd = Metric::ConfidentialityRequirement(Requirement::NotDefined);
+      let m_ir_nd = Metric::IntegrityRequirement(Requirement::NotDefined);
+      let m_ar_nd = Metric::AvailabilityRequirement(Requirement::NotDefined);
+      let m_mav_nd = Metric::ModifiedAttackVector(ModifiedAttackVector::NotDefined);
+      let m_mac_nd = Metric::ModifiedAttackComplexity(ModifiedAttackComplexity::NotDefined);
+      let m_mpr_nd = Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::NotDefined);
+      let m_mui_nd = Metric::ModifiedUserInteraction(ModifiedUserInteraction::NotDefined);
+      let m_ms_nd = Metric::ModifiedScope(ModifiedScope::NotDefined);
+      let m_mc_nd = Metric::ModifiedConfidentiality(ModifiedImpact::NotDefined);
+      let m_mi_nd = Metric::ModifiedIntegrity(ModifiedImpact::NotDefined);
+      let m_ma_nd = Metric::ModifiedAvailability(ModifiedImpact::NotDefined);
+
+      vec.get(Name::ConfidentialityRequirement) != m_cr_nd ||
+      vec.get(Name::IntegrityRequirement) != m_ir_nd ||
+      vec.get(Name::AvailabilityRequirement) != m_ar_nd ||
+      vec.get(Name::ModifiedAttackVector) != m_mav_nd ||
+      vec.get(Name::ModifiedAttackComplexity) != m_mac_nd ||
+      vec.get(Name::ModifiedPrivilegesRequired) != m_mpr_nd ||
+      vec.get(Name::ModifiedUserInteraction) != m_mui_nd ||
+      vec.get(Name::ModifiedScope) != m_ms_nd ||
+      vec.get(Name::ModifiedConfidentiality) != m_mc_nd ||
+      vec.get(Name::ModifiedIntegrity) != m_mi_nd ||
+      vec.get(Name::ModifiedAvailability) != m_ma_nd
+    };
+
     // EnvironmentalScore =
     // If ModifiedImpact \<= 0  0, else
     //   If ModifiedScope is Unchanged: Roundup ( Roundup [Minimum ([ModifiedImpact + ModifiedExploitability], 10) ] × ExploitCodeMaturity × RemediationLevel × ReportConfidence)
     // Unchanged
     //   If ModifiedScope is Changed: Roundup ( Roundup [Minimum (1.08 × [ModifiedImpact + ModifiedExploitability], 10) ] × ExploitCodeMaturity × RemediationLevel × ReportConfidence)
-    let env_score = if modified_impact > 0.0 {
-      let factor = if modified_scope_changed { 1.08 } else { 1.0 };
-      Some(roundup(roundup((factor * (modified_impact + modified_exploitability)).min(10.0), version) * ecm * rl * rc, version))
+    let env_score = if has_env_metrics {
+      Some(if modified_impact > 0.0 {
+        let factor = if modified_scope_changed { 1.08 } else { 1.0 };
+        roundup(roundup((factor * (modified_impact + modified_exploitability)).min(10.0), version) * ecm * rl * rc, version)
+      } else {
+        0.0
+      })
     } else {
       None
     };
