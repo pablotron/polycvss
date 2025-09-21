@@ -4837,8 +4837,6 @@ mod tests {
     #[test]
     fn test_into_score() {
       // actual CVEs from tests/data
-      // TODO: get more (and test temporal and env vectors)
-      // TODO: move to scores::test_from_vector()
       let tests = vec!(
         (
           "CVE-2024-12345", // name
@@ -4903,6 +4901,7 @@ mod tests {
 
     #[test]
     fn test_from_vector() {
+      // TODO: get more (and test temporal and env vectors)
       let tests = vec!((
         "84832a7a 5.8", // test name
         "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:H/E:H/RL:X/RC:C/CR:M/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:R/MS:U/MC:H/MI:L/MA:X", // vec
