@@ -3874,9 +3874,25 @@ impl From<Vector> for Scores {
 
     // ModifiedImpact =
     // If ModifiedScope is Unchanged   6.42 × MISS
-    // If ModifiedScope is Changed   7.52 × (MISS - 0.029) - 3.25 × (MISS × 0.9731 - 0.02)13
+    // If ModifiedScope is Changed
+    // - CVSS v3.0:
+    //     7.52 × (MISS - 0.029) - 3.25 × (MISS - 0.02)^15
+    //     https://www.first.org/cvss/v3-0/specification-document#8-3-Environmental
+    // - CVSS v3.1:
+    //     7.52 × (MISS - 0.029) - 3.25 × (MISS × 0.9731 - 0.02)^13
+    //     https://www.first.org/cvss/v3-1/specification-document#7-3-Environmental-Metrics-Equations
+    //
+    // differences between v3.0 and v3.1:
+    // - v3.1: MISS dampening factor in final term
+    // - v3.1: lower exponent on final term (13 instead of 15)
     let modified_impact = if modified_scope_changed {
-      7.52 * (miss - 0.029) - 3.25 * (miss * 0.9731 - 0.02).powi(13)
+      let (factor, exp) = match version {
+        Version::V30 => (1.0, 15),
+        Version::V31 => (0.9731, 13),
+        _ => unreachable!(),
+      };
+
+      7.52 * (miss - 0.029) - 3.25 * (miss * factor - 0.02).powi(exp)
     } else {
       6.42 * miss
     };
@@ -4869,7 +4885,6 @@ mod tests {
     #[test]
     fn test_examples() {
       // actual CVEs from tests/data
-      // TODO: get more (and test temporal and env vectors)
       let tests = vec!(
         (
           "CVE-2024-12345", // name
