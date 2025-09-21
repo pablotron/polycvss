@@ -3638,11 +3638,13 @@ impl From<Vector> for Scores {
     //   High  1
     //   Functional  0.97
     //   Proof of Concept  0.94
+    //   Unproven  0.91
     let ecm = match vec.get(Name::ExploitCodeMaturity) {
       Metric::ExploitCodeMaturity(ExploitCodeMaturity::NotDefined) => 1.0,
       Metric::ExploitCodeMaturity(ExploitCodeMaturity::High) => 1.0,
       Metric::ExploitCodeMaturity(ExploitCodeMaturity::Functional) => 0.97,
       Metric::ExploitCodeMaturity(ExploitCodeMaturity::ProofOfConcept) => 0.94,
+      Metric::ExploitCodeMaturity(ExploitCodeMaturity::Unproven) => 0.91,
       _ => unreachable!(),
     };
 
