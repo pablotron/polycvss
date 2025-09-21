@@ -3648,7 +3648,7 @@ impl From<Vector> for Scores {
     //
     // Impact =
     // If Scope is Unchanged   6.42 × ISS
-    // If Scope is Changed   7.52 × (ISS - 0.029) - 3.25 × (ISS - 0.02)15
+    // If Scope is Changed   7.52 × (ISS - 0.029) - 3.25 × (ISS - 0.02)^15
     let impact = match vec.get(Name::Scope) {
       Metric::Scope(Scope::Unchanged) => 6.42 * iss,
       Metric::Scope(Scope::Changed) => 7.52*(iss-0.029) - 3.25*(iss-0.02).powi(15),
