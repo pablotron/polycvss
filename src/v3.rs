@@ -3511,7 +3511,6 @@ impl std::fmt::Display for Vector {
 /// You can convert a [`Scores`][] structure to an overall vector
 /// [`Score`][] with [`Score::from()`].
 ///
-///
 /// See [CVSS v3.1 Specification, Section 7: CVSS v3.1 Equations][eqs].
 ///
 /// # Example
