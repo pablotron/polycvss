@@ -6502,8 +6502,8 @@ mod tests {
         ("asdf", "asdf", Err::UnknownName),
       );
 
-      for t in tests {
-        assert_eq!(t.1.parse::<Name>(), Err(t.2), "{}", t.0);
+      for (name, s, exp) in tests {
+        assert_eq!(s.parse::<Name>(), Err(exp), "{name}");
       }
     }
 
@@ -6544,8 +6544,8 @@ mod tests {
         ("U", Name::ProviderUrgency),
       );
 
-      for t in tests {
-        assert_eq!(t.0.parse::<Name>(), Ok(t.1), "{}", t.0);
+      for (s, exp) in tests {
+        assert_eq!(s.parse::<Name>(), Ok(exp), "{s}");
       }
     }
 
@@ -6586,8 +6586,8 @@ mod tests {
         (Name::ProviderUrgency, "U"),
       );
 
-      for t in tests {
-        assert_eq!(t.0.to_string(), t.1, "{}", t.1);
+      for (name, exp) in tests {
+        assert_eq!(name.to_string(), exp, "{exp}");
       }
     }
   }
@@ -6625,8 +6625,8 @@ mod tests {
         ("empty", "", Err::UnknownMetric),
       );
 
-      for t in tests {
-        assert_eq!(t.1.parse::<Metric>(), Err(t.2), "{}", t.0);
+      for (name, s, exp) in tests {
+        assert_eq!(s.parse::<Metric>(), Err(exp), "{name}");
       }
     }
 
@@ -6796,8 +6796,8 @@ mod tests {
         ("U:Clear", Metric::ProviderUrgency(ProviderUrgency::Clear)),
       );
 
-      for t in tests {
-        assert_eq!(t.0.parse::<Metric>().unwrap(), t.1);
+      for (s, exp) in tests {
+        assert_eq!(s.parse::<Metric>().unwrap(), exp);
       }
     }
 
@@ -6967,8 +6967,8 @@ mod tests {
         (Metric::ProviderUrgency(ProviderUrgency::Clear), "U:Clear"),
       );
 
-      for t in tests {
-        assert_eq!(t.0.to_string(), t.1);
+      for (metric, exp) in tests {
+        assert_eq!(metric.to_string(), exp);
       }
     }
 
@@ -7030,8 +7030,8 @@ mod tests {
         ("missing SA", "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H", Err::MissingMandatoryMetrics),
       );
 
-      for t in tests {
-        assert_eq!(t.1.parse::<Vector>(), Err(t.2), "{}", t.0);
+      for (name, s, exp) in tests {
+        assert_eq!(s.parse::<Vector>(), Err(exp), "{name}");
       }
     }
 
@@ -7923,8 +7923,8 @@ mod tests {
         ),
       );
 
-      for t in tests {
-        assert_eq!(t.1.parse::<Vector>().expect(t.0).to_string(), t.2, "{}", t.0);
+      for (name, s, exp) in tests {
+        assert_eq!(s.parse::<Vector>().expect(name).to_string(), exp, "{name}");
       }
     }
 
@@ -8014,9 +8014,9 @@ mod tests {
         ),
       );
 
-      for t in tests {
-        let got: Vec<Metric> = t.1.parse::<Vector>().unwrap().into_iter().collect();
-        assert_eq!(got, t.2, "{}", t.0);
+      for (name, s, exp) in tests {
+        let got: Vec<Metric> = s.parse::<Vector>().unwrap().into_iter().collect();
+        assert_eq!(got, exp, "{name}");
       }
     }
 
@@ -8081,12 +8081,12 @@ mod tests {
         ),
       );
 
-      for t in tests {
-        let mut got: Vec<Metric> = Vec::new();
-        for c in t.1.parse::<Vector>().unwrap() {
+      for (name, s, exp) in tests {
+        let mut got = Vec::new();
+        for c in s.parse::<Vector>().unwrap() {
           got.push(c);
         }
-        assert_eq!(got, t.2, "{}", t.0);
+        assert_eq!(got, exp, "{name}");
       }
     }
 
