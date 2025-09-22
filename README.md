@@ -7,9 +7,10 @@ Features:
 - [CVSS v2][doc-v2], [CVSS v3][doc-v3], and [CVSS v4][doc-v4] support.
 - Version-agnostic parsing and scoring [API][].
 - Memory efficient: Vectors are 8 bytes. Scores and severities are 1 byte.
-- No dependencies except the standard library.
-- Extensive tests: Tested against thousands of scores from the [NVD][]
-  [CVSS][] calculators.
+- No dependencies by default except the standard library.
+- Optional [serde][] integration via the `serde` build feature.
+- Extensive tests: Tested against thousands of vectors and scores from
+  the [NVD][] [CVSS][] calculators.
 
 Links:
 
@@ -223,3 +224,5 @@ The generated test cases can be found in [`src/v3.rs`][src-v2-rs],
   "polycvss API documentation on docs.rs"
 [crates-io-polycvss]: https://crates.io/crates/polycvss
   "polycvss on crates.io"
+[serde]: https://serde.rs/
+  "Rust serializing and deserializing framework."
