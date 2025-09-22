@@ -134,7 +134,7 @@ pub fn roundup(val: f64, version: Version) -> f64 {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Metrics
 ///   "CVSS v3.1 Specification, Section 1.1: Metrics"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 pub enum Group {
   Base,
@@ -441,7 +441,7 @@ impl std::fmt::Display for Name {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Attack-Vector-AV
 ///   "CVSS v3.1 Specification, Section 2.1.1: Attack Vector (AV)"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum AttackVector {
@@ -506,7 +506,7 @@ pub enum AttackVector {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum ModifiedAttackVector {
@@ -598,7 +598,7 @@ pub enum ModifiedAttackVector {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Attack-Complexity-AC
 ///   "CVSS v3.1 Specification, Section 2.1.2: Attack Complexity (AC)"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum AttackComplexity {
@@ -648,7 +648,7 @@ pub enum AttackComplexity {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum ModifiedAttackComplexity {
@@ -724,7 +724,7 @@ pub enum ModifiedAttackComplexity {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Privileges-Required-PR
 ///   "CVSS v3.1 Specification, Section 2.1.3: Privileges Required (PR)"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum PrivilegesRequired {
@@ -765,7 +765,7 @@ pub enum PrivilegesRequired {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum ModifiedPrivilegesRequired {
@@ -850,7 +850,7 @@ pub enum ModifiedPrivilegesRequired {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#User-Interaction-UI
 ///   "CVSS v3.1 Specification, Section 2.1.4: User Interaction (UI)"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum UserInteraction {
@@ -882,7 +882,7 @@ pub enum UserInteraction {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum ModifiedUserInteraction {
@@ -980,7 +980,7 @@ pub enum ModifiedUserInteraction {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Scope-S
 ///   "CVSS v3.1 Specification, Section 2.2: Scope (S)"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum Scope {
@@ -1016,7 +1016,7 @@ pub enum Scope {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum ModifiedScope {
@@ -1059,7 +1059,7 @@ pub enum ModifiedScope {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Impact-Metrics
 ///   "CVSS v3.1 Specification, Section 2.3: Impact Metrics"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum Impact {
@@ -1108,7 +1108,7 @@ pub enum Impact {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum ModifiedImpact {
@@ -1214,7 +1214,7 @@ pub enum ModifiedImpact {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Exploit-Code-Maturity-E
 ///   "CVSS v3.1 Specification, Section 3.1: Exploit Code Maturity (E)"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum ExploitCodeMaturity {
@@ -1319,7 +1319,7 @@ pub enum ExploitCodeMaturity {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Remediation-Level-RL
 ///   "CVSS v3.1 Specification, Section 3.2: Remediation Level (RL)"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum RemediationLevel {
@@ -1426,7 +1426,7 @@ pub enum RemediationLevel {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Report-Confidence-RC
 ///   "CVSS v3.1 Specification, Section 3.3: Report Confidence (RC)"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum ReportConfidence {
@@ -1520,7 +1520,7 @@ pub enum ReportConfidence {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Security-Requirements
 ///   "CVSS v3.1 Specification, Section 4.1: Security Requirements"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
 pub enum Requirement {
@@ -1599,7 +1599,7 @@ pub enum Requirement {
 /// assert_eq!(name, Name::AttackVector);
 /// # }
 /// ```
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 pub enum Metric {
   /// [`Metric::AttackVector`][] (`AV`) metric.
   ///
@@ -3320,7 +3320,7 @@ impl Iterator for VectorIterator {
 ///   "Bit field (Wikipedia)"
 /// [vector-string]: https://www.first.org/cvss/v3-1/specification-document#Vector-String
 ///   "CVSS v3.1 Specification, Section 6: Vector String"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(try_from="String"))]
 pub struct Vector(u64);
@@ -3556,7 +3556,7 @@ impl std::fmt::Display for Vector {
 ///   "CVSS v3.1 Specification"
 /// [eqs]: https://www.first.org/cvss/v3-1/specification-document#CVSS-v3-1-Equations
 ///   "CVSS v3.1 Specification, Section 7: CVSS v3.1 Equations"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 pub struct Scores {
   /// Base Score.
   pub base: Score,
