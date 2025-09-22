@@ -180,9 +180,6 @@
 //! [ir]: #internal-representation
 //!   "Internal Representation section"
 
-// TODO:
-// - populate tests::vector::{test_into_score,test_base_vector}()
-
 pub mod v2;
 pub mod v3;
 pub mod v4;
@@ -2230,13 +2227,25 @@ mod tests {
     }
 
     #[test]
-    fn test_into_score() {
-      // TODO
-    }
-
-    #[test]
     fn test_base_score() {
-      // TODO
+      let tests = vec!((
+        "v2", // name
+        "AV:N/AC:L/Au:N/C:N/I:N/A:C/E:F/RL:OF/RC:C/CDP:N/TD:N/CR:M/IR:M/AR:H", // val
+        Score(78), // exp score
+      ), (
+        "v3", // name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L/E:P/RL:U/RC:C/CR:L/IR:X/AR:M/MAV:N/MAC:H/MPR:X/MUI:X/MS:U/MC:L/MI:N/MA:H", // val
+        Score(43), // exp score
+      ), (
+        "v4", // name
+        "CVSS:4.0/AV:P/AC:L/AT:P/PR:N/UI:P/VC:N/VI:N/VA:H/SC:H/SI:L/SA:L/E:P/CR:X/IR:X/AR:X/MAV:N/MAC:X/MAT:N/MPR:H/MUI:X/MVC:N/MVI:N/MVA:N/MSC:L/MSI:X/MSA:X", // val
+        Score(19), // exp score
+      ));
+
+      for (name, s, exp) in tests {
+        let vec: Vector = s.parse().unwrap();
+        assert_eq!(vec.base_score(), exp, "{name}");
+      }
     }
 
     #[test]
@@ -2310,6 +2319,31 @@ mod tests {
         assert_eq!(a < b, exp);
       }
     }
+
+    #[test]
+    fn test_from_vector() {
+      use super::super::Vector;
+
+      let tests = vec!((
+        "v2", // name
+        "AV:L/AC:H/Au:N/C:C/I:C/A:C/E:POC/RL:OF/RC:C/CDP:H/TD:H/CR:M/IR:M/AR:M", // val
+        Score(75), // exp score
+      ), (
+        "v3", // name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L/E:P/RL:U/RC:C/CR:L/IR:X/AR:M/MAV:N/MAC:H/MPR:X/MUI:X/MS:U/MC:L/MI:N/MA:H", // val
+        Score(59), // exp score
+      ), (
+        "v4", // name
+        "CVSS:4.0/AV:P/AC:L/AT:P/PR:N/UI:P/VC:N/VI:N/VA:H/SC:H/SI:L/SA:L/E:P/CR:X/IR:X/AR:X/MAV:N/MAC:X/MAT:N/MPR:H/MUI:X/MVC:N/MVI:N/MVA:N/MSC:L/MSI:X/MSA:X", // val
+        Score(19), // exp score
+      ));
+
+      for (name, s, exp) in tests {
+        let vec: Vector = s.parse().unwrap();
+        assert_eq!(Score::from(vec), exp, "{name}");
+      }
+    }
+
   }
 
   mod severity {
