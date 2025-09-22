@@ -3649,6 +3649,8 @@ impl From<Vector> for Scores {
       _ => unreachable!(),
     };
 
+    // println!("DEBUG: c={c}, i={i}, a={a}, I:{}", vec.get(Name::Integrity));
+
     // impact sub score
     // 1 - [ (1 - Confidentiality) × (1 - Integrity) × (1 - Availability) ]
     let iss: f64 = 1.0 - ((1.0 - c) * (1.0 - i) * (1.0 - a));
@@ -3667,6 +3669,8 @@ impl From<Vector> for Scores {
     // Exploitability = 8.22 × AttackVector × AttackComplexity ×
     //   PrivilegesRequired × UserInteraction
     let exploitability = 8.22 * av * ac * pr * ui;
+
+    // println!("DEBUG: iss={iss}, impact={impact}, exploitability={exploitability}");
 
     // BaseScore =
     //   If Impact \<= 0  0, else
@@ -3923,6 +3927,7 @@ impl From<Vector> for Scores {
     // ModifiedExploitability =
     //   8.22 × ModifiedAttackVector × ModifiedAttackComplexity × ModifiedPrivilegesRequired × ModifiedUserInteraction
     let modified_exploitability = 8.22 * mav * mac * mpr * mui;
+    // println!("DEBUG: modified_exploitability={modified_exploitability}, mav={mav}, mac={mac}, mpr={mpr}, mui={mui}");
 
     // are any environmental metrics defined?
     let has_env_metrics = {
@@ -3951,6 +3956,8 @@ impl From<Vector> for Scores {
       vec.get(Name::ModifiedIntegrity) != m_mi_nd ||
       vec.get(Name::ModifiedAvailability) != m_ma_nd
     };
+
+    // println!("DEBUG: modified_impact={modified_impact}, modified_exploitability={modified_exploitability}, ecm={ecm}, rl={rl}, rc={rc}");
 
     // EnvironmentalScore =
     // If ModifiedImpact \<= 0  0, else
