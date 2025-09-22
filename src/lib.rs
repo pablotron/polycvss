@@ -973,11 +973,48 @@ impl Iterator for VectorIterator {
 pub struct Vector(u64);
 
 impl Vector {
-  /// Get [`Metric`][] from [`Vector`][] by [`Name`][].
+  /// Get [`Metric`] from [`Vector`] by [`Name`].
+  ///
+  /// Returns [`Err::UnknownName`] if there is a mismatch between the
+  /// version of the vector and the version of the given [`Name`].
   ///
   /// # Example
   ///
-  /// TODO
+  /// Get metric from vector by name:
+  ///
+  /// ```
+  /// # use polycvss::{Err, Vector, Metric, Name, v4};
+  /// # fn main() -> Result<(), Err> {
+  /// // parse CVSS v4 vector string
+  /// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+  ///
+  /// // get metric
+  /// let metric = v.get(Name::V4(v4::Name::AttackVector))?;
+  ///
+  /// // check result
+  /// assert_eq!(metric, Metric::V4(v4::Metric::AttackVector(v4::AttackVector::Network)));
+  /// # Ok(())
+  /// # }
+  /// ```
+  ///
+  /// Example of error when there is a mismatch between the version of
+  /// the vector and the version of the given [`Name`]:
+  ///
+  /// ```
+  /// # use polycvss::{Err, Vector, Metric, Name, v4};
+  /// # fn main() -> Result<(), Err> {
+  /// // parse CVSS v3 vector string
+  /// let v: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
+  ///
+  /// // try to get v4 metric from v3 vector
+  /// let got = v.get(Name::V4(v4::Name::AttackVector));
+  ///
+  /// // check result
+  /// assert_eq!(got, Err(Err::UnknownName));
+  /// # Ok(())
+  /// # }
+  /// ```
+  ///
   pub fn get(self, name: Name) -> Result<Metric, Err> {
     match (MajorVersion::from(self), name) {
       (MajorVersion::V2, Name::V2(name)) => Ok(Metric::V2(v2::Vector::from(self).get(name))),
