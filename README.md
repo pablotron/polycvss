@@ -6,11 +6,10 @@ Features:
 
 - [CVSS v2][doc-v2], [CVSS v3][doc-v3], and [CVSS v4][doc-v4] support.
 - Version-agnostic parsing and scoring [API][].
-- Memory efficient: Parsed vectors are 8 bytes. Scores and severities are
-  1 byte.
+- Memory efficient: Vectors are 8 bytes. Scores and severities are 1 byte.
 - No dependencies except the standard library.
-- Extensive tests: Tested against thousands of results from the [NVD][]
-  [CVSS][] score calculators.
+- Extensive tests: Tested against thousands of scores from the [NVD][]
+  [CVSS][] calculators.
 
 Links:
 
@@ -123,7 +122,7 @@ $ du -sh target/$(arch)-unknown-linux-musl/release/cvss-score
 
 ## Documentation
 
-[polycvss API documentation on docs.rs][docs-rs-polycvss].
+[polycvss API documentation on docs.rs][docs-rs-polycvss]
 
 Run `cargo doc` to build the [API][] documentation locally in
 `target/doc/polycvss/`:
@@ -136,7 +135,7 @@ target/doc/polycvss/index.html
 ```
 
 Run `cargo doc --lib` build the library documentation and exclude the
-example tool:
+example tool documentation:
 
 ```sh
 # remove generated docs
