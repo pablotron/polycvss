@@ -2608,7 +2608,7 @@ impl Iterator for VectorIterator {
 /// ```
 /// # use polycvss::{Err, v2::Vector};
 /// # fn main() -> Result<(), Err> {
-/// // vector string which contains an optional metric (MAV) with a
+/// // vector string which contains an optional metric (CR) with a
 /// // value of `Not Defined (ND)`
 /// let s = "AV:N/AC:L/Au:N/C:C/I:C/A:C/CR:ND";
 ///
