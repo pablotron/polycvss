@@ -5518,9 +5518,6 @@ struct Values {
   ar: Requirement,
 
   /// Exploit Maturity (`E`) metric value.
-  ///
-  /// Note: excludes `Not Defined (X)`.  FIXME: Should this be a
-  /// separate type?
   e: ExploitMaturity,
 }
 
@@ -5867,7 +5864,7 @@ impl From<Vector> for MacroVector {
       ExploitMaturity::Attacked => 0,
       ExploitMaturity::ProofOfConcept => 1,
       ExploitMaturity::Unreported => 2,
-      _ => unreachable!(),
+      ExploitMaturity::NotDefined => unreachable!(),
     };
 
     // EQ6 (Table 29)
@@ -5895,26 +5892,14 @@ impl From<Vector> for MacroVector {
     let val: u32 = eq1*100_000 + eq2*10_000 + eq3*1_000 + eq4*100 + eq5*10 + eq6;
 
     // create macrovector
-    match MacroVector::try_from(val) {
-      Ok(mv) => mv,
-      _ => unreachable!(), // FIXME
-    }
+    // note: the code above always creates a valid macrovector, so
+    // unwrap() is safe
+    MacroVector::try_from(val).unwrap()
   }
 }
 
 impl From<MacroVector> for u32 {
   fn from(mv: MacroVector) -> u32 {
-    // old method:
-    //
-    // let eq1 = (self.0 % 3) as u32;
-    // let eq2 = ((self.0 / 3) % 2) as u32;
-    // let eq3 = ((self.0 / 6) % 3) as u32;
-    // let eq4 = ((self.0 / 18) % 3) as u32;
-    // let eq5 = ((self.0 / 54) % 3) as u32;
-    // let eq6 = ((self.0 / 162) % 2) as u32;
-    //
-    // eq1*100_000 + eq2*10_000 + eq3*1_000 + eq4*100 + eq5*10 + eq6
-
     EQS.iter().enumerate().map(|(i, eq)| {
       let pos = 10_u32.pow(5 - (i as u32)); // digit position
       let val = ((mv.0 / eq.denom) % eq.size) as u32; // decode value
@@ -6432,7 +6417,6 @@ impl From<Vector> for Scores {
 
           _ => unreachable!(), // never reached
         }).into_iter().fold(u8::MAX, u8::min);
-        // FIXME: should this be u8::MIN, u8::max?
 
         let eq = &EQS[i]; // get EQ metadata
         let level = mv.eq(i); // get EQ level
