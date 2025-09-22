@@ -70,7 +70,6 @@ use serde::{self,Deserialize,Serialize};
 use super::{Err, Score, round1, Version, encode::{EncodedVal, EncodedMetric}};
 
 // TODO:
-// - remove panic() from masks (marked w/FIXME)
 // - non-v2.3 vectors (e.g. Vector::new_with_version)
 
 /// [`Metric::AccessVector`][] (`AV`) values.
@@ -2472,7 +2471,7 @@ impl Iterator for VectorIterator {
             2 => 0b001,
             3 | 4 => 0b011,
             5 | 6 => 0b111,
-            _ => panic!("invalid length"),
+            _ => unreachable!(),
           };
           let ofs = ((self.val >> shift) as usize) & mask;
           (key.is_mandatory() || ofs > 0, vals[ofs])
@@ -2696,7 +2695,7 @@ impl Vector {
           2 => 0b001,
           3 | 4 => 0b011,
           5 | 6 => 0b111,
-          _ => panic!("invalid length"), // FIXME
+          _ => unreachable!(),
         };
         let ofs = ((self.0 >> shift) as usize) & mask;
         vals[ofs]
@@ -2776,8 +2775,8 @@ impl std::str::FromStr for Vector {
       seen |= c.bit; // mark key as seen
 
       match c.val {
-        EncodedVal::Shift(v) => val |= v, // PoT value
-        _ => unreachable!(), // non-PoT value FIXME
+        EncodedVal::Shift(v) => val |= v,
+        _ => unreachable!(),
       }
     }
 
@@ -2811,7 +2810,7 @@ impl std::fmt::Display for Vector {
             2 => 0b001,
             3 | 4 => 0b011,
             5 | 6 => 0b111,
-            _ => panic!("invalid length"), // FIXME
+            _ => unreachable!(),
           };
           let ofs = ((self.0 >> shift) as usize) & mask;
           (key.is_mandatory() || ofs > 0, vals[ofs])
