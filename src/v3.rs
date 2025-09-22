@@ -3153,10 +3153,12 @@ impl Iterator for VectorIterator {
   }
 }
 
-/// [CVSS v3.1][cvss31] vector.
+/// [CVSS v3][cvss31] vector.
 ///
 /// Notes:
 ///
+/// - Supports [CVSS v3.0][cvss30] and [CVSS v3.1][cvss31] score
+///   calculations.
 /// - Represented internally as a `u64`.  See "Internal Representation" below.
 /// - When iterating the metrics in a [`Vector`][] or converting a
 ///   [`Vector`][] to a string, the metrics are sorted in the order
@@ -3313,6 +3315,8 @@ impl Iterator for VectorIterator {
 /// | 4 values    | 2 bits    |
 /// | 5 values    | 3 bits    |
 ///
+/// [cvss30]: https://www.first.org/cvss/v3-0/specification-document
+///   "CVSS v3.0 Specification"
 /// [cvss31]: https://www.first.org/cvss/v3-1/specification-document
 ///   "CVSS v3.1 Specification"
 /// [bit-field]: https://en.wikipedia.org/wiki/Bit_field
