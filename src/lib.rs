@@ -180,9 +180,6 @@
 //! [ir]: #internal-representation
 //!   "Internal Representation section"
 
-// TODO:
-// deive Eq for Metric
-
 pub mod v2;
 pub mod v3;
 pub mod v4;
@@ -201,7 +198,7 @@ pub mod encode;
 /// // check result
 /// assert_eq!(err, Err(Err::Len));
 /// # }
-#[derive(Debug,PartialEq,Eq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 pub enum Err {
   /// String is too short.
   ///
@@ -647,7 +644,7 @@ impl std::fmt::Display for Name {
 /// assert_eq!(name, Name::V4(v4::Name::AttackVector));
 /// # }
 /// ```
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 pub enum Metric {
   /// CVSS v2 metric.  See [`v2::Metric`].
   V2(v2::Metric),
