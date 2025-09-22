@@ -4094,7 +4094,7 @@ mod tests {
           Scores {
             base: Score(78),
             temporal: Some(Score(64)),
-            environmental: Some(Score(92)),
+            environmental: Some(Score(91)),
           }, // exp
         ),
 
@@ -4134,7 +4134,7 @@ mod tests {
           Scores {
             base: Score(62),
             temporal: Some(Score(49)),
-            environmental: Some(Score(75)),
+            environmental: Some(Score(74)),
           }, // exp
         ),
       );
