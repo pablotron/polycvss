@@ -180,6 +180,20 @@
 //! [ir]: #internal-representation
 //!   "Internal Representation section"
 
+// TODO:
+// - README.md: intro: s/rust library to (.*)/$1 in Rust/
+// - README.md: intro: improve "external dependencies" wording
+// - README.md: intro: document explicit v3.0 vs v3.1 scoring
+// - README.md: Install: add section
+// - README.md: Install: document `cargo add` and `cargo install`
+// - README.md: Examples: add section, copy existing examples
+// - README.md: Examples: document that metric order is not preserved
+// - README.md: Examples: document that undefined metrics are skipped
+// - README.md: expand internal representation docs
+// - README.md: Documentation: link to https://docs.rs/polycvss/
+// - README.md: Build: document static cvss-score build w/musl
+// - README.md: badges, gh action for tests
+
 pub mod v2;
 pub mod v3;
 pub mod v4;
