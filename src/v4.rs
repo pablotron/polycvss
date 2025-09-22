@@ -78,10 +78,6 @@
 use serde::{self,Deserialize,Serialize};
 use super::{Err, Score, VAL_MASK, Version, encode::{EncodedVal, EncodedMetric}};
 
-// TODO:
-// - Vector::distance(): other: Vector instead of other: &Vector?
-// - Vector::distance(): handle modified?
-
 /// [`Metric::AttackVector`][] (`AV`) values.
 ///
 /// # Description
@@ -5300,53 +5296,6 @@ impl Vector {
       },
     }
   }
-
-  /// Get the severity distance between this `Vector` and another
-  /// `Vector`.
-  ///
-  /// Given two vectors the severity distance between them is the number of consecutive stepwise changes in individual metrics given Section 2 ordering needed to transform one vector into the other.
-  ///
-  /// See [CVSS v4.0 Specification, Section 8.2: CVSS v4.0 Scoring using
-  /// MacroVectors and Interpolation][scoring].
-  ///
-  /// # Examples
-  ///
-  /// Get severity distance between two vectors:
-  ///
-  /// ```
-  /// # use polycvss::{Err, v4::Vector};
-  /// # fn main() -> Result<(), Err> {
-  /// // parse vector strings
-  /// let a: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
-  /// let b: Vector = "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
-  /// // get ditance, check result
-  /// assert_eq!(a.distance(&b, !0), 3);
-  /// # Ok(())
-  /// # }
-  /// ```
-  ///
-  /// [scoring]: https://www.first.org/cvss/v4-0/specification-document#CVSS-v4-0-Scoring-using-MacroVectors-and-Interpolation
-  ///   "CVSS v4.0 Specification, Section 8.2: CVSS v4.0 Scoring using MacroVectors and Interpolation"
-  pub fn distance(&self, other: &Vector, mask: u64) -> u16 {
-    DECODES.iter().enumerate().filter(
-      |(i, _)| ((1 << i) & mask) != 0
-    ).fold(0, |sum, (_, decode)| {
-      sum + match decode {
-        Decode::Shift(_, shift, range) => {
-          let vals = &METRICS[range.0..range.1];
-          let a = ((self.0 >> shift) as usize) & (vals.len() - 1);
-          let b = ((other.0 >> shift) as usize) & (vals.len() - 1);
-          a.abs_diff(b) as u16
-        },
-        Decode::Arith(_, denom, range) => {
-          let vals = &METRICS[range.0..range.1];
-          let a = ((((self.0 & VAL_MASK) >> 28) as usize)/(denom)) % vals.len();
-          let b = ((((other.0 & VAL_MASK) >> 28) as usize)/(denom)) % vals.len();
-          a.abs_diff(b) as u16
-        },
-      }
-    })
-  }
 }
 
 impl IntoIterator for Vector {
@@ -8145,54 +8094,6 @@ mod tests {
     fn test_from_vector() {
       let vec: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse().unwrap();
       assert_eq!(Version::from(vec), Version::V40);
-    }
-
-    #[test]
-    fn test_distance() {
-      let tests = vec!((
-        "empty mask", // name
-        "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // a
-        "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // b
-        0b00, // mask
-        0, // exp
-      ), (
-        "AV:N to AV:N (same)", // name
-        "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // a
-        "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // b
-        0b01, // mask
-        0, // exp
-      ), (
-        "AV:N to AV:A (one)", // name
-        "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // a
-        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // b
-        0b01, // mask
-        1, // exp
-      ), (
-        "AV:N to AV:L (two)", // name
-        "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // a
-        "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // b
-        0b01, // mask
-        2, // exp
-      ), (
-        "AV:N/AC:L to AV:N/AC:L (same)", // name
-        "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // a
-        "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // b
-        0b11, // mask
-        0, // exp
-      ), (
-        "AV:N/AC:L to AV:L/AC:H", // name
-        "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // a
-        "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // b
-        0b11, // mask
-        3, // exp
-      ));
-
-      for (name, avs, bvs, mask, exp) in tests {
-        let a: Vector = avs.parse().unwrap();
-        let b: Vector = bvs.parse().unwrap();
-        let got = a.distance(&b, mask);
-        assert_eq!(got, exp, "{name}");
-      }
     }
 
     #[test]
