@@ -55,6 +55,24 @@ $ cvss-score "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC:H/SI:H/SA:H"
 This example tool is included in the [Git repository][] as
 [`src/bin/cvss-score.rs`][cvss-score].
 
+## Install
+
+[polycvss][] is available via [crates.io][crates-io-polycvss].
+
+Run `cargo add polycvss` to add [polycvss][] as a dependency to an
+exiting [Rust][] project:
+
+```sh
+$ cargo add polycvss
+```
+
+Run `cargo install polycvss` to install the example `cvss-score` tool:
+
+```sh
+# install cvss-score in cargo bin dir (e.g. `~/.cargo/bin`)
+$ cargo install polycvss
+```
+
 ## Build
 
 Run `cargo build` to create a debug build of the example tool in
