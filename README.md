@@ -184,3 +184,5 @@ The generated test cases can be found in [`src/v3.rs`][src-v2-rs],
   "CVSS v3 parsing and scoring"
 [src-v4-rs]: src/v4.rs
   "CVSS v4 parsing and scoring"
+[nvd]: https://nvd.nist.gov/
+  "National Vulnerability Database (NVD)"
