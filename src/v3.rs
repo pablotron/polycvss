@@ -73,7 +73,6 @@ use serde::{self,Deserialize,Serialize};
 use super::{Err, Score, Version, encode::{EncodedVal, EncodedMetric}};
 
 // TODO:
-// - update scores docs
 // - consistent struct/impl ordering w v40.rs
 
 /// Round value up to nearest 10th of a decimal.
@@ -3415,15 +3414,7 @@ impl From<Vector> for super::Vector {
 
 impl From<Vector> for Score {
   fn from(vec: Vector) -> Score {
-    let scores = Scores::from(vec);
-
-    if let Some(score) = scores.environmental {
-      score
-    } else if let Some(score) = scores.temporal {
-      score
-    } else {
-      scores.base
-    }
+    Score::from(Scores::from(vec))
   }
 }
 
@@ -3514,7 +3505,12 @@ impl std::fmt::Display for Vector {
   }
 }
 
-/// [CVSS v3][doc] base, temporal, and environmental scores.
+/// [CVSS v3][doc] base, temporal, and environmental scores for a
+/// [`Vector`][].
+///
+/// You can convert a [`Scores`][] structure to an overall vector
+/// [`Score`][] with [`Score::from()`].
+///
 ///
 /// See [CVSS v3.1 Specification, Section 7: CVSS v3.1 Equations][eqs].
 ///
@@ -3533,6 +3529,26 @@ impl std::fmt::Display for Vector {
 ///
 /// // check result
 /// assert_eq!(scores.base.to_string(), "4.4");
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Convert [`Scores`] to an overall [`Score`]:
+///
+/// ```
+/// # use polycvss::{Err, Score, v3::Scores};
+/// # fn main() -> Result<(), Err> {
+/// let scores = Scores {
+///   base: Score::from(4.3),
+///   temporal: Some(Score::from(3.2)),
+///   environmental: Some(Score::from(1.5)),
+/// };
+///
+/// // convert to overall score
+/// let score = Score::from(scores);
+///
+/// // check result
+/// assert_eq!(score, Score::from(1.5));
 /// # Ok(())
 /// # }
 /// ```
@@ -3981,6 +3997,18 @@ impl From<Vector> for Scores {
       base: Score::from(base_score),
       temporal: temporal_score.map(Score::from),
       environmental: env_score.map(Score::from),
+    }
+  }
+}
+
+impl From<Scores> for Score {
+  fn from(scores: Scores) -> Score {
+    if let Some(score) = scores.environmental {
+      score
+    } else if let Some(score) = scores.temporal {
+      score
+    } else {
+      scores.base
     }
   }
 }
@@ -4956,6 +4984,24 @@ mod tests {
 
   mod scores {
     use super::super::{super::Score, Vector, Scores};
+
+    #[test]
+    fn test_into_score() {
+      let tests = vec!((
+        Scores { base: Score(43), temporal: None, environmental: None },
+        Score(43), // exp score
+      ), (
+        Scores { base: Score(43), temporal: Some(Score(32)), environmental: None },
+        Score(32), // exp score
+      ), (
+        Scores { base: Score(43), temporal: Some(Score(32)), environmental: Some(Score(15)) },
+        Score(15), // exp score
+      ));
+
+      for (scores, exp) in tests {
+        assert_eq!(Score::from(scores), exp);
+      }
+    }
 
     #[test]
     fn test_examples() {
