@@ -151,8 +151,8 @@
 //!
 //! # Internal Representation
 //!
-//! A [`Vector`][] is represented internally as a [bit field][bit-field]
-//! within a [`u64`][].  Metric values are packed in the lower 60 bits
+//! A [`Vector`] is represented internally as a [bit field][bit-field]
+//! within a [`u64`].  Metric values are packed in the lower 60 bits
 //! and the [CVSS][] version is packed in the in the upper 4 bits:
 //!
 //! | Bit Range | Description      |
@@ -179,6 +179,10 @@
 //!   "Bit field (Wikipedia)"
 //! [ir]: #internal-representation
 //!   "Internal Representation section"
+
+// TODO:
+// deive Eq for Name
+// deive Eq for Metric
 
 pub mod v2;
 pub mod v3;
@@ -300,9 +304,19 @@ pub enum Err {
   /// ```
   UnknownSeverity,
 
-  /// Invalid [`v4::MacroVector`][] digit.
+  /// Invalid [`v4::MacroVector`] digit.
   ///
-  /// A digit of a [`v4::MacroVector`][] is out of range.
+  /// A digit of a [`v4::MacroVector`] is out of range.
+  ///
+  /// # Example
+  ///
+  /// ```
+  /// # use polycvss::{Err, v4::MacroVector};
+  /// # fn main() {
+  /// // parse unknown CVSS version, check result
+  /// assert_eq!(MacroVector::try_from(123456), Err(Err::InvalidMacroVector));
+  /// # }
+  /// ```
   InvalidMacroVector,
 
   /// Unknown version.
@@ -330,11 +344,11 @@ const VAL_MASK: u64 = 0x0fff_ffff_ffff_ffff;
 
 /// [CVSS][] major version (e.g. 2.x, 3.x, or 4.x).
 ///
-/// Used by [`Vector`][] to dispatch to correct version-specific method.
+/// Used by [`Vector`] to dispatch to correct version-specific method.
 ///
 /// [cvss]: https://www.first.org/cvss/
 ///   "Common Vulnerability Scoring System (CVSS)"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 enum MajorVersion {
   /// CVSS v2
   V2,
@@ -507,7 +521,7 @@ impl TryFrom<u64> for Version {
   }
 }
 
-/// [`Metric`][] name.
+/// [`Metric`] name.
 ///
 /// # Examples
 ///
@@ -525,13 +539,13 @@ impl TryFrom<u64> for Version {
 /// ```
 #[derive(Debug,PartialEq)]
 pub enum Name {
-  /// CVSS v2 metric name.  See [`v2::Name`][].
+  /// CVSS v2 metric name.  See [`v2::Name`].
   V2(v2::Name),
 
-  /// CVSS v3 metric name.  See [`v3::Name`][].
+  /// CVSS v3 metric name.  See [`v3::Name`].
   V3(v3::Name),
 
-  /// CVSS v4 metric name.  See [`v4::Name`][].
+  /// CVSS v4 metric name.  See [`v4::Name`].
   V4(v4::Name),
 }
 
@@ -591,7 +605,7 @@ impl std::fmt::Display for Name {
   }
 }
 
-/// [`Vector`][] component.
+/// [`Vector`] component.
 ///
 /// # Examples
 ///
@@ -636,13 +650,13 @@ impl std::fmt::Display for Name {
 /// ```
 #[derive(Clone,Copy,Debug,PartialEq)]
 pub enum Metric {
-  /// CVSS v2 metric.  See [`v2::Metric`][].
+  /// CVSS v2 metric.  See [`v2::Metric`].
   V2(v2::Metric),
 
-  /// CVSS v3 metric.  See [`v3::Metric`][].
+  /// CVSS v3 metric.  See [`v3::Metric`].
   V3(v3::Metric),
 
-  /// CVSS v4 metric.  See [`v4::Metric`][].
+  /// CVSS v4 metric.  See [`v4::Metric`].
   V4(v4::Metric),
 }
 
@@ -674,21 +688,21 @@ impl std::fmt::Display for Metric {
   }
 }
 
-/// [`Vector`][] iterator.
+/// [`Vector`] iterator.
 ///
 /// # Description
 ///
-/// Iterate over [`Metric`s][Metric] in a [`Vector`][].
+/// Iterate over [`Metric`s][Metric] in a [`Vector`].
 ///
 /// Notes:
 /// - [`Metrics`][Metric] with a value of `Not Defined (X)` are skipped.
 /// - [`Metrics`][Metric] are sorted in specification order.
-/// - Created by [`Vector::into_iter()`][].
+/// - Created by [`Vector::into_iter()`].
 ///
 /// # Examples
 ///
-/// Iterate over [`Vector`][] and appending each [`Metric`][]
-/// to a [`std::vec::Vec`][]:
+/// Iterate over [`Vector`] and appending each [`Metric`]
+/// to a [`std::vec::Vec`]:
 ///
 /// ```
 /// # use polycvss::{Err, Metric, Vector, v4};
@@ -720,8 +734,8 @@ impl std::fmt::Display for Metric {
 /// # }
 /// ```
 ///
-/// Create a explicit iterator over [`Vector`][] and get the first
-/// [`Metric`][]:
+/// Create a explicit iterator over [`Vector`] and get the first
+/// [`Metric`]:
 ///
 /// ```
 /// # use polycvss::{Err, Metric, Vector, v4};
@@ -741,13 +755,13 @@ impl std::fmt::Display for Metric {
 /// # }
 /// ```
 pub enum VectorIterator {
-  /// CVSS v2 vector iterator.  See [`v2::VectorIterator`][].
+  /// CVSS v2 vector iterator.  See [`v2::VectorIterator`].
   V2(v2::VectorIterator),
 
-  /// CVSS v3 vector iterator.  See [`v3::VectorIterator`][].
+  /// CVSS v3 vector iterator.  See [`v3::VectorIterator`].
   V3(v3::VectorIterator),
 
-  /// CVSS v4 vector iterator.  See [`v4::VectorIterator`][].
+  /// CVSS v4 vector iterator.  See [`v4::VectorIterator`].
   V4(v4::VectorIterator),
 }
 
@@ -771,11 +785,11 @@ impl Iterator for VectorIterator {
 /// - Represented internally as a `u64` (8 bytes).  See "Internal
 ///   Representation" below.
 /// - Metrics are sorted in specification order when iterating a
-///   [`Vector`][] or converting a [`Vector`][] to a string; the order
+///   [`Vector`] or converting a [`Vector`] to a string; the order
 ///   of metrics in the original vector string is **not** preserved. See
 ///   "Examples" below.
 /// - Optional metrics with a value of `Not Defined (X)` are skipped
-///   when iterating a [`Vector`][] or converting a [`Vector`][] to a
+///   when iterating a [`Vector`] or converting a [`Vector`] to a
 ///   string. See "Examples" below.
 ///
 /// # Examples
@@ -872,7 +886,7 @@ impl Iterator for VectorIterator {
 ///
 /// Show that the order of metrics within a vector string is **not**
 /// preserved when parsing a vector string and then converting the
-/// [`Vector`][] back to a string:
+/// [`Vector`] back to a string:
 ///
 /// ```
 /// # use polycvss::{Err, Vector};
@@ -895,7 +909,7 @@ impl Iterator for VectorIterator {
 ///
 /// Show that optional metrics with a value of `Not Defined (X)` are
 /// **not** preserved when parsing a vector string and then converting the
-/// [`Vector`][] back to a string:
+/// [`Vector`] back to a string:
 ///
 /// ```
 /// # use polycvss::{Err, Vector};
@@ -917,7 +931,7 @@ impl Iterator for VectorIterator {
 /// # }
 /// ```
 ///
-/// Verify that a [`Vector`][] is the same size as a `u64`:
+/// Verify that a [`Vector`] is the same size as a `u64`:
 ///
 /// ```
 /// # use polycvss::Vector;
@@ -926,7 +940,7 @@ impl Iterator for VectorIterator {
 /// # }
 /// ```
 ///
-/// Verify that a [`v4::Vector`][] is the same size as one `u64`:
+/// Verify that a [`v4::Vector`] is the same size as one `u64`:
 ///
 /// ```
 /// # use polycvss::v4;
@@ -937,10 +951,10 @@ impl Iterator for VectorIterator {
 ///
 /// # Internal Representation
 ///
-/// A [`Vector`][] is represented internally as a [bit field][bit-field]
-/// within a [`u64`][],  The lower 60 bits contain encoded metric
+/// A [`Vector`] is represented internally as a [bit field][bit-field]
+/// within a [`u64`],  The lower 60 bits contain encoded metric
 /// values, and the upper 4 bits contain the vector version:
-/// A [`Vector`][] is represented internally as a [bit
+/// A [`Vector`] is represented internally as a [bit
 /// field][bit-field] within a `u64`.  Metric values are stored in the
 /// lower 60 bits (bits `0..60`) and the CVSS version is stored in the
 /// upper 4 bits (bits `60..64`):
@@ -953,9 +967,9 @@ impl Iterator for VectorIterator {
 /// The metric value encoding method is version-specific.  See the
 /// version-specific vector representations for more information:
 ///
-/// - [`v2::Vector`][]
-/// - [`v3::Vector`][]
-/// - [`v4::Vector`][]
+/// - [`v2::Vector`]
+/// - [`v3::Vector`]
+/// - [`v4::Vector`]
 ///
 /// [cvss]: https://www.first.org/cvss/
 ///   "Common Vulnerability Scoring System (CVSS)"
@@ -969,7 +983,7 @@ impl Iterator for VectorIterator {
 ///   "Bit field (Wikipedia)"
 /// [vector-string]: https://www.first.org/cvss/v4-0/specification-document#Vector-String
 ///   "CVSS v4.0 Specification, Section 7: Vector String"
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 pub struct Vector(u64);
 
 impl Vector {
@@ -1024,7 +1038,7 @@ impl Vector {
     }
   }
 
-  /// Get [`Vector`][] base score.
+  /// Get [`Vector`] base score.
   ///
   /// For [CVSS v2][v2] and [CVSS v3][v3] vectors this method returns the
   /// base score, excluding the effect of temporal and environmental
@@ -1178,7 +1192,7 @@ impl std::fmt::Display for Vector {
 ///
 /// [cvss]: https://www.first.org/cvss/
 ///   "Common Vulnerability Scoring System (CVSS)"
-#[derive(Clone,Copy,Debug,Eq,Ord,PartialOrd,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq,Ord,PartialOrd)]
 pub struct Score(u8);
 
 impl From<f32> for Score {
@@ -1242,7 +1256,7 @@ impl std::ops::Sub for Score {
 ///
 /// # Examples
 ///
-/// Get [`Score`][] severity:
+/// Get [`Score`] severity:
 ///
 /// ```
 /// # use polycvss::{Score, Severity};
