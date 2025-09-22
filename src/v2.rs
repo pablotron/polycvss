@@ -3125,7 +3125,7 @@ impl From<Vector> for Scores {
     // equation replaced with the AdjustedImpact equation
     let f_adj_impact = if adj_impact > 0.001 { 1.176 } else { 0.0 };
     let adj_base_score = ((0.6 * adj_impact) + (0.4 * round1(exploitability)) - 1.5) * f_adj_impact;
-    println!("DEBUG: adj_impact={adj_impact}, exploitability={exploitability}, f_adj_impact={f_adj_impact}");
+    // println!("DEBUG: adj_impact={adj_impact}, exploitability={exploitability}, f_adj_impact={f_adj_impact}");
 
     // AdjustedTemporal = TemporalScore recomputed with the BaseScore's Impact sub-
     // equation replaced with the AdjustedImpact equation
@@ -3134,7 +3134,7 @@ impl From<Vector> for Scores {
     } else {
       adj_base_score
     };
-    println!("DEBUG: adj_base_score={adj_base_score}, e={e}, rl={rl}, rc={rc}");
+    // println!("DEBUG: adj_base_score={adj_base_score}, e={e}, rl={rl}, rc={rc}");
 
     // EnvironmentalScore = round_to_1_decimal((AdjustedTemporal+
     // (10-AdjustedTemporal)*CollateralDamagePotential)*TargetDistribution)
@@ -3143,7 +3143,7 @@ impl From<Vector> for Scores {
     } else {
       None
     };
-    println!("DEBUG: adj_temporal_score={adj_temporal_score:?}, cdp={cdp}, td={td}");
+    // println!("DEBUG: adj_temporal_score={adj_temporal_score:?}, cdp={cdp}, td={td}");
 
     Scores {
       base: Score::from(base_score),
