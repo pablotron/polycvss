@@ -12,6 +12,11 @@ Features:
 - Extensive tests: Tested against thousands of results from the [NVD][]
   [CVSS][] score calculators.
 
+Links:
+
+- [polycvss package on crates.io][crates-io-polycvss]
+- [polycvss API Documentation on docs.rs][docs-rs-polycvss]
+
 Here is an example tool which parses the first command-line argument as
 a [CVSS][] vector string, then prints the score and severity:
 
@@ -117,6 +122,8 @@ $ du -sh target/$(arch)-unknown-linux-musl/release/cvss-score
 ```
 
 ## Documentation
+
+[polycvss API documentation on docs.rs][docs-rs-polycvss].
 
 Run `cargo doc` to build the [API][] documentation in `target/doc/polycvss`:
 
