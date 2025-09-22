@@ -95,14 +95,25 @@ $ target/release/cvss-score "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 9.8 CRITICAL
 ```
 
-You can also build the example tool in a container using [Podman][] or
-[Docker][] like this:
+You can also build the example `cvss-score` tool in a container using
+[Podman][] or [Docker][] like this:
 
 ```sh
 $ podman run --rm -t -v "$PWD":/src -w /src docker.io/rust cargo build --release
 ...
 $ target/release/cvss-score "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC:H/SI:H/SA:H"
 5.2 MEDIUM
+```
+
+To build a static binary of the example `cvss-score` tool in a container:
+
+```sh
+$ podman run --rm -it -v .:/src -w /src rust sh -c "rustup target add $(arch)-unknown-linux-musl && cargo build --release --target $(arch)-unknown-linux-musl"
+...
+$ ldd target/$(arch)-unknown-linux-musl/release/cvss-score
+        statically linked
+$ du -sh target/$(arch)-unknown-linux-musl/release/cvss-score
+604K    target/x86_64-unknown-linux-musl/release/cvss-score
 ```
 
 ## Documentation
@@ -171,6 +182,8 @@ The generated test cases can be found in [`src/v3.rs`][src-v2-rs],
   "Example command-line tool which parses a CVSS vector and prints the score and severity to standard output."
 [git repository]: https://github.com/pablotron/polycvss
   "polycvss git repository"
+[polycvss]: https://github.com/pablotron/polycvss
+  "polycvss Rust library"
 [v2-calc]: https://nvd.nist.gov/vuln-metrics/cvss/v2-calculator
   "NVD CVSS v2 calculator"
 [v3-calc]: https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator
@@ -197,3 +210,9 @@ The generated test cases can be found in [`src/v3.rs`][src-v2-rs],
   "National Vulnerability Database (NVD)"
 [cvss-calcs]: https://github.com/pablotron/cvss-calcs
   "Generate random CVSS vector strings and score them."
+[crates.io]: https://crates.io/
+  "Rust package registry"
+[docs-rs-polycvss]: https://docs.rs/polycvss
+  "polycvss API documentation on docs.rs"
+[crates-io-polycvss]: https://crates.io/crates/polycvss
+  "polycvss on crates.io"
