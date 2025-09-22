@@ -71,7 +71,6 @@ use super::{Err, Score, round1, Version, encode::{EncodedVal, EncodedMetric}};
 
 // TODO:
 // - remove panic() from masks (marked w/FIXME)
-// - remove ajusted fields from Scores?
 // - non-v2.3 vectors (e.g. Vector::new_with_version)
 
 /// [`Metric::AccessVector`][] (`AV`) values.
@@ -2878,32 +2877,6 @@ pub struct Scores {
   ///   "CVSS v2.0 Documentation, Section 3.2.2. Temporal Equation"
   pub temporal: Option<Score>,
 
-  /// Adjusted Impact.  Intermediate value used to calculate Environmental Score.
-  ///
-  /// See [CVSS v2.0 Documentation, Section 3.2.3. Environmental Equation][doc].
-  ///
-  /// [doc]: https://www.first.org/cvss/v2/guide#3-2-3-Environmental-Equation
-  ///   "CVSS v2.0 Documentation, Section 3.2.3. Environmental Equation"
-  pub adjusted_impact: Score,
-
-  /// Adjusted Base Score.  Intermediate value used to calculate Environmental Score.
-  ///
-  /// See [CVSS v2.0 Documentation, Section 3.2.3. Environmental Equation][doc].
-  ///
-  /// [doc]: https://www.first.org/cvss/v2/guide#3-2-3-Environmental-Equation
-  ///   "CVSS v2.0 Documentation, Section 3.2.3. Environmental Equation"
-  pub adjusted_base: Score,
-
-  /// Adjusted Base Temporal Score.
-  ///
-  /// Intermediate value used to calculate Environmental Score.
-  ///
-  /// See [CVSS v2.0 Documentation, Section 3.2.3. Environmental Equation][doc].
-  ///
-  /// [doc]: https://www.first.org/cvss/v2/guide#3-2-3-Environmental-Equation
-  ///   "CVSS v2.0 Documentation, Section 3.2.3. Environmental Equation"
-  pub adjusted_temporal: Option<Score>,
-
   /// Environmental Score. Will have a value of `None` if no Temporal
   /// metrics are defined.
   ///
@@ -3153,9 +3126,6 @@ impl From<Vector> for Scores {
     Scores {
       base: Score::from(base_score),
       temporal: temporal_score.map(Score::from),
-      adjusted_impact: Score::from(adj_impact),
-      adjusted_base: Score::from(adj_base_score),
-      adjusted_temporal: adj_temporal_score.map(Score::from),
       environmental: env_score.map(Score::from),
     }
   }
@@ -4115,9 +4085,6 @@ mod tests {
           Scores {
             base: Score(78),
             temporal: Some(Score(64)),
-            adjusted_impact: Score(100),
-            adjusted_base: Score(100),
-            adjusted_temporal: Some(Score(83)),
             environmental: Some(Score(0)),
           }, // exp
         ),
@@ -4128,9 +4095,6 @@ mod tests {
           Scores {
             base: Score(78),
             temporal: Some(Score(64)),
-            adjusted_impact: Score(100),
-            adjusted_base: Score(100),
-            adjusted_temporal: Some(Score(83)),
             environmental: Some(Score(92)),
           }, // exp
         ),
@@ -4141,9 +4105,6 @@ mod tests {
           Scores {
             base: Score(100),
             temporal: Some(Score(83)),
-            adjusted_impact: Score(96),
-            adjusted_base: Score(97),
-            adjusted_temporal: Some(Score(80)),
             environmental: Some(Score(0)),
           }, // exp
         ),
@@ -4154,9 +4115,6 @@ mod tests {
           Scores {
             base: Score(100),
             temporal: Some(Score(83)),
-            adjusted_impact: Score(96),
-            adjusted_base: Score(97),
-            adjusted_temporal: Some(Score(80)),
             environmental: Some(Score(90)),
           }, // exp
         ),
@@ -4167,9 +4125,6 @@ mod tests {
           Scores {
             base: Score(62),
             temporal: Some(Score(49)),
-            adjusted_impact: Score(100),
-            adjusted_base: Score(62),
-            adjusted_temporal: Some(Score(49)),
             environmental: Some(Score(0)),
           }, // exp
         ),
@@ -4180,9 +4135,6 @@ mod tests {
           Scores {
             base: Score(62),
             temporal: Some(Score(49)),
-            adjusted_impact: Score(100),
-            adjusted_base: Score(62),
-            adjusted_temporal: Some(Score(49)),
             environmental: Some(Score(75)),
           }, // exp
         ),
