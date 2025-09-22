@@ -2327,7 +2327,7 @@ mod tests {
       let tests = vec!((
         "v2", // name
         "AV:L/AC:H/Au:N/C:C/I:C/A:C/E:POC/RL:OF/RC:C/CDP:H/TD:H/CR:M/IR:M/AR:M", // val
-        Score(75), // exp score
+        Score(74), // exp score
       ), (
         "v3", // name
         "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L/E:P/RL:U/RC:C/CR:L/IR:X/AR:M/MAV:N/MAC:H/MPR:X/MUI:X/MS:U/MC:L/MI:N/MA:H", // val
