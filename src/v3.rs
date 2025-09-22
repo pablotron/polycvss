@@ -73,8 +73,6 @@ use serde::{self,Deserialize,Serialize};
 use super::{Err, Score, Version, encode::{EncodedVal, EncodedMetric}};
 
 // TODO:
-// - add name tests
-// - more scores tests
 // - update scores docs
 // - consistent struct/impl ordering w v40.rs
 
