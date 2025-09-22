@@ -2531,7 +2531,7 @@ impl Iterator for VectorIterator {
 /// Get base score:
 ///
 /// ```
-/// # use polycvss::{Err, v2::{Scores, Vector}};
+/// # use polycvss::{Err, Score, v2::{Scores, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v2 vector string
 /// let v: Vector = "AV:N/AC:L/Au:N/C:N/I:N/A:C".parse()?;
@@ -2540,7 +2540,7 @@ impl Iterator for VectorIterator {
 /// let scores = Scores::from(v);
 ///
 /// // check result
-/// assert_eq!(scores.base.to_string(), "7.8");
+/// assert_eq!(scores.base, Score::from(7.8));
 /// # Ok(())
 /// # }
 /// ```
