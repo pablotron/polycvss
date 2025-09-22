@@ -4984,804 +4984,8004 @@ mod tests {
     fn test_from_vector() {
       // TODO: get more (and test temporal and env vectors)
       let tests = vec!((
-        "470e4637 2.7", // test name
-        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:U/C:L/I:N/A:N/E:P/RL:O/RC:X/CR:L/IR:X/AR:L/MAV:A/MAC:L/MPR:H/MUI:R/MS:X/MC:H/MI:X/MA:L", // vec
+        "4131e324 8.5", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:L/I:N/A:H/E:F/RL:W/RC:C/CR:X/IR:L/AR:M/MAV:A/MAC:L/MPR:N/MUI:N/MS:X/MC:X/MI:H/MA:H", // vec
         Scores {
-          base: Score::from(2.0), // exp base score
-          temporal: Some(Score::from(1.8)), // exp temporal score
-          environmental: Some(Score::from(2.7)), // exp environmental score
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(8.5)), // exp environmental score
         }, // exp
       ), (
-        "2bbf99f3 5.4", // test name
-        "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:C/C:N/I:N/A:H/E:H/RL:W/RC:C/CR:H/IR:H/AR:X/MAV:L/MAC:H/MPR:N/MUI:R/MS:X/MC:X/MI:X/MA:H", // vec
+        "357a1370 2.4", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:N/I:H/A:N/E:F/RL:O/RC:R/CR:M/IR:M/AR:X/MAV:A/MAC:X/MPR:H/MUI:X/MS:C/MC:N/MI:N/MA:L", // vec
         Scores {
-          base: Score::from(5.6), // exp base score
-          temporal: Some(Score::from(5.5)), // exp temporal score
-          environmental: Some(Score::from(5.4)), // exp environmental score
-        }, // exp
-      ), (
-        "d954ddbc 7.0", // test name
-        "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N/E:H/RL:T/RC:U/CR:H/IR:H/AR:H/MAV:X/MAC:H/MPR:N/MUI:X/MS:C/MC:X/MI:H/MA:H", // vec
-        Scores {
-          base: Score::from(3.7), // exp base score
-          temporal: Some(Score::from(3.3)), // exp temporal score
-          environmental: Some(Score::from(7.0)), // exp environmental score
-        }, // exp
-      ), (
-        "acf48265 5.3", // test name
-        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:C/C:L/I:N/A:L/E:X/RL:X/RC:C/CR:H/IR:L/AR:X/MAV:L/MAC:X/MPR:H/MUI:R/MS:X/MC:X/MI:L/MA:L", // vec
-        Scores {
-          base: Score::from(4.8), // exp base score
+          base: Score::from(5.4), // exp base score
           temporal: Some(Score::from(4.8)), // exp temporal score
-          environmental: Some(Score::from(5.3)), // exp environmental score
+          environmental: Some(Score::from(2.4)), // exp environmental score
         }, // exp
       ), (
-        "b5fccb7f 4.8", // test name
-        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:L/E:X/RL:W/RC:C/CR:L/IR:H/AR:X/MAV:L/MAC:H/MPR:N/MUI:X/MS:U/MC:L/MI:L/MA:L", // vec
+        "d8c2de72 6.6", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:N/I:H/A:N/E:H/RL:W/RC:X/CR:X/IR:X/AR:M/MAV:N/MAC:H/MPR:N/MUI:N/MS:C/MC:N/MI:X/MA:N", // vec
         Scores {
           base: Score::from(5.4), // exp base score
           temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "fd864768 3.2", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:N/I:L/A:H/E:P/RL:O/RC:U/CR:L/IR:H/AR:L/MAV:A/MAC:L/MPR:H/MUI:R/MS:C/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(3.2)), // exp environmental score
+        }, // exp
+      ), (
+        "d73d79e1 1.9", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:N/I:L/A:H/E:P/RL:T/RC:R/CR:X/IR:H/AR:M/MAV:P/MAC:H/MPR:L/MUI:X/MS:X/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(1.9)), // exp environmental score
+        }, // exp
+      ), (
+        "cab28439 6.2", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:N/I:L/A:N/E:X/RL:X/RC:X/CR:L/IR:H/AR:M/MAV:P/MAC:H/MPR:N/MUI:R/MS:X/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(2.6), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "9c01727c 6.5", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:L/E:X/RL:U/RC:X/CR:M/IR:H/AR:L/MAV:A/MAC:L/MPR:X/MUI:X/MS:X/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "4a386244 6.6", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:N/E:X/RL:T/RC:X/CR:M/IR:X/AR:X/MAV:A/MAC:H/MPR:N/MUI:X/MS:U/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "9e677859 3.5", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:H/E:H/RL:T/RC:R/CR:X/IR:L/AR:M/MAV:A/MAC:L/MPR:H/MUI:R/MS:X/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "2ab83ffb 2.8", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:L/E:U/RL:O/RC:U/CR:M/IR:L/AR:X/MAV:A/MAC:X/MPR:X/MUI:N/MS:X/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(2.8)), // exp environmental score
+        }, // exp
+      ), (
+        "20c0ece8 6.1", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:L/E:F/RL:O/RC:C/CR:M/IR:H/AR:H/MAV:N/MAC:H/MPR:X/MUI:N/MS:X/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "97951ccc 3.5", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:L/E:P/RL:U/RC:R/CR:H/IR:M/AR:M/MAV:N/MAC:L/MPR:H/MUI:N/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "4b928eb1 2.0", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:R/S:C/C:L/I:H/A:H/E:U/RL:W/RC:R/CR:X/IR:L/AR:L/MAV:A/MAC:H/MPR:L/MUI:X/MS:U/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(2.0)), // exp environmental score
+        }, // exp
+      ), (
+        "66ac1d0e 7.5", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:R/S:C/C:L/I:H/A:N/E:F/RL:U/RC:U/CR:H/IR:H/AR:L/MAV:N/MAC:X/MPR:N/MUI:X/MS:X/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(7.5)), // exp environmental score
+        }, // exp
+      ), (
+        "48276d91 3.8", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:N/E:P/RL:U/RC:X/CR:M/IR:H/AR:X/MAV:P/MAC:H/MPR:L/MUI:N/MS:U/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "6972745b 3.6", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:R/S:U/C:L/I:N/A:N/E:F/RL:T/RC:C/CR:H/IR:M/AR:X/MAV:X/MAC:H/MPR:N/MUI:X/MS:C/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(1.8), // exp base score
+          temporal: Some(Score::from(1.7)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "f6680ca7 2.7", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:R/S:U/C:N/I:H/A:H/E:F/RL:T/RC:X/CR:H/IR:L/AR:H/MAV:P/MAC:X/MPR:X/MUI:X/MS:U/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(2.7)), // exp environmental score
+        }, // exp
+      ), (
+        "b034657e 4.9", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:R/S:U/C:N/I:L/A:H/E:U/RL:W/RC:X/CR:X/IR:X/AR:X/MAV:L/MAC:L/MPR:N/MUI:R/MS:X/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "99fa12a9 5.4", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:H/E:P/RL:U/RC:X/CR:M/IR:X/AR:M/MAV:X/MAC:X/MPR:X/MUI:N/MS:U/MC:N/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.8)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "0849fcfa 0.0", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:C/C:L/I:N/A:N/E:F/RL:T/RC:U/CR:L/IR:H/AR:X/MAV:N/MAC:H/MPR:L/MUI:N/MS:U/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(3.0), // exp base score
+          temporal: Some(Score::from(2.6)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "eefb5b6b 5.9", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N/E:F/RL:W/RC:X/CR:X/IR:L/AR:H/MAV:L/MAC:H/MPR:H/MUI:R/MS:C/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "91ae126d 7.9", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:L/E:X/RL:U/RC:C/CR:M/IR:H/AR:M/MAV:A/MAC:X/MPR:N/MUI:R/MS:C/MC:N/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(7.9)), // exp environmental score
+        }, // exp
+      ), (
+        "d1e19e38 5.6", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:H/E:H/RL:O/RC:U/CR:X/IR:H/AR:L/MAV:P/MAC:X/MPR:H/MUI:R/MS:C/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "4cd0f181 6.5", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:H/E:X/RL:O/RC:X/CR:H/IR:L/AR:H/MAV:L/MAC:X/MPR:N/MUI:R/MS:X/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "cd7d9de0 6.4", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:U/C:N/I:H/A:H/E:H/RL:X/RC:R/CR:M/IR:H/AR:X/MAV:X/MAC:X/MPR:X/MUI:N/MS:X/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "61368147 6.1", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:H/E:F/RL:U/RC:C/CR:M/IR:H/AR:M/MAV:A/MAC:H/MPR:N/MUI:N/MS:U/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "921831a2 2.7", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:L/E:X/RL:O/RC:U/CR:M/IR:L/AR:L/MAV:X/MAC:X/MPR:H/MUI:X/MS:X/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(2.7)), // exp environmental score
+        }, // exp
+      ), (
+        "ab250e0f 5.1", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:N/E:U/RL:O/RC:R/CR:L/IR:L/AR:X/MAV:A/MAC:L/MPR:N/MUI:R/MS:X/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(5.1)), // exp environmental score
+        }, // exp
+      ), (
+        "1e2a6686 2.2", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:N/E:X/RL:O/RC:R/CR:H/IR:L/AR:X/MAV:P/MAC:X/MPR:L/MUI:R/MS:C/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(2.2)), // exp environmental score
+        }, // exp
+      ), (
+        "ebb8df91 2.9", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:C/C:H/I:N/A:H/E:F/RL:W/RC:X/CR:L/IR:X/AR:H/MAV:N/MAC:X/MPR:X/MUI:X/MS:U/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "e949892b 2.8", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:C/C:L/I:L/A:N/E:U/RL:U/RC:R/CR:X/IR:M/AR:L/MAV:X/MAC:H/MPR:H/MUI:N/MS:U/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(2.8)), // exp environmental score
+        }, // exp
+      ), (
+        "29c17cec 9.0", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:L/E:X/RL:U/RC:X/CR:H/IR:H/AR:M/MAV:N/MAC:L/MPR:X/MUI:X/MS:X/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(9.0)), // exp environmental score
+        }, // exp
+      ), (
+        "6d5651d2 7.1", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:C/C:N/I:N/A:H/E:F/RL:T/RC:R/CR:X/IR:L/AR:H/MAV:A/MAC:L/MPR:H/MUI:R/MS:C/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "fb1e368d 6.4", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:H/E:H/RL:U/RC:R/CR:L/IR:H/AR:H/MAV:N/MAC:X/MPR:H/MUI:N/MS:X/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "e483978e 5.5", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:H/I:L/A:L/E:F/RL:T/RC:X/CR:M/IR:M/AR:H/MAV:P/MAC:L/MPR:H/MUI:R/MS:X/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "5b68fa3d 5.4", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:H/I:L/A:N/E:X/RL:W/RC:R/CR:X/IR:X/AR:L/MAV:X/MAC:X/MPR:L/MUI:R/MS:U/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "a2d4da1f 7.3", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:H/I:N/A:L/E:H/RL:T/RC:X/CR:L/IR:M/AR:X/MAV:N/MAC:L/MPR:L/MUI:X/MS:C/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "46302271 4.3", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N/E:H/RL:O/RC:C/CR:H/IR:L/AR:X/MAV:L/MAC:L/MPR:N/MUI:N/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "af272947 5.5", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:L/I:N/A:N/E:H/RL:X/RC:C/CR:X/IR:X/AR:L/MAV:A/MAC:H/MPR:H/MUI:R/MS:C/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(2.3), // exp base score
+          temporal: Some(Score::from(2.3)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "39af069a 6.9", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:H/E:U/RL:T/RC:R/CR:L/IR:X/AR:M/MAV:N/MAC:X/MPR:L/MUI:N/MS:C/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(6.9)), // exp environmental score
+        }, // exp
+      ), (
+        "b9716739 1.9", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:L/E:H/RL:U/RC:X/CR:L/IR:X/AR:H/MAV:P/MAC:H/MPR:L/MUI:X/MS:C/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(1.9)), // exp environmental score
+        }, // exp
+      ), (
+        "d0ed20a4 3.8", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:N/I:L/A:H/E:H/RL:O/RC:R/CR:X/IR:H/AR:X/MAV:P/MAC:H/MPR:N/MUI:X/MS:C/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "b0f6984d 4.9", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:H/E:H/RL:W/RC:X/CR:M/IR:M/AR:X/MAV:L/MAC:X/MPR:H/MUI:X/MS:C/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "537099a9 7.2", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H/E:F/RL:W/RC:U/CR:M/IR:H/AR:H/MAV:X/MAC:H/MPR:N/MUI:X/MS:C/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(8.3), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "85170fb6 4.8", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:C/C:H/I:L/A:H/E:F/RL:X/RC:R/CR:M/IR:X/AR:L/MAV:P/MAC:L/MPR:X/MUI:R/MS:C/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(8.2), // exp base score
+          temporal: Some(Score::from(7.7)), // exp temporal score
           environmental: Some(Score::from(4.8)), // exp environmental score
         }, // exp
       ), (
-        "565172cb 3.9", // test name
-        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:L/E:U/RL:U/RC:U/CR:M/IR:H/AR:X/MAV:P/MAC:H/MPR:L/MUI:X/MS:U/MC:L/MI:N/MA:H", // vec
+        "04c22eac 1.8", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:C/C:H/I:L/A:H/E:P/RL:O/RC:R/CR:M/IR:H/AR:X/MAV:P/MAC:X/MPR:X/MUI:X/MS:U/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(8.2), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(1.8)), // exp environmental score
+        }, // exp
+      ), (
+        "f90c4fd1 3.7", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:L/E:H/RL:T/RC:C/CR:L/IR:M/AR:X/MAV:A/MAC:L/MPR:N/MUI:R/MS:C/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "89e51a60 7.9", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:L/E:H/RL:T/RC:X/CR:M/IR:H/AR:M/MAV:N/MAC:L/MPR:X/MUI:N/MS:U/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(7.9)), // exp environmental score
+        }, // exp
+      ), (
+        "5927182b 4.8", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:L/E:H/RL:X/RC:R/CR:M/IR:H/AR:M/MAV:P/MAC:X/MPR:H/MUI:R/MS:C/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "b6f9c1f4 2.6", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:N/E:P/RL:O/RC:R/CR:X/IR:H/AR:M/MAV:N/MAC:X/MPR:H/MUI:N/MS:X/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.0)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "b107cc96 6.7", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:C/C:N/I:N/A:N/E:F/RL:W/RC:X/CR:M/IR:H/AR:M/MAV:L/MAC:L/MPR:L/MUI:R/MS:X/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "2437ca7d 0.0", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N/E:H/RL:T/RC:X/CR:M/IR:H/AR:H/MAV:X/MAC:X/MPR:H/MUI:N/MS:C/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "b4e320e3 0.0", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L/E:H/RL:U/RC:X/CR:L/IR:M/AR:L/MAV:A/MAC:H/MPR:H/MUI:X/MS:C/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(3.1), // exp base score
+          temporal: Some(Score::from(3.1)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "dcaeea41 5.8", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:N/E:X/RL:O/RC:U/CR:X/IR:L/AR:H/MAV:A/MAC:X/MPR:N/MUI:R/MS:C/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "5ef5e4ef 4.4", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:C/C:L/I:H/A:N/E:F/RL:T/RC:U/CR:H/IR:L/AR:H/MAV:A/MAC:L/MPR:H/MUI:X/MS:U/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "ce765389 4.0", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:C/C:N/I:N/A:L/E:X/RL:T/RC:X/CR:L/IR:X/AR:X/MAV:L/MAC:X/MPR:N/MUI:X/MS:X/MC:X/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(2.9), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "d1e8b64a 4.6", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N/E:X/RL:U/RC:X/CR:M/IR:X/AR:X/MAV:L/MAC:X/MPR:H/MUI:R/MS:U/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "4c12aff0 3.0", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:L/E:H/RL:O/RC:C/CR:H/IR:M/AR:M/MAV:P/MAC:H/MPR:N/MUI:N/MS:X/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(3.7), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "75340a0f 3.6", // test name
+        "CVSS:3.0/AV:A/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N/E:P/RL:T/RC:X/CR:X/IR:L/AR:L/MAV:X/MAC:L/MPR:N/MUI:R/MS:X/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "94ddfb60 6.2", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:L/E:F/RL:W/RC:U/CR:M/IR:M/AR:X/MAV:A/MAC:H/MPR:N/MUI:N/MS:U/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(8.3), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "45b33119 5.4", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:N/E:F/RL:T/RC:X/CR:M/IR:X/AR:M/MAV:A/MAC:X/MPR:X/MUI:R/MS:X/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.6)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "9318f6d2 7.1", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:C/C:H/I:L/A:N/E:X/RL:X/RC:R/CR:L/IR:H/AR:X/MAV:A/MAC:L/MPR:N/MUI:X/MS:U/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "fd785685 1.9", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:N/E:H/RL:O/RC:R/CR:H/IR:X/AR:L/MAV:P/MAC:X/MPR:H/MUI:R/MS:C/MC:N/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(1.9)), // exp environmental score
+        }, // exp
+      ), (
+        "327450d3 5.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:C/C:L/I:N/A:N/E:X/RL:O/RC:C/CR:X/IR:X/AR:H/MAV:X/MAC:L/MPR:X/MUI:N/MS:C/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(5.3)), // exp environmental score
+        }, // exp
+      ), (
+        "41531265 7.6", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:C/C:N/I:H/A:H/E:X/RL:O/RC:R/CR:H/IR:H/AR:L/MAV:A/MAC:L/MPR:X/MUI:X/MS:C/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(7.6)), // exp environmental score
+        }, // exp
+      ), (
+        "2e4774ab 5.0", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:H/E:U/RL:U/RC:R/CR:X/IR:H/AR:H/MAV:P/MAC:X/MPR:H/MUI:X/MS:X/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "e99c03c3 5.2", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:L/E:H/RL:X/RC:X/CR:L/IR:H/AR:L/MAV:X/MAC:X/MPR:L/MUI:R/MS:U/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "e03215f0 2.4", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:N/E:H/RL:W/RC:R/CR:M/IR:L/AR:H/MAV:X/MAC:H/MPR:H/MUI:X/MS:X/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(2.4)), // exp environmental score
+        }, // exp
+      ), (
+        "ace5c677 6.7", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:N/E:U/RL:O/RC:R/CR:H/IR:M/AR:L/MAV:X/MAC:X/MPR:L/MUI:N/MS:C/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "25ddd3b8 6.2", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:H/E:F/RL:T/RC:R/CR:L/IR:H/AR:L/MAV:N/MAC:L/MPR:L/MUI:R/MS:C/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "77895a35 6.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:L/E:F/RL:T/RC:C/CR:M/IR:L/AR:M/MAV:L/MAC:L/MPR:N/MUI:R/MS:X/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "b83a4fc0 4.2", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:H/E:X/RL:O/RC:U/CR:H/IR:H/AR:M/MAV:P/MAC:X/MPR:X/MUI:R/MS:U/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "47042c54 6.2", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:N/E:P/RL:X/RC:C/CR:L/IR:M/AR:M/MAV:N/MAC:X/MPR:X/MUI:X/MS:X/MC:N/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(2.4), // exp base score
+          temporal: Some(Score::from(2.3)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "fae0fc28 6.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:C/C:H/I:H/A:N/E:F/RL:T/RC:C/CR:X/IR:X/AR:M/MAV:N/MAC:L/MPR:H/MUI:N/MS:U/MC:H/MI:H/MA:L", // vec
         Scores {
           base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "be2b58f5 4.0", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:C/C:L/I:H/A:N/E:X/RL:U/RC:U/CR:X/IR:L/AR:M/MAV:X/MAC:X/MPR:X/MUI:R/MS:X/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "59724162 8.6", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:H/E:F/RL:U/RC:X/CR:L/IR:L/AR:H/MAV:X/MAC:X/MPR:N/MUI:X/MS:C/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(8.6)), // exp environmental score
+        }, // exp
+      ), (
+        "73d5c7eb 4.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:L/E:F/RL:O/RC:U/CR:X/IR:H/AR:M/MAV:L/MAC:L/MPR:N/MUI:X/MS:C/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "023bd3b7 6.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:L/E:P/RL:T/RC:R/CR:X/IR:L/AR:M/MAV:A/MAC:L/MPR:H/MUI:X/MS:C/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "91bdfcff 3.1", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:C/C:L/I:N/A:N/E:U/RL:X/RC:U/CR:M/IR:M/AR:L/MAV:A/MAC:H/MPR:H/MUI:X/MS:C/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(2.9), // exp base score
+          temporal: Some(Score::from(2.5)), // exp temporal score
+          environmental: Some(Score::from(3.1)), // exp environmental score
+        }, // exp
+      ), (
+        "d619d46a 7.1", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:C/C:N/I:H/A:N/E:F/RL:X/RC:C/CR:H/IR:X/AR:H/MAV:X/MAC:H/MPR:H/MUI:N/MS:X/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "49726671 5.0", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:C/C:N/I:N/A:N/E:P/RL:W/RC:X/CR:L/IR:M/AR:M/MAV:X/MAC:X/MPR:X/MUI:N/MS:U/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "5e4b78df 3.0", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:U/C:H/I:N/A:H/E:X/RL:O/RC:R/CR:L/IR:H/AR:L/MAV:L/MAC:H/MPR:N/MUI:X/MS:C/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "6cd31519 4.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:U/C:L/I:H/A:H/E:U/RL:O/RC:U/CR:H/IR:L/AR:M/MAV:P/MAC:X/MPR:X/MUI:X/MS:U/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "0dde44fc 6.5", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:U/C:L/I:L/A:L/E:X/RL:T/RC:X/CR:H/IR:M/AR:H/MAV:N/MAC:L/MPR:X/MUI:N/MS:U/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(4.1), // exp base score
+          temporal: Some(Score::from(4.0)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "bb2b384d 6.2", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:U/C:L/I:L/A:N/E:X/RL:X/RC:R/CR:M/IR:L/AR:H/MAV:X/MAC:H/MPR:X/MUI:N/MS:X/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(3.1)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "7e33aa51 4.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:U/C:N/I:L/A:L/E:F/RL:X/RC:U/CR:X/IR:H/AR:M/MAV:L/MAC:X/MPR:X/MUI:X/MS:X/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(2.9)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "e2431e01 7.6", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:U/C:N/I:N/A:H/E:U/RL:X/RC:C/CR:X/IR:H/AR:H/MAV:N/MAC:L/MPR:N/MUI:X/MS:U/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(4.3), // exp base score
+          temporal: Some(Score::from(4.0)), // exp temporal score
+          environmental: Some(Score::from(7.6)), // exp environmental score
+        }, // exp
+      ), (
+        "7131b298 5.6", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:H/UI:R/S:U/C:N/I:N/A:L/E:P/RL:W/RC:U/CR:X/IR:M/AR:H/MAV:X/MAC:L/MPR:L/MUI:N/MS:X/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(2.1), // exp base score
+          temporal: Some(Score::from(1.8)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "f882e0a2 5.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:N/E:X/RL:U/RC:C/CR:L/IR:X/AR:M/MAV:P/MAC:X/MPR:X/MUI:R/MS:X/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: Some(Score::from(8.7)), // exp temporal score
+          environmental: Some(Score::from(5.3)), // exp environmental score
+        }, // exp
+      ), (
+        "c2b4f9d5 8.1", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:C/C:L/I:H/A:H/E:X/RL:T/RC:X/CR:X/IR:M/AR:X/MAV:L/MAC:X/MPR:X/MUI:N/MS:X/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(8.9), // exp base score
+          temporal: Some(Score::from(8.6)), // exp temporal score
+          environmental: Some(Score::from(8.1)), // exp environmental score
+        }, // exp
+      ), (
+        "5cc912ba 3.0", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N/E:F/RL:X/RC:X/CR:L/IR:M/AR:L/MAV:X/MAC:H/MPR:H/MUI:R/MS:C/MC:X/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "46daf5f4 4.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:C/C:N/I:H/A:N/E:U/RL:U/RC:U/CR:M/IR:X/AR:L/MAV:P/MAC:L/MPR:N/MUI:R/MS:C/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "67f312c2 6.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:L/E:X/RL:O/RC:U/CR:M/IR:M/AR:M/MAV:P/MAC:H/MPR:N/MUI:X/MS:C/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "52ebaf02 6.5", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:U/C:L/I:H/A:L/E:U/RL:U/RC:X/CR:L/IR:H/AR:M/MAV:L/MAC:L/MPR:H/MUI:N/MS:C/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "ea78ab00 4.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H/E:P/RL:U/RC:C/CR:H/IR:H/AR:L/MAV:L/MAC:X/MPR:X/MUI:N/MS:U/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "4d21207e 3.4", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N/E:H/RL:O/RC:C/CR:M/IR:X/AR:X/MAV:X/MAC:L/MPR:H/MUI:X/MS:X/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(3.4)), // exp temporal score
+          environmental: Some(Score::from(3.4)), // exp environmental score
+        }, // exp
+      ), (
+        "008cde36 4.2", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H/E:X/RL:W/RC:R/CR:M/IR:M/AR:L/MAV:L/MAC:L/MPR:H/MUI:R/MS:X/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(8.4), // exp base score
+          temporal: Some(Score::from(7.9)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "9cdc83e6 8.2", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:C/C:H/I:L/A:L/E:H/RL:X/RC:X/CR:M/IR:H/AR:X/MAV:X/MAC:L/MPR:L/MUI:R/MS:X/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(7.5)), // exp temporal score
+          environmental: Some(Score::from(8.2)), // exp environmental score
+        }, // exp
+      ), (
+        "df60b9dc 7.1", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:C/C:H/I:L/A:L/E:X/RL:W/RC:R/CR:H/IR:X/AR:L/MAV:P/MAC:X/MPR:N/MUI:N/MS:C/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(7.0)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "d88c1b94 5.4", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:C/C:L/I:H/A:H/E:U/RL:T/RC:R/CR:H/IR:M/AR:L/MAV:L/MAC:L/MPR:X/MUI:X/MS:U/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(8.3), // exp base score
+          temporal: Some(Score::from(7.0)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "c2691dc2 3.4", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:L/E:F/RL:T/RC:U/CR:L/IR:H/AR:L/MAV:L/MAC:L/MPR:H/MUI:N/MS:U/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(3.4)), // exp environmental score
+        }, // exp
+      ), (
+        "c734f55b 4.9", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N/E:F/RL:W/RC:X/CR:M/IR:M/AR:M/MAV:A/MAC:L/MPR:X/MUI:X/MS:X/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(4.1), // exp base score
+          temporal: Some(Score::from(3.9)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "1fe90dcd 7.7", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:U/C:L/I:N/A:N/E:X/RL:W/RC:R/CR:M/IR:M/AR:X/MAV:N/MAC:H/MPR:N/MUI:R/MS:C/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(3.0), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(7.7)), // exp environmental score
+        }, // exp
+      ), (
+        "bd792ef4 4.6", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:U/C:N/I:H/A:L/E:X/RL:T/RC:C/CR:L/IR:L/AR:L/MAV:N/MAC:X/MPR:L/MUI:N/MS:X/MC:N/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "df358d6b 3.7", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:N/E:P/RL:X/RC:R/CR:L/IR:M/AR:M/MAV:N/MAC:X/MPR:X/MUI:R/MS:C/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "e5e0c418 4.9", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:L/E:U/RL:O/RC:R/CR:H/IR:M/AR:L/MAV:L/MAC:H/MPR:X/MUI:N/MS:C/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(9.6), // exp base score
+          temporal: Some(Score::from(8.0)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "ca111fda 7.1", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N/E:U/RL:W/RC:U/CR:H/IR:M/AR:M/MAV:N/MAC:X/MPR:H/MUI:N/MS:X/MC:N/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "5ae05c6f 7.2", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L/E:H/RL:W/RC:X/CR:H/IR:H/AR:H/MAV:P/MAC:L/MPR:N/MUI:N/MS:X/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "50dc5983 6.5", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:H/E:H/RL:O/RC:U/CR:H/IR:X/AR:X/MAV:A/MAC:L/MPR:N/MUI:R/MS:X/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(9.3), // exp base score
+          temporal: Some(Score::from(8.2)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "553a2da5 5.9", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:H/E:X/RL:U/RC:U/CR:X/IR:M/AR:L/MAV:X/MAC:H/MPR:X/MUI:R/MS:C/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(8.3), // exp base score
+          temporal: Some(Score::from(7.7)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "58379589 2.6", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N/E:X/RL:X/RC:C/CR:H/IR:H/AR:H/MAV:L/MAC:H/MPR:H/MUI:N/MS:U/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "ddcbad06 3.8", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L/E:U/RL:X/RC:U/CR:M/IR:L/AR:M/MAV:L/MAC:H/MPR:N/MUI:R/MS:C/MC:N/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "bdf3f320 3.0", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N/E:X/RL:O/RC:R/CR:H/IR:X/AR:X/MAV:L/MAC:H/MPR:H/MUI:R/MS:C/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "988adfd7 7.8", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:H/I:N/A:L/E:H/RL:U/RC:X/CR:M/IR:M/AR:L/MAV:A/MAC:X/MPR:X/MUI:N/MS:C/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
+        }, // exp
+      ), (
+        "0a800696 7.6", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:H/I:N/A:L/E:X/RL:X/RC:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MPR:L/MUI:N/MS:C/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(7.6)), // exp environmental score
+        }, // exp
+      ), (
+        "bb617a7a 3.4", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:H/E:F/RL:W/RC:C/CR:X/IR:M/AR:X/MAV:L/MAC:H/MPR:X/MUI:R/MS:U/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: Some(Score::from(8.2)), // exp temporal score
+          environmental: Some(Score::from(3.4)), // exp environmental score
+        }, // exp
+      ), (
+        "9ab21941 4.9", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:H/E:H/RL:U/RC:C/CR:H/IR:H/AR:X/MAV:L/MAC:X/MPR:X/MUI:R/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: Some(Score::from(8.7)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "819a0e68 4.9", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:H/E:P/RL:O/RC:R/CR:X/IR:X/AR:L/MAV:X/MAC:X/MPR:L/MUI:N/MS:U/MC:N/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: Some(Score::from(7.5)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "4dff8c57 7.1", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:L/E:U/RL:X/RC:C/CR:M/IR:H/AR:H/MAV:L/MAC:H/MPR:N/MUI:X/MS:X/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(7.3)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "bb913237 3.0", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:H/E:U/RL:X/RC:X/CR:L/IR:M/AR:M/MAV:P/MAC:H/MPR:H/MUI:R/MS:X/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(7.3)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "46c5c395 8.6", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:N/I:H/A:N/E:F/RL:O/RC:C/CR:X/IR:X/AR:H/MAV:N/MAC:L/MPR:X/MUI:N/MS:C/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(8.6)), // exp environmental score
+        }, // exp
+      ), (
+        "883fdb22 3.9", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:N/I:H/A:N/E:H/RL:U/RC:R/CR:M/IR:X/AR:X/MAV:P/MAC:L/MPR:N/MUI:N/MS:C/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
           temporal: Some(Score::from(6.4)), // exp temporal score
           environmental: Some(Score::from(3.9)), // exp environmental score
         }, // exp
       ), (
-        "5816c250 5.8", // test name
-        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:U/C:L/I:H/A:H/E:P/RL:W/RC:X/CR:M/IR:X/AR:X/MAV:P/MAC:X/MPR:H/MUI:X/MS:C/MC:X/MI:L/MA:X", // vec
-        Scores {
-          base: Score::from(7.6), // exp base score
-          temporal: Some(Score::from(7.0)), // exp temporal score
-          environmental: Some(Score::from(5.8)), // exp environmental score
-        }, // exp
-      ), (
-        "cdd05426 5.3", // test name
-        "CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:C/C:N/I:H/A:L/E:F/RL:W/RC:R/CR:M/IR:X/AR:L/MAV:P/MAC:H/MPR:N/MUI:X/MS:X/MC:N/MI:X/MA:H", // vec
-        Scores {
-          base: Score::from(6.9), // exp base score
-          temporal: Some(Score::from(6.3)), // exp temporal score
-          environmental: Some(Score::from(5.3)), // exp environmental score
-        }, // exp
-      ), (
-        "f368c79d 7.7", // test name
-        "CVSS:3.0/AV:A/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:H/E:U/RL:U/RC:X/CR:X/IR:H/AR:M/MAV:X/MAC:L/MPR:H/MUI:N/MS:C/MC:H/MI:H/MA:X", // vec
-        Scores {
-          base: Score::from(7.0), // exp base score
-          temporal: Some(Score::from(6.4)), // exp temporal score
-          environmental: Some(Score::from(7.7)), // exp environmental score
-        }, // exp
-      ), (
-        "b9ea8fb6 7.7", // test name
-        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:N/I:L/A:L/E:H/RL:X/RC:C/CR:H/IR:X/AR:X/MAV:L/MAC:H/MPR:X/MUI:X/MS:X/MC:H/MI:X/MA:H", // vec
-        Scores {
-          base: Score::from(5.2), // exp base score
-          temporal: Some(Score::from(5.2)), // exp temporal score
-          environmental: Some(Score::from(7.7)), // exp environmental score
-        }, // exp
-      ), (
-        "13028597 1.8", // test name
-        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N/E:F/RL:T/RC:U/CR:M/IR:X/AR:M/MAV:A/MAC:X/MPR:H/MUI:X/MS:X/MC:L/MI:N/MA:N", // vec
-        Scores {
-          base: Score::from(3.5), // exp base score
-          temporal: Some(Score::from(3.0)), // exp temporal score
-          environmental: Some(Score::from(1.8)), // exp environmental score
-        }, // exp
-      ), (
-        "5d74a85c 5.5", // test name
-        "CVSS:3.0/AV:L/AC:H/PR:H/UI:N/S:C/C:L/I:N/A:L/E:H/RL:T/RC:U/CR:H/IR:X/AR:M/MAV:L/MAC:H/MPR:N/MUI:X/MS:C/MC:X/MI:L/MA:L", // vec
-        Scores {
-          base: Score::from(3.9), // exp base score
-          temporal: Some(Score::from(3.5)), // exp temporal score
-          environmental: Some(Score::from(5.5)), // exp environmental score
-        }, // exp
-      ), (
-        "4f2c3fd5 5.0", // test name
-        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:H/A:L/E:F/RL:T/RC:X/CR:H/IR:M/AR:X/MAV:X/MAC:X/MPR:N/MUI:R/MS:U/MC:N/MI:L/MA:H", // vec
-        Scores {
-          base: Score::from(4.6), // exp base score
-          temporal: Some(Score::from(4.3)), // exp temporal score
-          environmental: Some(Score::from(5.0)), // exp environmental score
-        }, // exp
-      ), (
-        "5527da5f 5.9", // test name
-        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N/E:F/RL:O/RC:X/CR:M/IR:X/AR:H/MAV:L/MAC:H/MPR:X/MUI:X/MS:C/MC:X/MI:L/MA:N", // vec
-        Scores {
-          base: Score::from(4.7), // exp base score
-          temporal: Some(Score::from(4.4)), // exp temporal score
-          environmental: Some(Score::from(5.9)), // exp environmental score
-        }, // exp
-      ), (
-        "fc1e4a86 6.0", // test name
-        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:L/E:H/RL:T/RC:X/CR:H/IR:X/AR:X/MAV:P/MAC:H/MPR:N/MUI:X/MS:U/MC:X/MI:X/MA:X", // vec
-        Scores {
-          base: Score::from(6.6), // exp base score
-          temporal: Some(Score::from(6.4)), // exp temporal score
-          environmental: Some(Score::from(6.0)), // exp environmental score
-        }, // exp
-      ), (
-        "285a81a5 6.5", // test name
-        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:N/A:L/E:X/RL:X/RC:X/CR:L/IR:L/AR:H/MAV:L/MAC:H/MPR:L/MUI:N/MS:X/MC:N/MI:N/MA:H", // vec
-        Scores {
-          base: Score::from(3.3), // exp base score
-          temporal: None, // exp temporal score
-          environmental: Some(Score::from(6.5)), // exp environmental score
-        }, // exp
-      ), (
-        "c951a886 2.0", // test name
-        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H/E:U/RL:X/RC:R/CR:M/IR:H/AR:L/MAV:P/MAC:H/MPR:H/MUI:N/MS:U/MC:X/MI:N/MA:L", // vec
-        Scores {
-          base: Score::from(5.7), // exp base score
-          temporal: Some(Score::from(5.0)), // exp temporal score
-          environmental: Some(Score::from(2.0)), // exp environmental score
-        }, // exp
-      ), (
-        "6ceda67a 0.0", // test name
-        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:L/E:F/RL:T/RC:U/CR:X/IR:L/AR:X/MAV:P/MAC:X/MPR:N/MUI:N/MS:X/MC:N/MI:N/MA:N", // vec
-        Scores {
-          base: Score::from(6.3), // exp base score
-          temporal: Some(Score::from(5.4)), // exp temporal score
-          environmental: Some(Score::from(0.0)), // exp environmental score
-        }, // exp
-      ), (
-        "3b5df91d 7.1", // test name
-        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:L/E:P/RL:X/RC:R/CR:L/IR:X/AR:H/MAV:L/MAC:L/MPR:X/MUI:R/MS:U/MC:H/MI:X/MA:H", // vec
-        Scores {
-          base: Score::from(6.3), // exp base score
-          temporal: Some(Score::from(5.7)), // exp temporal score
-          environmental: Some(Score::from(7.1)), // exp environmental score
-        }, // exp
-      ), (
-        "6966dbc6 5.5", // test name
-        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:L/E:P/RL:O/RC:X/CR:X/IR:X/AR:L/MAV:N/MAC:H/MPR:N/MUI:R/MS:X/MC:L/MI:H/MA:X", // vec
-        Scores {
-          base: Score::from(3.6), // exp base score
-          temporal: Some(Score::from(3.3)), // exp temporal score
-          environmental: Some(Score::from(5.5)), // exp environmental score
-        }, // exp
-      ), (
-        "fb54c05d 0.0", // test name
-        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N/E:H/RL:O/RC:X/CR:H/IR:X/AR:L/MAV:A/MAC:X/MPR:H/MUI:X/MS:U/MC:X/MI:N/MA:N", // vec
-        Scores {
-          base: Score::from(2.5), // exp base score
-          temporal: Some(Score::from(2.4)), // exp temporal score
-          environmental: Some(Score::from(0.0)), // exp environmental score
-        }, // exp
-      ), (
-        "771c960c 6.2", // test name
-        "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:N/A:L/E:X/RL:U/RC:U/CR:H/IR:M/AR:H/MAV:X/MAC:X/MPR:H/MUI:X/MS:X/MC:H/MI:X/MA:H", // vec
-        Scores {
-          base: Score::from(5.1), // exp base score
-          temporal: Some(Score::from(4.7)), // exp temporal score
-          environmental: Some(Score::from(6.2)), // exp environmental score
-        }, // exp
-      ), (
-        "e2e8975d 6.5", // test name
-        "CVSS:3.0/AV:N/AC:H/PR:H/UI:R/S:C/C:L/I:N/A:H/E:P/RL:T/RC:R/CR:H/IR:M/AR:M/MAV:A/MAC:H/MPR:N/MUI:X/MS:X/MC:N/MI:H/MA:X", // vec
-        Scores {
-          base: Score::from(6.2), // exp base score
-          temporal: Some(Score::from(5.4)), // exp temporal score
-          environmental: Some(Score::from(6.5)), // exp environmental score
-        }, // exp
-      ), (
-        "a855050c 0.0", // test name
-        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N/E:U/RL:W/RC:C/CR:M/IR:M/AR:M/MAV:A/MAC:L/MPR:L/MUI:N/MS:X/MC:N/MI:X/MA:N", // vec
-        Scores {
-          base: Score::from(3.7), // exp base score
-          temporal: Some(Score::from(3.3)), // exp temporal score
-          environmental: Some(Score::from(0.0)), // exp environmental score
-        }, // exp
-      ), (
-        "ca3dec7c 5.4", // test name
-        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:L/E:U/RL:U/RC:X/CR:M/IR:H/AR:X/MAV:X/MAC:L/MPR:H/MUI:X/MS:U/MC:H/MI:L/MA:X", // vec
-        Scores {
-          base: Score::from(5.9), // exp base score
-          temporal: Some(Score::from(5.4)), // exp temporal score
-          environmental: Some(Score::from(5.4)), // exp environmental score
-        }, // exp
-      ), (
-        "5f9300e3 4.2", // test name
-        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:H/E:P/RL:O/RC:U/CR:L/IR:L/AR:L/MAV:N/MAC:X/MPR:H/MUI:N/MS:C/MC:H/MI:N/MA:X", // vec
-        Scores {
-          base: Score::from(5.3), // exp base score
-          temporal: Some(Score::from(4.4)), // exp temporal score
-          environmental: Some(Score::from(4.2)), // exp environmental score
-        }, // exp
-      ), (
-        "96d06872 2.7", // test name
-        "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:U/C:H/I:L/A:N/E:U/RL:O/RC:C/CR:M/IR:H/AR:H/MAV:N/MAC:L/MPR:X/MUI:R/MS:U/MC:N/MI:N/MA:L", // vec
-        Scores {
-          base: Score::from(5.2), // exp base score
-          temporal: Some(Score::from(4.5)), // exp temporal score
-          environmental: Some(Score::from(2.7)), // exp environmental score
-        }, // exp
-      ), (
-        "d7c13267 5.9", // test name
-        "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:U/C:N/I:H/A:N/E:P/RL:O/RC:C/CR:H/IR:X/AR:X/MAV:N/MAC:H/MPR:H/MUI:X/MS:C/MC:L/MI:N/MA:H", // vec
-        Scores {
-          base: Score::from(4.5), // exp base score
-          temporal: Some(Score::from(4.1)), // exp temporal score
-          environmental: Some(Score::from(5.9)), // exp environmental score
-        }, // exp
-      ), (
-        "1e65cce4 5.2", // test name
-        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:L/E:F/RL:O/RC:X/CR:M/IR:H/AR:L/MAV:X/MAC:H/MPR:N/MUI:R/MS:X/MC:X/MI:X/MA:L", // vec
-        Scores {
-          base: Score::from(7.1), // exp base score
-          temporal: Some(Score::from(6.6)), // exp temporal score
-          environmental: Some(Score::from(5.2)), // exp environmental score
-        }, // exp
-      ), (
-        "357cc2cf 7.2", // test name
-        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:L/E:P/RL:W/RC:C/CR:L/IR:H/AR:L/MAV:L/MAC:L/MPR:N/MUI:R/MS:U/MC:X/MI:H/MA:H", // vec
-        Scores {
-          base: Score::from(7.6), // exp base score
-          temporal: Some(Score::from(7.0)), // exp temporal score
-          environmental: Some(Score::from(7.2)), // exp environmental score
-        }, // exp
-      ), (
-        "a77d0288 5.7", // test name
-        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:C/C:N/I:N/A:L/E:X/RL:O/RC:X/CR:H/IR:M/AR:L/MAV:P/MAC:L/MPR:H/MUI:X/MS:X/MC:N/MI:H/MA:H", // vec
-        Scores {
-          base: Score::from(1.9), // exp base score
-          temporal: Some(Score::from(1.9)), // exp temporal score
-          environmental: Some(Score::from(5.7)), // exp environmental score
-        }, // exp
-      ), (
-        "996d3426 2.7", // test name
-        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:H/I:L/A:L/E:U/RL:X/RC:X/CR:X/IR:M/AR:L/MAV:A/MAC:H/MPR:L/MUI:R/MS:U/MC:L/MI:N/MA:L", // vec
-        Scores {
-          base: Score::from(4.9), // exp base score
-          temporal: Some(Score::from(4.5)), // exp temporal score
-          environmental: Some(Score::from(2.7)), // exp environmental score
-        }, // exp
-      ), (
-        "641e71c7 3.7", // test name
-        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:L/A:H/E:H/RL:T/RC:U/CR:L/IR:M/AR:M/MAV:A/MAC:L/MPR:H/MUI:N/MS:X/MC:L/MI:N/MA:L", // vec
-        Scores {
-          base: Score::from(5.4), // exp base score
-          temporal: Some(Score::from(4.8)), // exp temporal score
-          environmental: Some(Score::from(3.7)), // exp environmental score
-        }, // exp
-      ), (
-        "d7b214c1 5.0", // test name
-        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:L/I:H/A:H/E:F/RL:X/RC:U/CR:M/IR:L/AR:L/MAV:N/MAC:X/MPR:H/MUI:R/MS:X/MC:H/MI:X/MA:H", // vec
-        Scores {
-          base: Score::from(5.6), // exp base score
-          temporal: Some(Score::from(5.0)), // exp temporal score
-          environmental: Some(Score::from(5.0)), // exp environmental score
-        }, // exp
-      ), (
-        "e7b45557 7.6", // test name
-        "CVSS:3.0/AV:P/AC:H/PR:L/UI:N/S:C/C:L/I:H/A:L/E:P/RL:U/RC:R/CR:M/IR:H/AR:X/MAV:N/MAC:H/MPR:X/MUI:X/MS:C/MC:N/MI:H/MA:N", // vec
-        Scores {
-          base: Score::from(6.2), // exp base score
-          temporal: Some(Score::from(5.6)), // exp temporal score
-          environmental: Some(Score::from(7.6)), // exp environmental score
-        }, // exp
-      ), (
-        "ab7208ba 2.0", // test name
-        "CVSS:3.0/AV:P/AC:H/PR:N/UI:N/S:C/C:N/I:N/A:N/E:P/RL:T/RC:C/CR:L/IR:X/AR:H/MAV:P/MAC:X/MPR:L/MUI:X/MS:U/MC:H/MI:N/MA:N", // vec
+        "f9caa85f 4.9", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:C/C:N/I:N/A:N/E:X/RL:O/RC:U/CR:X/IR:H/AR:X/MAV:P/MAC:H/MPR:L/MUI:R/MS:X/MC:L/MI:X/MA:H", // vec
         Scores {
           base: Score::from(0.0), // exp base score
           temporal: Some(Score::from(0.0)), // exp temporal score
-          environmental: Some(Score::from(2.0)), // exp environmental score
+          environmental: Some(Score::from(4.9)), // exp environmental score
         }, // exp
       ), (
-        "a721871c 6.8", // test name
-        "CVSS:3.0/AV:P/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H/E:F/RL:W/RC:U/CR:L/IR:H/AR:M/MAV:A/MAC:L/MPR:N/MUI:N/MS:C/MC:L/MI:N/MA:X", // vec
+        "33426f2e 7.8", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:L/E:U/RL:X/RC:X/CR:M/IR:X/AR:H/MAV:A/MAC:X/MPR:N/MUI:X/MS:C/MC:H/MI:H/MA:N", // vec
         Scores {
-          base: Score::from(6.4), // exp base score
-          temporal: Some(Score::from(5.6)), // exp temporal score
-          environmental: Some(Score::from(6.8)), // exp environmental score
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
         }, // exp
       ), (
-        "6c28d0be 7.4", // test name
-        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:L/E:U/RL:W/RC:U/CR:X/IR:L/AR:M/MAV:N/MAC:L/MPR:X/MUI:N/MS:X/MC:N/MI:L/MA:H", // vec
+        "d434cc1f 5.6", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N/E:F/RL:W/RC:C/CR:H/IR:X/AR:M/MAV:N/MAC:H/MPR:N/MUI:N/MS:X/MC:N/MI:H/MA:X", // vec
         Scores {
-          base: Score::from(6.9), // exp base score
-          temporal: Some(Score::from(5.7)), // exp temporal score
-          environmental: Some(Score::from(7.4)), // exp environmental score
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
         }, // exp
       ), (
-        "50c55497 2.8", // test name
-        "CVSS:3.0/AV:P/AC:L/PR:H/UI:N/S:C/C:H/I:N/A:H/E:F/RL:W/RC:R/CR:H/IR:M/AR:H/MAV:L/MAC:X/MPR:H/MUI:N/MS:U/MC:N/MI:X/MA:L", // vec
+        "f2c00236 9.3", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N/E:H/RL:U/RC:U/CR:X/IR:X/AR:X/MAV:N/MAC:L/MPR:X/MUI:N/MS:C/MC:H/MI:H/MA:L", // vec
         Scores {
-          base: Score::from(6.8), // exp base score
-          temporal: Some(Score::from(6.2)), // exp temporal score
-          environmental: Some(Score::from(2.8)), // exp environmental score
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(9.3)), // exp environmental score
         }, // exp
       ), (
-        "ca558b9d 3.1", // test name
-        "CVSS:3.0/AV:P/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:L/E:H/RL:W/RC:R/CR:X/IR:X/AR:X/MAV:N/MAC:H/MPR:H/MUI:X/MS:U/MC:X/MI:L/MA:L", // vec
+        "2715e064 3.1", // test name
+        "CVSS:3.0/AV:A/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H/E:X/RL:U/RC:U/CR:H/IR:M/AR:L/MAV:P/MAC:H/MPR:H/MUI:X/MS:C/MC:L/MI:X/MA:L", // vec
         Scores {
-          base: Score::from(2.9), // exp base score
-          temporal: Some(Score::from(2.8)), // exp temporal score
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
           environmental: Some(Score::from(3.1)), // exp environmental score
         }, // exp
       ), (
-        "c2cba0ed 5.7", // test name
-        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:L/E:X/RL:W/RC:C/CR:M/IR:L/AR:X/MAV:L/MAC:L/MPR:X/MUI:R/MS:U/MC:X/MI:L/MA:L", // vec
+        "bb4c83d0 4.1", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:N/S:C/C:H/I:N/A:H/E:H/RL:O/RC:X/CR:L/IR:M/AR:H/MAV:X/MAC:L/MPR:L/MUI:X/MS:C/MC:X/MI:N/MA:N", // vec
         Scores {
-          base: Score::from(4.9), // exp base score
-          temporal: Some(Score::from(4.8)), // exp temporal score
-          environmental: Some(Score::from(5.7)), // exp environmental score
-        }, // exp
-      ), (
-        "0adeac7a 5.1", // test name
-        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:H/E:X/RL:X/RC:U/CR:L/IR:L/AR:H/MAV:A/MAC:L/MPR:X/MUI:N/MS:U/MC:L/MI:N/MA:L", // vec
-        Scores {
-          base: Score::from(6.1), // exp base score
-          temporal: Some(Score::from(5.7)), // exp temporal score
-          environmental: Some(Score::from(5.1)), // exp environmental score
-        }, // exp
-      ), (
-        "b84e8ed7 8.5", // test name
-        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:C/C:N/I:H/A:H/E:F/RL:X/RC:X/CR:M/IR:H/AR:H/MAV:A/MAC:L/MPR:X/MUI:R/MS:C/MC:N/MI:H/MA:N", // vec
-        Scores {
-          base: Score::from(7.0), // exp base score
-          temporal: Some(Score::from(6.8)), // exp temporal score
-          environmental: Some(Score::from(8.5)), // exp environmental score
-        }, // exp
-      ), (
-        "9abf77df 2.8", // test name
-        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:H/I:L/A:H/E:P/RL:U/RC:R/CR:H/IR:M/AR:L/MAV:P/MAC:L/MPR:L/MUI:X/MS:C/MC:N/MI:X/MA:L", // vec
-        Scores {
-          base: Score::from(6.0), // exp base score
-          temporal: Some(Score::from(5.5)), // exp temporal score
-          environmental: Some(Score::from(2.8)), // exp environmental score
-        }, // exp
-      ), (
-        "9cbdcfb8 4.1", // test name
-        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:H/E:U/RL:T/RC:X/CR:M/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:X/MS:U/MC:N/MI:H/MA:L", // vec
-        Scores {
-          base: Score::from(6.0), // exp base score
-          temporal: Some(Score::from(5.3)), // exp temporal score
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
           environmental: Some(Score::from(4.1)), // exp environmental score
         }, // exp
       ), (
-        "55c8d69d 2.9", // test name
-        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:N/E:P/RL:O/RC:U/CR:H/IR:X/AR:H/MAV:A/MAC:X/MPR:L/MUI:R/MS:C/MC:L/MI:N/MA:X", // vec
+        "19dda9d3 8.7", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:N/S:C/C:N/I:H/A:H/E:X/RL:O/RC:U/CR:M/IR:H/AR:M/MAV:N/MAC:L/MPR:L/MUI:X/MS:C/MC:N/MI:X/MA:H", // vec
         Scores {
-          base: Score::from(4.4), // exp base score
-          temporal: Some(Score::from(3.7)), // exp temporal score
-          environmental: Some(Score::from(2.9)), // exp environmental score
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(8.7)), // exp environmental score
         }, // exp
       ), (
-        "7f6a4919 4.7", // test name
-        "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:H/E:F/RL:X/RC:X/CR:H/IR:L/AR:H/MAV:A/MAC:H/MPR:H/MUI:X/MS:X/MC:L/MI:H/MA:N", // vec
+        "8598a72f 2.6", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:N/S:U/C:L/I:N/A:N/E:X/RL:U/RC:R/CR:L/IR:M/AR:M/MAV:P/MAC:L/MPR:X/MUI:R/MS:C/MC:X/MI:L/MA:X", // vec
         Scores {
-          base: Score::from(7.6), // exp base score
-          temporal: Some(Score::from(7.4)), // exp temporal score
+          base: Score::from(1.9), // exp base score
+          temporal: Some(Score::from(1.9)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "c3aaeb71 6.2", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:C/C:H/I:H/A:H/E:P/RL:T/RC:R/CR:X/IR:L/AR:L/MAV:A/MAC:X/MPR:L/MUI:R/MS:C/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "e96f9296 2.6", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:C/C:H/I:L/A:N/E:P/RL:U/RC:U/CR:X/IR:L/AR:X/MAV:P/MAC:L/MPR:N/MUI:X/MS:X/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "08f5cb47 5.9", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:C/C:L/I:H/A:H/E:F/RL:T/RC:C/CR:H/IR:X/AR:X/MAV:X/MAC:X/MPR:X/MUI:R/MS:U/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "135b3a7d 4.3", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:C/C:L/I:H/A:N/E:P/RL:W/RC:R/CR:H/IR:X/AR:M/MAV:P/MAC:H/MPR:L/MUI:X/MS:U/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "78fadef5 6.9", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:C/C:N/I:H/A:L/E:H/RL:W/RC:C/CR:H/IR:L/AR:L/MAV:L/MAC:X/MPR:N/MUI:N/MS:U/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(6.9)), // exp environmental score
+        }, // exp
+      ), (
+        "21a49d06 0.0", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:C/C:N/I:L/A:H/E:U/RL:W/RC:R/CR:M/IR:L/AR:M/MAV:N/MAC:L/MPR:N/MUI:R/MS:U/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "1fbffcc8 6.3", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:H/E:H/RL:W/RC:R/CR:L/IR:L/AR:H/MAV:N/MAC:L/MPR:H/MUI:N/MS:X/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "574f70ed 5.5", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:L/E:F/RL:T/RC:C/CR:L/IR:M/AR:X/MAV:P/MAC:L/MPR:H/MUI:X/MS:C/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "55d98de8 4.7", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N/E:X/RL:X/RC:R/CR:X/IR:M/AR:H/MAV:X/MAC:L/MPR:X/MUI:R/MS:U/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.9)), // exp temporal score
           environmental: Some(Score::from(4.7)), // exp environmental score
         }, // exp
       ), (
-        "5ce87182 6.3", // test name
-        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:U/C:H/I:L/A:H/E:F/RL:W/RC:R/CR:H/IR:M/AR:L/MAV:X/MAC:H/MPR:L/MUI:N/MS:X/MC:X/MI:N/MA:H", // vec
+        "6f35ea59 4.8", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:U/C:L/I:N/A:L/E:H/RL:W/RC:X/CR:X/IR:L/AR:X/MAV:N/MAC:L/MPR:H/MUI:N/MS:U/MC:N/MI:N/MA:H", // vec
         Scores {
-          base: Score::from(6.4), // exp base score
+          base: Score::from(2.9), // exp base score
+          temporal: Some(Score::from(2.9)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "4dda92db 4.4", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:H/A:H/E:X/RL:T/RC:R/CR:X/IR:H/AR:X/MAV:L/MAC:L/MPR:L/MUI:N/MS:C/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "aad8f74d 3.5", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:H/A:N/E:P/RL:U/RC:U/CR:H/IR:L/AR:L/MAV:L/MAC:X/MPR:X/MUI:X/MS:U/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "79adea01 4.9", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:H/A:N/E:X/RL:X/RC:R/CR:L/IR:M/AR:H/MAV:P/MAC:X/MPR:L/MUI:R/MS:C/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.9)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "5f04cb88 3.1", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:H/E:F/RL:T/RC:R/CR:M/IR:H/AR:L/MAV:L/MAC:L/MPR:L/MUI:R/MS:U/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(3.1)), // exp environmental score
+        }, // exp
+      ), (
+        "7503a433 3.5", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:N/A:L/E:U/RL:O/RC:U/CR:H/IR:X/AR:X/MAV:N/MAC:L/MPR:N/MUI:X/MS:U/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(1.8), // exp base score
+          temporal: Some(Score::from(1.5)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "4dc24847 7.4", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H/E:F/RL:W/RC:C/CR:H/IR:H/AR:X/MAV:X/MAC:X/MPR:X/MUI:X/MS:C/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(7.8), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "58d77a33 5.9", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N/E:P/RL:O/RC:R/CR:X/IR:M/AR:X/MAV:N/MAC:H/MPR:L/MUI:X/MS:U/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "01159f40 5.8", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:H/E:U/RL:U/RC:U/CR:L/IR:H/AR:M/MAV:L/MAC:X/MPR:N/MUI:N/MS:X/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(7.0), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "f764fe7a 6.3", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:H/E:X/RL:W/RC:U/CR:M/IR:L/AR:M/MAV:X/MAC:L/MPR:H/MUI:X/MS:C/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(7.0), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "1d05f3c2 6.3", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:N/I:L/A:L/E:P/RL:T/RC:U/CR:H/IR:M/AR:H/MAV:L/MAC:H/MPR:L/MUI:R/MS:X/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(4.2), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "a80ceac5 2.1", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:N/I:L/A:L/E:X/RL:O/RC:C/CR:X/IR:H/AR:M/MAV:N/MAC:X/MPR:H/MUI:N/MS:U/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(4.2), // exp base score
+          temporal: Some(Score::from(4.0)), // exp temporal score
+          environmental: Some(Score::from(2.1)), // exp environmental score
+        }, // exp
+      ), (
+        "6950ad9f 5.0", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:H/E:F/RL:T/RC:C/CR:L/IR:X/AR:X/MAV:N/MAC:H/MPR:X/MUI:X/MS:C/MC:H/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "cc2cbced 2.4", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:H/E:H/RL:T/RC:R/CR:L/IR:M/AR:M/MAV:X/MAC:X/MPR:H/MUI:X/MS:C/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(2.4)), // exp environmental score
+        }, // exp
+      ), (
+        "2df775fd 2.1", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:N/E:X/RL:W/RC:C/CR:X/IR:X/AR:H/MAV:P/MAC:L/MPR:L/MUI:X/MS:X/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(2.1)), // exp environmental score
+        }, // exp
+      ), (
+        "163be6da 4.8", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:L/E:P/RL:O/RC:C/CR:X/IR:M/AR:H/MAV:P/MAC:H/MPR:X/MUI:R/MS:X/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "7ada095f 6.0", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:H/A:H/E:U/RL:X/RC:R/CR:M/IR:H/AR:M/MAV:L/MAC:X/MPR:X/MUI:N/MS:C/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "a93abe5c 0.0", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N/E:X/RL:X/RC:X/CR:H/IR:X/AR:H/MAV:N/MAC:X/MPR:L/MUI:N/MS:U/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(2.5), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "f2d2592b 3.3", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:H/E:P/RL:W/RC:C/CR:L/IR:L/AR:L/MAV:P/MAC:X/MPR:H/MUI:N/MS:C/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "50e6df36 6.0", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:L/E:P/RL:X/RC:R/CR:X/IR:X/AR:X/MAV:L/MAC:X/MPR:X/MUI:X/MS:X/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "31e76038 6.3", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:N/A:L/E:P/RL:U/RC:X/CR:M/IR:L/AR:X/MAV:X/MAC:H/MPR:N/MUI:X/MS:C/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
           temporal: Some(Score::from(5.8)), // exp temporal score
           environmental: Some(Score::from(6.3)), // exp environmental score
         }, // exp
       ), (
-        "3a9b0f3c 2.9", // test name
-        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:H/I:L/A:L/E:U/RL:O/RC:R/CR:M/IR:L/AR:X/MAV:N/MAC:L/MPR:H/MUI:R/MS:X/MC:N/MI:N/MA:X", // vec
+        "bd9f84fa 5.4", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:N/A:N/E:U/RL:U/RC:X/CR:X/IR:H/AR:M/MAV:L/MAC:L/MPR:X/MUI:R/MS:X/MC:N/MI:X/MA:H", // vec
         Scores {
-          base: Score::from(7.1), // exp base score
-          temporal: Some(Score::from(5.9)), // exp temporal score
-          environmental: Some(Score::from(2.9)), // exp environmental score
-        }, // exp
-      ), (
-        "aa154bda 3.7", // test name
-        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N/E:U/RL:W/RC:C/CR:X/IR:M/AR:L/MAV:N/MAC:X/MPR:L/MUI:N/MS:C/MC:N/MI:X/MA:L", // vec
-        Scores {
-          base: Score::from(5.2), // exp base score
-          temporal: Some(Score::from(4.6)), // exp temporal score
-          environmental: Some(Score::from(3.7)), // exp environmental score
-        }, // exp
-      ), (
-        "20975a9b 6.0", // test name
-        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:U/C:N/I:H/A:N/E:P/RL:X/RC:C/CR:X/IR:L/AR:M/MAV:P/MAC:H/MPR:N/MUI:R/MS:C/MC:H/MI:H/MA:L", // vec
-        Scores {
-          base: Score::from(5.2), // exp base score
+          base: Score::from(5.3), // exp base score
           temporal: Some(Score::from(4.9)), // exp temporal score
-          environmental: Some(Score::from(6.0)), // exp environmental score
+          environmental: Some(Score::from(5.4)), // exp environmental score
         }, // exp
       ), (
-        "a2b34d5f 6.4", // test name
-        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:L/I:H/A:H/E:X/RL:W/RC:U/CR:L/IR:M/AR:H/MAV:N/MAC:H/MPR:L/MUI:X/MS:U/MC:N/MI:H/MA:X", // vec
+        "9b1dbf34 6.4", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:L/E:U/RL:O/RC:R/CR:M/IR:X/AR:X/MAV:A/MAC:L/MPR:H/MUI:R/MS:X/MC:N/MI:X/MA:H", // vec
         Scores {
-          base: Score::from(7.6), // exp base score
-          temporal: Some(Score::from(6.8)), // exp temporal score
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
           environmental: Some(Score::from(6.4)), // exp environmental score
         }, // exp
       ), (
-        "d6f4d52c 7.0", // test name
-        "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:N/I:H/A:L/E:F/RL:T/RC:U/CR:M/IR:H/AR:M/MAV:N/MAC:X/MPR:H/MUI:N/MS:C/MC:H/MI:X/MA:X", // vec
+        "2806079f 0.0", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:H/E:P/RL:X/RC:C/CR:M/IR:M/AR:L/MAV:P/MAC:X/MPR:X/MUI:X/MS:C/MC:X/MI:N/MA:N", // vec
         Scores {
           base: Score::from(6.1), // exp base score
-          temporal: Some(Score::from(5.3)), // exp temporal score
-          environmental: Some(Score::from(7.0)), // exp environmental score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
         }, // exp
       ), (
-        "df05ce43 5.8", // test name
-        "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:L/I:L/A:L/E:U/RL:U/RC:C/CR:X/IR:L/AR:M/MAV:X/MAC:H/MPR:H/MUI:N/MS:C/MC:H/MI:H/MA:N", // vec
+        "f5b584f1 4.8", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:N/E:H/RL:U/RC:R/CR:M/IR:M/AR:M/MAV:N/MAC:H/MPR:X/MUI:N/MS:C/MC:L/MI:L/MA:X", // vec
         Scores {
-          base: Score::from(3.9), // exp base score
-          temporal: Some(Score::from(3.6)), // exp temporal score
-          environmental: Some(Score::from(5.8)), // exp environmental score
+          base: Score::from(2.5), // exp base score
+          temporal: Some(Score::from(2.4)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
         }, // exp
       ), (
-        "cd99dd87 2.3", // test name
-        "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:N/A:L/E:H/RL:X/RC:X/CR:M/IR:H/AR:L/MAV:P/MAC:H/MPR:H/MUI:R/MS:C/MC:N/MI:X/MA:H", // vec
+        "3bd97516 3.0", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:N/A:L/E:F/RL:O/RC:U/CR:H/IR:X/AR:M/MAV:N/MAC:H/MPR:X/MUI:N/MS:X/MC:N/MI:X/MA:X", // vec
         Scores {
-          base: Score::from(3.2), // exp base score
-          temporal: Some(Score::from(3.2)), // exp temporal score
-          environmental: Some(Score::from(2.3)), // exp environmental score
-        }, // exp
-      ), (
-        "d0a31f1b 2.8", // test name
-        "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:N/A:L/E:P/RL:T/RC:R/CR:X/IR:M/AR:M/MAV:L/MAC:X/MPR:N/MUI:N/MS:X/MC:N/MI:N/MA:X", // vec
-        Scores {
-          base: Score::from(3.2), // exp base score
-          temporal: Some(Score::from(2.8)), // exp temporal score
-          environmental: Some(Score::from(2.8)), // exp environmental score
-        }, // exp
-      ), (
-        "0d7ff86a 6.7", // test name
-        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:L/A:H/E:P/RL:W/RC:U/CR:M/IR:X/AR:X/MAV:A/MAC:X/MPR:L/MUI:N/MS:C/MC:X/MI:X/MA:X", // vec
-        Scores {
-          base: Score::from(7.6), // exp base score
-          temporal: Some(Score::from(6.4)), // exp temporal score
-          environmental: Some(Score::from(6.7)), // exp environmental score
-        }, // exp
-      ), (
-        "d327c48d 6.2", // test name
-        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:L/E:F/RL:W/RC:C/CR:L/IR:M/AR:M/MAV:N/MAC:X/MPR:L/MUI:R/MS:C/MC:N/MI:X/MA:L", // vec
-        Scores {
-          base: Score::from(6.5), // exp base score
-          temporal: Some(Score::from(6.2)), // exp temporal score
-          environmental: Some(Score::from(6.2)), // exp environmental score
-        }, // exp
-      ), (
-        "702c5cdb 4.1", // test name
-        "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:N/I:H/A:H/E:P/RL:U/RC:X/CR:H/IR:X/AR:L/MAV:N/MAC:L/MPR:L/MUI:X/MS:U/MC:N/MI:L/MA:N", // vec
-        Scores {
-          base: Score::from(7.9), // exp base score
-          temporal: Some(Score::from(7.5)), // exp temporal score
-          environmental: Some(Score::from(4.1)), // exp environmental score
-        }, // exp
-      ), (
-        "6a71ed77 2.8", // test name
-        "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:U/C:H/I:L/A:L/E:P/RL:U/RC:U/CR:M/IR:H/AR:M/MAV:L/MAC:H/MPR:N/MUI:N/MS:C/MC:N/MI:N/MA:X", // vec
-        Scores {
-          base: Score::from(5.3), // exp base score
-          temporal: Some(Score::from(4.6)), // exp temporal score
-          environmental: Some(Score::from(2.8)), // exp environmental score
-        }, // exp
-      ), (
-        "fb5bffd7 3.0", // test name
-        "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:U/C:H/I:N/A:L/E:U/RL:X/RC:U/CR:H/IR:M/AR:X/MAV:N/MAC:X/MPR:X/MUI:X/MS:X/MC:N/MI:L/MA:X", // vec
-        Scores {
-          base: Score::from(4.8), // exp base score
-          temporal: Some(Score::from(4.1)), // exp temporal score
+          base: Score::from(2.5), // exp base score
+          temporal: Some(Score::from(2.2)), // exp temporal score
           environmental: Some(Score::from(3.0)), // exp environmental score
         }, // exp
       ), (
-        "eb2583cb 4.7", // test name
-        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:N/E:U/RL:U/RC:X/CR:L/IR:L/AR:M/MAV:A/MAC:H/MPR:N/MUI:N/MS:C/MC:H/MI:N/MA:L", // vec
+        "22eba661 5.3", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:N/E:U/RL:O/RC:U/CR:H/IR:X/AR:L/MAV:A/MAC:H/MPR:N/MUI:R/MS:C/MC:N/MI:X/MA:H", // vec
         Scores {
-          base: Score::from(7.3), // exp base score
-          temporal: Some(Score::from(6.7)), // exp temporal score
-          environmental: Some(Score::from(4.7)), // exp environmental score
-        }, // exp
-      ), (
-        "37c78ccc 5.3", // test name
-        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:H/A:H/E:H/RL:W/RC:X/CR:M/IR:X/AR:X/MAV:P/MAC:L/MPR:L/MUI:X/MS:U/MC:X/MI:L/MA:X", // vec
-        Scores {
-          base: Score::from(8.7), // exp base score
-          temporal: Some(Score::from(8.5)), // exp temporal score
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
           environmental: Some(Score::from(5.3)), // exp environmental score
         }, // exp
       ), (
-        "59edaf31 6.2", // test name
-        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:H/E:U/RL:T/RC:R/CR:H/IR:X/AR:L/MAV:N/MAC:X/MPR:N/MUI:X/MS:X/MC:X/MI:N/MA:L", // vec
+        "92e34d6c 3.2", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:N/A:N/E:U/RL:T/RC:R/CR:H/IR:L/AR:L/MAV:A/MAC:L/MPR:H/MUI:R/MS:X/MC:L/MI:L/MA:L", // vec
         Scores {
-          base: Score::from(7.3), // exp base score
-          temporal: Some(Score::from(6.2)), // exp temporal score
+          base: Score::from(2.2), // exp base score
+          temporal: Some(Score::from(1.9)), // exp temporal score
+          environmental: Some(Score::from(3.2)), // exp environmental score
+        }, // exp
+      ), (
+        "6e4cebcb 6.2", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:N/E:X/RL:T/RC:U/CR:L/IR:H/AR:L/MAV:L/MAC:L/MPR:L/MUI:R/MS:U/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(3.9)), // exp temporal score
           environmental: Some(Score::from(6.2)), // exp environmental score
         }, // exp
       ), (
-        "58909135 2.7", // test name
-        "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:N/I:H/A:L/E:H/RL:O/RC:C/CR:L/IR:L/AR:H/MAV:L/MAC:H/MPR:H/MUI:R/MS:C/MC:X/MI:X/MA:N", // vec
-        Scores {
-          base: Score::from(5.6), // exp base score
-          temporal: Some(Score::from(5.4)), // exp temporal score
-          environmental: Some(Score::from(2.7)), // exp environmental score
-        }, // exp
-      ), (
-        "d710247a 4.0", // test name
-        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:L/E:H/RL:W/RC:X/CR:H/IR:L/AR:L/MAV:A/MAC:H/MPR:H/MUI:X/MS:X/MC:X/MI:X/MA:L", // vec
-        Scores {
-          base: Score::from(5.7), // exp base score
-          temporal: Some(Score::from(5.6)), // exp temporal score
-          environmental: Some(Score::from(4.0)), // exp environmental score
-        }, // exp
-      ), (
-        "36c13dd9 4.6", // test name
-        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:L/E:F/RL:O/RC:C/CR:X/IR:X/AR:L/MAV:P/MAC:L/MPR:L/MUI:R/MS:U/MC:H/MI:N/MA:H", // vec
-        Scores {
-          base: Score::from(7.3), // exp base score
-          temporal: Some(Score::from(6.8)), // exp temporal score
-          environmental: Some(Score::from(4.6)), // exp environmental score
-        }, // exp
-      ), (
-        "78b535bb 4.0", // test name
-        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N/E:U/RL:T/RC:X/CR:X/IR:L/AR:X/MAV:X/MAC:L/MPR:N/MUI:N/MS:U/MC:L/MI:X/MA:N", // vec
+        "c21bb6ff 5.5", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:L/A:H/E:F/RL:O/RC:X/CR:M/IR:X/AR:L/MAV:A/MAC:L/MPR:L/MUI:X/MS:U/MC:N/MI:H/MA:H", // vec
         Scores {
           base: Score::from(5.0), // exp base score
-          temporal: Some(Score::from(4.4)), // exp temporal score
-          environmental: Some(Score::from(4.0)), // exp environmental score
-        }, // exp
-      ), (
-        "f14e3efd 7.5", // test name
-        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H/E:F/RL:X/RC:R/CR:M/IR:H/AR:H/MAV:A/MAC:H/MPR:L/MUI:X/MS:C/MC:N/MI:L/MA:H", // vec
-        Scores {
-          base: Score::from(6.6), // exp base score
-          temporal: Some(Score::from(6.2)), // exp temporal score
-          environmental: Some(Score::from(7.5)), // exp environmental score
-        }, // exp
-      ), (
-        "1d7392fd 5.5", // test name
-        "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:C/C:L/I:N/A:H/E:X/RL:U/RC:C/CR:L/IR:L/AR:X/MAV:L/MAC:X/MPR:N/MUI:X/MS:X/MC:N/MI:X/MA:H", // vec
-        Scores {
-          base: Score::from(6.2), // exp base score
-          temporal: Some(Score::from(6.2)), // exp temporal score
+          temporal: Some(Score::from(4.7)), // exp temporal score
           environmental: Some(Score::from(5.5)), // exp environmental score
         }, // exp
       ), (
-        "c2ad50a2 5.8", // test name
-        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:H/E:F/RL:O/RC:X/CR:H/IR:H/AR:M/MAV:X/MAC:H/MPR:N/MUI:R/MS:U/MC:X/MI:N/MA:H", // vec
+        "a2121ab3 3.7", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:H/E:F/RL:W/RC:C/CR:H/IR:L/AR:L/MAV:A/MAC:L/MPR:L/MUI:R/MS:U/MC:X/MI:L/MA:X", // vec
         Scores {
-          base: Score::from(7.7), // exp base score
-          temporal: Some(Score::from(7.1)), // exp temporal score
-          environmental: Some(Score::from(5.8)), // exp environmental score
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
         }, // exp
       ), (
-        "4a146f9a 6.8", // test name
-        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:N/E:P/RL:U/RC:R/CR:X/IR:H/AR:L/MAV:P/MAC:L/MPR:L/MUI:N/MS:C/MC:H/MI:H/MA:L", // vec
+        "8d170332 5.5", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H/E:U/RL:U/RC:X/CR:X/IR:X/AR:X/MAV:A/MAC:H/MPR:H/MUI:N/MS:U/MC:X/MI:L/MA:X", // vec
         Scores {
-          base: Score::from(0.0), // exp base score
-          temporal: Some(Score::from(0.0)), // exp temporal score
-          environmental: Some(Score::from(6.8)), // exp environmental score
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
         }, // exp
       ), (
-        "949f540b 7.1", // test name
-        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:H/E:P/RL:U/RC:U/CR:H/IR:M/AR:M/MAV:N/MAC:X/MPR:H/MUI:N/MS:C/MC:H/MI:H/MA:N", // vec
+        "7c866008 7.7", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:H/E:X/RL:U/RC:U/CR:H/IR:M/AR:L/MAV:N/MAC:L/MPR:L/MUI:N/MS:U/MC:H/MI:N/MA:N", // vec
         Scores {
-          base: Score::from(8.7), // exp base score
-          temporal: Some(Score::from(7.6)), // exp temporal score
-          environmental: Some(Score::from(7.1)), // exp environmental score
+          base: Score::from(7.8), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(7.7)), // exp environmental score
         }, // exp
       ), (
-        "f8a180f7 8.8", // test name
-        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:L/A:N/E:X/RL:U/RC:X/CR:H/IR:H/AR:X/MAV:N/MAC:L/MPR:L/MUI:N/MS:U/MC:X/MI:H/MA:L", // vec
+        "8a4bd434 6.5", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:C/C:L/I:H/A:N/E:H/RL:O/RC:C/CR:X/IR:X/AR:H/MAV:N/MAC:X/MPR:N/MUI:X/MS:C/MC:N/MI:H/MA:N", // vec
         Scores {
-          base: Score::from(6.9), // exp base score
-          temporal: Some(Score::from(6.9)), // exp temporal score
-          environmental: Some(Score::from(8.8)), // exp environmental score
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
         }, // exp
       ), (
-        "9d75e654 3.4", // test name
-        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:L/E:F/RL:O/RC:C/CR:L/IR:X/AR:L/MAV:P/MAC:H/MPR:X/MUI:R/MS:U/MC:L/MI:X/MA:H", // vec
+        "e3ddf34e 4.3", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:H/E:P/RL:T/RC:R/CR:M/IR:L/AR:L/MAV:L/MAC:L/MPR:L/MUI:N/MS:X/MC:X/MI:H/MA:L", // vec
         Scores {
-          base: Score::from(5.8), // exp base score
-          temporal: Some(Score::from(5.4)), // exp temporal score
-          environmental: Some(Score::from(3.4)), // exp environmental score
+          base: Score::from(7.8), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
         }, // exp
       ), (
-        "9777071a 5.6", // test name
-        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N/E:U/RL:X/RC:R/CR:M/IR:H/AR:H/MAV:L/MAC:H/MPR:H/MUI:N/MS:U/MC:L/MI:L/MA:H", // vec
+        "a37bcbc9 3.7", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:L/A:L/E:P/RL:X/RC:R/CR:M/IR:L/AR:M/MAV:N/MAC:H/MPR:N/MUI:N/MS:C/MC:X/MI:N/MA:L", // vec
         Scores {
-          base: Score::from(3.1), // exp base score
-          temporal: Some(Score::from(2.8)), // exp temporal score
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "038d1947 2.9", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:N/A:L/E:P/RL:U/RC:R/CR:X/IR:H/AR:X/MAV:L/MAC:X/MPR:N/MUI:X/MS:X/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(2.9)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "11a8213e 5.6", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H/E:H/RL:O/RC:U/CR:H/IR:X/AR:X/MAV:L/MAC:X/MPR:H/MUI:R/MS:U/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
           environmental: Some(Score::from(5.6)), // exp environmental score
         }, // exp
       ), (
-        "e2c411f2 5.8", // test name
-        "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N/E:H/RL:W/RC:C/CR:X/IR:H/AR:M/MAV:N/MAC:H/MPR:H/MUI:N/MS:X/MC:X/MI:X/MA:H", // vec
+        "ebf726d2 6.6", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:L/E:X/RL:X/RC:R/CR:X/IR:L/AR:L/MAV:A/MAC:L/MPR:N/MUI:X/MS:X/MC:H/MI:X/MA:L", // vec
         Scores {
-          base: Score::from(6.5), // exp base score
-          temporal: Some(Score::from(6.4)), // exp temporal score
-          environmental: Some(Score::from(5.8)), // exp environmental score
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
         }, // exp
       ), (
-        "7c0e9da6 8.5", // test name
-        "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:N/I:H/A:H/E:H/RL:W/RC:C/CR:X/IR:X/AR:H/MAV:L/MAC:L/MPR:N/MUI:N/MS:X/MC:L/MI:X/MA:L", // vec
+        "b41f8aae 2.2", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:H/A:H/E:H/RL:U/RC:C/CR:X/IR:M/AR:X/MAV:P/MAC:X/MPR:X/MUI:N/MS:C/MC:N/MI:N/MA:L", // vec
         Scores {
-          base: Score::from(8.7), // exp base score
-          temporal: Some(Score::from(8.5)), // exp temporal score
-          environmental: Some(Score::from(8.5)), // exp environmental score
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(2.2)), // exp environmental score
         }, // exp
       ), (
-        "35e59087 7.0", // test name
-        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H/E:F/RL:W/RC:C/CR:X/IR:L/AR:X/MAV:P/MAC:L/MPR:X/MUI:N/MS:X/MC:H/MI:L/MA:X", // vec
+        "b3386320 7.0", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:L/E:P/RL:T/RC:C/CR:X/IR:H/AR:X/MAV:X/MAC:L/MPR:L/MUI:X/MS:X/MC:X/MI:H/MA:X", // vec
         Scores {
-          base: Score::from(10.0), // exp base score
-          temporal: Some(Score::from(9.5)), // exp temporal score
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.7)), // exp temporal score
           environmental: Some(Score::from(7.0)), // exp environmental score
         }, // exp
       ), (
-        "c26704d3 6.4", // test name
-        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:N/A:L/E:P/RL:W/RC:R/CR:M/IR:X/AR:M/MAV:L/MAC:H/MPR:H/MUI:X/MS:C/MC:H/MI:L/MA:H", // vec
+        "7ee4e1e1 3.6", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:H/E:U/RL:U/RC:C/CR:M/IR:H/AR:L/MAV:L/MAC:H/MPR:N/MUI:R/MS:X/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "d9a1755f 0.0", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:L/E:U/RL:U/RC:U/CR:M/IR:H/AR:H/MAV:L/MAC:H/MPR:N/MUI:X/MS:C/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "0a7fdba5 6.4", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:L/E:X/RL:T/RC:C/CR:H/IR:H/AR:H/MAV:P/MAC:L/MPR:X/MUI:R/MS:X/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "397e267e 5.1", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L/E:F/RL:T/RC:U/CR:L/IR:X/AR:L/MAV:N/MAC:L/MPR:H/MUI:X/MS:U/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(5.1)), // exp environmental score
+        }, // exp
+      ), (
+        "c4c7f472 3.6", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H/E:H/RL:X/RC:U/CR:X/IR:H/AR:L/MAV:X/MAC:X/MPR:H/MUI:X/MS:X/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "9fc302de 4.8", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:H/E:F/RL:T/RC:U/CR:H/IR:H/AR:X/MAV:P/MAC:H/MPR:X/MUI:R/MS:U/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.7), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "71f3aa74 6.8", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:H/E:H/RL:O/RC:R/CR:X/IR:M/AR:M/MAV:L/MAC:X/MPR:L/MUI:R/MS:C/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "9002756c 5.5", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:L/E:P/RL:O/RC:C/CR:M/IR:L/AR:H/MAV:N/MAC:L/MPR:L/MUI:R/MS:X/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "33afea29 4.2", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:L/E:X/RL:X/RC:R/CR:L/IR:L/AR:L/MAV:L/MAC:H/MPR:L/MUI:X/MS:U/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "dc99424e 6.9", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:N/E:H/RL:X/RC:U/CR:X/IR:M/AR:H/MAV:A/MAC:H/MPR:N/MUI:R/MS:X/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(6.9)), // exp environmental score
+        }, // exp
+      ), (
+        "b48f7dc0 6.5", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N/E:U/RL:U/RC:U/CR:M/IR:L/AR:M/MAV:N/MAC:X/MPR:L/MUI:R/MS:C/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.7), // exp base score
+          temporal: Some(Score::from(4.0)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "a44c4fbf 5.7", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:L/I:H/A:H/E:U/RL:T/RC:R/CR:M/IR:M/AR:M/MAV:X/MAC:L/MPR:L/MUI:R/MS:C/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "04e58356 5.1", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:H/E:F/RL:W/RC:U/CR:M/IR:H/AR:M/MAV:X/MAC:H/MPR:L/MUI:R/MS:X/MC:X/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(5.1)), // exp environmental score
+        }, // exp
+      ), (
+        "a8d87b03 6.1", // test name
+        "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N/E:U/RL:W/RC:U/CR:H/IR:H/AR:H/MAV:L/MAC:X/MPR:L/MUI:R/MS:C/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(2.5), // exp base score
+          temporal: Some(Score::from(2.1)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "a3e5b22e 4.9", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:C/C:H/I:L/A:H/E:U/RL:U/RC:R/CR:X/IR:L/AR:H/MAV:N/MAC:H/MPR:L/MUI:N/MS:C/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "2140c5cf 8.7", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:C/C:H/I:N/A:L/E:U/RL:U/RC:X/CR:X/IR:X/AR:H/MAV:A/MAC:X/MPR:N/MUI:N/MS:C/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(8.7)), // exp environmental score
+        }, // exp
+      ), (
+        "4ec72dbc 6.6", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:N/A:H/E:H/RL:U/RC:R/CR:X/IR:X/AR:M/MAV:L/MAC:X/MPR:L/MUI:R/MS:U/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "612955e4 4.3", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:N/A:N/E:U/RL:X/RC:R/CR:L/IR:H/AR:L/MAV:L/MAC:X/MPR:L/MUI:X/MS:C/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "c72f6e49 5.4", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:C/C:N/I:H/A:N/E:F/RL:X/RC:U/CR:M/IR:L/AR:H/MAV:P/MAC:L/MPR:H/MUI:N/MS:U/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "86497329 6.5", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:C/C:N/I:L/A:H/E:H/RL:U/RC:R/CR:M/IR:X/AR:M/MAV:L/MAC:L/MPR:H/MUI:X/MS:X/MC:X/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "ca23ccd1 5.7", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:N/A:L/E:U/RL:W/RC:X/CR:X/IR:X/AR:H/MAV:P/MAC:H/MPR:N/MUI:X/MS:X/MC:H/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "458cb3e4 3.5", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:H/E:X/RL:O/RC:R/CR:X/IR:L/AR:X/MAV:N/MAC:L/MPR:X/MUI:N/MS:X/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "44e05435 7.3", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:N/E:H/RL:W/RC:U/CR:L/IR:X/AR:H/MAV:X/MAC:H/MPR:N/MUI:X/MS:C/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(4.0)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "2e1344be 5.9", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:C/C:H/I:N/A:L/E:P/RL:X/RC:R/CR:X/IR:X/AR:L/MAV:X/MAC:H/MPR:N/MUI:R/MS:X/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "470c68cc 6.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:H/E:F/RL:W/RC:R/CR:M/IR:L/AR:M/MAV:N/MAC:L/MPR:L/MUI:X/MS:U/MC:X/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "05218192 7.5", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:L/E:P/RL:W/RC:X/CR:M/IR:H/AR:M/MAV:X/MAC:X/MPR:L/MUI:R/MS:X/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(7.5)), // exp environmental score
+        }, // exp
+      ), (
+        "d56ca5a4 1.2", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:C/C:L/I:N/A:N/E:U/RL:X/RC:U/CR:L/IR:H/AR:L/MAV:P/MAC:L/MPR:N/MUI:X/MS:C/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(2.8), // exp base score
+          temporal: Some(Score::from(2.4)), // exp temporal score
+          environmental: Some(Score::from(1.2)), // exp environmental score
+        }, // exp
+      ), (
+        "30fee97e 0.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:C/C:N/I:H/A:L/E:U/RL:W/RC:R/CR:H/IR:X/AR:X/MAV:X/MAC:H/MPR:N/MUI:N/MS:C/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "49e7ebfa 4.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:C/C:N/I:H/A:N/E:F/RL:T/RC:U/CR:M/IR:X/AR:L/MAV:A/MAC:H/MPR:X/MUI:X/MS:U/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "99ecf78d 2.4", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:C/C:N/I:N/A:L/E:P/RL:W/RC:X/CR:L/IR:X/AR:X/MAV:N/MAC:H/MPR:X/MUI:R/MS:X/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(2.8), // exp base score
+          temporal: Some(Score::from(2.6)), // exp temporal score
+          environmental: Some(Score::from(2.4)), // exp environmental score
+        }, // exp
+      ), (
+        "a429d031 6.2", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:U/C:H/I:H/A:H/E:F/RL:X/RC:X/CR:M/IR:L/AR:L/MAV:N/MAC:H/MPR:N/MUI:X/MS:X/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "ba85d750 7.9", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:U/C:L/I:N/A:L/E:X/RL:W/RC:X/CR:X/IR:X/AR:L/MAV:A/MAC:X/MPR:N/MUI:R/MS:C/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(3.1), // exp base score
+          temporal: Some(Score::from(3.1)), // exp temporal score
+          environmental: Some(Score::from(7.9)), // exp environmental score
+        }, // exp
+      ), (
+        "c8078def 6.5", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:U/C:L/I:N/A:L/E:X/RL:X/RC:R/CR:L/IR:X/AR:X/MAV:N/MAC:H/MPR:L/MUI:N/MS:C/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(3.1), // exp base score
+          temporal: Some(Score::from(3.0)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "6778bc57 2.7", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:U/C:L/I:N/A:N/E:F/RL:W/RC:C/CR:X/IR:X/AR:X/MAV:X/MAC:X/MPR:L/MUI:X/MS:X/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(2.0), // exp base score
+          temporal: Some(Score::from(1.9)), // exp temporal score
+          environmental: Some(Score::from(2.7)), // exp environmental score
+        }, // exp
+      ), (
+        "4ec4771e 4.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:U/C:N/I:L/A:L/E:H/RL:O/RC:R/CR:M/IR:L/AR:M/MAV:A/MAC:X/MPR:X/MUI:R/MS:U/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(3.1), // exp base score
+          temporal: Some(Score::from(2.9)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "8973e18e 5.4", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:H/UI:R/S:U/C:N/I:N/A:N/E:F/RL:T/RC:U/CR:L/IR:H/AR:H/MAV:N/MAC:X/MPR:N/MUI:X/MS:U/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "6dd16332 8.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:L/E:H/RL:U/RC:X/CR:H/IR:M/AR:H/MAV:N/MAC:L/MPR:L/MUI:R/MS:U/MC:X/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(7.9), // exp base score
+          temporal: Some(Score::from(7.9)), // exp temporal score
+          environmental: Some(Score::from(8.0)), // exp environmental score
+        }, // exp
+      ), (
+        "6cf885a5 3.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:H/A:N/E:P/RL:T/RC:C/CR:L/IR:L/AR:M/MAV:P/MAC:X/MPR:N/MUI:N/MS:C/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "efd5d83c 2.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:L/E:U/RL:T/RC:U/CR:H/IR:M/AR:M/MAV:P/MAC:L/MPR:L/MUI:N/MS:X/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(2.0)), // exp environmental score
+        }, // exp
+      ), (
+        "3bd1a1f1 2.6", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N/E:X/RL:W/RC:X/CR:H/IR:H/AR:X/MAV:L/MAC:H/MPR:H/MUI:X/MS:U/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "af011c5b 0.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:F/RL:W/RC:U/CR:L/IR:M/AR:L/MAV:X/MAC:H/MPR:H/MUI:R/MS:X/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(7.8), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "6aa74f12 5.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:L/E:U/RL:X/RC:X/CR:L/IR:L/AR:X/MAV:A/MAC:H/MPR:H/MUI:X/MS:C/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "ae65d77c 5.6", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N/E:U/RL:T/RC:R/CR:H/IR:M/AR:X/MAV:A/MAC:H/MPR:N/MUI:R/MS:U/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "33005b23 1.9", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:L/E:X/RL:U/RC:U/CR:X/IR:X/AR:L/MAV:P/MAC:X/MPR:H/MUI:X/MS:C/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.5)), // exp temporal score
+          environmental: Some(Score::from(1.9)), // exp environmental score
+        }, // exp
+      ), (
+        "140a8bf3 6.1", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:C/C:L/I:H/A:H/E:H/RL:U/RC:X/CR:H/IR:H/AR:M/MAV:X/MAC:H/MPR:H/MUI:R/MS:U/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(8.1)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "5c33a97c 3.3", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:C/C:L/I:H/A:N/E:U/RL:U/RC:U/CR:X/IR:L/AR:H/MAV:X/MAC:H/MPR:X/MUI:N/MS:U/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "a0a16abc 5.8", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:C/C:N/I:H/A:N/E:P/RL:U/RC:U/CR:L/IR:H/AR:H/MAV:P/MAC:L/MPR:X/MUI:N/MS:U/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "354e3d65 2.3", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:C/C:N/I:L/A:N/E:H/RL:U/RC:R/CR:M/IR:X/AR:M/MAV:A/MAC:H/MPR:L/MUI:R/MS:U/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(3.1)), // exp temporal score
+          environmental: Some(Score::from(2.3)), // exp environmental score
+        }, // exp
+      ), (
+        "51b069ee 5.8", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:N/E:P/RL:T/RC:R/CR:H/IR:X/AR:X/MAV:A/MAC:H/MPR:N/MUI:N/MS:U/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "586f8283 4.3", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:L/E:X/RL:X/RC:R/CR:H/IR:X/AR:L/MAV:X/MAC:H/MPR:L/MUI:R/MS:X/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "c2cbc8a9 6.3", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N/E:F/RL:T/RC:C/CR:X/IR:X/AR:X/MAV:L/MAC:L/MPR:H/MUI:N/MS:C/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.0), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "3157d993 0.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:H/E:U/RL:T/RC:C/CR:H/IR:M/AR:X/MAV:X/MAC:X/MPR:H/MUI:N/MS:C/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "cdb15bb4 8.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:N/A:H/E:H/RL:T/RC:C/CR:L/IR:X/AR:H/MAV:A/MAC:X/MPR:X/MUI:R/MS:C/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(8.0)), // exp environmental score
+        }, // exp
+      ), (
+        "5144b75d 3.8", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:N/I:L/A:H/E:X/RL:O/RC:U/CR:H/IR:H/AR:M/MAV:A/MAC:X/MPR:X/MUI:R/MS:C/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "a1ac3830 4.7", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:N/I:L/A:L/E:H/RL:X/RC:R/CR:X/IR:M/AR:L/MAV:N/MAC:H/MPR:X/MUI:R/MS:X/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(3.9), // exp base score
+          temporal: Some(Score::from(3.8)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "09bb1824 5.9", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:N/I:L/A:L/E:P/RL:U/RC:X/CR:H/IR:L/AR:H/MAV:A/MAC:X/MPR:H/MUI:R/MS:U/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(3.9), // exp base score
+          temporal: Some(Score::from(3.7)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "d9b6b652 4.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:L/E:X/RL:X/RC:R/CR:X/IR:L/AR:M/MAV:A/MAC:L/MPR:L/MUI:N/MS:C/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(9.2), // exp base score
+          temporal: Some(Score::from(8.9)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "309ba2e9 6.7", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N/E:X/RL:X/RC:R/CR:M/IR:L/AR:H/MAV:X/MAC:L/MPR:L/MUI:N/MS:X/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "d6d311da 4.1", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L/E:F/RL:W/RC:X/CR:X/IR:H/AR:X/MAV:X/MAC:L/MPR:N/MUI:X/MS:X/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(4.1)), // exp environmental score
+        }, // exp
+      ), (
+        "b480c95c 7.8", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:H/E:U/RL:O/RC:C/CR:H/IR:L/AR:H/MAV:A/MAC:L/MPR:L/MUI:N/MS:X/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(9.0), // exp base score
+          temporal: Some(Score::from(7.8)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
+        }, // exp
+      ), (
+        "8b1419b6 5.6", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:H/E:X/RL:X/RC:R/CR:H/IR:X/AR:L/MAV:X/MAC:L/MPR:L/MUI:R/MS:U/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(9.0), // exp base score
+          temporal: Some(Score::from(8.7)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "a6d5e596 5.7", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:X/RL:T/RC:R/CR:M/IR:M/AR:X/MAV:P/MAC:X/MPR:X/MUI:X/MS:X/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(8.4), // exp base score
+          temporal: Some(Score::from(7.8)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "408f30f3 6.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:P/RL:W/RC:U/CR:X/IR:M/AR:L/MAV:L/MAC:X/MPR:L/MUI:X/MS:X/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(7.7), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "57d8463b 5.3", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:H/E:U/RL:T/RC:R/CR:H/IR:H/AR:L/MAV:P/MAC:H/MPR:X/MUI:R/MS:U/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(5.3)), // exp environmental score
+        }, // exp
+      ), (
+        "cc4f999e 7.2", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N/E:H/RL:T/RC:C/CR:M/IR:M/AR:L/MAV:N/MAC:L/MPR:N/MUI:X/MS:C/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(3.6), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "30fffe32 4.6", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N/E:H/RL:W/RC:C/CR:L/IR:M/AR:X/MAV:A/MAC:L/MPR:N/MUI:N/MS:C/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(3.6), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "4d9b73c4 5.2", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:C/C:N/I:H/A:L/E:X/RL:W/RC:C/CR:X/IR:L/AR:X/MAV:N/MAC:X/MPR:N/MUI:N/MS:U/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "fceafbe9 8.9", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H/E:F/RL:U/RC:X/CR:X/IR:H/AR:H/MAV:N/MAC:X/MPR:H/MUI:N/MS:C/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(7.8), // exp base score
+          temporal: Some(Score::from(7.6)), // exp temporal score
+          environmental: Some(Score::from(8.9)), // exp environmental score
+        }, // exp
+      ), (
+        "f46f39f4 2.6", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N/E:X/RL:O/RC:X/CR:M/IR:X/AR:L/MAV:A/MAC:X/MPR:H/MUI:N/MS:X/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "fd61b92c 6.8", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:L/E:X/RL:T/RC:R/CR:H/IR:L/AR:H/MAV:X/MAC:X/MPR:N/MUI:X/MS:X/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "01cedaea 6.8", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:L/E:P/RL:O/RC:C/CR:H/IR:X/AR:X/MAV:X/MAC:H/MPR:X/MUI:N/MS:C/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(4.0)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "bc245289 4.7", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N/E:P/RL:X/RC:X/CR:L/IR:M/AR:M/MAV:N/MAC:X/MPR:H/MUI:X/MS:U/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(3.3), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "e3558835 7.8", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H/E:H/RL:W/RC:U/CR:X/IR:L/AR:H/MAV:N/MAC:X/MPR:X/MUI:X/MS:X/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
+        }, // exp
+      ), (
+        "dec0bda1 0.0", // test name
+        "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H/E:P/RL:W/RC:U/CR:X/IR:X/AR:H/MAV:A/MAC:X/MPR:X/MUI:N/MS:U/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "12dc337a 8.3", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:C/C:H/I:H/A:L/E:X/RL:T/RC:R/CR:X/IR:H/AR:X/MAV:A/MAC:L/MPR:L/MUI:N/MS:C/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(7.9), // exp base score
+          temporal: Some(Score::from(7.3)), // exp temporal score
+          environmental: Some(Score::from(8.3)), // exp environmental score
+        }, // exp
+      ), (
+        "e4732d4f 7.2", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:C/C:H/I:H/A:N/E:U/RL:X/RC:R/CR:M/IR:H/AR:M/MAV:A/MAC:X/MPR:N/MUI:N/MS:C/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.7), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "8cc5f6b2 5.4", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:C/C:H/I:H/A:N/E:X/RL:X/RC:U/CR:M/IR:L/AR:L/MAV:P/MAC:X/MPR:L/MUI:X/MS:C/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(7.7), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "278f3d62 7.4", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:L/E:F/RL:U/RC:C/CR:H/IR:H/AR:M/MAV:A/MAC:H/MPR:H/MUI:N/MS:C/MC:N/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(7.0)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "a84e7ed1 5.8", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:N/E:F/RL:T/RC:U/CR:X/IR:X/AR:X/MAV:A/MAC:H/MPR:L/MUI:X/MS:U/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(3.8)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "cfe46816 4.2", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:C/C:L/I:N/A:H/E:X/RL:O/RC:R/CR:X/IR:X/AR:X/MAV:L/MAC:L/MPR:H/MUI:X/MS:C/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "d4d9636e 4.2", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:C/C:N/I:N/A:L/E:P/RL:W/RC:X/CR:X/IR:X/AR:X/MAV:P/MAC:H/MPR:L/MUI:N/MS:U/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(3.0), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "f31865f7 3.7", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:C/C:N/I:N/A:L/E:X/RL:X/RC:X/CR:X/IR:L/AR:M/MAV:L/MAC:X/MPR:X/MUI:R/MS:C/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(3.0), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "f65494f3 3.4", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:L/A:H/E:F/RL:O/RC:R/CR:L/IR:H/AR:L/MAV:X/MAC:H/MPR:X/MUI:X/MS:X/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(3.4)), // exp environmental score
+        }, // exp
+      ), (
+        "f0811923 6.2", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:H/E:X/RL:T/RC:U/CR:H/IR:H/AR:H/MAV:P/MAC:H/MPR:N/MUI:R/MS:C/MC:H/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "0b68321f 5.9", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:L/E:U/RL:O/RC:R/CR:M/IR:L/AR:H/MAV:N/MAC:L/MPR:X/MUI:N/MS:X/MC:N/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "138b8484 4.3", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:N/S:U/C:L/I:N/A:N/E:F/RL:T/RC:X/CR:H/IR:L/AR:M/MAV:X/MAC:H/MPR:H/MUI:R/MS:X/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(2.2), // exp base score
+          temporal: Some(Score::from(2.1)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "53d54b9d 3.8", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:R/S:C/C:H/I:N/A:H/E:X/RL:X/RC:U/CR:H/IR:L/AR:L/MAV:X/MAC:H/MPR:L/MUI:X/MS:C/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "2ba54fc9 6.5", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:R/S:C/C:L/I:H/A:H/E:U/RL:U/RC:C/CR:X/IR:H/AR:X/MAV:P/MAC:H/MPR:N/MUI:N/MS:C/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "a41776a4 6.5", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:R/S:C/C:L/I:L/A:H/E:F/RL:W/RC:R/CR:H/IR:M/AR:H/MAV:A/MAC:X/MPR:N/MUI:R/MS:U/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "333fcb2a 5.5", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:R/S:C/C:L/I:N/A:L/E:H/RL:W/RC:R/CR:X/IR:L/AR:M/MAV:L/MAC:X/MPR:N/MUI:N/MS:U/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.8)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "e945614f 8.1", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:R/S:C/C:N/I:H/A:H/E:H/RL:U/RC:R/CR:L/IR:H/AR:H/MAV:A/MAC:L/MPR:X/MUI:N/MS:X/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(8.1)), // exp environmental score
+        }, // exp
+      ), (
+        "8075ba92 5.4", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:R/S:C/C:N/I:H/A:L/E:P/RL:U/RC:C/CR:M/IR:X/AR:L/MAV:P/MAC:H/MPR:X/MUI:R/MS:X/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "634a5505 2.6", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:R/S:U/C:H/I:L/A:H/E:H/RL:T/RC:U/CR:M/IR:X/AR:L/MAV:N/MAC:L/MPR:H/MUI:R/MS:X/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "39698405 6.1", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:L/E:F/RL:X/RC:X/CR:H/IR:L/AR:X/MAV:P/MAC:H/MPR:L/MUI:R/MS:X/MC:H/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "07dbf31c 4.8", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:H/UI:R/S:U/C:L/I:H/A:H/E:P/RL:U/RC:R/CR:M/IR:M/AR:M/MAV:A/MAC:X/MPR:H/MUI:N/MS:U/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "454319af 6.1", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H/E:F/RL:X/RC:C/CR:X/IR:L/AR:X/MAV:A/MAC:H/MPR:X/MUI:R/MS:U/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(8.5), // exp base score
+          temporal: Some(Score::from(8.3)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "2e7b40a6 6.6", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N/E:F/RL:O/RC:C/CR:X/IR:X/AR:X/MAV:N/MAC:X/MPR:X/MUI:R/MS:C/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "bd828c8a 6.9", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:H/A:L/E:U/RL:U/RC:R/CR:H/IR:L/AR:L/MAV:N/MAC:L/MPR:N/MUI:N/MS:X/MC:X/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(7.7), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(6.9)), // exp environmental score
+        }, // exp
+      ), (
+        "93b5cfde 8.8", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:N/A:H/E:U/RL:U/RC:R/CR:H/IR:L/AR:H/MAV:N/MAC:L/MPR:N/MUI:N/MS:X/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(8.8)), // exp environmental score
+        }, // exp
+      ), (
+        "e16dd032 7.5", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:C/C:N/I:H/A:H/E:U/RL:U/RC:R/CR:X/IR:H/AR:X/MAV:X/MAC:X/MPR:L/MUI:N/MS:C/MC:H/MI:X/MA:N", // vec
         Scores {
           base: Score::from(8.2), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(7.5)), // exp environmental score
+        }, // exp
+      ), (
+        "5af9988d 6.0", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:C/C:N/I:N/A:L/E:U/RL:W/RC:U/CR:M/IR:M/AR:H/MAV:N/MAC:H/MPR:X/MUI:X/MS:U/MC:X/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(2.9)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "d34ae878 2.3", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:L/E:P/RL:T/RC:U/CR:L/IR:X/AR:L/MAV:L/MAC:X/MPR:H/MUI:R/MS:U/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(5.0), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(2.3)), // exp environmental score
+        }, // exp
+      ), (
+        "b35b8b15 2.0", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:H/A:H/E:H/RL:U/RC:C/CR:H/IR:M/AR:H/MAV:X/MAC:H/MPR:H/MUI:R/MS:X/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(2.0)), // exp environmental score
+        }, // exp
+      ), (
+        "ac9635ba 6.1", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:R/S:C/C:L/I:H/A:N/E:H/RL:W/RC:U/CR:M/IR:L/AR:L/MAV:N/MAC:H/MPR:H/MUI:N/MS:X/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "137beb24 3.1", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:R/S:C/C:L/I:H/A:N/E:U/RL:U/RC:X/CR:L/IR:L/AR:X/MAV:A/MAC:X/MPR:N/MUI:R/MS:X/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(3.1)), // exp environmental score
+        }, // exp
+      ), (
+        "14b9a7d5 3.8", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:R/S:C/C:L/I:L/A:L/E:X/RL:X/RC:X/CR:L/IR:H/AR:X/MAV:L/MAC:L/MPR:L/MUI:N/MS:C/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "d434713e 5.4", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:R/S:C/C:N/I:N/A:H/E:P/RL:U/RC:R/CR:X/IR:M/AR:X/MAV:X/MAC:X/MPR:L/MUI:N/MS:U/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "b2ef8c28 5.7", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:N/E:H/RL:W/RC:R/CR:H/IR:X/AR:X/MAV:L/MAC:X/MPR:X/MUI:X/MS:C/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "8ba507b7 4.0", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:L/E:P/RL:W/RC:C/CR:L/IR:L/AR:H/MAV:X/MAC:L/MPR:H/MUI:R/MS:U/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(2.6), // exp base score
+          temporal: Some(Score::from(2.4)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "77a41bd7 2.4", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:N/E:H/RL:X/RC:C/CR:L/IR:X/AR:L/MAV:N/MAC:X/MPR:N/MUI:X/MS:U/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(2.4)), // exp environmental score
+        }, // exp
+      ), (
+        "c529f4bd 4.4", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:L/E:U/RL:U/RC:C/CR:M/IR:L/AR:X/MAV:N/MAC:X/MPR:H/MUI:N/MS:X/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(8.9), // exp base score
+          temporal: Some(Score::from(8.1)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "aca01271 6.4", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:L/A:N/E:X/RL:T/RC:X/CR:M/IR:H/AR:X/MAV:A/MAC:L/MPR:H/MUI:R/MS:U/MC:H/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
           temporal: Some(Score::from(7.2)), // exp temporal score
           environmental: Some(Score::from(6.4)), // exp environmental score
         }, // exp
       ), (
-        "0ab1d3f7 3.5", // test name
-        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:H/A:N/E:P/RL:T/RC:U/CR:L/IR:H/AR:X/MAV:N/MAC:H/MPR:L/MUI:N/MS:X/MC:L/MI:N/MA:L", // vec
+        "aab91bdd 8.1", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:N/E:H/RL:O/RC:C/CR:L/IR:M/AR:H/MAV:N/MAC:L/MPR:N/MUI:N/MS:U/MC:N/MI:H/MA:L", // vec
         Scores {
-          base: Score::from(7.4), // exp base score
-          temporal: Some(Score::from(6.2)), // exp temporal score
-          environmental: Some(Score::from(3.5)), // exp environmental score
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(8.1)), // exp environmental score
         }, // exp
       ), (
-        "abab848b 5.2", // test name
-        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:C/C:N/I:H/A:N/E:P/RL:T/RC:U/CR:L/IR:H/AR:L/MAV:L/MAC:H/MPR:H/MUI:N/MS:U/MC:H/MI:X/MA:N", // vec
+        "5f89e6c8 8.1", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:H/A:H/E:U/RL:X/RC:C/CR:L/IR:M/AR:X/MAV:X/MAC:L/MPR:L/MUI:N/MS:X/MC:L/MI:X/MA:L", // vec
         Scores {
-          base: Score::from(4.7), // exp base score
-          temporal: Some(Score::from(4.0)), // exp temporal score
-          environmental: Some(Score::from(5.2)), // exp environmental score
+          base: Score::from(8.9), // exp base score
+          temporal: Some(Score::from(8.1)), // exp temporal score
+          environmental: Some(Score::from(8.1)), // exp environmental score
         }, // exp
       ), (
-        "77194182 0.0", // test name
-        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:U/C:N/I:N/A:L/E:P/RL:X/RC:X/CR:H/IR:H/AR:X/MAV:A/MAC:H/MPR:L/MUI:N/MS:C/MC:X/MI:N/MA:N", // vec
+        "3d7752a9 0.0", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:H/E:U/RL:W/RC:R/CR:M/IR:M/AR:M/MAV:L/MAC:X/MPR:N/MUI:R/MS:U/MC:N/MI:N/MA:N", // vec
         Scores {
-          base: Score::from(1.6), // exp base score
-          temporal: Some(Score::from(1.6)), // exp temporal score
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
           environmental: Some(Score::from(0.0)), // exp environmental score
         }, // exp
       ), (
-        "85fd160b 6.4", // test name
-        "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:U/C:H/I:L/A:N/E:H/RL:X/RC:R/CR:H/IR:H/AR:M/MAV:X/MAC:L/MPR:L/MUI:N/MS:X/MC:H/MI:L/MA:L", // vec
+        "3ebe6cf0 5.6", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:L/E:P/RL:T/RC:C/CR:H/IR:L/AR:H/MAV:X/MAC:H/MPR:H/MUI:N/MS:C/MC:L/MI:X/MA:L", // vec
         Scores {
-          base: Score::from(4.6), // exp base score
-          temporal: Some(Score::from(4.5)), // exp temporal score
-          environmental: Some(Score::from(6.4)), // exp environmental score
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
         }, // exp
       ), (
-        "a96b19bd 7.4", // test name
-        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:H/E:P/RL:O/RC:C/CR:M/IR:M/AR:H/MAV:N/MAC:H/MPR:L/MUI:N/MS:X/MC:X/MI:X/MA:N", // vec
+        "0dc4407e 6.3", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:L/E:F/RL:W/RC:U/CR:H/IR:M/AR:L/MAV:X/MAC:H/MPR:H/MUI:N/MS:C/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "230718da 3.8", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N/E:H/RL:W/RC:X/CR:L/IR:X/AR:L/MAV:P/MAC:H/MPR:X/MUI:N/MS:C/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "0a699dfc 6.7", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:L/E:U/RL:U/RC:X/CR:H/IR:H/AR:L/MAV:L/MAC:H/MPR:X/MUI:N/MS:U/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "6d3faca4 4.1", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L/E:H/RL:T/RC:U/CR:M/IR:H/AR:L/MAV:L/MAC:X/MPR:N/MUI:X/MS:X/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(4.1)), // exp environmental score
+        }, // exp
+      ), (
+        "830a9ed3 6.5", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H/E:X/RL:X/RC:X/CR:X/IR:M/AR:M/MAV:N/MAC:L/MPR:N/MUI:X/MS:X/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "17cebb9c 6.1", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:H/E:F/RL:U/RC:C/CR:M/IR:X/AR:H/MAV:N/MAC:X/MPR:H/MUI:R/MS:X/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "55fbfe8e 6.2", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:N/E:F/RL:W/RC:C/CR:H/IR:X/AR:M/MAV:N/MAC:X/MPR:N/MUI:X/MS:U/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "bf7eeeda 2.4", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:N/E:H/RL:U/RC:X/CR:L/IR:X/AR:L/MAV:N/MAC:X/MPR:H/MUI:R/MS:U/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(2.4)), // exp environmental score
+        }, // exp
+      ), (
+        "97f3f6f9 6.9", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:L/A:N/E:U/RL:O/RC:R/CR:H/IR:X/AR:X/MAV:X/MAC:H/MPR:X/MUI:R/MS:X/MC:X/MI:N/MA:L", // vec
         Scores {
           base: Score::from(6.9), // exp base score
-          temporal: Some(Score::from(6.2)), // exp temporal score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(6.9)), // exp environmental score
+        }, // exp
+      ), (
+        "322f9aa3 7.4", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:H/E:U/RL:O/RC:R/CR:H/IR:L/AR:M/MAV:N/MAC:H/MPR:X/MUI:N/MS:X/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
           environmental: Some(Score::from(7.4)), // exp environmental score
         }, // exp
       ), (
-        "e8ac4bde 4.4", // test name
-        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:L/E:X/RL:U/RC:X/CR:L/IR:H/AR:X/MAV:X/MAC:H/MPR:N/MUI:X/MS:U/MC:X/MI:L/MA:X", // vec
+        "47ed0cc6 4.0", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:C/C:N/I:L/A:H/E:X/RL:X/RC:X/CR:H/IR:X/AR:X/MAV:L/MAC:X/MPR:N/MUI:N/MS:U/MC:X/MI:X/MA:L", // vec
         Scores {
-          base: Score::from(5.8), // exp base score
-          temporal: Some(Score::from(5.8)), // exp temporal score
-          environmental: Some(Score::from(4.4)), // exp environmental score
+          base: Score::from(6.9), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
         }, // exp
       ), (
-        "ab1e6239 1.0", // test name
-        "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:H/E:U/RL:X/RC:R/CR:L/IR:X/AR:L/MAV:X/MAC:L/MPR:H/MUI:R/MS:X/MC:N/MI:N/MA:L", // vec
+        "f497801f 3.6", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:C/C:N/I:L/A:N/E:U/RL:O/RC:X/CR:H/IR:X/AR:H/MAV:P/MAC:L/MPR:H/MUI:X/MS:C/MC:N/MI:X/MA:L", // vec
         Scores {
-          base: Score::from(6.7), // exp base score
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.0)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "28fe178e 3.0", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:C/C:N/I:N/A:L/E:X/RL:O/RC:X/CR:M/IR:L/AR:M/MAV:N/MAC:X/MPR:X/MUI:X/MS:U/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "029cdfaa 3.8", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N/E:X/RL:X/RC:U/CR:L/IR:L/AR:M/MAV:N/MAC:X/MPR:L/MUI:R/MS:C/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "d0132b5d 3.5", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:H/E:U/RL:T/RC:R/CR:X/IR:X/AR:L/MAV:N/MAC:L/MPR:L/MUI:X/MS:X/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "abab307d 2.7", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:H/A:H/E:U/RL:X/RC:U/CR:M/IR:L/AR:H/MAV:L/MAC:H/MPR:H/MUI:X/MS:X/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(2.7)), // exp environmental score
+        }, // exp
+      ), (
+        "4bfdec90 4.6", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:H/E:X/RL:X/RC:C/CR:L/IR:L/AR:H/MAV:N/MAC:L/MPR:N/MUI:X/MS:C/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
           temporal: Some(Score::from(5.9)), // exp temporal score
-          environmental: Some(Score::from(1.0)), // exp environmental score
+          environmental: Some(Score::from(4.6)), // exp environmental score
         }, // exp
       ), (
-        "3fd85893 5.8", // test name
-        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:L/E:U/RL:W/RC:R/CR:M/IR:H/AR:M/MAV:P/MAC:L/MPR:N/MUI:N/MS:X/MC:L/MI:H/MA:X", // vec
+        "c6b822d3 8.3", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:H/E:H/RL:X/RC:C/CR:H/IR:X/AR:H/MAV:X/MAC:L/MPR:N/MUI:R/MS:U/MC:H/MI:N/MA:N", // vec
         Scores {
-          base: Score::from(5.0), // exp base score
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(8.3)), // exp environmental score
+        }, // exp
+      ), (
+        "7364a802 5.0", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L/E:H/RL:W/RC:R/CR:L/IR:M/AR:L/MAV:X/MAC:L/MPR:X/MUI:N/MS:U/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(3.1), // exp base score
+          temporal: Some(Score::from(2.9)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "c75e6f83 1.8", // test name
+        "CVSS:3.0/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N/E:F/RL:X/RC:C/CR:H/IR:M/AR:X/MAV:P/MAC:H/MPR:N/MUI:R/MS:X/MC:X/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(1.8)), // exp environmental score
+        }, // exp
+      ), (
+        "b238f93b 5.6", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:C/C:H/I:L/A:L/E:U/RL:T/RC:U/CR:X/IR:X/AR:X/MAV:N/MAC:X/MPR:X/MUI:R/MS:C/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(8.2), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "5e4e25d3 5.6", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:C/C:H/I:N/A:N/E:X/RL:T/RC:C/CR:L/IR:M/AR:M/MAV:P/MAC:H/MPR:H/MUI:X/MS:X/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "5c0f91bd 8.9", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:C/C:L/I:H/A:N/E:H/RL:T/RC:U/CR:H/IR:M/AR:M/MAV:N/MAC:L/MPR:N/MUI:N/MS:C/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(8.9)), // exp environmental score
+        }, // exp
+      ), (
+        "632ef6f5 4.2", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:H/A:H/E:U/RL:O/RC:U/CR:L/IR:L/AR:M/MAV:P/MAC:H/MPR:L/MUI:N/MS:X/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: Some(Score::from(7.0)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "cae07392 7.2", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:H/A:H/E:X/RL:X/RC:X/CR:M/IR:X/AR:M/MAV:X/MAC:X/MPR:N/MUI:N/MS:X/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "fea03d93 5.2", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:L/A:H/E:P/RL:X/RC:U/CR:M/IR:M/AR:M/MAV:P/MAC:L/MPR:N/MUI:R/MS:X/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "51af85c8 5.1", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:L/A:N/E:X/RL:O/RC:U/CR:X/IR:M/AR:L/MAV:N/MAC:L/MPR:X/MUI:R/MS:U/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(5.1)), // exp environmental score
+        }, // exp
+      ), (
+        "c05b3ba6 6.5", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H/E:X/RL:O/RC:U/CR:M/IR:X/AR:X/MAV:N/MAC:L/MPR:L/MUI:N/MS:C/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "337bf910 5.7", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:H/A:N/E:U/RL:W/RC:U/CR:M/IR:M/AR:H/MAV:P/MAC:X/MPR:X/MUI:X/MS:C/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "84b4c596 7.3", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:H/A:N/E:U/RL:X/RC:U/CR:X/IR:M/AR:X/MAV:A/MAC:X/MPR:N/MUI:X/MS:X/MC:H/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "8c5d45c7 2.8", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:C/C:N/I:L/A:L/E:P/RL:T/RC:X/CR:L/IR:X/AR:M/MAV:X/MAC:H/MPR:H/MUI:R/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(2.8)), // exp environmental score
+        }, // exp
+      ), (
+        "4a52d185 1.9", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:C/C:N/I:L/A:N/E:H/RL:T/RC:R/CR:X/IR:M/AR:X/MAV:L/MAC:X/MPR:H/MUI:R/MS:U/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(1.9)), // exp environmental score
+        }, // exp
+      ), (
+        "89af3748 2.2", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:U/C:H/I:H/A:N/E:F/RL:O/RC:X/CR:L/IR:L/AR:H/MAV:L/MAC:X/MPR:H/MUI:N/MS:C/MC:N/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(2.2)), // exp environmental score
+        }, // exp
+      ), (
+        "5717a59c 5.8", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:U/C:H/I:N/A:N/E:X/RL:O/RC:X/CR:M/IR:M/AR:M/MAV:L/MAC:L/MPR:L/MUI:N/MS:U/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
           temporal: Some(Score::from(4.3)), // exp temporal score
           environmental: Some(Score::from(5.8)), // exp environmental score
         }, // exp
       ), (
-        "1eb52c1b 1.2", // test name
-        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:C/C:N/I:H/A:N/E:P/RL:W/RC:R/CR:L/IR:X/AR:L/MAV:P/MAC:X/MPR:H/MUI:N/MS:X/MC:X/MI:N/MA:L", // vec
+        "5bd8a82b 8.9", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:U/C:N/I:H/A:L/E:X/RL:X/RC:U/CR:L/IR:H/AR:X/MAV:X/MAC:L/MPR:N/MUI:N/MS:X/MC:X/MI:X/MA:L", // vec
         Scores {
           base: Score::from(5.2), // exp base score
-          temporal: Some(Score::from(4.6)), // exp temporal score
-          environmental: Some(Score::from(1.2)), // exp environmental score
-        }, // exp
-      ), (
-        "6194340c 1.0", // test name
-        "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N/E:H/RL:X/RC:C/CR:L/IR:L/AR:H/MAV:X/MAC:H/MPR:H/MUI:N/MS:C/MC:L/MI:N/MA:X", // vec
-        Scores {
-          base: Score::from(4.6), // exp base score
-          temporal: Some(Score::from(4.6)), // exp temporal score
-          environmental: Some(Score::from(1.0)), // exp environmental score
-        }, // exp
-      ), (
-        "4d2cd932 3.6", // test name
-        "CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N/E:H/RL:O/RC:X/CR:X/IR:M/AR:X/MAV:X/MAC:H/MPR:L/MUI:X/MS:U/MC:X/MI:X/MA:L", // vec
-        Scores {
-          base: Score::from(3.7), // exp base score
-          temporal: Some(Score::from(3.6)), // exp temporal score
-          environmental: Some(Score::from(3.6)), // exp environmental score
-        }, // exp
-      ), (
-        "d1ae3cae 7.1", // test name
-        "CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:C/C:N/I:N/A:H/E:F/RL:U/RC:R/CR:M/IR:X/AR:X/MAV:A/MAC:L/MPR:H/MUI:X/MS:X/MC:X/MI:H/MA:H", // vec
-        Scores {
-          base: Score::from(5.1), // exp base score
           temporal: Some(Score::from(4.8)), // exp temporal score
-          environmental: Some(Score::from(7.1)), // exp environmental score
+          environmental: Some(Score::from(8.9)), // exp environmental score
         }, // exp
       ), (
-        "10a7b618 2.3", // test name
-        "CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H/E:H/RL:O/RC:R/CR:H/IR:M/AR:H/MAV:L/MAC:H/MPR:H/MUI:X/MS:U/MC:N/MI:N/MA:L", // vec
+        "0a0ad309 4.0", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:H/UI:R/S:U/C:N/I:L/A:H/E:X/RL:W/RC:C/CR:H/IR:H/AR:L/MAV:L/MAC:H/MPR:L/MUI:X/MS:X/MC:L/MI:N/MA:H", // vec
         Scores {
-          base: Score::from(5.4), // exp base score
-          temporal: Some(Score::from(5.0)), // exp temporal score
-          environmental: Some(Score::from(2.3)), // exp environmental score
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
         }, // exp
       ), (
-        "66101190 3.3", // test name
-        "CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:N/E:X/RL:T/RC:U/CR:H/IR:L/AR:L/MAV:L/MAC:X/MPR:X/MUI:N/MS:C/MC:N/MI:N/MA:H", // vec
+        "fc142e34 5.3", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:L/E:P/RL:O/RC:R/CR:L/IR:L/AR:X/MAV:X/MAC:L/MPR:L/MUI:X/MS:X/MC:H/MI:X/MA:N", // vec
         Scores {
-          base: Score::from(5.5), // exp base score
-          temporal: Some(Score::from(4.9)), // exp temporal score
-          environmental: Some(Score::from(3.3)), // exp environmental score
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(5.3)), // exp environmental score
         }, // exp
       ), (
-        "83fe3f77 2.9", // test name
-        "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:H/E:P/RL:W/RC:X/CR:L/IR:L/AR:L/MAV:A/MAC:H/MPR:X/MUI:R/MS:C/MC:X/MI:N/MA:N", // vec
+        "6e5723f9 9.0", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:C/C:N/I:H/A:L/E:F/RL:U/RC:U/CR:L/IR:H/AR:H/MAV:X/MAC:L/MPR:N/MUI:X/MS:X/MC:H/MI:H/MA:X", // vec
         Scores {
-          base: Score::from(6.8), // exp base score
-          temporal: Some(Score::from(6.3)), // exp temporal score
-          environmental: Some(Score::from(2.9)), // exp environmental score
+          base: Score::from(8.5), // exp base score
+          temporal: Some(Score::from(7.6)), // exp temporal score
+          environmental: Some(Score::from(9.0)), // exp environmental score
         }, // exp
       ), (
-        "1b21c02f 4.8", // test name
-        "CVSS:3.0/AV:L/AC:H/PR:H/UI:N/S:U/C:N/I:N/A:H/E:H/RL:T/RC:R/CR:M/IR:L/AR:M/MAV:P/MAC:L/MPR:X/MUI:R/MS:C/MC:H/MI:L/MA:N", // vec
+        "9126438f 7.8", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:C/C:N/I:H/A:L/E:P/RL:O/RC:R/CR:M/IR:M/AR:L/MAV:N/MAC:X/MPR:N/MUI:X/MS:C/MC:N/MI:H/MA:L", // vec
         Scores {
-          base: Score::from(4.1), // exp base score
-          temporal: Some(Score::from(3.8)), // exp temporal score
-          environmental: Some(Score::from(4.8)), // exp environmental score
+          base: Score::from(8.5), // exp base score
+          temporal: Some(Score::from(7.3)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
         }, // exp
       ), (
-        "f1b24afd 6.7", // test name
-        "CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:H/A:L/E:F/RL:O/RC:U/CR:L/IR:H/AR:L/MAV:N/MAC:L/MPR:X/MUI:X/MS:U/MC:X/MI:H/MA:X", // vec
+        "a08940e1 5.4", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:C/C:N/I:H/A:N/E:X/RL:X/RC:R/CR:L/IR:L/AR:L/MAV:A/MAC:L/MPR:X/MUI:N/MS:U/MC:H/MI:L/MA:H", // vec
         Scores {
-          base: Score::from(7.3), // exp base score
-          temporal: Some(Score::from(6.2)), // exp temporal score
+          base: Score::from(7.7), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "8052f8de 4.6", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:C/C:N/I:L/A:H/E:F/RL:X/RC:X/CR:M/IR:M/AR:L/MAV:X/MAC:X/MPR:X/MUI:R/MS:X/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(8.5), // exp base score
+          temporal: Some(Score::from(8.3)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "6532ae5b 0.0", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:C/C:N/I:N/A:L/E:P/RL:O/RC:C/CR:M/IR:H/AR:X/MAV:P/MAC:L/MPR:L/MUI:X/MS:U/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.0), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "7d8ba4db 7.8", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N/E:U/RL:T/RC:X/CR:M/IR:M/AR:M/MAV:N/MAC:X/MPR:L/MUI:R/MS:C/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
+        }, // exp
+      ), (
+        "78749d55 7.6", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:L/E:P/RL:W/RC:C/CR:H/IR:H/AR:H/MAV:N/MAC:L/MPR:L/MUI:N/MS:U/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(7.6)), // exp environmental score
+        }, // exp
+      ), (
+        "cf9ebb17 7.0", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:H/A:H/E:F/RL:X/RC:X/CR:H/IR:X/AR:L/MAV:X/MAC:H/MPR:H/MUI:R/MS:C/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(8.3), // exp base score
+          temporal: Some(Score::from(8.1)), // exp temporal score
+          environmental: Some(Score::from(7.0)), // exp environmental score
+        }, // exp
+      ), (
+        "be139600 4.1", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:H/A:L/E:F/RL:X/RC:R/CR:M/IR:H/AR:X/MAV:P/MAC:L/MPR:H/MUI:X/MS:C/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(4.1)), // exp environmental score
+        }, // exp
+      ), (
+        "1f0266c7 6.1", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:H/E:F/RL:X/RC:C/CR:M/IR:X/AR:M/MAV:N/MAC:H/MPR:H/MUI:N/MS:X/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "a187e274 2.4", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:H/E:U/RL:X/RC:U/CR:H/IR:L/AR:H/MAV:N/MAC:X/MPR:X/MUI:R/MS:U/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(2.4)), // exp environmental score
+        }, // exp
+      ), (
+        "3430dc50 8.4", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:L/A:N/E:P/RL:X/RC:X/CR:X/IR:X/AR:X/MAV:A/MAC:L/MPR:L/MUI:N/MS:C/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(8.4)), // exp environmental score
+        }, // exp
+      ), (
+        "a1022d53 6.8", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:N/A:L/E:X/RL:X/RC:X/CR:L/IR:X/AR:M/MAV:A/MAC:H/MPR:X/MUI:N/MS:C/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "bbc3626c 2.6", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:H/A:H/E:X/RL:T/RC:X/CR:L/IR:L/AR:H/MAV:L/MAC:L/MPR:H/MUI:X/MS:X/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(8.9), // exp base score
+          temporal: Some(Score::from(8.6)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "8c81618d 8.8", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:H/A:L/E:X/RL:X/RC:U/CR:H/IR:L/AR:H/MAV:X/MAC:L/MPR:N/MUI:N/MS:X/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(8.2), // exp base score
+          temporal: Some(Score::from(7.6)), // exp temporal score
+          environmental: Some(Score::from(8.8)), // exp environmental score
+        }, // exp
+      ), (
+        "2b115081 5.7", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H/E:U/RL:T/RC:X/CR:X/IR:X/AR:M/MAV:A/MAC:X/MPR:N/MUI:N/MS:U/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(7.0)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "b9eb658d 6.7", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H/E:U/RL:X/RC:C/CR:M/IR:L/AR:L/MAV:A/MAC:X/MPR:N/MUI:N/MS:X/MC:X/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(7.3)), // exp temporal score
           environmental: Some(Score::from(6.7)), // exp environmental score
         }, // exp
       ), (
-        "8cbd4f06 2.8", // test name
-        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:H/I:H/A:N/E:H/RL:T/RC:C/CR:L/IR:L/AR:L/MAV:P/MAC:L/MPR:X/MUI:N/MS:U/MC:X/MI:L/MA:N", // vec
+        "221364a9 5.8", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N/E:F/RL:T/RC:X/CR:M/IR:H/AR:L/MAV:L/MAC:H/MPR:H/MUI:N/MS:U/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "b1d2df92 6.1", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:N/A:N/E:U/RL:W/RC:R/CR:M/IR:M/AR:M/MAV:X/MAC:H/MPR:L/MUI:N/MS:C/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(3.0)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "5b0ff996 6.0", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:H/A:H/E:P/RL:T/RC:X/CR:L/IR:H/AR:H/MAV:N/MAC:H/MPR:X/MUI:N/MS:C/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "d32a180a 7.2", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:H/A:L/E:F/RL:T/RC:U/CR:M/IR:M/AR:M/MAV:A/MAC:L/MPR:X/MUI:X/MS:C/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "889c7c06 7.4", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:H/A:N/E:P/RL:X/RC:R/CR:H/IR:X/AR:X/MAV:X/MAC:L/MPR:N/MUI:N/MS:U/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "0ee25a5f 7.9", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:L/A:H/E:P/RL:O/RC:U/CR:H/IR:X/AR:H/MAV:X/MAC:X/MPR:N/MUI:X/MS:C/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(7.9)), // exp environmental score
+        }, // exp
+      ), (
+        "4a0406e1 8.6", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H/E:P/RL:T/RC:R/CR:X/IR:M/AR:M/MAV:N/MAC:X/MPR:X/MUI:N/MS:X/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(10.0), // exp base score
+          temporal: Some(Score::from(8.7)), // exp temporal score
+          environmental: Some(Score::from(8.6)), // exp environmental score
+        }, // exp
+      ), (
+        "759f2b0b 7.1", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:H/E:X/RL:O/RC:U/CR:M/IR:L/AR:X/MAV:A/MAC:L/MPR:L/MUI:R/MS:C/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(10.0), // exp base score
+          temporal: Some(Score::from(8.8)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "08a2fefd 8.8", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N/E:X/RL:X/RC:X/CR:X/IR:L/AR:H/MAV:A/MAC:L/MPR:X/MUI:N/MS:U/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(8.6), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(8.8)), // exp environmental score
+        }, // exp
+      ), (
+        "50631c9c 0.0", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N/E:H/RL:W/RC:C/CR:L/IR:L/AR:M/MAV:P/MAC:H/MPR:N/MUI:R/MS:C/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "f0d85020 7.2", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:U/RL:W/RC:X/CR:M/IR:H/AR:H/MAV:X/MAC:H/MPR:N/MUI:X/MS:U/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(9.8), // exp base score
+          temporal: Some(Score::from(8.7)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "42988b28 5.6", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N/E:U/RL:T/RC:X/CR:X/IR:X/AR:M/MAV:X/MAC:X/MPR:L/MUI:R/MS:X/MC:N/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "7b4dcdf1 4.3", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N/E:P/RL:W/RC:R/CR:M/IR:L/AR:H/MAV:A/MAC:L/MPR:N/MUI:X/MS:X/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "67e1b872 2.9", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:U/RL:U/RC:C/CR:H/IR:L/AR:H/MAV:L/MAC:H/MPR:H/MUI:X/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "2457398e 8.9", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:L/E:P/RL:O/RC:X/CR:H/IR:H/AR:H/MAV:N/MAC:L/MPR:L/MUI:N/MS:X/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(9.6), // exp base score
+          temporal: Some(Score::from(8.6)), // exp temporal score
+          environmental: Some(Score::from(8.9)), // exp environmental score
+        }, // exp
+      ), (
+        "9b64b153 3.7", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:L/E:P/RL:U/RC:R/CR:M/IR:H/AR:M/MAV:P/MAC:X/MPR:H/MUI:R/MS:C/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(9.6), // exp base score
+          temporal: Some(Score::from(8.7)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "bd5dd3c5 3.6", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:H/E:F/RL:W/RC:U/CR:L/IR:M/AR:X/MAV:P/MAC:L/MPR:L/MUI:R/MS:X/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(9.6), // exp base score
+          temporal: Some(Score::from(8.4)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "f3c0f784 5.4", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:H/E:P/RL:T/RC:U/CR:L/IR:X/AR:L/MAV:A/MAC:L/MPR:N/MUI:N/MS:C/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(9.6), // exp base score
+          temporal: Some(Score::from(8.0)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "032f2eb9 3.6", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:L/E:X/RL:U/RC:X/CR:L/IR:L/AR:H/MAV:N/MAC:H/MPR:H/MUI:R/MS:U/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "ec4d1563 8.4", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:H/A:H/E:U/RL:T/RC:X/CR:H/IR:X/AR:M/MAV:N/MAC:X/MPR:N/MUI:X/MS:C/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(9.3), // exp base score
+          temporal: Some(Score::from(8.2)), // exp temporal score
+          environmental: Some(Score::from(8.4)), // exp environmental score
+        }, // exp
+      ), (
+        "1a6ceffe 6.2", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:N/A:H/E:F/RL:T/RC:C/CR:X/IR:X/AR:L/MAV:A/MAC:L/MPR:N/MUI:X/MS:X/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "f29596cf 5.4", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N/E:H/RL:T/RC:X/CR:L/IR:M/AR:H/MAV:A/MAC:H/MPR:H/MUI:X/MS:C/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "91ed2f5d 7.6", // test name
+        "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L/E:U/RL:W/RC:X/CR:H/IR:H/AR:M/MAV:X/MAC:X/MPR:N/MUI:N/MS:X/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(7.6)), // exp environmental score
+        }, // exp
+      ), (
+        "f0f3ffa3 2.4", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:C/C:H/I:H/A:H/E:H/RL:U/RC:X/CR:H/IR:H/AR:H/MAV:X/MAC:X/MPR:L/MUI:R/MS:U/MC:L/MI:N/MA:N", // vec
         Scores {
           base: Score::from(6.9), // exp base score
-          temporal: Some(Score::from(6.7)), // exp temporal score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(2.4)), // exp environmental score
+        }, // exp
+      ), (
+        "2a0c5c23 1.6", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:C/C:H/I:N/A:L/E:H/RL:O/RC:U/CR:X/IR:M/AR:H/MAV:X/MAC:X/MPR:X/MUI:R/MS:C/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(1.6)), // exp environmental score
+        }, // exp
+      ), (
+        "465d9bf4 5.4", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H/E:P/RL:W/RC:U/CR:M/IR:X/AR:M/MAV:A/MAC:H/MPR:H/MUI:N/MS:X/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "7bd58028 4.3", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:H/I:L/A:N/E:F/RL:T/RC:U/CR:M/IR:L/AR:H/MAV:N/MAC:L/MPR:L/MUI:X/MS:X/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(3.8)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "ee36ef09 6.0", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:L/E:U/RL:U/RC:R/CR:M/IR:M/AR:X/MAV:N/MAC:H/MPR:N/MUI:R/MS:U/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(3.9)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "e265cb9a 2.9", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N/E:P/RL:W/RC:C/CR:X/IR:X/AR:X/MAV:A/MAC:X/MPR:H/MUI:N/MS:X/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(3.8), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "0925a9e3 6.2", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:H/E:X/RL:U/RC:X/CR:L/IR:H/AR:M/MAV:L/MAC:H/MPR:X/MUI:X/MS:U/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "6631ea22 5.8", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:H/E:F/RL:U/RC:U/CR:X/IR:H/AR:X/MAV:P/MAC:L/MPR:L/MUI:R/MS:U/MC:H/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "4758defe 2.9", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N/E:U/RL:U/RC:R/CR:L/IR:L/AR:X/MAV:L/MAC:H/MPR:X/MUI:N/MS:X/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(1.6), // exp base score
+          temporal: Some(Score::from(1.4)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "1ac4c6d7 5.4", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:N/I:N/A:H/E:X/RL:X/RC:C/CR:X/IR:X/AR:M/MAV:A/MAC:L/MPR:N/MUI:X/MS:U/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(3.8), // exp base score
+          temporal: Some(Score::from(3.8)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "03567f29 2.3", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:N/S:U/C:N/I:N/A:L/E:H/RL:O/RC:U/CR:H/IR:L/AR:M/MAV:A/MAC:H/MPR:N/MUI:R/MS:U/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(1.6), // exp base score
+          temporal: Some(Score::from(1.4)), // exp temporal score
+          environmental: Some(Score::from(2.3)), // exp environmental score
+        }, // exp
+      ), (
+        "2ad98b5f 2.6", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:C/C:H/I:N/A:L/E:H/RL:O/RC:U/CR:L/IR:H/AR:H/MAV:P/MAC:L/MPR:X/MUI:X/MS:C/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "e18812d6 7.3", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:C/C:L/I:N/A:H/E:P/RL:X/RC:U/CR:L/IR:H/AR:H/MAV:A/MAC:L/MPR:H/MUI:N/MS:X/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "2ae8882b 2.8", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:H/A:N/E:U/RL:O/RC:X/CR:L/IR:L/AR:L/MAV:X/MAC:X/MPR:N/MUI:R/MS:U/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.0)), // exp temporal score
           environmental: Some(Score::from(2.8)), // exp environmental score
         }, // exp
       ), (
-        "db296882 6.1", // test name
-        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:L/I:H/A:L/E:H/RL:O/RC:R/CR:H/IR:H/AR:L/MAV:A/MAC:X/MPR:X/MUI:R/MS:U/MC:L/MI:H/MA:H", // vec
+        "3d5d9cc3 7.4", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:N/A:L/E:X/RL:U/RC:U/CR:M/IR:M/AR:H/MAV:L/MAC:X/MPR:N/MUI:N/MS:C/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(1.8), // exp base score
+          temporal: Some(Score::from(1.7)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "a55d6552 6.0", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:L/E:X/RL:T/RC:R/CR:L/IR:M/AR:H/MAV:L/MAC:H/MPR:N/MUI:X/MS:C/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "d80ffb5a 6.7", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:L/E:X/RL:W/RC:X/CR:X/IR:L/AR:H/MAV:P/MAC:H/MPR:H/MUI:N/MS:C/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "828369ad 6.0", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:L/A:H/E:F/RL:W/RC:C/CR:H/IR:L/AR:H/MAV:P/MAC:X/MPR:N/MUI:X/MS:X/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "3576581b 3.8", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:L/A:L/E:P/RL:W/RC:R/CR:L/IR:X/AR:M/MAV:L/MAC:L/MPR:N/MUI:X/MS:C/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "49a646b0 5.1", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:L/A:L/E:U/RL:X/RC:U/CR:H/IR:X/AR:M/MAV:X/MAC:X/MPR:H/MUI:R/MS:X/MC:X/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(5.1)), // exp environmental score
+        }, // exp
+      ), (
+        "ae13d380 7.4", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:L/I:H/A:H/E:H/RL:O/RC:C/CR:L/IR:X/AR:M/MAV:L/MAC:L/MPR:H/MUI:R/MS:C/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "a74c1d2c 5.8", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:L/I:L/A:N/E:F/RL:W/RC:C/CR:M/IR:M/AR:X/MAV:P/MAC:X/MPR:L/MUI:X/MS:C/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(2.7), // exp base score
+          temporal: Some(Score::from(2.6)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "66613c13 6.7", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:H/A:H/E:U/RL:X/RC:R/CR:H/IR:H/AR:L/MAV:A/MAC:H/MPR:L/MUI:X/MS:C/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "5452823f 2.6", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:N/E:H/RL:O/RC:R/CR:L/IR:M/AR:L/MAV:L/MAC:H/MPR:H/MUI:R/MS:C/MC:X/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "5b1e0737 4.3", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:N/S:C/C:H/I:L/A:H/E:F/RL:X/RC:X/CR:H/IR:M/AR:X/MAV:A/MAC:H/MPR:H/MUI:R/MS:X/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(7.0), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "455c6be0 8.2", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:H/E:U/RL:X/RC:C/CR:L/IR:H/AR:M/MAV:N/MAC:L/MPR:L/MUI:R/MS:X/MC:H/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(8.2)), // exp environmental score
+        }, // exp
+      ), (
+        "c24605e2 1.2", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:L/E:F/RL:X/RC:X/CR:H/IR:L/AR:M/MAV:P/MAC:H/MPR:X/MUI:N/MS:X/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(1.2)), // exp environmental score
+        }, // exp
+      ), (
+        "d595e4f0 7.4", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:N/S:C/C:N/I:H/A:L/E:H/RL:U/RC:U/CR:X/IR:L/AR:H/MAV:N/MAC:X/MPR:H/MUI:N/MS:C/MC:H/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "432b2425 5.2", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:N/S:C/C:N/I:H/A:N/E:F/RL:W/RC:X/CR:H/IR:H/AR:X/MAV:L/MAC:X/MPR:X/MUI:N/MS:C/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "18d74b98 3.3", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:N/S:C/C:N/I:L/A:N/E:X/RL:O/RC:R/CR:M/IR:X/AR:M/MAV:X/MAC:H/MPR:H/MUI:X/MS:U/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(2.1), // exp base score
+          temporal: Some(Score::from(2.0)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "8bcb78fb 1.4", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N/E:F/RL:O/RC:X/CR:L/IR:M/AR:M/MAV:N/MAC:H/MPR:H/MUI:X/MS:U/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(1.8), // exp base score
+          temporal: Some(Score::from(1.7)), // exp temporal score
+          environmental: Some(Score::from(1.4)), // exp environmental score
+        }, // exp
+      ), (
+        "6266c5d1 3.7", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:H/E:H/RL:O/RC:U/CR:M/IR:M/AR:H/MAV:L/MAC:H/MPR:L/MUI:N/MS:X/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "c94daa63 2.8", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:L/E:U/RL:W/RC:X/CR:L/IR:L/AR:L/MAV:P/MAC:X/MPR:N/MUI:X/MS:X/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(2.8)), // exp environmental score
+        }, // exp
+      ), (
+        "5d7b08b9 0.0", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:N/E:H/RL:O/RC:X/CR:X/IR:H/AR:M/MAV:P/MAC:H/MPR:H/MUI:R/MS:U/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "9fd72c48 6.4", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:C/C:H/I:N/A:H/E:P/RL:W/RC:C/CR:H/IR:H/AR:H/MAV:X/MAC:H/MPR:L/MUI:N/MS:X/MC:H/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "1e1534c7 3.9", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:C/C:L/I:N/A:H/E:X/RL:W/RC:R/CR:M/IR:L/AR:L/MAV:X/MAC:H/MPR:H/MUI:R/MS:U/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(3.9)), // exp environmental score
+        }, // exp
+      ), (
+        "bef724e7 5.0", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:C/C:L/I:N/A:L/E:P/RL:W/RC:U/CR:L/IR:L/AR:L/MAV:A/MAC:H/MPR:N/MUI:N/MS:X/MC:H/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(3.3), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "df63f6d6 2.7", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:C/C:N/I:N/A:H/E:P/RL:X/RC:C/CR:H/IR:M/AR:M/MAV:L/MAC:H/MPR:X/MUI:N/MS:X/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(4.7), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(2.7)), // exp environmental score
+        }, // exp
+      ), (
+        "8bab924c 7.3", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:U/C:H/I:H/A:N/E:F/RL:U/RC:C/CR:L/IR:H/AR:L/MAV:L/MAC:X/MPR:H/MUI:N/MS:C/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "75b0ea7f 5.7", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:U/C:H/I:L/A:L/E:F/RL:X/RC:U/CR:H/IR:X/AR:H/MAV:X/MAC:H/MPR:X/MUI:N/MS:X/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(5.0), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "a349dd46 4.6", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:U/C:H/I:N/A:L/E:H/RL:W/RC:R/CR:M/IR:X/AR:L/MAV:P/MAC:H/MPR:N/MUI:R/MS:U/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "730614c0 5.4", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:U/C:H/I:N/A:L/E:P/RL:T/RC:R/CR:X/IR:M/AR:L/MAV:P/MAC:L/MPR:X/MUI:N/MS:C/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(3.9)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "07d41fdd 4.5", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:U/C:L/I:N/A:H/E:F/RL:U/RC:X/CR:L/IR:X/AR:L/MAV:X/MAC:L/MPR:N/MUI:R/MS:X/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "be62a658 3.2", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:H/E:U/RL:O/RC:C/CR:L/IR:X/AR:M/MAV:A/MAC:H/MPR:X/MUI:N/MS:X/MC:X/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(3.2)), // exp environmental score
+        }, // exp
+      ), (
+        "660877d7 3.1", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:L/E:P/RL:T/RC:U/CR:L/IR:M/AR:H/MAV:N/MAC:H/MPR:X/MUI:R/MS:C/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(3.8)), // exp temporal score
+          environmental: Some(Score::from(3.1)), // exp environmental score
+        }, // exp
+      ), (
+        "53062128 3.3", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:L/E:U/RL:O/RC:R/CR:L/IR:M/AR:X/MAV:L/MAC:X/MPR:N/MUI:R/MS:U/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(3.8)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "40a899e6 5.8", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:L/UI:R/S:U/C:N/I:L/A:N/E:X/RL:X/RC:R/CR:L/IR:M/AR:H/MAV:N/MAC:L/MPR:X/MUI:R/MS:X/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(1.7), // exp base score
+          temporal: Some(Score::from(1.7)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "6aae5ed4 6.8", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:N/S:C/C:L/I:H/A:N/E:H/RL:W/RC:R/CR:L/IR:M/AR:L/MAV:A/MAC:L/MPR:H/MUI:N/MS:C/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "3cb4b4df 4.0", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:H/E:U/RL:X/RC:R/CR:X/IR:L/AR:L/MAV:L/MAC:L/MPR:L/MUI:R/MS:U/MC:N/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "12127d88 3.9", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:H/E:H/RL:T/RC:X/CR:L/IR:H/AR:X/MAV:P/MAC:X/MPR:X/MUI:N/MS:U/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(3.9)), // exp environmental score
+        }, // exp
+      ), (
+        "d5726b64 3.4", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N/E:H/RL:T/RC:X/CR:M/IR:H/AR:H/MAV:P/MAC:X/MPR:X/MUI:R/MS:X/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(3.4)), // exp environmental score
+        }, // exp
+      ), (
+        "8a6b24c7 3.1", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:N/E:U/RL:T/RC:C/CR:X/IR:X/AR:X/MAV:A/MAC:L/MPR:H/MUI:N/MS:U/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(3.1)), // exp environmental score
+        }, // exp
+      ), (
+        "c381c5f1 4.2", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H/E:H/RL:O/RC:R/CR:H/IR:X/AR:L/MAV:N/MAC:H/MPR:L/MUI:X/MS:U/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "0104aa15 1.0", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L/E:F/RL:O/RC:C/CR:L/IR:M/AR:X/MAV:X/MAC:H/MPR:H/MUI:N/MS:C/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(2.0), // exp base score
+          temporal: Some(Score::from(1.9)), // exp temporal score
+          environmental: Some(Score::from(1.0)), // exp environmental score
+        }, // exp
+      ), (
+        "8c8ece24 2.9", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:N/E:X/RL:W/RC:C/CR:M/IR:X/AR:L/MAV:X/MAC:X/MPR:L/MUI:N/MS:U/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "71e7d1fc 5.5", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:C/C:H/I:L/A:N/E:F/RL:T/RC:C/CR:L/IR:X/AR:H/MAV:N/MAC:H/MPR:X/MUI:N/MS:U/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "0f56c43c 4.3", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:H/E:H/RL:T/RC:R/CR:M/IR:H/AR:M/MAV:P/MAC:X/MPR:N/MUI:X/MS:U/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "70546b7e 4.9", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:N/E:U/RL:T/RC:R/CR:H/IR:X/AR:M/MAV:X/MAC:H/MPR:H/MUI:N/MS:U/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "e0b8a50f 4.3", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:L/E:X/RL:T/RC:U/CR:M/IR:L/AR:M/MAV:X/MAC:H/MPR:X/MUI:R/MS:X/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.0)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "79b93f64 5.2", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:L/E:U/RL:T/RC:X/CR:H/IR:L/AR:X/MAV:P/MAC:L/MPR:L/MUI:R/MS:X/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "72d79128 1.9", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:N/E:F/RL:W/RC:R/CR:H/IR:L/AR:M/MAV:A/MAC:X/MPR:N/MUI:X/MS:X/MC:X/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(1.9)), // exp environmental score
+        }, // exp
+      ), (
+        "53c6aced 3.6", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:C/C:N/I:L/A:L/E:U/RL:O/RC:C/CR:H/IR:H/AR:X/MAV:P/MAC:L/MPR:L/MUI:X/MS:U/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.0)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "8effaaa9 4.4", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:C/C:N/I:N/A:L/E:P/RL:X/RC:C/CR:L/IR:H/AR:L/MAV:N/MAC:X/MPR:N/MUI:N/MS:U/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(2.0), // exp base score
+          temporal: Some(Score::from(1.9)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "b1e3b773 4.8", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N/E:U/RL:X/RC:R/CR:L/IR:M/AR:M/MAV:X/MAC:L/MPR:L/MUI:R/MS:U/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "d92f2632 4.9", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:L/E:P/RL:U/RC:U/CR:X/IR:X/AR:H/MAV:A/MAC:X/MPR:N/MUI:X/MS:C/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(3.8), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "808018d8 5.3", // test name
+        "CVSS:3.0/AV:P/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:L/E:X/RL:W/RC:R/CR:M/IR:M/AR:H/MAV:L/MAC:L/MPR:X/MUI:N/MS:U/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(2.9), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(5.3)), // exp environmental score
+        }, // exp
+      ), (
+        "63444c2a 6.4", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:N/E:F/RL:O/RC:X/CR:X/IR:H/AR:M/MAV:A/MAC:H/MPR:L/MUI:N/MS:X/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "3e9776cb 4.8", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:H/E:F/RL:W/RC:X/CR:X/IR:X/AR:M/MAV:L/MAC:H/MPR:L/MUI:R/MS:U/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "25585f0c 4.4", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:N/E:X/RL:U/RC:U/CR:H/IR:H/AR:L/MAV:P/MAC:H/MPR:L/MUI:X/MS:C/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(1.8), // exp base score
+          temporal: Some(Score::from(1.7)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "6481477c 3.4", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:H/E:X/RL:T/RC:C/CR:L/IR:M/AR:M/MAV:A/MAC:L/MPR:L/MUI:X/MS:X/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(3.4)), // exp environmental score
+        }, // exp
+      ), (
+        "d6054438 7.2", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:C/C:H/I:L/A:H/E:U/RL:W/RC:R/CR:M/IR:X/AR:L/MAV:N/MAC:L/MPR:N/MUI:R/MS:C/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "dc6f4d2e 3.0", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:C/C:L/I:H/A:L/E:P/RL:X/RC:R/CR:X/IR:L/AR:L/MAV:N/MAC:L/MPR:H/MUI:R/MS:U/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "512d5bfa 5.8", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:H/E:X/RL:U/RC:U/CR:L/IR:L/AR:X/MAV:L/MAC:L/MPR:H/MUI:X/MS:C/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "e61f6d59 2.5", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:C/C:L/I:N/A:N/E:P/RL:X/RC:R/CR:L/IR:X/AR:M/MAV:L/MAC:L/MPR:N/MUI:X/MS:X/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(2.0), // exp base score
+          temporal: Some(Score::from(1.9)), // exp temporal score
+          environmental: Some(Score::from(2.5)), // exp environmental score
+        }, // exp
+      ), (
+        "ab0e95c3 4.2", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:C/C:N/I:H/A:L/E:U/RL:U/RC:C/CR:X/IR:X/AR:X/MAV:A/MAC:X/MPR:N/MUI:R/MS:U/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "509956e9 6.7", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:C/C:N/I:L/A:L/E:F/RL:W/RC:C/CR:X/IR:H/AR:X/MAV:N/MAC:X/MPR:L/MUI:X/MS:X/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "6bace374 3.8", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:U/C:H/I:H/A:H/E:U/RL:T/RC:C/CR:X/IR:H/AR:L/MAV:X/MAC:X/MPR:N/MUI:R/MS:U/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "3d81dc74 7.8", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:U/C:H/I:L/A:H/E:H/RL:O/RC:R/CR:M/IR:M/AR:L/MAV:N/MAC:X/MPR:N/MUI:R/MS:C/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
+        }, // exp
+      ), (
+        "f9fb18a5 4.2", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:U/C:H/I:L/A:L/E:U/RL:T/RC:X/CR:X/IR:H/AR:X/MAV:L/MAC:L/MPR:X/MUI:R/MS:X/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.0), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "7df8d666 5.3", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:H/UI:R/S:U/C:N/I:H/A:H/E:F/RL:O/RC:C/CR:L/IR:L/AR:L/MAV:L/MAC:X/MPR:N/MUI:X/MS:C/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(5.3)), // exp environmental score
+        }, // exp
+      ), (
+        "8de7e2d4 2.4", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:N/E:H/RL:U/RC:X/CR:L/IR:X/AR:H/MAV:A/MAC:H/MPR:H/MUI:R/MS:C/MC:N/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(2.4)), // exp environmental score
+        }, // exp
+      ), (
+        "8fa4e8fe 7.5", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:N/E:U/RL:X/RC:C/CR:H/IR:X/AR:L/MAV:N/MAC:H/MPR:N/MUI:R/MS:X/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(7.5)), // exp environmental score
+        }, // exp
+      ), (
+        "8d475068 3.2", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:C/C:L/I:H/A:H/E:P/RL:X/RC:R/CR:L/IR:L/AR:L/MAV:X/MAC:L/MPR:L/MUI:N/MS:C/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(3.2)), // exp environmental score
+        }, // exp
+      ), (
+        "ca073143 4.8", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:H/E:P/RL:U/RC:U/CR:M/IR:X/AR:M/MAV:L/MAC:L/MPR:L/MUI:N/MS:U/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "d125330d 4.5", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:L/E:H/RL:W/RC:R/CR:X/IR:X/AR:X/MAV:P/MAC:L/MPR:L/MUI:R/MS:U/MC:X/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "8d96e718 5.7", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N/E:P/RL:W/RC:R/CR:X/IR:M/AR:L/MAV:A/MAC:L/MPR:X/MUI:X/MS:U/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "8740e095 6.2", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:L/E:U/RL:X/RC:X/CR:X/IR:X/AR:M/MAV:N/MAC:X/MPR:X/MUI:R/MS:X/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "02bf8835 5.8", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:N/E:H/RL:O/RC:C/CR:M/IR:M/AR:L/MAV:P/MAC:X/MPR:X/MUI:R/MS:U/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "67d08275 5.2", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:L/E:P/RL:W/RC:X/CR:X/IR:L/AR:H/MAV:A/MAC:L/MPR:H/MUI:N/MS:X/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "4b65b4da 8.0", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L/E:U/RL:W/RC:X/CR:H/IR:H/AR:X/MAV:N/MAC:H/MPR:N/MUI:N/MS:C/MC:H/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(4.1), // exp base score
+          temporal: Some(Score::from(3.7)), // exp temporal score
+          environmental: Some(Score::from(8.0)), // exp environmental score
+        }, // exp
+      ), (
+        "3b961005 6.5", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H/E:U/RL:O/RC:R/CR:X/IR:H/AR:M/MAV:N/MAC:L/MPR:X/MUI:N/MS:U/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "fea502cd 1.8", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:L/E:H/RL:T/RC:R/CR:L/IR:L/AR:M/MAV:X/MAC:H/MPR:X/MUI:R/MS:C/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(3.0)), // exp temporal score
+          environmental: Some(Score::from(1.8)), // exp environmental score
+        }, // exp
+      ), (
+        "e3167400 5.9", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N/E:P/RL:O/RC:X/CR:H/IR:L/AR:X/MAV:A/MAC:L/MPR:X/MUI:N/MS:X/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(2.1), // exp base score
+          temporal: Some(Score::from(1.9)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "defb8df4 3.9", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L/E:U/RL:U/RC:C/CR:L/IR:L/AR:X/MAV:X/MAC:H/MPR:L/MUI:R/MS:X/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(2.1), // exp base score
+          temporal: Some(Score::from(2.0)), // exp temporal score
+          environmental: Some(Score::from(3.9)), // exp environmental score
+        }, // exp
+      ), (
+        "8ca5363f 7.2", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H/E:P/RL:O/RC:X/CR:M/IR:H/AR:X/MAV:A/MAC:X/MPR:L/MUI:N/MS:U/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "4e433d46 7.8", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H/E:X/RL:W/RC:U/CR:L/IR:M/AR:M/MAV:N/MAC:L/MPR:H/MUI:N/MS:C/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
+        }, // exp
+      ), (
+        "73bd8e8e 6.2", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:R/S:C/C:L/I:H/A:N/E:U/RL:U/RC:C/CR:M/IR:H/AR:H/MAV:P/MAC:H/MPR:H/MUI:R/MS:C/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "21db7258 5.6", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:R/S:C/C:L/I:N/A:N/E:P/RL:W/RC:X/CR:M/IR:X/AR:X/MAV:P/MAC:X/MPR:H/MUI:R/MS:U/MC:H/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(2.2), // exp base score
+          temporal: Some(Score::from(2.1)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "df91466a 6.0", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:R/S:C/C:N/I:L/A:L/E:H/RL:X/RC:C/CR:H/IR:L/AR:M/MAV:A/MAC:L/MPR:H/MUI:N/MS:U/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(3.6), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "30505ebe 0.0", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:L/UI:R/S:U/C:L/I:H/A:L/E:P/RL:T/RC:R/CR:M/IR:H/AR:X/MAV:A/MAC:H/MPR:X/MUI:N/MS:U/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "88424c8b 6.1", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:H/E:P/RL:U/RC:U/CR:X/IR:L/AR:X/MAV:L/MAC:L/MPR:L/MUI:R/MS:C/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "49d56e2d 8.6", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:L/E:U/RL:W/RC:X/CR:H/IR:H/AR:L/MAV:A/MAC:L/MPR:N/MUI:X/MS:X/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(8.6)), // exp environmental score
+        }, // exp
+      ), (
+        "f57cdefe 6.6", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:C/C:L/I:H/A:N/E:F/RL:T/RC:X/CR:H/IR:H/AR:M/MAV:L/MAC:H/MPR:L/MUI:N/MS:U/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "04028e09 6.7", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:H/E:P/RL:T/RC:C/CR:H/IR:L/AR:M/MAV:N/MAC:L/MPR:N/MUI:R/MS:C/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "deedc8d4 3.3", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N/E:H/RL:W/RC:X/CR:L/IR:M/AR:H/MAV:L/MAC:X/MPR:N/MUI:N/MS:X/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(2.6), // exp base score
+          temporal: Some(Score::from(2.6)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "cde706b1 5.6", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N/E:U/RL:T/RC:U/CR:H/IR:H/AR:H/MAV:P/MAC:H/MPR:H/MUI:R/MS:X/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(2.6), // exp base score
+          temporal: Some(Score::from(2.1)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "07021fdf 2.4", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H/E:F/RL:O/RC:R/CR:X/IR:M/AR:X/MAV:P/MAC:X/MPR:N/MUI:N/MS:X/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(2.4)), // exp environmental score
+        }, // exp
+      ), (
+        "bbc95c43 1.6", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:N/E:P/RL:W/RC:U/CR:L/IR:X/AR:L/MAV:A/MAC:H/MPR:N/MUI:R/MS:U/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(1.6)), // exp environmental score
+        }, // exp
+      ), (
+        "64da683e 4.0", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:L/E:P/RL:W/RC:R/CR:M/IR:X/AR:X/MAV:X/MAC:L/MPR:H/MUI:R/MS:U/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "bad13334 3.7", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:H/E:P/RL:W/RC:U/CR:H/IR:X/AR:L/MAV:X/MAC:L/MPR:X/MUI:X/MS:C/MC:N/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "35c76d31 4.4", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L/E:P/RL:O/RC:U/CR:X/IR:M/AR:X/MAV:N/MAC:L/MPR:X/MUI:X/MS:X/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "afc6c730 2.5", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:L/E:X/RL:U/RC:U/CR:X/IR:L/AR:L/MAV:N/MAC:H/MPR:H/MUI:N/MS:U/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(2.5)), // exp environmental score
+        }, // exp
+      ), (
+        "84df539f 3.5", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:U/RL:U/RC:R/CR:X/IR:M/AR:X/MAV:A/MAC:H/MPR:H/MUI:R/MS:U/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "261ba1a0 6.4", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N/E:F/RL:T/RC:U/CR:H/IR:L/AR:X/MAV:X/MAC:X/MPR:L/MUI:N/MS:C/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.0)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "2a83eeb8 7.5", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:L/E:P/RL:U/RC:X/CR:X/IR:X/AR:H/MAV:L/MAC:X/MPR:L/MUI:X/MS:C/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(7.5)), // exp environmental score
+        }, // exp
+      ), (
+        "33c0aec5 3.5", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:L/E:U/RL:T/RC:U/CR:M/IR:X/AR:L/MAV:L/MAC:X/MPR:L/MUI:R/MS:U/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "e3d5c4fb 6.5", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:H/E:H/RL:X/RC:U/CR:M/IR:X/AR:H/MAV:X/MAC:L/MPR:N/MUI:N/MS:X/MC:H/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "1d48a4b8 4.2", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:L/E:X/RL:X/RC:U/CR:X/IR:L/AR:H/MAV:P/MAC:H/MPR:L/MUI:R/MS:X/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "8fdc3797 5.0", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N/E:P/RL:X/RC:R/CR:L/IR:L/AR:L/MAV:A/MAC:H/MPR:X/MUI:X/MS:X/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "248e3454 8.7", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:N/E:X/RL:U/RC:R/CR:X/IR:H/AR:H/MAV:N/MAC:H/MPR:N/MUI:N/MS:X/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(8.7)), // exp environmental score
+        }, // exp
+      ), (
+        "6abf68b0 5.7", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:H/E:X/RL:T/RC:X/CR:X/IR:H/AR:X/MAV:X/MAC:H/MPR:L/MUI:R/MS:U/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "5af7d4e4 6.1", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:L/E:X/RL:U/RC:X/CR:M/IR:X/AR:L/MAV:P/MAC:L/MPR:X/MUI:X/MS:C/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "8c3894a2 5.6", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:C/C:N/I:L/A:H/E:X/RL:U/RC:C/CR:H/IR:X/AR:X/MAV:P/MAC:L/MPR:H/MUI:X/MS:X/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "598a2e6c 7.2", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:C/C:N/I:N/A:L/E:P/RL:U/RC:X/CR:X/IR:H/AR:X/MAV:N/MAC:X/MPR:L/MUI:X/MS:C/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(2.3), // exp base score
+          temporal: Some(Score::from(2.2)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "21e9e8ab 4.9", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:H/E:F/RL:T/RC:C/CR:X/IR:M/AR:X/MAV:X/MAC:X/MPR:X/MUI:N/MS:U/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "f12b3202 6.0", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:L/E:U/RL:O/RC:X/CR:M/IR:L/AR:M/MAV:N/MAC:X/MPR:H/MUI:R/MS:C/MC:X/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "6415caec 2.9", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L/E:P/RL:W/RC:C/CR:M/IR:X/AR:X/MAV:L/MAC:X/MPR:H/MUI:X/MS:X/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(4.1), // exp base score
+          temporal: Some(Score::from(3.8)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "43b86fd8 4.1", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H/E:F/RL:U/RC:R/CR:H/IR:X/AR:L/MAV:P/MAC:X/MPR:X/MUI:N/MS:U/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.3), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(4.1)), // exp environmental score
+        }, // exp
+      ), (
+        "7271f048 4.4", // test name
+        "CVSS:3.0/AV:P/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:N/E:U/RL:U/RC:X/CR:L/IR:L/AR:X/MAV:X/MAC:H/MPR:X/MUI:R/MS:U/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "9430a20c 5.5", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:N/E:P/RL:O/RC:X/CR:H/IR:H/AR:X/MAV:A/MAC:L/MPR:H/MUI:N/MS:X/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "54511e49 3.4", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:N/E:U/RL:U/RC:X/CR:M/IR:M/AR:L/MAV:A/MAC:H/MPR:L/MUI:N/MS:U/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.7)), // exp temporal score
+          environmental: Some(Score::from(3.4)), // exp environmental score
+        }, // exp
+      ), (
+        "6a99e1c9 6.5", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:C/C:L/I:N/A:N/E:X/RL:X/RC:C/CR:M/IR:L/AR:H/MAV:A/MAC:L/MPR:L/MUI:N/MS:C/MC:N/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(2.6), // exp base score
+          temporal: Some(Score::from(2.6)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "41de1208 7.3", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:C/C:N/I:H/A:H/E:X/RL:T/RC:R/CR:X/IR:M/AR:H/MAV:L/MAC:X/MPR:L/MUI:N/MS:C/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "21916427 7.5", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:C/C:N/I:L/A:H/E:H/RL:O/RC:X/CR:H/IR:X/AR:X/MAV:X/MAC:H/MPR:N/MUI:X/MS:X/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(7.5)), // exp environmental score
+        }, // exp
+      ), (
+        "63b520f4 4.1", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:C/C:N/I:L/A:H/E:P/RL:U/RC:R/CR:L/IR:L/AR:H/MAV:A/MAC:H/MPR:L/MUI:X/MS:C/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(4.1)), // exp environmental score
+        }, // exp
+      ), (
+        "b3e37fb7 2.0", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:C/C:N/I:N/A:H/E:P/RL:U/RC:R/CR:H/IR:L/AR:L/MAV:L/MAC:L/MPR:H/MUI:X/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(2.0)), // exp environmental score
+        }, // exp
+      ), (
+        "3fa24c00 5.8", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:H/I:L/A:N/E:H/RL:X/RC:X/CR:X/IR:M/AR:M/MAV:P/MAC:L/MPR:X/MUI:N/MS:U/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "ba78c924 5.6", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:H/I:L/A:N/E:U/RL:W/RC:U/CR:M/IR:H/AR:H/MAV:A/MAC:L/MPR:X/MUI:X/MS:U/MC:N/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(3.9)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "3c6af940 8.2", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N/E:F/RL:X/RC:X/CR:H/IR:X/AR:X/MAV:A/MAC:X/MPR:N/MUI:X/MS:C/MC:H/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(4.2), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(8.2)), // exp environmental score
+        }, // exp
+      ), (
+        "cde1bf9a 4.5", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:H/E:F/RL:T/RC:R/CR:M/IR:M/AR:H/MAV:A/MAC:X/MPR:N/MUI:R/MS:C/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "202c5a9b 6.2", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:N/E:F/RL:W/RC:U/CR:H/IR:X/AR:L/MAV:A/MAC:H/MPR:N/MUI:X/MS:X/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(4.2), // exp base score
+          temporal: Some(Score::from(3.7)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "c0843363 3.0", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:N/I:N/A:L/E:P/RL:O/RC:R/CR:L/IR:L/AR:M/MAV:P/MAC:X/MPR:N/MUI:N/MS:X/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(2.0), // exp base score
+          temporal: Some(Score::from(1.8)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "7efbf73c 0.0", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:C/C:H/I:L/A:N/E:H/RL:T/RC:R/CR:H/IR:L/AR:M/MAV:X/MAC:X/MPR:N/MUI:R/MS:X/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "0e5a856f 6.8", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:C/C:L/I:L/A:H/E:U/RL:W/RC:C/CR:H/IR:X/AR:M/MAV:L/MAC:H/MPR:X/MUI:N/MS:C/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "254f779d 3.7", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:C/C:L/I:L/A:N/E:H/RL:O/RC:R/CR:M/IR:X/AR:M/MAV:A/MAC:H/MPR:L/MUI:R/MS:X/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(3.7), // exp base score
+          temporal: Some(Score::from(3.4)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "91050f83 6.8", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:C/C:N/I:H/A:H/E:P/RL:T/RC:X/CR:M/IR:H/AR:M/MAV:L/MAC:H/MPR:L/MUI:R/MS:C/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(7.0), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "2734a814 5.0", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:C/C:N/I:H/A:L/E:U/RL:O/RC:X/CR:L/IR:M/AR:H/MAV:L/MAC:L/MPR:H/MUI:R/MS:U/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "9ce354a4 4.8", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:C/C:N/I:N/A:N/E:H/RL:T/RC:C/CR:H/IR:L/AR:X/MAV:L/MAC:X/MPR:H/MUI:X/MS:C/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "80c31e5c 5.4", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:U/C:L/I:H/A:H/E:F/RL:T/RC:U/CR:H/IR:H/AR:L/MAV:P/MAC:L/MPR:X/MUI:N/MS:X/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "877d8e14 3.4", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:U/C:L/I:N/A:L/E:H/RL:T/RC:R/CR:H/IR:X/AR:H/MAV:P/MAC:H/MPR:N/MUI:N/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(2.9), // exp base score
+          temporal: Some(Score::from(2.7)), // exp temporal score
+          environmental: Some(Score::from(3.4)), // exp environmental score
+        }, // exp
+      ), (
+        "c6862996 2.9", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:H/UI:R/S:U/C:N/I:H/A:H/E:X/RL:U/RC:X/CR:X/IR:M/AR:L/MAV:X/MAC:X/MPR:L/MUI:X/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "d8c0aab6 8.4", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H/E:F/RL:O/RC:C/CR:H/IR:H/AR:X/MAV:N/MAC:L/MPR:H/MUI:N/MS:X/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(8.4)), // exp environmental score
+        }, // exp
+      ), (
+        "dad9606e 4.8", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:L/E:X/RL:O/RC:U/CR:L/IR:H/AR:L/MAV:L/MAC:X/MPR:X/MUI:R/MS:X/MC:X/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(7.9), // exp base score
+          temporal: Some(Score::from(7.0)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "95829f43 6.1", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:C/C:L/I:H/A:L/E:F/RL:O/RC:U/CR:X/IR:X/AR:X/MAV:N/MAC:X/MPR:L/MUI:X/MS:X/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "f5f1ae74 8.1", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:H/E:H/RL:X/RC:U/CR:X/IR:H/AR:H/MAV:L/MAC:L/MPR:L/MUI:N/MS:C/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(8.1)), // exp environmental score
+        }, // exp
+      ), (
+        "b840a83e 5.8", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:C/C:N/I:L/A:N/E:F/RL:X/RC:R/CR:L/IR:X/AR:L/MAV:A/MAC:L/MPR:H/MUI:X/MS:C/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(3.0), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "27017bc3 3.2", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H/E:P/RL:X/RC:R/CR:H/IR:L/AR:X/MAV:A/MAC:X/MPR:L/MUI:X/MS:C/MC:N/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(3.2)), // exp environmental score
+        }, // exp
+      ), (
+        "00bd1bd8 2.8", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:L/E:P/RL:O/RC:U/CR:H/IR:M/AR:M/MAV:X/MAC:L/MPR:X/MUI:R/MS:C/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(2.8)), // exp environmental score
+        }, // exp
+      ), (
+        "9d004013 4.7", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:U/C:H/I:L/A:H/E:P/RL:W/RC:X/CR:M/IR:M/AR:X/MAV:P/MAC:H/MPR:L/MUI:N/MS:U/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "a8a4967b 3.3", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:U/C:H/I:L/A:L/E:F/RL:T/RC:U/CR:H/IR:H/AR:X/MAV:P/MAC:L/MPR:X/MUI:N/MS:U/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "def5b114 3.1", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:H/E:P/RL:X/RC:C/CR:H/IR:L/AR:L/MAV:A/MAC:H/MPR:L/MUI:R/MS:X/MC:N/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(3.1)), // exp environmental score
+        }, // exp
+      ), (
+        "bd265ca1 4.0", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:L/E:X/RL:O/RC:U/CR:H/IR:X/AR:M/MAV:P/MAC:L/MPR:X/MUI:N/MS:U/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "6ce4c6b1 1.0", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N/E:U/RL:O/RC:X/CR:H/IR:L/AR:H/MAV:P/MAC:H/MPR:X/MUI:N/MS:U/MC:X/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(2.6), // exp base score
+          temporal: Some(Score::from(2.3)), // exp temporal score
+          environmental: Some(Score::from(1.0)), // exp environmental score
+        }, // exp
+      ), (
+        "1df00245 4.4", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H/E:F/RL:O/RC:R/CR:L/IR:X/AR:X/MAV:L/MAC:H/MPR:H/MUI:N/MS:U/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "94f4732b 4.9", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:L/E:P/RL:W/RC:U/CR:M/IR:M/AR:X/MAV:L/MAC:X/MPR:N/MUI:R/MS:U/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "c3e22bda 3.0", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:L/E:F/RL:W/RC:U/CR:L/IR:M/AR:H/MAV:N/MAC:H/MPR:H/MUI:X/MS:U/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "fbf5ce5c 5.4", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:H/E:H/RL:U/RC:X/CR:M/IR:X/AR:M/MAV:A/MAC:X/MPR:X/MUI:N/MS:U/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "58f5b1d0 4.9", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:N/E:H/RL:U/RC:C/CR:M/IR:X/AR:H/MAV:P/MAC:L/MPR:L/MUI:R/MS:X/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(2.6), // exp base score
+          temporal: Some(Score::from(2.6)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "877af206 6.9", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:U/C:H/I:N/A:N/E:H/RL:X/RC:R/CR:H/IR:X/AR:L/MAV:P/MAC:H/MPR:N/MUI:R/MS:C/MC:H/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(6.9)), // exp environmental score
+        }, // exp
+      ), (
+        "0618be8a 3.8", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:U/C:L/I:H/A:N/E:P/RL:T/RC:R/CR:H/IR:H/AR:M/MAV:P/MAC:H/MPR:H/MUI:X/MS:U/MC:X/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "3ffe6445 3.5", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:U/C:L/I:N/A:H/E:P/RL:T/RC:U/CR:L/IR:L/AR:L/MAV:L/MAC:X/MPR:X/MUI:N/MS:X/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "e976db6f 6.3", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:L/E:H/RL:W/RC:C/CR:X/IR:X/AR:X/MAV:N/MAC:X/MPR:L/MUI:R/MS:U/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "a3e8a74f 2.2", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:H/E:U/RL:U/RC:C/CR:M/IR:X/AR:L/MAV:N/MAC:H/MPR:H/MUI:X/MS:X/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(2.2)), // exp environmental score
+        }, // exp
+      ), (
+        "3f68042d 4.7", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:L/E:U/RL:X/RC:R/CR:M/IR:H/AR:X/MAV:N/MAC:X/MPR:L/MUI:N/MS:U/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(2.3), // exp base score
+          temporal: Some(Score::from(2.1)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "4ff9730c 6.6", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:C/C:H/I:L/A:L/E:X/RL:X/RC:C/CR:H/IR:M/AR:H/MAV:N/MAC:H/MPR:H/MUI:X/MS:U/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(7.5)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "eb8ae552 3.3", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:H/E:U/RL:X/RC:X/CR:M/IR:M/AR:L/MAV:A/MAC:X/MPR:N/MUI:X/MS:U/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(7.3)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "d3f15ebc 6.3", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:H/E:X/RL:O/RC:R/CR:X/IR:L/AR:H/MAV:P/MAC:X/MPR:N/MUI:R/MS:C/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(7.3)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "eb1d4740 7.4", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:C/C:L/I:H/A:N/E:X/RL:O/RC:X/CR:X/IR:M/AR:X/MAV:L/MAC:L/MPR:H/MUI:R/MS:C/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "8b8684c9 3.9", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:N/E:X/RL:O/RC:R/CR:X/IR:M/AR:X/MAV:A/MAC:X/MPR:X/MUI:N/MS:U/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(4.7), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(3.9)), // exp environmental score
+        }, // exp
+      ), (
+        "b4bd10b2 5.3", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:H/E:H/RL:W/RC:C/CR:X/IR:M/AR:L/MAV:L/MAC:X/MPR:N/MUI:X/MS:U/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(7.8)), // exp temporal score
+          environmental: Some(Score::from(5.3)), // exp environmental score
+        }, // exp
+      ), (
+        "97f4495b 3.6", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:C/C:N/I:L/A:L/E:P/RL:O/RC:R/CR:X/IR:H/AR:L/MAV:L/MAC:X/MPR:X/MUI:N/MS:U/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(4.7), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "3c03efd3 4.0", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N/E:F/RL:W/RC:C/CR:L/IR:L/AR:L/MAV:N/MAC:H/MPR:H/MUI:N/MS:U/MC:X/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "9f8e2f27 2.0", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:L/E:F/RL:W/RC:C/CR:X/IR:X/AR:M/MAV:P/MAC:L/MPR:L/MUI:N/MS:U/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(2.0)), // exp environmental score
+        }, // exp
+      ), (
+        "5a97f880 4.5", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:L/E:F/RL:X/RC:U/CR:H/IR:M/AR:X/MAV:L/MAC:X/MPR:L/MUI:R/MS:U/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "6589e805 6.4", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:L/E:X/RL:O/RC:R/CR:H/IR:X/AR:M/MAV:P/MAC:H/MPR:L/MUI:R/MS:X/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "612d9adf 4.8", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:C/C:N/I:L/A:H/E:H/RL:O/RC:C/CR:H/IR:L/AR:M/MAV:A/MAC:H/MPR:N/MUI:R/MS:X/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "88e277e2 2.6", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:C/C:N/I:N/A:H/E:U/RL:W/RC:C/CR:L/IR:H/AR:X/MAV:X/MAC:X/MPR:X/MUI:R/MS:X/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "31f7a26c 3.7", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:C/C:N/I:N/A:N/E:X/RL:O/RC:C/CR:H/IR:L/AR:M/MAV:A/MAC:H/MPR:H/MUI:X/MS:C/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "0bb70500 8.2", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:L/I:H/A:H/E:P/RL:U/RC:R/CR:H/IR:L/AR:M/MAV:N/MAC:L/MPR:X/MUI:N/MS:U/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(8.2)), // exp environmental score
+        }, // exp
+      ), (
+        "c12be03b 4.8", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:H/E:F/RL:W/RC:X/CR:L/IR:X/AR:L/MAV:A/MAC:X/MPR:N/MUI:X/MS:U/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "a665c81c 4.0", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N/E:X/RL:X/RC:C/CR:L/IR:X/AR:X/MAV:P/MAC:X/MPR:X/MUI:X/MS:U/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(3.7), // exp base score
+          temporal: Some(Score::from(3.7)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "201d9806 7.0", // test name
+        "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:H/E:P/RL:O/RC:X/CR:H/IR:H/AR:M/MAV:L/MAC:L/MPR:H/MUI:R/MS:C/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(7.0)), // exp environmental score
+        }, // exp
+      ), (
+        "9edd4438 3.8", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:L/E:U/RL:O/RC:C/CR:M/IR:H/AR:L/MAV:X/MAC:X/MPR:X/MUI:N/MS:U/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(8.3), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "b902fdff 6.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:C/C:H/I:L/A:H/E:P/RL:U/RC:X/CR:H/IR:M/AR:H/MAV:A/MAC:H/MPR:L/MUI:X/MS:U/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(8.3), // exp base score
+          temporal: Some(Score::from(7.9)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "2f310c8e 5.8", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:C/C:H/I:N/A:H/E:H/RL:O/RC:X/CR:X/IR:X/AR:X/MAV:P/MAC:X/MPR:N/MUI:X/MS:U/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.7)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "0a0773d7 6.8", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:H/E:U/RL:W/RC:C/CR:H/IR:X/AR:H/MAV:A/MAC:H/MPR:X/MUI:X/MS:C/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "d319aa92 6.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:C/C:N/I:L/A:L/E:F/RL:X/RC:U/CR:M/IR:X/AR:M/MAV:A/MAC:L/MPR:L/MUI:R/MS:X/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "76bb3c4f 8.1", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:C/C:N/I:N/A:N/E:H/RL:X/RC:U/CR:H/IR:X/AR:H/MAV:X/MAC:L/MPR:N/MUI:N/MS:U/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(8.1)), // exp environmental score
+        }, // exp
+      ), (
+        "e4dbf509 4.8", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:L/E:X/RL:U/RC:C/CR:L/IR:H/AR:H/MAV:X/MAC:H/MPR:L/MUI:X/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "0a668861 4.3", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:L/E:P/RL:U/RC:R/CR:M/IR:M/AR:M/MAV:N/MAC:L/MPR:H/MUI:X/MS:X/MC:X/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "74df00f2 4.9", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:N/E:H/RL:W/RC:X/CR:H/IR:H/AR:X/MAV:L/MAC:H/MPR:X/MUI:N/MS:X/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(2.4), // exp base score
+          temporal: Some(Score::from(2.4)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "8864da8e 6.3", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:N/E:P/RL:W/RC:U/CR:X/IR:X/AR:L/MAV:L/MAC:L/MPR:L/MUI:N/MS:U/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(3.8)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "e234881b 5.5", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:H/E:U/RL:O/RC:R/CR:L/IR:H/AR:H/MAV:X/MAC:X/MPR:X/MUI:R/MS:U/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "b7dcb69f 1.6", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:H/E:U/RL:W/RC:X/CR:M/IR:X/AR:H/MAV:P/MAC:X/MPR:X/MUI:X/MS:X/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(1.6)), // exp environmental score
+        }, // exp
+      ), (
+        "cec4e050 7.6", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:H/I:H/A:L/E:X/RL:T/RC:C/CR:X/IR:M/AR:X/MAV:N/MAC:H/MPR:X/MUI:N/MS:X/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(7.8), // exp base score
+          temporal: Some(Score::from(7.5)), // exp temporal score
+          environmental: Some(Score::from(7.6)), // exp environmental score
+        }, // exp
+      ), (
+        "6f4b211b 6.0", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:H/I:N/A:L/E:X/RL:O/RC:C/CR:H/IR:X/AR:X/MAV:A/MAC:H/MPR:H/MUI:R/MS:U/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "4b501ff5 5.8", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:L/I:H/A:L/E:H/RL:O/RC:R/CR:M/IR:H/AR:M/MAV:X/MAC:X/MPR:X/MUI:R/MS:U/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "758854a1 7.6", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:L/I:H/A:L/E:P/RL:O/RC:X/CR:H/IR:X/AR:L/MAV:A/MAC:L/MPR:H/MUI:N/MS:C/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(7.6)), // exp environmental score
+        }, // exp
+      ), (
+        "b7a2f779 5.6", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:L/I:H/A:L/E:P/RL:U/RC:X/CR:L/IR:M/AR:L/MAV:X/MAC:H/MPR:H/MUI:X/MS:X/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "7e9488f5 6.1", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:L/I:N/A:N/E:F/RL:U/RC:X/CR:X/IR:X/AR:M/MAV:P/MAC:X/MPR:H/MUI:X/MS:C/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(2.9), // exp base score
+          temporal: Some(Score::from(2.9)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "6f45f606 7.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:C/C:N/I:H/A:L/E:F/RL:O/RC:R/CR:X/IR:X/AR:X/MAV:N/MAC:X/MPR:N/MUI:R/MS:U/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "3db8d12d 4.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:U/C:H/I:L/A:L/E:P/RL:X/RC:R/CR:L/IR:M/AR:X/MAV:N/MAC:H/MPR:L/MUI:X/MS:U/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "4769b4ab 3.9", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:U/C:H/I:L/A:N/E:F/RL:U/RC:C/CR:L/IR:H/AR:M/MAV:L/MAC:L/MPR:N/MUI:X/MS:U/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(3.9)), // exp environmental score
+        }, // exp
+      ), (
+        "0e783298 2.5", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:U/C:H/I:L/A:N/E:H/RL:W/RC:U/CR:H/IR:X/AR:X/MAV:A/MAC:H/MPR:X/MUI:N/MS:X/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(2.5)), // exp environmental score
+        }, // exp
+      ), (
+        "6ff4ffdf 7.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:U/C:H/I:L/A:N/E:P/RL:W/RC:U/CR:H/IR:H/AR:X/MAV:N/MAC:X/MPR:N/MUI:X/MS:U/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "26c7fbc4 4.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:U/C:L/I:L/A:N/E:X/RL:O/RC:R/CR:M/IR:M/AR:M/MAV:A/MAC:H/MPR:H/MUI:R/MS:X/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(3.0)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "f538c096 3.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:H/UI:R/S:U/C:N/I:N/A:L/E:X/RL:O/RC:X/CR:M/IR:H/AR:M/MAV:P/MAC:X/MPR:L/MUI:N/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(2.1), // exp base score
+          temporal: Some(Score::from(2.0)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "060b0841 6.0", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:H/E:P/RL:T/RC:C/CR:M/IR:X/AR:L/MAV:L/MAC:X/MPR:H/MUI:R/MS:X/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: Some(Score::from(7.9)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "8fbfe84f 5.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:H/E:U/RL:X/RC:C/CR:M/IR:H/AR:M/MAV:A/MAC:H/MPR:X/MUI:R/MS:C/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(7.0)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "1472be22 7.6", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:C/C:N/I:L/A:H/E:P/RL:T/RC:C/CR:M/IR:L/AR:H/MAV:X/MAC:L/MPR:H/MUI:X/MS:C/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(7.6)), // exp environmental score
+        }, // exp
+      ), (
+        "8b18d90c 6.8", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:L/E:F/RL:T/RC:X/CR:H/IR:H/AR:M/MAV:A/MAC:L/MPR:L/MUI:R/MS:X/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "338bc5c5 4.2", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:L/E:F/RL:O/RC:C/CR:L/IR:H/AR:X/MAV:X/MAC:X/MPR:L/MUI:X/MS:C/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "67817d5c 9.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:L/I:H/A:H/E:H/RL:W/RC:X/CR:L/IR:M/AR:X/MAV:A/MAC:X/MPR:N/MUI:X/MS:C/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(9.4)), // exp environmental score
+        }, // exp
+      ), (
+        "19c22887 3.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:L/I:H/A:L/E:P/RL:T/RC:X/CR:H/IR:M/AR:M/MAV:A/MAC:X/MPR:L/MUI:R/MS:X/MC:N/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "3afc2638 6.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:L/I:H/A:N/E:X/RL:U/RC:X/CR:H/IR:M/AR:H/MAV:L/MAC:L/MPR:X/MUI:X/MS:X/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "d036899b 5.1", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:H/E:F/RL:X/RC:U/CR:X/IR:M/AR:L/MAV:A/MAC:X/MPR:L/MUI:X/MS:X/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(5.1)), // exp environmental score
+        }, // exp
+      ), (
+        "652d99fd 5.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N/E:U/RL:U/RC:X/CR:H/IR:X/AR:X/MAV:N/MAC:H/MPR:L/MUI:N/MS:U/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "3ec8f5ef 6.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:C/C:H/I:L/A:H/E:F/RL:W/RC:X/CR:M/IR:L/AR:X/MAV:L/MAC:L/MPR:X/MUI:R/MS:C/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(8.3), // exp base score
+          temporal: Some(Score::from(7.9)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "83cf1f0e 3.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:C/C:H/I:L/A:L/E:P/RL:X/RC:C/CR:L/IR:L/AR:L/MAV:X/MAC:L/MPR:L/MUI:X/MS:C/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "026264f8 8.6", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:H/E:H/RL:X/RC:X/CR:X/IR:H/AR:X/MAV:L/MAC:L/MPR:L/MUI:N/MS:X/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(7.5)), // exp temporal score
+          environmental: Some(Score::from(8.6)), // exp environmental score
+        }, // exp
+      ), (
+        "d1753adb 4.1", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N/E:H/RL:X/RC:R/CR:H/IR:M/AR:M/MAV:L/MAC:X/MPR:H/MUI:X/MS:U/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(4.1)), // exp environmental score
+        }, // exp
+      ), (
+        "68922cd3 5.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:C/C:L/I:N/A:L/E:H/RL:O/RC:U/CR:M/IR:H/AR:M/MAV:X/MAC:H/MPR:L/MUI:R/MS:U/MC:N/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "9886505b 4.8", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:C/C:N/I:N/A:L/E:F/RL:T/RC:X/CR:H/IR:H/AR:M/MAV:N/MAC:H/MPR:H/MUI:X/MS:U/MC:X/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "c16879a2 6.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H/E:H/RL:U/RC:C/CR:X/IR:M/AR:H/MAV:N/MAC:H/MPR:H/MUI:X/MS:U/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "adaa680a 6.8", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:U/C:L/I:H/A:H/E:F/RL:W/RC:C/CR:H/IR:M/AR:L/MAV:P/MAC:L/MPR:X/MUI:R/MS:C/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(7.0), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "059c4781 5.2", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:H/E:H/RL:X/RC:C/CR:L/IR:X/AR:L/MAV:N/MAC:L/MPR:H/MUI:N/MS:U/MC:N/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "d8944230 2.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:U/C:L/I:N/A:L/E:U/RL:T/RC:X/CR:X/IR:X/AR:X/MAV:A/MAC:H/MPR:X/MUI:N/MS:C/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(4.1), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(2.7)), // exp environmental score
+        }, // exp
+      ), (
+        "b4287e2a 3.5", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:U/C:N/I:L/A:H/E:X/RL:X/RC:U/CR:X/IR:M/AR:H/MAV:X/MAC:X/MPR:X/MUI:R/MS:U/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "638521b7 6.3", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:L/UI:R/S:U/C:N/I:L/A:L/E:H/RL:U/RC:C/CR:X/IR:H/AR:M/MAV:X/MAC:X/MPR:H/MUI:N/MS:X/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(4.1), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "ab154c7a 5.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:C/C:L/I:H/A:H/E:F/RL:T/RC:U/CR:H/IR:H/AR:M/MAV:P/MAC:H/MPR:X/MUI:R/MS:U/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(9.6), // exp base score
+          temporal: Some(Score::from(8.3)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "dc8f1b18 7.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N/E:P/RL:O/RC:C/CR:H/IR:H/AR:L/MAV:X/MAC:L/MPR:N/MUI:N/MS:U/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(7.7)), // exp environmental score
+        }, // exp
+      ), (
+        "ea350aef 5.1", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:L/E:U/RL:W/RC:C/CR:H/IR:L/AR:X/MAV:N/MAC:X/MPR:L/MUI:N/MS:C/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(5.1)), // exp environmental score
+        }, // exp
+      ), (
+        "cd759662 6.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:H/E:H/RL:O/RC:R/CR:H/IR:L/AR:M/MAV:A/MAC:X/MPR:N/MUI:X/MS:U/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(9.3), // exp base score
+          temporal: Some(Score::from(8.5)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "e31ea422 4.5", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:H/E:U/RL:X/RC:R/CR:L/IR:H/AR:H/MAV:P/MAC:L/MPR:L/MUI:N/MS:X/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(9.3), // exp base score
+          temporal: Some(Score::from(8.2)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "826a6d60 6.1", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H/E:U/RL:W/RC:U/CR:H/IR:M/AR:H/MAV:N/MAC:H/MPR:X/MUI:R/MS:X/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "3ad3193f 7.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H/E:X/RL:T/RC:C/CR:X/IR:H/AR:M/MAV:X/MAC:L/MPR:X/MUI:R/MS:X/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.8)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "138caad3 2.1", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:H/E:X/RL:X/RC:R/CR:H/IR:M/AR:M/MAV:A/MAC:X/MPR:H/MUI:R/MS:X/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(8.3), // exp base score
+          temporal: Some(Score::from(8.0)), // exp temporal score
+          environmental: Some(Score::from(2.1)), // exp environmental score
+        }, // exp
+      ), (
+        "01a9de81 4.5", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:L/E:U/RL:O/RC:X/CR:M/IR:L/AR:M/MAV:A/MAC:H/MPR:L/MUI:X/MS:U/MC:X/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "4d4e05f1 4.3", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N/E:H/RL:W/RC:U/CR:H/IR:M/AR:M/MAV:P/MAC:X/MPR:H/MUI:R/MS:X/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "dd99d704 4.5", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:U/RL:W/RC:U/CR:H/IR:L/AR:X/MAV:X/MAC:X/MPR:H/MUI:X/MS:U/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(4.3), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "6ef1a06c 3.2", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:L/E:P/RL:O/RC:X/CR:L/IR:H/AR:L/MAV:A/MAC:H/MPR:X/MUI:X/MS:U/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: Some(Score::from(7.8)), // exp temporal score
+          environmental: Some(Score::from(3.2)), // exp environmental score
+        }, // exp
+      ), (
+        "b2ae7952 3.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:L/E:F/RL:U/RC:U/CR:L/IR:L/AR:X/MAV:N/MAC:H/MPR:H/MUI:R/MS:U/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(3.4)), // exp environmental score
+        }, // exp
+      ), (
+        "3fb69ef9 3.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:L/E:F/RL:X/RC:C/CR:L/IR:X/AR:L/MAV:P/MAC:X/MPR:L/MUI:N/MS:C/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(8.0), // exp base score
+          temporal: Some(Score::from(7.8)), // exp temporal score
+          environmental: Some(Score::from(3.4)), // exp environmental score
+        }, // exp
+      ), (
+        "ecba301c 3.3", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N/E:H/RL:O/RC:C/CR:X/IR:H/AR:M/MAV:P/MAC:X/MPR:H/MUI:R/MS:C/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "af187ec6 4.3", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:L/E:P/RL:T/RC:C/CR:M/IR:X/AR:M/MAV:N/MAC:X/MPR:N/MUI:R/MS:C/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "378d6ea4 3.5", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:L/E:X/RL:T/RC:U/CR:L/IR:M/AR:M/MAV:L/MAC:L/MPR:L/MUI:X/MS:X/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "fac24d14 4.9", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N/E:F/RL:T/RC:C/CR:X/IR:X/AR:H/MAV:A/MAC:X/MPR:H/MUI:N/MS:U/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(3.8), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "2198bed0 4.9", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:C/C:N/I:L/A:H/E:H/RL:W/RC:C/CR:M/IR:X/AR:H/MAV:L/MAC:X/MPR:N/MUI:R/MS:C/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "8dfe7380 5.4", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N/E:F/RL:O/RC:U/CR:X/IR:M/AR:L/MAV:L/MAC:H/MPR:X/MUI:X/MS:C/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "252bd412 6.6", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:H/E:X/RL:U/RC:X/CR:X/IR:M/AR:L/MAV:X/MAC:L/MPR:H/MUI:N/MS:C/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(7.6)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "4cdf1370 5.7", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:H/E:X/RL:W/RC:R/CR:X/IR:H/AR:L/MAV:X/MAC:X/MPR:N/MUI:R/MS:U/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "a0fa00ce 6.0", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:N/E:X/RL:O/RC:U/CR:H/IR:L/AR:M/MAV:X/MAC:H/MPR:L/MUI:X/MS:U/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "9c2c0866 4.9", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:L/E:H/RL:U/RC:R/CR:H/IR:L/AR:L/MAV:N/MAC:H/MPR:X/MUI:N/MS:C/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "56042e42 3.6", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L/E:U/RL:T/RC:C/CR:M/IR:X/AR:M/MAV:X/MAC:L/MPR:L/MUI:R/MS:U/MC:N/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "c2231843 7.2", // test name
+        "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:N/E:X/RL:O/RC:X/CR:H/IR:L/AR:X/MAV:X/MAC:X/MPR:X/MUI:X/MS:X/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "5475921e 6.6", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:H/I:H/A:N/E:F/RL:X/RC:C/CR:M/IR:H/AR:M/MAV:L/MAC:X/MPR:L/MUI:X/MS:X/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(7.0)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "88bcb495 1.7", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:N/E:F/RL:O/RC:C/CR:X/IR:X/AR:X/MAV:P/MAC:H/MPR:X/MUI:R/MS:C/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(1.7)), // exp environmental score
+        }, // exp
+      ), (
+        "96ff174e 4.5", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:N/E:P/RL:T/RC:R/CR:X/IR:M/AR:L/MAV:A/MAC:H/MPR:L/MUI:N/MS:U/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "fb6da3e3 5.5", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N/E:U/RL:T/RC:U/CR:H/IR:X/AR:L/MAV:X/MAC:H/MPR:N/MUI:R/MS:X/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(4.1), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "5c83bc24 7.6", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:H/E:H/RL:O/RC:R/CR:X/IR:M/AR:M/MAV:N/MAC:L/MPR:L/MUI:X/MS:U/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(7.6)), // exp environmental score
+        }, // exp
+      ), (
+        "7a25bb04 4.6", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:L/I:N/A:N/E:F/RL:X/RC:C/CR:M/IR:L/AR:H/MAV:X/MAC:L/MPR:N/MUI:R/MS:X/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(1.9), // exp base score
+          temporal: Some(Score::from(1.9)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "5ac6cedf 4.8", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:H/E:H/RL:T/RC:C/CR:L/IR:X/AR:L/MAV:P/MAC:L/MPR:L/MUI:R/MS:U/MC:N/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "c567bcc1 6.3", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N/E:H/RL:T/RC:X/CR:H/IR:H/AR:L/MAV:L/MAC:L/MPR:H/MUI:N/MS:X/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(1.9), // exp base score
+          temporal: Some(Score::from(1.9)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "b6a6e7c3 7.8", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:H/I:H/A:N/E:F/RL:O/RC:C/CR:L/IR:H/AR:H/MAV:A/MAC:L/MPR:X/MUI:N/MS:C/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
+        }, // exp
+      ), (
+        "28681312 4.6", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:H/I:L/A:H/E:P/RL:X/RC:X/CR:X/IR:X/AR:X/MAV:A/MAC:H/MPR:X/MUI:N/MS:U/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "d15e7c20 2.0", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:H/I:L/A:N/E:P/RL:X/RC:R/CR:L/IR:M/AR:M/MAV:L/MAC:X/MPR:L/MUI:X/MS:U/MC:N/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(2.0)), // exp environmental score
+        }, // exp
+      ), (
+        "43f8279f 1.7", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:L/I:H/A:N/E:H/RL:T/RC:R/CR:M/IR:H/AR:X/MAV:A/MAC:X/MPR:H/MUI:X/MS:U/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(1.7)), // exp environmental score
+        }, // exp
+      ), (
+        "7fef726b 5.7", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:L/I:L/A:N/E:U/RL:U/RC:C/CR:M/IR:H/AR:L/MAV:N/MAC:L/MPR:X/MUI:N/MS:X/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(3.7), // exp base score
+          temporal: Some(Score::from(3.4)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "9a6e8aa4 0.0", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:C/C:L/I:N/A:N/E:F/RL:U/RC:X/CR:M/IR:L/AR:H/MAV:X/MAC:L/MPR:H/MUI:R/MS:U/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(2.3), // exp base score
+          temporal: Some(Score::from(2.3)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "b4df935b 5.8", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:H/E:X/RL:T/RC:U/CR:H/IR:L/AR:H/MAV:X/MAC:L/MPR:X/MUI:N/MS:X/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "96e3cf1d 4.6", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N/E:P/RL:W/RC:X/CR:L/IR:M/AR:H/MAV:N/MAC:X/MPR:X/MUI:R/MS:U/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.7)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "a7abdced 7.0", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:L/A:L/E:H/RL:U/RC:R/CR:M/IR:L/AR:H/MAV:N/MAC:H/MPR:L/MUI:X/MS:C/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(2.9), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(7.0)), // exp environmental score
+        }, // exp
+      ), (
+        "afe6d7f0 6.2", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:N/I:L/A:L/E:P/RL:T/RC:U/CR:M/IR:M/AR:H/MAV:A/MAC:H/MPR:H/MUI:R/MS:C/MC:X/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(2.9), // exp base score
+          temporal: Some(Score::from(2.5)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "e16db08e 2.9", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:L/A:N/E:U/RL:X/RC:C/CR:H/IR:L/AR:M/MAV:P/MAC:X/MPR:N/MUI:X/MS:X/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "59a975bd 9.3", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:L/E:F/RL:U/RC:R/CR:M/IR:M/AR:X/MAV:N/MAC:L/MPR:N/MUI:N/MS:X/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(9.3)), // exp environmental score
+        }, // exp
+      ), (
+        "7ee26531 2.8", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:L/I:N/A:H/E:H/RL:T/RC:U/CR:M/IR:M/AR:L/MAV:N/MAC:X/MPR:N/MUI:N/MS:C/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(2.8)), // exp environmental score
+        }, // exp
+      ), (
+        "69c83a2b 6.1", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:N/I:L/A:H/E:U/RL:X/RC:C/CR:M/IR:L/AR:M/MAV:A/MAC:L/MPR:N/MUI:R/MS:C/MC:L/MI:H/MA:L", // vec
         Scores {
           base: Score::from(6.4), // exp base score
           temporal: Some(Score::from(5.9)), // exp temporal score
           environmental: Some(Score::from(6.1)), // exp environmental score
         }, // exp
       ), (
-        "81399d77 5.7", // test name
-        "CVSS:3.0/AV:A/AC:L/PR:L/UI:N/S:C/C:N/I:L/A:N/E:H/RL:U/RC:R/CR:H/IR:L/AR:M/MAV:N/MAC:H/MPR:X/MUI:R/MS:U/MC:L/MI:N/MA:H", // vec
+        "c99ccc2c 5.4", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:L/A:L/E:U/RL:T/RC:U/CR:M/IR:M/AR:M/MAV:L/MAC:X/MPR:X/MUI:R/MS:X/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "0b1fc7b5 5.0", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:L/E:H/RL:X/RC:X/CR:H/IR:M/AR:H/MAV:A/MAC:H/MPR:H/MUI:R/MS:U/MC:N/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "b02b00eb 6.0", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:L/E:F/RL:X/RC:X/CR:L/IR:L/AR:X/MAV:N/MAC:L/MPR:X/MUI:N/MS:U/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "17ffcf29 5.6", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:H/E:U/RL:X/RC:C/CR:L/IR:L/AR:M/MAV:N/MAC:H/MPR:N/MUI:R/MS:U/MC:N/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "1ba32fb0 2.6", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:L/E:P/RL:T/RC:R/CR:L/IR:H/AR:L/MAV:P/MAC:L/MPR:X/MUI:X/MS:U/MC:H/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(3.6), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "4941470a 4.2", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N/E:U/RL:U/RC:R/CR:X/IR:L/AR:X/MAV:X/MAC:H/MPR:H/MUI:N/MS:X/MC:H/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(2.5), // exp base score
+          temporal: Some(Score::from(2.2)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "e0c9fd30 4.6", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:H/E:H/RL:T/RC:X/CR:X/IR:X/AR:L/MAV:L/MAC:H/MPR:L/MUI:N/MS:X/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "142d2543 5.1", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:N/E:X/RL:X/RC:X/CR:X/IR:H/AR:M/MAV:L/MAC:X/MPR:N/MUI:X/MS:U/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(5.1)), // exp environmental score
+        }, // exp
+      ), (
+        "1e910526 5.8", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:H/I:L/A:H/E:X/RL:T/RC:X/CR:L/IR:H/AR:X/MAV:P/MAC:H/MPR:X/MUI:X/MS:U/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "7b7a1d12 2.8", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:L/I:L/A:L/E:U/RL:X/RC:R/CR:L/IR:L/AR:L/MAV:L/MAC:L/MPR:H/MUI:N/MS:C/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.0), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(2.8)), // exp environmental score
+        }, // exp
+      ), (
+        "891522b1 4.0", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:L/I:N/A:H/E:X/RL:T/RC:X/CR:H/IR:L/AR:H/MAV:N/MAC:H/MPR:H/MUI:X/MS:X/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "720cc644 6.0", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:L/I:N/A:H/E:X/RL:U/RC:C/CR:M/IR:M/AR:H/MAV:X/MAC:H/MPR:H/MUI:X/MS:U/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "1a53a8f4 6.0", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:L/I:N/A:N/E:X/RL:X/RC:X/CR:M/IR:M/AR:M/MAV:L/MAC:H/MPR:X/MUI:X/MS:C/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(2.5), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "50f57286 7.1", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:L/E:H/RL:X/RC:X/CR:H/IR:H/AR:M/MAV:P/MAC:H/MPR:N/MUI:X/MS:X/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "6d51c9b4 3.5", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:N/I:N/A:N/E:U/RL:T/RC:X/CR:M/IR:X/AR:X/MAV:L/MAC:X/MPR:L/MUI:R/MS:C/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "390f926f 3.8", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:H/I:L/A:N/E:U/RL:W/RC:U/CR:M/IR:H/AR:X/MAV:X/MAC:X/MPR:X/MUI:X/MS:C/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.0), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "88553e34 1.8", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N/E:X/RL:W/RC:C/CR:L/IR:L/AR:H/MAV:L/MAC:X/MPR:N/MUI:X/MS:U/MC:X/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(3.3), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(1.8)), // exp environmental score
+        }, // exp
+      ), (
+        "f7742255 4.7", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:N/A:L/E:H/RL:T/RC:R/CR:X/IR:M/AR:H/MAV:X/MAC:X/MPR:L/MUI:R/MS:X/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(3.3), // exp base score
+          temporal: Some(Score::from(3.1)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "da8dc156 4.2", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:N/E:H/RL:X/RC:X/CR:M/IR:M/AR:L/MAV:L/MAC:L/MPR:H/MUI:R/MS:X/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "34f4fa02 3.1", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:L/A:N/E:P/RL:W/RC:R/CR:X/IR:L/AR:X/MAV:L/MAC:X/MPR:L/MUI:N/MS:C/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(2.2), // exp base score
+          temporal: Some(Score::from(2.0)), // exp temporal score
+          environmental: Some(Score::from(3.1)), // exp environmental score
+        }, // exp
+      ), (
+        "fcd3c312 7.0", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:L/E:H/RL:T/RC:U/CR:X/IR:X/AR:H/MAV:X/MAC:L/MPR:X/MUI:N/MS:C/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(7.0)), // exp environmental score
+        }, // exp
+      ), (
+        "a9c27633 5.9", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:L/E:P/RL:U/RC:C/CR:H/IR:H/AR:L/MAV:X/MAC:H/MPR:N/MUI:N/MS:C/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "e48c9145 2.9", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:N/A:L/E:F/RL:O/RC:R/CR:M/IR:L/AR:M/MAV:P/MAC:H/MPR:H/MUI:R/MS:C/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(2.9)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "7a5f1210 2.3", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H/E:P/RL:W/RC:U/CR:H/IR:L/AR:L/MAV:A/MAC:X/MPR:H/MUI:X/MS:U/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(2.3)), // exp environmental score
+        }, // exp
+      ), (
+        "d8b02895 4.6", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:L/E:H/RL:X/RC:R/CR:M/IR:L/AR:H/MAV:P/MAC:L/MPR:N/MUI:R/MS:U/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.9)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "236a3223 3.1", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:L/E:U/RL:T/RC:X/CR:H/IR:X/AR:L/MAV:P/MAC:X/MPR:H/MUI:N/MS:X/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(3.1)), // exp environmental score
+        }, // exp
+      ), (
+        "e6bcc4dc 3.1", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H/E:H/RL:W/RC:X/CR:M/IR:M/AR:M/MAV:P/MAC:X/MPR:X/MUI:N/MS:X/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(3.1)), // exp environmental score
+        }, // exp
+      ), (
+        "71482b78 5.6", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:L/E:P/RL:U/RC:U/CR:M/IR:H/AR:L/MAV:N/MAC:H/MPR:H/MUI:R/MS:U/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.6), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "a32cd612 6.4", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:H/E:F/RL:T/RC:R/CR:M/IR:M/AR:L/MAV:A/MAC:X/MPR:N/MUI:N/MS:X/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "52da715e 4.2", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:C/C:L/I:H/A:N/E:U/RL:O/RC:U/CR:X/IR:X/AR:M/MAV:L/MAC:L/MPR:H/MUI:X/MS:X/MC:X/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "e287f9d4 5.3", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:L/E:P/RL:O/RC:R/CR:H/IR:M/AR:H/MAV:A/MAC:X/MPR:L/MUI:X/MS:C/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(5.3)), // exp environmental score
+        }, // exp
+      ), (
+        "916f02f1 2.3", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:H/E:X/RL:T/RC:U/CR:L/IR:H/AR:L/MAV:X/MAC:H/MPR:X/MUI:X/MS:C/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(2.3)), // exp environmental score
+        }, // exp
+      ), (
+        "78bfd8bf 3.9", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N/E:P/RL:W/RC:C/CR:H/IR:L/AR:X/MAV:N/MAC:H/MPR:X/MUI:N/MS:X/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(3.6), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(3.9)), // exp environmental score
+        }, // exp
+      ), (
+        "0de8b4f8 2.0", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:L/E:F/RL:U/RC:X/CR:X/IR:X/AR:M/MAV:N/MAC:H/MPR:H/MUI:X/MS:U/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(3.6), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(2.0)), // exp environmental score
+        }, // exp
+      ), (
+        "c31ffd3f 4.2", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:L/E:P/RL:X/RC:X/CR:H/IR:M/AR:L/MAV:L/MAC:X/MPR:X/MUI:R/MS:X/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(3.6), // exp base score
+          temporal: Some(Score::from(3.4)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "be185295 4.2", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:L/E:U/RL:W/RC:C/CR:L/IR:X/AR:H/MAV:P/MAC:X/MPR:N/MUI:N/MS:C/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(3.6), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "786adc9a 5.9", // test name
+        "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L/E:X/RL:T/RC:R/CR:X/IR:L/AR:X/MAV:X/MAC:H/MPR:N/MUI:N/MS:X/MC:H/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(2.5), // exp base score
+          temporal: Some(Score::from(2.4)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "7cc17860 3.7", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:H/I:L/A:H/E:P/RL:W/RC:C/CR:L/IR:X/AR:X/MAV:L/MAC:H/MPR:H/MUI:R/MS:U/MC:X/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "8ddba187 4.9", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:N/E:U/RL:O/RC:U/CR:M/IR:X/AR:M/MAV:X/MAC:L/MPR:N/MUI:R/MS:U/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(3.7)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "8f0325f1 9.7", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:N/I:H/A:N/E:X/RL:U/RC:C/CR:X/IR:H/AR:H/MAV:N/MAC:L/MPR:N/MUI:R/MS:C/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(9.7)), // exp environmental score
+        }, // exp
+      ), (
+        "de69c093 7.2", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:N/I:N/A:N/E:U/RL:O/RC:U/CR:L/IR:X/AR:X/MAV:N/MAC:L/MPR:N/MUI:N/MS:C/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "20a762f0 5.5", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H/E:F/RL:U/RC:R/CR:M/IR:M/AR:X/MAV:L/MAC:X/MPR:H/MUI:R/MS:U/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "6fb39a53 3.8", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:N/E:P/RL:T/RC:X/CR:L/IR:L/AR:H/MAV:N/MAC:H/MPR:H/MUI:R/MS:X/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "08f2251c 6.2", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:N/E:X/RL:W/RC:C/CR:M/IR:M/AR:M/MAV:L/MAC:X/MPR:X/MUI:N/MS:X/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "7dc85bb6 6.6", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:N/E:X/RL:W/RC:X/CR:H/IR:H/AR:H/MAV:N/MAC:L/MPR:X/MUI:X/MS:C/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "c4beed23 3.8", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:H/E:P/RL:O/RC:C/CR:L/IR:L/AR:M/MAV:P/MAC:X/MPR:X/MUI:X/MS:X/MC:N/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "3d7d54f3 4.9", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:C/C:H/I:N/A:L/E:F/RL:X/RC:R/CR:X/IR:L/AR:X/MAV:P/MAC:L/MPR:L/MUI:N/MS:X/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "cafd366c 2.0", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:C/C:L/I:N/A:N/E:U/RL:O/RC:U/CR:M/IR:H/AR:L/MAV:A/MAC:H/MPR:N/MUI:N/MS:U/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(2.8), // exp base score
+          temporal: Some(Score::from(2.3)), // exp temporal score
+          environmental: Some(Score::from(2.0)), // exp environmental score
+        }, // exp
+      ), (
+        "11a91231 7.3", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:C/C:N/I:H/A:H/E:F/RL:U/RC:R/CR:X/IR:M/AR:H/MAV:L/MAC:H/MPR:L/MUI:N/MS:C/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "90e9b05d 4.5", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:C/C:N/I:H/A:N/E:H/RL:W/RC:C/CR:M/IR:X/AR:H/MAV:L/MAC:H/MPR:X/MUI:N/MS:C/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "d17f1744 5.1", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:C/C:N/I:N/A:H/E:H/RL:U/RC:C/CR:M/IR:M/AR:M/MAV:P/MAC:X/MPR:N/MUI:X/MS:X/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(5.1)), // exp environmental score
+        }, // exp
+      ), (
+        "a507db16 6.8", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:C/C:N/I:N/A:L/E:F/RL:T/RC:C/CR:H/IR:X/AR:L/MAV:N/MAC:H/MPR:X/MUI:X/MS:X/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(2.8), // exp base score
+          temporal: Some(Score::from(2.7)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "b8571ab0 6.2", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:U/C:L/I:N/A:L/E:F/RL:O/RC:R/CR:M/IR:M/AR:X/MAV:N/MAC:L/MPR:X/MUI:X/MS:C/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(3.1), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "9289a68b 2.1", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:H/E:X/RL:O/RC:R/CR:X/IR:L/AR:M/MAV:X/MAC:L/MPR:H/MUI:N/MS:U/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(8.4), // exp base score
+          temporal: Some(Score::from(7.7)), // exp temporal score
+          environmental: Some(Score::from(2.1)), // exp environmental score
+        }, // exp
+      ), (
+        "bdd1c8bf 2.9", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:H/A:H/E:X/RL:X/RC:R/CR:L/IR:H/AR:X/MAV:A/MAC:H/MPR:L/MUI:N/MS:C/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: Some(Score::from(8.4)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "d8cb8c79 6.1", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:H/A:L/E:P/RL:U/RC:R/CR:L/IR:X/AR:X/MAV:X/MAC:L/MPR:H/MUI:X/MS:X/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.9), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "e3b80cff 5.6", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:H/A:L/E:U/RL:O/RC:X/CR:X/IR:X/AR:X/MAV:N/MAC:H/MPR:N/MUI:R/MS:U/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.9), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "1f126508 5.2", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:H/E:U/RL:T/RC:R/CR:M/IR:H/AR:L/MAV:X/MAC:H/MPR:X/MUI:N/MS:C/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(7.9), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "0fcbcc64 3.3", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N/E:U/RL:T/RC:U/CR:H/IR:H/AR:L/MAV:N/MAC:H/MPR:H/MUI:R/MS:C/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "aa9db596 7.2", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:N/I:H/A:N/E:X/RL:W/RC:X/CR:X/IR:M/AR:M/MAV:L/MAC:H/MPR:L/MUI:R/MS:C/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "f5a3814d 3.0", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:N/I:L/A:N/E:P/RL:W/RC:X/CR:M/IR:M/AR:M/MAV:L/MAC:X/MPR:H/MUI:N/MS:X/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(3.8), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "5cbd6121 2.2", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:L/E:U/RL:X/RC:R/CR:H/IR:M/AR:M/MAV:L/MAC:H/MPR:H/MUI:R/MS:U/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(2.2)), // exp environmental score
+        }, // exp
+      ), (
+        "a7aae3b8 2.9", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:H/E:F/RL:X/RC:C/CR:X/IR:M/AR:X/MAV:P/MAC:H/MPR:X/MUI:N/MS:U/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "22557d79 3.6", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:H/I:L/A:N/E:H/RL:T/RC:C/CR:H/IR:L/AR:X/MAV:X/MAC:X/MPR:N/MUI:X/MS:U/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "efab2204 3.8", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:L/I:H/A:L/E:H/RL:T/RC:R/CR:H/IR:M/AR:L/MAV:X/MAC:X/MPR:L/MUI:X/MS:C/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "4c737000 2.9", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:L/I:N/A:L/E:U/RL:U/RC:R/CR:L/IR:X/AR:X/MAV:A/MAC:H/MPR:H/MUI:N/MS:C/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "2ef88322 4.7", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:N/I:L/A:N/E:H/RL:X/RC:U/CR:X/IR:L/AR:M/MAV:P/MAC:H/MPR:H/MUI:N/MS:C/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(3.0)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "3558e391 8.0", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:H/E:H/RL:U/RC:X/CR:M/IR:X/AR:L/MAV:X/MAC:X/MPR:L/MUI:R/MS:C/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(8.0)), // exp environmental score
+        }, // exp
+      ), (
+        "266ad00a 4.2", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:L/E:P/RL:U/RC:X/CR:X/IR:H/AR:M/MAV:X/MAC:X/MPR:H/MUI:X/MS:U/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "5568dde6 3.0", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N/E:X/RL:O/RC:U/CR:L/IR:M/AR:L/MAV:L/MAC:L/MPR:X/MUI:X/MS:X/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(3.9), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "6c3e53a8 5.3", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:N/A:N/E:F/RL:O/RC:U/CR:M/IR:M/AR:H/MAV:L/MAC:H/MPR:L/MUI:R/MS:U/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(2.8), // exp base score
+          temporal: Some(Score::from(2.4)), // exp temporal score
+          environmental: Some(Score::from(5.3)), // exp environmental score
+        }, // exp
+      ), (
+        "1f355bfb 4.0", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:N/A:N/E:U/RL:X/RC:X/CR:X/IR:M/AR:H/MAV:N/MAC:L/MPR:N/MUI:X/MS:X/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(2.8), // exp base score
+          temporal: Some(Score::from(2.6)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "ea27ff10 7.3", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H/E:H/RL:W/RC:C/CR:X/IR:X/AR:X/MAV:N/MAC:L/MPR:X/MUI:N/MS:U/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(9.3), // exp base score
+          temporal: Some(Score::from(9.1)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "04f6cbe2 8.0", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:L/E:X/RL:O/RC:X/CR:M/IR:H/AR:M/MAV:A/MAC:H/MPR:N/MUI:X/MS:X/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(9.2), // exp base score
+          temporal: Some(Score::from(8.8)), // exp temporal score
+          environmental: Some(Score::from(8.0)), // exp environmental score
+        }, // exp
+      ), (
+        "dd5d2858 0.0", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N/E:F/RL:T/RC:R/CR:L/IR:M/AR:L/MAV:P/MAC:X/MPR:N/MUI:X/MS:U/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(9.0), // exp base score
+          temporal: Some(Score::from(8.1)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "17a44e3f 5.5", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:L/E:P/RL:X/RC:U/CR:H/IR:L/AR:M/MAV:P/MAC:H/MPR:N/MUI:N/MS:C/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(8.5), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "5abe5e71 7.3", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N/E:X/RL:X/RC:R/CR:H/IR:X/AR:H/MAV:X/MAC:H/MPR:N/MUI:R/MS:C/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "fa964187 2.6", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:L/E:P/RL:U/RC:U/CR:M/IR:M/AR:L/MAV:P/MAC:X/MPR:N/MUI:R/MS:C/MC:N/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "0073e305 6.8", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:H/E:U/RL:O/RC:C/CR:X/IR:M/AR:L/MAV:N/MAC:H/MPR:N/MUI:N/MS:X/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(7.9), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "e00effea 3.5", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:N/E:U/RL:U/RC:U/CR:H/IR:L/AR:X/MAV:A/MAC:H/MPR:H/MUI:X/MS:X/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(4.3), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "2a6ffa30 4.3", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L/E:H/RL:U/RC:U/CR:X/IR:H/AR:X/MAV:A/MAC:L/MPR:X/MUI:R/MS:X/MC:X/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "02caa6af 6.9", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N/E:U/RL:O/RC:X/CR:H/IR:H/AR:M/MAV:X/MAC:H/MPR:L/MUI:N/MS:C/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(6.9)), // exp environmental score
+        }, // exp
+      ), (
+        "7f2dd0a2 3.7", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:H/E:X/RL:T/RC:R/CR:H/IR:H/AR:M/MAV:P/MAC:H/MPR:L/MUI:X/MS:C/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(8.5), // exp base score
+          temporal: Some(Score::from(7.9)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "d8b89f0c 3.8", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:L/E:P/RL:X/RC:U/CR:X/IR:L/AR:M/MAV:L/MAC:X/MPR:N/MUI:N/MS:C/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(7.7), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "d79166d2 4.0", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:L/E:X/RL:T/RC:R/CR:H/IR:X/AR:L/MAV:P/MAC:X/MPR:H/MUI:N/MS:C/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "69f88325 4.7", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:L/E:P/RL:X/RC:X/CR:M/IR:L/AR:L/MAV:A/MAC:X/MPR:N/MUI:X/MS:U/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.0), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "066d26e2 5.9", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:N/I:H/A:L/E:X/RL:W/RC:C/CR:L/IR:X/AR:M/MAV:A/MAC:X/MPR:L/MUI:X/MS:U/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "eb824064 1.9", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:N/I:L/A:N/E:U/RL:O/RC:U/CR:M/IR:X/AR:X/MAV:P/MAC:L/MPR:X/MUI:R/MS:C/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(3.6), // exp base score
+          temporal: Some(Score::from(2.9)), // exp temporal score
+          environmental: Some(Score::from(1.9)), // exp environmental score
+        }, // exp
+      ), (
+        "2a01ec9a 4.2", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:L/E:P/RL:X/RC:C/CR:L/IR:H/AR:L/MAV:L/MAC:X/MPR:L/MUI:R/MS:U/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "c41106b0 7.2", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:H/E:H/RL:T/RC:X/CR:M/IR:M/AR:X/MAV:A/MAC:L/MPR:N/MUI:N/MS:C/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "6c5d5c93 6.4", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:L/E:F/RL:U/RC:U/CR:H/IR:X/AR:M/MAV:N/MAC:L/MPR:H/MUI:N/MS:U/MC:X/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "4a91a0ce 6.0", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:H/A:L/E:X/RL:W/RC:X/CR:M/IR:M/AR:L/MAV:N/MAC:H/MPR:N/MUI:X/MS:U/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "023cb198 0.0", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H/E:P/RL:T/RC:C/CR:H/IR:M/AR:L/MAV:X/MAC:X/MPR:N/MUI:N/MS:X/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "3af5eb25 7.0", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N/E:P/RL:W/RC:U/CR:L/IR:H/AR:X/MAV:N/MAC:L/MPR:N/MUI:R/MS:X/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(3.3), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(7.0)), // exp environmental score
+        }, // exp
+      ), (
+        "53484e87 7.3", // test name
+        "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L/E:H/RL:U/RC:X/CR:H/IR:M/AR:L/MAV:P/MAC:X/MPR:N/MUI:R/MS:C/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(3.3), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "ecf06cd9 5.8", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:C/C:H/I:H/A:N/E:H/RL:U/RC:C/CR:L/IR:M/AR:H/MAV:P/MAC:H/MPR:L/MUI:X/MS:X/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.7), // exp base score
+          temporal: Some(Score::from(7.7)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "61353842 7.1", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:C/C:L/I:H/A:L/E:H/RL:O/RC:U/CR:M/IR:M/AR:M/MAV:N/MAC:H/MPR:N/MUI:X/MS:C/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "67e30c63 3.3", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:C/C:L/I:H/A:N/E:H/RL:X/RC:U/CR:M/IR:M/AR:X/MAV:N/MAC:L/MPR:L/MUI:R/MS:U/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "d1f6df62 3.2", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:N/E:P/RL:W/RC:R/CR:L/IR:X/AR:M/MAV:P/MAC:X/MPR:N/MUI:N/MS:X/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(3.9)), // exp temporal score
+          environmental: Some(Score::from(3.2)), // exp environmental score
+        }, // exp
+      ), (
+        "7203bcb3 6.8", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:N/E:H/RL:U/RC:X/CR:L/IR:X/AR:L/MAV:X/MAC:L/MPR:L/MUI:R/MS:C/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "e1d1835f 5.8", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:L/A:H/E:F/RL:X/RC:C/CR:M/IR:H/AR:M/MAV:P/MAC:X/MPR:L/MUI:R/MS:X/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "57d42dc6 1.7", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:H/E:F/RL:O/RC:X/CR:M/IR:H/AR:X/MAV:P/MAC:X/MPR:L/MUI:N/MS:X/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(1.7)), // exp environmental score
+        }, // exp
+      ), (
+        "ceeca264 4.4", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:L/E:H/RL:X/RC:U/CR:L/IR:M/AR:H/MAV:P/MAC:H/MPR:H/MUI:X/MS:C/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.0), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "48c64b9b 6.9", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:L/I:L/A:L/E:P/RL:U/RC:X/CR:L/IR:X/AR:X/MAV:A/MAC:L/MPR:N/MUI:X/MS:U/MC:X/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(4.1), // exp base score
+          temporal: Some(Score::from(3.9)), // exp temporal score
+          environmental: Some(Score::from(6.9)), // exp environmental score
+        }, // exp
+      ), (
+        "ab41fbfb 3.8", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:L/I:L/A:L/E:U/RL:W/RC:U/CR:M/IR:X/AR:X/MAV:A/MAC:L/MPR:L/MUI:N/MS:U/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(4.1), // exp base score
+          temporal: Some(Score::from(3.4)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "f42af1df 6.5", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:L/A:N/E:F/RL:U/RC:X/CR:M/IR:H/AR:H/MAV:N/MAC:L/MPR:X/MUI:X/MS:U/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(2.2), // exp base score
+          temporal: Some(Score::from(2.2)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "b17749c0 4.5", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:C/C:H/I:L/A:L/E:U/RL:W/RC:C/CR:M/IR:L/AR:X/MAV:X/MAC:H/MPR:H/MUI:R/MS:U/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "2a2aa235 6.9", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:C/C:L/I:H/A:L/E:F/RL:X/RC:U/CR:X/IR:L/AR:H/MAV:X/MAC:X/MPR:H/MUI:R/MS:X/MC:X/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(6.9)), // exp environmental score
+        }, // exp
+      ), (
+        "42d51522 7.1", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:C/C:L/I:N/A:L/E:F/RL:O/RC:X/CR:X/IR:X/AR:L/MAV:L/MAC:L/MPR:L/MUI:N/MS:C/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.7)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "75ebd13d 0.0", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:C/C:N/I:H/A:L/E:X/RL:T/RC:R/CR:H/IR:L/AR:H/MAV:L/MAC:H/MPR:N/MUI:R/MS:X/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "43ec073b 9.0", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:C/C:N/I:L/A:N/E:F/RL:T/RC:C/CR:M/IR:L/AR:M/MAV:X/MAC:L/MPR:N/MUI:N/MS:C/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(2.6), // exp base score
+          temporal: Some(Score::from(2.5)), // exp temporal score
+          environmental: Some(Score::from(9.0)), // exp environmental score
+        }, // exp
+      ), (
+        "06e3ea55 6.2", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:H/E:H/RL:W/RC:C/CR:L/IR:H/AR:H/MAV:X/MAC:H/MPR:X/MUI:R/MS:X/MC:N/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "6dac0d40 4.7", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:U/C:L/I:H/A:H/E:X/RL:X/RC:R/CR:H/IR:H/AR:X/MAV:P/MAC:L/MPR:H/MUI:X/MS:C/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "1e93d1c3 2.5", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:U/C:N/I:H/A:L/E:U/RL:W/RC:X/CR:H/IR:H/AR:M/MAV:P/MAC:L/MPR:N/MUI:X/MS:U/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(2.5)), // exp environmental score
+        }, // exp
+      ), (
+        "79a3e8fa 4.2", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:U/C:N/I:H/A:N/E:U/RL:X/RC:U/CR:H/IR:L/AR:X/MAV:L/MAC:X/MPR:H/MUI:N/MS:U/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(4.2), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "c530875d 2.9", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:H/I:L/A:H/E:F/RL:T/RC:R/CR:H/IR:H/AR:M/MAV:L/MAC:X/MPR:N/MUI:X/MS:C/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(8.4), // exp base score
+          temporal: Some(Score::from(7.6)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "78d72677 3.9", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:H/E:H/RL:O/RC:X/CR:L/IR:L/AR:L/MAV:X/MAC:H/MPR:H/MUI:X/MS:X/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.7), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(3.9)), // exp environmental score
+        }, // exp
+      ), (
+        "f9f1cbca 7.1", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:N/A:H/E:U/RL:O/RC:R/CR:M/IR:H/AR:H/MAV:X/MAC:H/MPR:X/MUI:X/MS:C/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "5ab8b8ad 8.4", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:N/I:H/A:N/E:F/RL:O/RC:X/CR:X/IR:M/AR:H/MAV:N/MAC:L/MPR:N/MUI:R/MS:C/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(8.4)), // exp environmental score
+        }, // exp
+      ), (
+        "cb35aa43 0.0", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:N/I:L/A:H/E:U/RL:T/RC:R/CR:L/IR:H/AR:H/MAV:L/MAC:H/MPR:H/MUI:R/MS:X/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "3a6356f7 2.6", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:N/I:N/A:L/E:X/RL:U/RC:U/CR:M/IR:L/AR:H/MAV:L/MAC:H/MPR:L/MUI:N/MS:X/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "b093d186 6.4", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:N/E:U/RL:X/RC:U/CR:L/IR:X/AR:H/MAV:L/MAC:H/MPR:L/MUI:R/MS:C/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "4c14458d 6.6", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:H/E:F/RL:U/RC:U/CR:X/IR:L/AR:X/MAV:N/MAC:L/MPR:N/MUI:R/MS:X/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "f0be4e3e 1.1", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:H/E:P/RL:T/RC:U/CR:L/IR:M/AR:H/MAV:P/MAC:L/MPR:H/MUI:N/MS:C/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(1.1)), // exp environmental score
+        }, // exp
+      ), (
+        "3e8628c4 5.5", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:H/A:H/E:F/RL:T/RC:X/CR:M/IR:M/AR:X/MAV:P/MAC:H/MPR:L/MUI:X/MS:X/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "edfcd7b1 3.9", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:H/A:N/E:F/RL:X/RC:X/CR:M/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:X/MS:U/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(3.9)), // exp environmental score
+        }, // exp
+      ), (
+        "c0ac5388 4.7", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:C/C:H/I:N/A:L/E:H/RL:X/RC:C/CR:X/IR:H/AR:M/MAV:P/MAC:H/MPR:X/MUI:X/MS:X/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "5ee505f0 7.1", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:C/C:H/I:N/A:N/E:U/RL:U/RC:X/CR:X/IR:M/AR:H/MAV:L/MAC:H/MPR:X/MUI:N/MS:X/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "2da0e609 8.1", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:C/C:L/I:N/A:H/E:H/RL:T/RC:U/CR:H/IR:X/AR:H/MAV:X/MAC:L/MPR:X/MUI:R/MS:X/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(8.1)), // exp environmental score
+        }, // exp
+      ), (
+        "c0b308ea 6.2", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:N/E:P/RL:X/RC:U/CR:M/IR:H/AR:X/MAV:P/MAC:X/MPR:L/MUI:N/MS:X/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(5.8), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "1c09bab8 3.7", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:L/I:N/A:N/E:F/RL:T/RC:C/CR:M/IR:X/AR:L/MAV:L/MAC:H/MPR:N/MUI:N/MS:C/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(2.6), // exp base score
+          temporal: Some(Score::from(2.5)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "8a18cd9b 3.2", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:N/I:L/A:L/E:X/RL:U/RC:C/CR:X/IR:H/AR:L/MAV:L/MAC:H/MPR:N/MUI:X/MS:X/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(3.7), // exp base score
+          temporal: Some(Score::from(3.7)), // exp temporal score
+          environmental: Some(Score::from(3.2)), // exp environmental score
+        }, // exp
+      ), (
+        "63dd074b 7.4", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N/E:X/RL:T/RC:R/CR:H/IR:X/AR:X/MAV:X/MAC:L/MPR:L/MUI:R/MS:C/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: Some(Score::from(8.1)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "efbab1bd 7.8", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N/E:X/RL:W/RC:C/CR:X/IR:H/AR:H/MAV:A/MAC:L/MPR:H/MUI:R/MS:X/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: Some(Score::from(8.5)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
+        }, // exp
+      ), (
+        "d020f109 5.0", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:L/A:N/E:F/RL:T/RC:X/CR:M/IR:M/AR:M/MAV:L/MAC:H/MPR:L/MUI:X/MS:U/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(7.0)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "4a2f8e99 7.4", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:L/E:P/RL:T/RC:X/CR:H/IR:X/AR:X/MAV:X/MAC:L/MPR:N/MUI:N/MS:U/MC:N/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(6.8)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "a2bd57bc 4.4", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:N/E:F/RL:O/RC:R/CR:X/IR:L/AR:X/MAV:N/MAC:L/MPR:X/MUI:N/MS:X/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "4776f7be 7.8", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:H/E:P/RL:U/RC:R/CR:M/IR:H/AR:M/MAV:N/MAC:X/MPR:L/MUI:X/MS:X/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.4)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
+        }, // exp
+      ), (
+        "ab5464ae 7.1", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:N/E:F/RL:T/RC:R/CR:H/IR:L/AR:H/MAV:N/MAC:X/MPR:L/MUI:R/MS:C/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "c1237009 5.2", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:N/E:U/RL:W/RC:R/CR:L/IR:X/AR:L/MAV:X/MAC:H/MPR:H/MUI:R/MS:X/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "39d352ec 2.4", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:L/E:X/RL:W/RC:X/CR:L/IR:L/AR:M/MAV:X/MAC:X/MPR:L/MUI:X/MS:U/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(2.4)), // exp environmental score
+        }, // exp
+      ), (
+        "33eed348 2.4", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:L/A:H/E:U/RL:W/RC:X/CR:M/IR:L/AR:L/MAV:P/MAC:L/MPR:H/MUI:X/MS:C/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(2.4)), // exp environmental score
+        }, // exp
+      ), (
+        "554e3990 3.4", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:L/A:L/E:P/RL:O/RC:R/CR:X/IR:M/AR:H/MAV:P/MAC:L/MPR:H/MUI:X/MS:U/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(3.4)), // exp environmental score
+        }, // exp
+      ), (
+        "ae70a2bd 7.2", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:L/A:L/E:U/RL:U/RC:U/CR:H/IR:M/AR:H/MAV:X/MAC:L/MPR:H/MUI:R/MS:X/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "96b76b18 5.6", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:H/E:U/RL:X/RC:R/CR:M/IR:M/AR:X/MAV:P/MAC:X/MPR:N/MUI:N/MS:X/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(7.4), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "3c46c07c 5.9", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:H/A:H/E:X/RL:X/RC:X/CR:M/IR:M/AR:X/MAV:P/MAC:H/MPR:L/MUI:X/MS:U/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(7.7), // exp base score
+          temporal: None, // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "028e0a9e 4.5", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L/E:U/RL:T/RC:C/CR:X/IR:X/AR:L/MAV:L/MAC:X/MPR:N/MUI:X/MS:U/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "6e955a47 2.1", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H/E:U/RL:T/RC:R/CR:M/IR:M/AR:M/MAV:L/MAC:H/MPR:L/MUI:N/MS:X/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(2.1)), // exp environmental score
+        }, // exp
+      ), (
+        "ec3c999a 6.0", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H/E:F/RL:O/RC:C/CR:M/IR:M/AR:X/MAV:A/MAC:L/MPR:X/MUI:X/MS:X/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "a2b12163 6.6", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L/E:U/RL:W/RC:U/CR:M/IR:H/AR:H/MAV:X/MAC:X/MPR:H/MUI:N/MS:C/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(3.7), // exp base score
+          temporal: Some(Score::from(3.1)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "cc2bf403 3.2", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:N/E:H/RL:O/RC:R/CR:L/IR:L/AR:L/MAV:A/MAC:H/MPR:N/MUI:N/MS:U/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(3.2)), // exp environmental score
+        }, // exp
+      ), (
+        "3711d004 4.8", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:H/A:L/E:P/RL:X/RC:C/CR:L/IR:L/AR:M/MAV:A/MAC:H/MPR:N/MUI:X/MS:U/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "f5f73162 7.4", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N/E:F/RL:T/RC:R/CR:H/IR:L/AR:H/MAV:N/MAC:H/MPR:N/MUI:X/MS:X/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.1)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "5c9b83e0 7.3", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H/E:H/RL:W/RC:C/CR:M/IR:L/AR:X/MAV:N/MAC:X/MPR:N/MUI:N/MS:C/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(7.3)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "dc7196bb 2.6", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:L/E:X/RL:U/RC:R/CR:L/IR:X/AR:L/MAV:A/MAC:H/MPR:L/MUI:R/MS:X/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "c03bba5d 2.0", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N/E:H/RL:O/RC:R/CR:M/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:N/MS:C/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(2.0)), // exp environmental score
+        }, // exp
+      ), (
+        "07b64a1e 6.0", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:H/A:L/E:U/RL:O/RC:U/CR:H/IR:M/AR:H/MAV:N/MAC:X/MPR:L/MUI:N/MS:X/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "c9f7d8d6 4.2", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:H/A:N/E:H/RL:X/RC:C/CR:H/IR:H/AR:M/MAV:N/MAC:H/MPR:N/MUI:X/MS:C/MC:X/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "e921e596 6.2", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:H/E:H/RL:U/RC:R/CR:X/IR:X/AR:X/MAV:X/MAC:X/MPR:L/MUI:R/MS:U/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "dacf6792 6.8", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:H/E:X/RL:W/RC:U/CR:X/IR:X/AR:M/MAV:L/MAC:X/MPR:X/MUI:R/MS:C/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "e46c928a 1.6", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N/E:F/RL:X/RC:U/CR:L/IR:L/AR:M/MAV:P/MAC:L/MPR:N/MUI:N/MS:C/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(3.1), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(1.6)), // exp environmental score
+        }, // exp
+      ), (
+        "c1dac5b9 4.4", // test name
+        "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L/E:F/RL:X/RC:U/CR:X/IR:X/AR:X/MAV:P/MAC:X/MPR:H/MUI:R/MS:U/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(3.1), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "dc0b575b 6.4", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:H/E:X/RL:T/RC:U/CR:H/IR:X/AR:X/MAV:P/MAC:X/MPR:H/MUI:N/MS:C/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(9.1), // exp base score
+          temporal: Some(Score::from(8.1)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "f0698f68 4.6", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:H/I:N/A:H/E:X/RL:U/RC:X/CR:L/IR:H/AR:L/MAV:L/MAC:H/MPR:H/MUI:X/MS:X/MC:X/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(8.7), // exp base score
+          temporal: Some(Score::from(8.7)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "6b7ee371 3.3", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:L/I:H/A:L/E:H/RL:O/RC:X/CR:L/IR:L/AR:L/MAV:A/MAC:X/MPR:H/MUI:R/MS:C/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(8.2), // exp base score
+          temporal: Some(Score::from(7.8)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "2357f54d 5.5", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:N/E:X/RL:O/RC:U/CR:L/IR:M/AR:H/MAV:A/MAC:H/MPR:L/MUI:N/MS:C/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "42335ec5 1.3", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:L/A:N/E:H/RL:U/RC:R/CR:H/IR:X/AR:L/MAV:P/MAC:X/MPR:X/MUI:X/MS:C/MC:X/MI:N/MA:L", // vec
         Scores {
           base: Score::from(4.1), // exp base score
           temporal: Some(Score::from(4.0)), // exp temporal score
+          environmental: Some(Score::from(1.3)), // exp environmental score
+        }, // exp
+      ), (
+        "18d120d6 0.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:N/I:N/A:L/E:U/RL:O/RC:U/CR:M/IR:H/AR:H/MAV:A/MAC:H/MPR:X/MUI:X/MS:C/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(4.1), // exp base score
+          temporal: Some(Score::from(3.3)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "12bff33c 6.6", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H/E:U/RL:U/RC:R/CR:X/IR:L/AR:L/MAV:N/MAC:L/MPR:L/MUI:N/MS:U/MC:H/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "fc4424fb 2.2", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:L/E:F/RL:U/RC:C/CR:M/IR:L/AR:H/MAV:P/MAC:X/MPR:X/MUI:R/MS:U/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(2.2)), // exp environmental score
+        }, // exp
+      ), (
+        "d4e9f593 6.8", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:N/A:L/E:F/RL:T/RC:X/CR:M/IR:L/AR:L/MAV:N/MAC:X/MPR:L/MUI:R/MS:C/MC:H/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "4f6a9be4 4.9", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:L/E:F/RL:X/RC:R/CR:M/IR:M/AR:L/MAV:L/MAC:H/MPR:L/MUI:R/MS:X/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "1c114a37 2.1", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:H/E:P/RL:T/RC:C/CR:L/IR:H/AR:X/MAV:L/MAC:H/MPR:N/MUI:N/MS:C/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.0), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(2.1)), // exp environmental score
+        }, // exp
+      ), (
+        "31d1e59e 5.7", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L/E:H/RL:T/RC:R/CR:L/IR:L/AR:M/MAV:A/MAC:L/MPR:H/MUI:R/MS:C/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(4.7), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
           environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "76effd2d 4.8", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:N/E:U/RL:O/RC:C/CR:M/IR:X/AR:L/MAV:N/MAC:L/MPR:H/MUI:X/MS:C/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(2.7), // exp base score
+          temporal: Some(Score::from(2.4)), // exp temporal score
+          environmental: Some(Score::from(4.8)), // exp environmental score
+        }, // exp
+      ), (
+        "e84d0a6f 6.6", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:L/E:P/RL:U/RC:X/CR:H/IR:H/AR:L/MAV:L/MAC:H/MPR:N/MUI:N/MS:X/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "c538a345 7.1", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:N/E:F/RL:U/RC:C/CR:H/IR:L/AR:X/MAV:N/MAC:X/MPR:L/MUI:R/MS:C/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "eac85700 2.6", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:L/E:F/RL:O/RC:X/CR:L/IR:H/AR:X/MAV:L/MAC:L/MPR:H/MUI:R/MS:C/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(3.8), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "65249fb9 6.3", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:H/I:N/A:H/E:U/RL:O/RC:C/CR:H/IR:L/AR:L/MAV:P/MAC:X/MPR:L/MUI:X/MS:C/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.1)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "5c139d45 4.2", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:N/I:H/A:N/E:F/RL:X/RC:C/CR:M/IR:M/AR:M/MAV:A/MAC:L/MPR:N/MUI:N/MS:U/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "9ce9e74b 4.7", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:N/I:L/A:N/E:X/RL:T/RC:U/CR:X/IR:H/AR:M/MAV:P/MAC:X/MPR:X/MUI:N/MS:U/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.1)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "db8e90e7 3.2", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:N/I:N/A:L/E:X/RL:X/RC:U/CR:M/IR:H/AR:X/MAV:L/MAC:H/MPR:X/MUI:N/MS:X/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(3.4), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(3.2)), // exp environmental score
+        }, // exp
+      ), (
+        "c089a3bb 2.5", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:H/I:H/A:H/E:P/RL:O/RC:X/CR:M/IR:X/AR:M/MAV:N/MAC:L/MPR:X/MUI:N/MS:U/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(2.5)), // exp environmental score
+        }, // exp
+      ), (
+        "a72073d3 7.9", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:L/I:H/A:L/E:X/RL:T/RC:R/CR:H/IR:M/AR:M/MAV:N/MAC:L/MPR:N/MUI:X/MS:X/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(7.9)), // exp environmental score
+        }, // exp
+      ), (
+        "e5e5d473 6.5", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:L/I:L/A:L/E:F/RL:W/RC:C/CR:L/IR:L/AR:M/MAV:A/MAC:X/MPR:H/MUI:X/MS:C/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(4.3), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "1ea2fbfb 2.1", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:L/I:L/A:N/E:U/RL:U/RC:C/CR:M/IR:M/AR:H/MAV:P/MAC:L/MPR:N/MUI:X/MS:C/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(2.1)), // exp environmental score
+        }, // exp
+      ), (
+        "ec46bd3d 7.1", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:L/I:N/A:H/E:F/RL:O/RC:C/CR:X/IR:M/AR:H/MAV:X/MAC:L/MPR:L/MUI:R/MS:C/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(7.1)), // exp environmental score
+        }, // exp
+      ), (
+        "f84b8e2d 6.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:N/I:H/A:N/E:F/RL:T/RC:U/CR:L/IR:X/AR:L/MAV:A/MAC:H/MPR:N/MUI:R/MS:C/MC:H/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(3.9)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "f5c2b4fc 4.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:N/I:L/A:L/E:U/RL:U/RC:C/CR:X/IR:M/AR:L/MAV:P/MAC:X/MPR:L/MUI:N/MS:C/MC:L/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "5d5be887 6.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:N/E:X/RL:W/RC:C/CR:H/IR:X/AR:M/MAV:X/MAC:L/MPR:X/MUI:R/MS:X/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(9.6), // exp base score
+          temporal: Some(Score::from(9.4)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "a41cc3b8 5.9", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:H/E:F/RL:T/RC:R/CR:X/IR:L/AR:M/MAV:L/MAC:L/MPR:N/MUI:X/MS:U/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(9.9), // exp base score
+          temporal: Some(Score::from(8.9)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "4a1cabaa 3.6", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:H/A:L/E:F/RL:W/RC:C/CR:M/IR:M/AR:M/MAV:P/MAC:L/MPR:L/MUI:N/MS:X/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(9.1), // exp base score
+          temporal: Some(Score::from(8.6)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "73909102 5.6", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:N/I:H/A:L/E:P/RL:T/RC:C/CR:M/IR:H/AR:L/MAV:P/MAC:L/MPR:X/MUI:X/MS:U/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(8.5), // exp base score
+          temporal: Some(Score::from(7.7)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "0cc74241 7.6", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:N/I:L/A:L/E:X/RL:X/RC:C/CR:M/IR:X/AR:H/MAV:L/MAC:H/MPR:N/MUI:X/MS:C/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.4), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(7.6)), // exp environmental score
+        }, // exp
+      ), (
+        "259ea1bf 7.2", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:H/RL:T/RC:X/CR:M/IR:H/AR:H/MAV:X/MAC:X/MPR:N/MUI:N/MS:U/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(8.8), // exp base score
+          temporal: Some(Score::from(8.5)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "f41eb52a 6.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:H/E:H/RL:T/RC:U/CR:L/IR:X/AR:H/MAV:N/MAC:L/MPR:H/MUI:N/MS:X/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.2)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "f78c132e 6.5", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N/E:X/RL:T/RC:R/CR:X/IR:L/AR:L/MAV:P/MAC:L/MPR:N/MUI:N/MS:C/MC:H/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "c7ce3e19 6.3", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:L/E:P/RL:U/RC:X/CR:X/IR:L/AR:H/MAV:L/MAC:X/MPR:H/MUI:N/MS:X/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "a6dba4dd 9.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:L/A:H/E:P/RL:O/RC:C/CR:M/IR:X/AR:L/MAV:X/MAC:L/MPR:N/MUI:N/MS:X/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(8.9), // exp base score
+          temporal: Some(Score::from(8.0)), // exp temporal score
+          environmental: Some(Score::from(9.0)), // exp environmental score
+        }, // exp
+      ), (
+        "e6067f9f 3.6", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:L/A:H/E:P/RL:U/RC:U/CR:L/IR:X/AR:L/MAV:N/MAC:L/MPR:H/MUI:N/MS:U/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(8.9), // exp base score
+          temporal: Some(Score::from(7.7)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "e46e3907 5.4", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:H/E:X/RL:W/RC:X/CR:H/IR:L/AR:H/MAV:A/MAC:L/MPR:L/MUI:N/MS:C/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(8.2), // exp base score
+          temporal: Some(Score::from(8.0)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "f896607a 6.8", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:L/E:P/RL:U/RC:C/CR:M/IR:H/AR:M/MAV:P/MAC:X/MPR:L/MUI:R/MS:C/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "84f87e22 6.6", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:L/E:H/RL:X/RC:R/CR:L/IR:M/AR:M/MAV:X/MAC:L/MPR:X/MUI:R/MS:C/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "45c277e8 3.3", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:H/A:L/E:F/RL:W/RC:X/CR:H/IR:H/AR:L/MAV:L/MAC:X/MPR:X/MUI:R/MS:X/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.4)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "8860aea5 1.3", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N/E:X/RL:X/RC:R/CR:H/IR:H/AR:L/MAV:A/MAC:H/MPR:H/MUI:N/MS:X/MC:N/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(1.3)), // exp environmental score
+        }, // exp
+      ), (
+        "56b153c2 3.8", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:L/A:H/E:U/RL:U/RC:U/CR:H/IR:M/AR:X/MAV:P/MAC:L/MPR:H/MUI:R/MS:U/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "f77293ba 6.9", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H/E:H/RL:X/RC:R/CR:H/IR:X/AR:H/MAV:P/MAC:H/MPR:L/MUI:X/MS:X/MC:H/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(10.0), // exp base score
+          temporal: Some(Score::from(9.6)), // exp temporal score
+          environmental: Some(Score::from(6.9)), // exp environmental score
+        }, // exp
+      ), (
+        "eb9af383 6.8", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N/E:F/RL:T/RC:C/CR:H/IR:L/AR:M/MAV:N/MAC:L/MPR:L/MUI:R/MS:X/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(10.0), // exp base score
+          temporal: Some(Score::from(9.4)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "4d2be82c 8.4", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:H/A:H/E:H/RL:U/RC:R/CR:H/IR:M/AR:H/MAV:A/MAC:X/MPR:N/MUI:R/MS:X/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(10.0), // exp base score
+          temporal: Some(Score::from(9.6)), // exp temporal score
+          environmental: Some(Score::from(8.4)), // exp environmental score
+        }, // exp
+      ), (
+        "aacf81ab 7.9", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:H/A:L/E:H/RL:T/RC:R/CR:H/IR:L/AR:M/MAV:X/MAC:L/MPR:L/MUI:N/MS:U/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(9.9), // exp base score
+          temporal: Some(Score::from(9.2)), // exp temporal score
+          environmental: Some(Score::from(7.9)), // exp environmental score
+        }, // exp
+      ), (
+        "c0e26947 0.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L/E:U/RL:T/RC:X/CR:X/IR:H/AR:M/MAV:P/MAC:H/MPR:H/MUI:X/MS:U/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(8.3), // exp base score
+          temporal: Some(Score::from(7.3)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "99789742 8.5", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N/E:F/RL:O/RC:C/CR:X/IR:M/AR:M/MAV:L/MAC:L/MPR:X/MUI:X/MS:X/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(7.2), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(8.5)), // exp environmental score
+        }, // exp
+      ), (
+        "11781943 6.7", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:H/E:P/RL:W/RC:U/CR:L/IR:H/AR:H/MAV:L/MAC:H/MPR:L/MUI:N/MS:X/MC:H/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(9.3), // exp base score
+          temporal: Some(Score::from(7.9)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "dbdab9ec 5.8", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H/E:P/RL:O/RC:C/CR:L/IR:M/AR:H/MAV:P/MAC:X/MPR:N/MUI:X/MS:U/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(8.6), // exp base score
+          temporal: Some(Score::from(7.7)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "516c4188 4.7", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N/E:P/RL:W/RC:X/CR:L/IR:L/AR:X/MAV:N/MAC:H/MPR:N/MUI:N/MS:X/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(9.1), // exp base score
+          temporal: Some(Score::from(8.3)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "61a16a05 4.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:H/E:U/RL:T/RC:X/CR:L/IR:H/AR:X/MAV:N/MAC:L/MPR:H/MUI:R/MS:X/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(9.4), // exp base score
+          temporal: Some(Score::from(8.3)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "ee5693a5 5.1", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N/E:U/RL:O/RC:R/CR:M/IR:M/AR:L/MAV:L/MAC:L/MPR:N/MUI:R/MS:X/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(5.1)), // exp environmental score
+        }, // exp
+      ), (
+        "9e4036c7 7.5", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N/E:X/RL:O/RC:C/CR:L/IR:H/AR:H/MAV:N/MAC:L/MPR:L/MUI:R/MS:X/MC:N/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(7.5)), // exp environmental score
+        }, // exp
+      ), (
+        "2eb1489c 0.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H/E:X/RL:U/RC:X/CR:L/IR:X/AR:H/MAV:X/MAC:H/MPR:X/MUI:N/MS:U/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(7.5)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "ad36c515 2.6", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:P/RL:O/RC:C/CR:L/IR:M/AR:H/MAV:P/MAC:H/MPR:H/MUI:X/MS:C/MC:N/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "73632813 9.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H/E:H/RL:U/RC:R/CR:X/IR:X/AR:M/MAV:X/MAC:X/MPR:N/MUI:R/MS:C/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(9.6), // exp base score
+          temporal: Some(Score::from(9.3)), // exp temporal score
+          environmental: Some(Score::from(9.0)), // exp environmental score
+        }, // exp
+      ), (
+        "d76e5cd5 8.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:H/E:H/RL:O/RC:X/CR:X/IR:X/AR:M/MAV:L/MAC:L/MPR:X/MUI:N/MS:X/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(9.6), // exp base score
+          temporal: Some(Score::from(9.2)), // exp temporal score
+          environmental: Some(Score::from(8.0)), // exp environmental score
+        }, // exp
+      ), (
+        "840136be 5.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:H/E:H/RL:W/RC:U/CR:L/IR:H/AR:X/MAV:P/MAC:X/MPR:X/MUI:R/MS:X/MC:L/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(8.8), // exp base score
+          temporal: Some(Score::from(7.9)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "cdcfcc61 9.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:H/E:X/RL:X/RC:R/CR:L/IR:L/AR:M/MAV:X/MAC:L/MPR:X/MUI:N/MS:C/MC:X/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(8.8), // exp base score
+          temporal: Some(Score::from(8.5)), // exp temporal score
+          environmental: Some(Score::from(9.0)), // exp environmental score
+        }, // exp
+      ), (
+        "3b3e5a97 7.3", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:H/A:L/E:F/RL:T/RC:C/CR:X/IR:X/AR:H/MAV:L/MAC:X/MPR:N/MUI:X/MS:U/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(8.2), // exp base score
+          temporal: Some(Score::from(7.7)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "379586c2 4.9", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:L/A:L/E:P/RL:T/RC:C/CR:X/IR:M/AR:X/MAV:N/MAC:H/MPR:H/MUI:X/MS:C/MC:N/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "e5f70396 8.1", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:L/E:X/RL:U/RC:R/CR:X/IR:M/AR:H/MAV:L/MAC:X/MPR:N/MUI:N/MS:X/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(8.1)), // exp environmental score
+        }, // exp
+      ), (
+        "8bec3b34 3.9", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N/E:H/RL:U/RC:X/CR:L/IR:H/AR:L/MAV:A/MAC:L/MPR:H/MUI:N/MS:C/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(4.3), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(3.9)), // exp environmental score
+        }, // exp
+      ), (
+        "4b5e9c25 6.6", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H/E:F/RL:O/RC:X/CR:H/IR:M/AR:X/MAV:X/MAC:L/MPR:L/MUI:N/MS:X/MC:N/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(8.1), // exp base score
+          temporal: Some(Score::from(7.5)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "f203f9b4 1.0", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:L/E:U/RL:W/RC:C/CR:M/IR:H/AR:L/MAV:P/MAC:H/MPR:N/MUI:R/MS:X/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(1.0)), // exp environmental score
+        }, // exp
+      ), (
+        "8e5d16eb 3.5", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N/E:F/RL:X/RC:U/CR:H/IR:L/AR:H/MAV:A/MAC:L/MPR:X/MUI:X/MS:U/MC:N/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(3.5)), // exp environmental score
+        }, // exp
+      ), (
+        "91df7940 3.7", // test name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N/E:P/RL:O/RC:U/CR:H/IR:L/AR:H/MAV:P/MAC:H/MPR:X/MUI:R/MS:C/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "ebf5b034 2.9", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:L/E:H/RL:X/RC:X/CR:H/IR:M/AR:H/MAV:P/MAC:H/MPR:N/MUI:R/MS:X/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "70f1a11d 6.0", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:N/E:P/RL:U/RC:U/CR:H/IR:H/AR:L/MAV:X/MAC:X/MPR:X/MUI:R/MS:C/MC:X/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(6.0)), // exp environmental score
+        }, // exp
+      ), (
+        "b3c6e29c 5.7", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:C/C:L/I:H/A:H/E:X/RL:X/RC:R/CR:H/IR:H/AR:M/MAV:P/MAC:H/MPR:L/MUI:R/MS:C/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "9cf58a7a 5.9", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:C/C:L/I:N/A:N/E:F/RL:W/RC:C/CR:L/IR:X/AR:M/MAV:A/MAC:X/MPR:X/MUI:N/MS:C/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(1.9), // exp base score
+          temporal: Some(Score::from(1.8)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "c2c8dbbd 5.2", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:C/C:N/I:H/A:H/E:H/RL:T/RC:R/CR:M/IR:X/AR:X/MAV:P/MAC:H/MPR:L/MUI:X/MS:C/MC:H/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "abbb1814 7.4", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:C/C:N/I:L/A:N/E:F/RL:W/RC:C/CR:X/IR:H/AR:M/MAV:L/MAC:L/MPR:X/MUI:R/MS:X/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(1.9), // exp base score
+          temporal: Some(Score::from(1.8)), // exp temporal score
+          environmental: Some(Score::from(7.4)), // exp environmental score
+        }, // exp
+      ), (
+        "f46dfce3 5.5", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:L/E:X/RL:T/RC:U/CR:X/IR:M/AR:H/MAV:A/MAC:L/MPR:X/MUI:X/MS:C/MC:N/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "06367982 4.7", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N/E:P/RL:U/RC:X/CR:H/IR:L/AR:H/MAV:X/MAC:H/MPR:N/MUI:N/MS:C/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(3.8), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "be39d874 5.3", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:L/E:U/RL:X/RC:U/CR:X/IR:L/AR:H/MAV:N/MAC:H/MPR:H/MUI:R/MS:X/MC:L/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(5.3)), // exp environmental score
+        }, // exp
+      ), (
+        "a4e675df 0.0", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:N/S:U/C:N/I:H/A:N/E:F/RL:U/RC:U/CR:H/IR:L/AR:L/MAV:X/MAC:L/MPR:N/MUI:R/MS:C/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(3.8), // exp base score
+          temporal: Some(Score::from(3.4)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "6cc16175 8.1", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:C/C:H/I:N/A:H/E:H/RL:X/RC:X/CR:M/IR:X/AR:H/MAV:N/MAC:X/MPR:N/MUI:N/MS:U/MC:L/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(6.5), // exp base score
+          temporal: Some(Score::from(6.5)), // exp temporal score
+          environmental: Some(Score::from(8.1)), // exp environmental score
+        }, // exp
+      ), (
+        "2bd65db6 4.5", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:C/C:H/I:N/A:L/E:U/RL:O/RC:C/CR:L/IR:X/AR:L/MAV:L/MAC:L/MPR:X/MUI:R/MS:U/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(4.5)), // exp environmental score
+        }, // exp
+      ), (
+        "39a8d6ce 7.9", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:L/A:H/E:P/RL:O/RC:C/CR:X/IR:H/AR:X/MAV:N/MAC:L/MPR:L/MUI:N/MS:U/MC:H/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(7.9)), // exp environmental score
+        }, // exp
+      ), (
+        "6ce3d444 6.9", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:L/A:L/E:H/RL:O/RC:C/CR:H/IR:X/AR:L/MAV:P/MAC:L/MPR:H/MUI:N/MS:C/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(3.1)), // exp temporal score
+          environmental: Some(Score::from(6.9)), // exp environmental score
+        }, // exp
+      ), (
+        "625f598c 3.3", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:L/A:N/E:F/RL:W/RC:X/CR:X/IR:L/AR:X/MAV:L/MAC:L/MPR:X/MUI:R/MS:C/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(1.8), // exp base score
+          temporal: Some(Score::from(1.7)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "92582bf4 5.4", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:N/A:L/E:U/RL:X/RC:C/CR:M/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:N/MS:U/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(1.8), // exp base score
+          temporal: Some(Score::from(1.7)), // exp temporal score
+          environmental: Some(Score::from(5.4)), // exp environmental score
+        }, // exp
+      ), (
+        "c71b5a64 6.3", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:N/E:P/RL:U/RC:C/CR:L/IR:X/AR:L/MAV:L/MAC:H/MPR:H/MUI:R/MS:C/MC:H/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.3), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "c7bab9f6 4.7", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:L/E:F/RL:W/RC:R/CR:M/IR:M/AR:L/MAV:X/MAC:X/MPR:N/MUI:R/MS:C/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(4.4), // exp base score
+          temporal: Some(Score::from(4.0)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "d90143fb 6.7", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:L/I:H/A:H/E:U/RL:O/RC:C/CR:H/IR:L/AR:H/MAV:A/MAC:H/MPR:H/MUI:N/MS:C/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "1e1eeb3f 5.7", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:L/I:H/A:L/E:H/RL:W/RC:X/CR:M/IR:M/AR:L/MAV:P/MAC:L/MPR:X/MUI:R/MS:X/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.8)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "ecfa9369 5.5", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:L/I:L/A:L/E:H/RL:O/RC:U/CR:H/IR:X/AR:H/MAV:X/MAC:X/MPR:L/MUI:X/MS:U/MC:H/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(3.5), // exp base score
+          temporal: Some(Score::from(3.1)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "2879b5a7 6.3", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:N/I:L/A:N/E:X/RL:X/RC:R/CR:X/IR:M/AR:H/MAV:N/MAC:L/MPR:H/MUI:X/MS:X/MC:H/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(1.6), // exp base score
+          temporal: Some(Score::from(1.6)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "a1927a98 3.0", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:N/E:P/RL:W/RC:C/CR:X/IR:X/AR:L/MAV:L/MAC:L/MPR:X/MUI:R/MS:C/MC:N/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(3.0)), // exp environmental score
+        }, // exp
+      ), (
+        "c2545690 4.9", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:C/C:H/I:L/A:H/E:U/RL:U/RC:R/CR:M/IR:H/AR:X/MAV:N/MAC:X/MPR:X/MUI:X/MS:X/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(7.0), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(4.9)), // exp environmental score
+        }, // exp
+      ), (
+        "0f29d945 8.1", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:C/C:L/I:H/A:H/E:P/RL:U/RC:X/CR:X/IR:H/AR:X/MAV:N/MAC:X/MPR:L/MUI:X/MS:X/MC:L/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(7.0), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(8.1)), // exp environmental score
+        }, // exp
+      ), (
+        "11f2e78a 5.8", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:U/C:H/I:L/A:H/E:F/RL:X/RC:C/CR:H/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:R/MS:U/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "32c0c605 3.9", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:L/E:U/RL:W/RC:X/CR:H/IR:L/AR:L/MAV:P/MAC:L/MPR:L/MUI:X/MS:U/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(3.9)), // exp environmental score
+        }, // exp
+      ), (
+        "9ccb83e6 1.5", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:L/E:X/RL:X/RC:U/CR:M/IR:L/AR:L/MAV:P/MAC:H/MPR:H/MUI:N/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(1.5)), // exp environmental score
+        }, // exp
+      ), (
+        "f4ad547d 5.3", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:N/E:F/RL:U/RC:X/CR:X/IR:M/AR:H/MAV:P/MAC:H/MPR:X/MUI:X/MS:U/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(5.3)), // exp environmental score
+        }, // exp
+      ), (
+        "56305f31 6.4", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:N/E:P/RL:X/RC:U/CR:H/IR:H/AR:H/MAV:L/MAC:L/MPR:L/MUI:X/MS:U/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "b8710a53 7.6", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:C/C:L/I:N/A:N/E:F/RL:W/RC:X/CR:H/IR:H/AR:M/MAV:A/MAC:L/MPR:L/MUI:N/MS:U/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(1.9), // exp base score
+          temporal: Some(Score::from(1.8)), // exp temporal score
+          environmental: Some(Score::from(7.6)), // exp environmental score
+        }, // exp
+      ), (
+        "d9000c72 4.2", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:C/C:N/I:N/A:H/E:P/RL:O/RC:X/CR:X/IR:L/AR:X/MAV:N/MAC:X/MPR:X/MUI:N/MS:U/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(4.7), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "2e021d3d 3.6", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:L/E:H/RL:X/RC:U/CR:L/IR:X/AR:M/MAV:L/MAC:H/MPR:L/MUI:R/MS:C/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(3.7), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "16469b43 5.0", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:L/E:P/RL:X/RC:X/CR:M/IR:X/AR:L/MAV:X/MAC:H/MPR:N/MUI:R/MS:X/MC:H/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(3.7), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "b5f716e4 5.6", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N/E:X/RL:X/RC:U/CR:H/IR:L/AR:M/MAV:L/MAC:X/MPR:N/MUI:N/MS:X/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(2.8), // exp base score
+          temporal: Some(Score::from(2.6)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "f9b34e72 6.7", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:N/E:H/RL:O/RC:C/CR:H/IR:M/AR:L/MAV:P/MAC:X/MPR:X/MUI:X/MS:C/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(3.9), // exp base score
+          temporal: Some(Score::from(3.8)), // exp temporal score
+          environmental: Some(Score::from(6.7)), // exp environmental score
+        }, // exp
+      ), (
+        "469cf1dd 6.4", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:U/C:N/I:L/A:H/E:F/RL:O/RC:X/CR:X/IR:H/AR:L/MAV:N/MAC:X/MPR:X/MUI:X/MS:U/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "1cb8d35d 4.6", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:H/E:H/RL:X/RC:U/CR:L/IR:L/AR:L/MAV:L/MAC:X/MPR:N/MUI:X/MS:C/MC:X/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(3.9), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "1f3f46a4 2.2", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:L/E:P/RL:X/RC:X/CR:X/IR:L/AR:M/MAV:P/MAC:H/MPR:H/MUI:X/MS:C/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(1.7), // exp base score
+          temporal: Some(Score::from(1.6)), // exp temporal score
+          environmental: Some(Score::from(2.2)), // exp environmental score
+        }, // exp
+      ), (
+        "d0ed1aaa 5.6", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:L/E:U/RL:O/RC:X/CR:L/IR:X/AR:M/MAV:L/MAC:X/MPR:N/MUI:X/MS:X/MC:L/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(1.7), // exp base score
+          temporal: Some(Score::from(1.5)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "4eed2301 0.9", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N/E:F/RL:T/RC:R/CR:L/IR:H/AR:H/MAV:P/MAC:L/MPR:H/MUI:X/MS:U/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.8), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(0.9)), // exp environmental score
+        }, // exp
+      ), (
+        "3a744b55 7.2", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:C/C:L/I:H/A:N/E:U/RL:X/RC:R/CR:X/IR:H/AR:M/MAV:L/MAC:H/MPR:N/MUI:N/MS:C/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "88cadced 5.2", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:H/E:P/RL:U/RC:X/CR:L/IR:X/AR:L/MAV:N/MAC:X/MPR:N/MUI:N/MS:U/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.3), // exp base score
+          temporal: Some(Score::from(6.0)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "561e6fd4 4.1", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:C/C:N/I:L/A:L/E:F/RL:T/RC:C/CR:L/IR:M/AR:M/MAV:L/MAC:L/MPR:N/MUI:X/MS:C/MC:X/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(3.6), // exp base score
+          temporal: Some(Score::from(3.4)), // exp temporal score
+          environmental: Some(Score::from(4.1)), // exp environmental score
+        }, // exp
+      ), (
+        "a06d2154 0.0", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N/E:H/RL:X/RC:C/CR:X/IR:L/AR:X/MAV:N/MAC:L/MPR:X/MUI:N/MS:C/MC:N/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "04bc662a 5.5", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N/E:X/RL:X/RC:R/CR:M/IR:X/AR:M/MAV:P/MAC:L/MPR:H/MUI:X/MS:C/MC:N/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(5.5)), // exp environmental score
+        }, // exp
+      ), (
+        "f623de68 3.6", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:L/E:P/RL:W/RC:U/CR:M/IR:X/AR:X/MAV:P/MAC:X/MPR:X/MUI:N/MS:U/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(3.1), // exp base score
+          temporal: Some(Score::from(2.7)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "5e8b985a 5.1", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L/E:F/RL:T/RC:R/CR:H/IR:H/AR:H/MAV:X/MAC:X/MPR:H/MUI:X/MS:X/MC:X/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(3.1), // exp base score
+          temporal: Some(Score::from(2.8)), // exp temporal score
+          environmental: Some(Score::from(5.1)), // exp environmental score
+        }, // exp
+      ), (
+        "e0bcc092 2.9", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N/E:X/RL:W/RC:X/CR:H/IR:X/AR:L/MAV:X/MAC:X/MPR:L/MUI:N/MS:C/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(2.0), // exp base score
+          temporal: Some(Score::from(2.0)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "ca293bbe 2.2", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:N/E:P/RL:O/RC:R/CR:L/IR:H/AR:L/MAV:P/MAC:L/MPR:L/MUI:N/MS:U/MC:H/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(2.2)), // exp environmental score
+        }, // exp
+      ), (
+        "c82e8664 1.9", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:L/E:H/RL:X/RC:C/CR:L/IR:X/AR:L/MAV:L/MAC:H/MPR:L/MUI:N/MS:X/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(6.9)), // exp temporal score
+          environmental: Some(Score::from(1.9)), // exp environmental score
+        }, // exp
+      ), (
+        "a3f8feb4 2.6", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:H/E:F/RL:U/RC:R/CR:H/IR:L/AR:X/MAV:X/MAC:H/MPR:H/MUI:R/MS:X/MC:L/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.7), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(2.6)), // exp environmental score
+        }, // exp
+      ), (
+        "14211e17 4.2", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:L/I:H/A:N/E:H/RL:W/RC:C/CR:H/IR:L/AR:L/MAV:P/MAC:X/MPR:H/MUI:N/MS:C/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.5)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "0e84582f 3.1", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:L/E:F/RL:T/RC:X/CR:X/IR:M/AR:X/MAV:X/MAC:X/MPR:L/MUI:R/MS:C/MC:X/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(3.8), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(3.1)), // exp environmental score
+        }, // exp
+      ), (
+        "54ee4602 4.2", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:L/E:H/RL:O/RC:R/CR:L/IR:M/AR:M/MAV:P/MAC:X/MPR:X/MUI:X/MS:X/MC:N/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(4.2)), // exp environmental score
+        }, // exp
+      ), (
+        "fa18bb92 5.8", // test name
+        "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N/E:P/RL:W/RC:C/CR:L/IR:M/AR:X/MAV:L/MAC:X/MPR:X/MUI:R/MS:C/MC:N/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(1.8), // exp base score
+          temporal: Some(Score::from(1.7)), // exp temporal score
+          environmental: Some(Score::from(5.8)), // exp environmental score
+        }, // exp
+      ), (
+        "9924198d 6.2", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:L/E:X/RL:U/RC:U/CR:X/IR:X/AR:L/MAV:X/MAC:H/MPR:X/MUI:X/MS:X/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.6)), // exp temporal score
+          environmental: Some(Score::from(6.2)), // exp environmental score
+        }, // exp
+      ), (
+        "54f393bb 4.4", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:C/C:L/I:H/A:N/E:X/RL:W/RC:C/CR:X/IR:L/AR:L/MAV:A/MAC:L/MPR:X/MUI:X/MS:U/MC:H/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(4.4)), // exp environmental score
+        }, // exp
+      ), (
+        "465ce5ff 2.9", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:N/E:F/RL:X/RC:R/CR:L/IR:L/AR:X/MAV:L/MAC:X/MPR:H/MUI:X/MS:C/MC:L/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(3.6), // exp base score
+          temporal: Some(Score::from(3.4)), // exp temporal score
+          environmental: Some(Score::from(2.9)), // exp environmental score
+        }, // exp
+      ), (
+        "a18cdd99 1.8", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:C/C:L/I:N/A:H/E:P/RL:X/RC:C/CR:X/IR:L/AR:L/MAV:X/MAC:H/MPR:X/MUI:X/MS:C/MC:L/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(1.8)), // exp environmental score
+        }, // exp
+      ), (
+        "a94a0b06 3.7", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:C/C:L/I:N/A:H/E:U/RL:W/RC:R/CR:H/IR:L/AR:L/MAV:P/MAC:L/MPR:N/MUI:X/MS:U/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "4c18707a 2.7", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:C/C:N/I:L/A:N/E:X/RL:T/RC:R/CR:H/IR:H/AR:L/MAV:X/MAC:X/MPR:L/MUI:N/MS:X/MC:N/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(2.2), // exp base score
+          temporal: Some(Score::from(2.1)), // exp temporal score
+          environmental: Some(Score::from(2.7)), // exp environmental score
+        }, // exp
+      ), (
+        "c0e3f066 7.2", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H/E:F/RL:T/RC:X/CR:H/IR:L/AR:M/MAV:N/MAC:L/MPR:L/MUI:R/MS:U/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.8)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "89f9b493 3.7", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:U/C:H/I:N/A:H/E:X/RL:O/RC:R/CR:H/IR:H/AR:L/MAV:L/MAC:X/MPR:L/MUI:R/MS:U/MC:L/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.5), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(3.7)), // exp environmental score
+        }, // exp
+      ), (
+        "657e8854 7.5", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:L/E:H/RL:W/RC:U/CR:L/IR:M/AR:M/MAV:N/MAC:X/MPR:N/MUI:R/MS:C/MC:H/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(2.9), // exp base score
+          temporal: Some(Score::from(2.6)), // exp temporal score
+          environmental: Some(Score::from(7.5)), // exp environmental score
+        }, // exp
+      ), (
+        "c355b7b4 9.1", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:U/C:N/I:H/A:L/E:H/RL:U/RC:R/CR:H/IR:M/AR:H/MAV:L/MAC:X/MPR:N/MUI:X/MS:C/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.6), // exp base score
+          temporal: Some(Score::from(4.5)), // exp temporal score
+          environmental: Some(Score::from(9.1)), // exp environmental score
+        }, // exp
+      ), (
+        "1e0fcf72 4.0", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:N/E:F/RL:X/RC:U/CR:X/IR:H/AR:M/MAV:A/MAC:H/MPR:H/MUI:N/MS:U/MC:L/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(1.8), // exp base score
+          temporal: Some(Score::from(1.7)), // exp temporal score
+          environmental: Some(Score::from(4.0)), // exp environmental score
+        }, // exp
+      ), (
+        "0084e159 4.6", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H/E:U/RL:O/RC:U/CR:X/IR:X/AR:H/MAV:P/MAC:X/MPR:X/MUI:X/MS:C/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(3.9), // exp base score
+          temporal: Some(Score::from(3.2)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "a720fcb4 7.8", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:N/E:F/RL:U/RC:X/CR:H/IR:L/AR:M/MAV:A/MAC:L/MPR:L/MUI:X/MS:U/MC:H/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(0.0), // exp base score
+          temporal: Some(Score::from(0.0)), // exp temporal score
+          environmental: Some(Score::from(7.8)), // exp environmental score
+        }, // exp
+      ), (
+        "52e22e66 6.6", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:C/C:H/I:H/A:L/E:F/RL:T/RC:R/CR:M/IR:X/AR:X/MAV:L/MAC:L/MPR:L/MUI:X/MS:C/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(6.9), // exp base score
+          temporal: Some(Score::from(6.2)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "b974bfbc 6.6", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:C/C:H/I:N/A:L/E:U/RL:U/RC:X/CR:X/IR:M/AR:H/MAV:X/MAC:X/MPR:N/MUI:X/MS:X/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.1)), // exp temporal score
+          environmental: Some(Score::from(6.6)), // exp environmental score
+        }, // exp
+      ), (
+        "abe92956 5.0", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:C/C:L/I:H/A:N/E:U/RL:O/RC:X/CR:M/IR:M/AR:L/MAV:P/MAC:L/MPR:L/MUI:X/MS:C/MC:L/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(5.0)), // exp environmental score
+        }, // exp
+      ), (
+        "f0a24cb8 6.5", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:L/E:X/RL:W/RC:C/CR:M/IR:H/AR:H/MAV:N/MAC:L/MPR:H/MUI:X/MS:U/MC:L/MI:H/MA:N", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(6.5)), // exp environmental score
+        }, // exp
+      ), (
+        "846c91ff 7.5", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:C/C:N/I:H/A:L/E:H/RL:W/RC:U/CR:X/IR:H/AR:M/MAV:N/MAC:H/MPR:N/MUI:X/MS:X/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(5.6), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(7.5)), // exp environmental score
+        }, // exp
+      ), (
+        "7a5e8a7b 3.8", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:U/C:H/I:L/A:H/E:X/RL:O/RC:R/CR:X/IR:H/AR:X/MAV:A/MAC:X/MPR:L/MUI:R/MS:X/MC:L/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.7), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(3.8)), // exp environmental score
+        }, // exp
+      ), (
+        "fbd95411 2.5", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:U/C:H/I:L/A:N/E:P/RL:W/RC:C/CR:M/IR:L/AR:X/MAV:X/MAC:X/MPR:L/MUI:N/MS:X/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(4.5), // exp base score
+          temporal: Some(Score::from(4.2)), // exp temporal score
+          environmental: Some(Score::from(2.5)), // exp environmental score
+        }, // exp
+      ), (
+        "565dfceb 4.3", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:U/C:N/I:L/A:L/E:X/RL:O/RC:R/CR:H/IR:X/AR:L/MAV:A/MAC:X/MPR:N/MUI:N/MS:U/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(2.8), // exp base score
+          temporal: Some(Score::from(2.6)), // exp temporal score
+          environmental: Some(Score::from(4.3)), // exp environmental score
+        }, // exp
+      ), (
+        "66a75517 2.2", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:U/C:N/I:L/A:N/E:U/RL:X/RC:U/CR:L/IR:M/AR:X/MAV:N/MAC:H/MPR:L/MUI:X/MS:U/MC:X/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(1.7), // exp base score
+          temporal: Some(Score::from(1.5)), // exp temporal score
+          environmental: Some(Score::from(2.2)), // exp environmental score
+        }, // exp
+      ), (
+        "9e3a9c2f 5.7", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:H/E:U/RL:X/RC:X/CR:H/IR:L/AR:M/MAV:A/MAC:H/MPR:H/MUI:N/MS:U/MC:H/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(7.3), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "8094352b 7.2", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:H/E:P/RL:U/RC:C/CR:H/IR:L/AR:L/MAV:X/MAC:X/MPR:N/MUI:N/MS:C/MC:X/MI:L/MA:H", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.7)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "e0a782a6 8.2", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N/E:X/RL:O/RC:U/CR:X/IR:H/AR:M/MAV:N/MAC:L/MPR:N/MUI:N/MS:X/MC:X/MI:N/MA:L", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.6)), // exp temporal score
+          environmental: Some(Score::from(8.2)), // exp environmental score
+        }, // exp
+      ), (
+        "2896cfb6 3.2", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N/E:U/RL:U/RC:R/CR:X/IR:X/AR:H/MAV:P/MAC:H/MPR:N/MUI:N/MS:X/MC:X/MI:L/MA:N", // vec
+        Scores {
+          base: Score::from(3.8), // exp base score
+          temporal: Some(Score::from(3.4)), // exp temporal score
+          environmental: Some(Score::from(3.2)), // exp environmental score
+        }, // exp
+      ), (
+        "cab76651 2.2", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:L/E:H/RL:U/RC:U/CR:M/IR:M/AR:L/MAV:X/MAC:X/MPR:H/MUI:N/MS:U/MC:N/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(3.8), // exp base score
+          temporal: Some(Score::from(3.5)), // exp temporal score
+          environmental: Some(Score::from(2.2)), // exp environmental score
+        }, // exp
+      ), (
+        "8928adc4 8.9", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:H/RL:T/RC:U/CR:X/IR:M/AR:H/MAV:N/MAC:L/MPR:L/MUI:N/MS:C/MC:N/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(5.9)), // exp temporal score
+          environmental: Some(Score::from(8.9)), // exp environmental score
+        }, // exp
+      ), (
+        "4d4184ac 0.0", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H/E:X/RL:X/RC:U/CR:X/IR:X/AR:L/MAV:A/MAC:H/MPR:L/MUI:N/MS:C/MC:N/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(6.6), // exp base score
+          temporal: Some(Score::from(6.1)), // exp temporal score
+          environmental: Some(Score::from(0.0)), // exp environmental score
+        }, // exp
+      ), (
+        "0e4ea570 6.4", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:H/E:F/RL:W/RC:U/CR:X/IR:L/AR:H/MAV:L/MAC:L/MPR:L/MUI:R/MS:X/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.4)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "7cd843b7 4.7", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:H/E:H/RL:O/RC:R/CR:H/IR:L/AR:X/MAV:A/MAC:H/MPR:N/MUI:R/MS:U/MC:N/MI:L/MA:X", // vec
+        Scores {
+          base: Score::from(6.2), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "250ff7b2 5.7", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:H/E:H/RL:O/RC:R/CR:H/IR:H/AR:X/MAV:X/MAC:L/MPR:H/MUI:X/MS:U/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(5.0)), // exp temporal score
+          environmental: Some(Score::from(5.7)), // exp environmental score
+        }, // exp
+      ), (
+        "ee7c1e15 3.6", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L/E:U/RL:O/RC:C/CR:L/IR:L/AR:L/MAV:L/MAC:L/MPR:L/MUI:R/MS:X/MC:H/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(4.1), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(3.6)), // exp environmental score
+        }, // exp
+      ), (
+        "63e7f919 5.6", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:L/E:P/RL:T/RC:X/CR:X/IR:L/AR:X/MAV:L/MAC:X/MPR:X/MUI:N/MS:X/MC:H/MI:X/MA:X", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(2.9)), // exp temporal score
+          environmental: Some(Score::from(5.6)), // exp environmental score
+        }, // exp
+      ), (
+        "730a1306 6.8", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H/E:P/RL:X/RC:C/CR:M/IR:H/AR:H/MAV:N/MAC:X/MPR:H/MUI:N/MS:X/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.6)), // exp temporal score
+          environmental: Some(Score::from(6.8)), // exp environmental score
+        }, // exp
+      ), (
+        "50dfb443 3.3", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:L/E:H/RL:W/RC:R/CR:H/IR:L/AR:H/MAV:N/MAC:L/MPR:H/MUI:R/MS:U/MC:N/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(3.2), // exp base score
+          temporal: Some(Score::from(3.0)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "57d27ca9 6.4", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:L/E:P/RL:W/RC:R/CR:L/IR:X/AR:X/MAV:N/MAC:L/MPR:H/MUI:R/MS:X/MC:X/MI:X/MA:N", // vec
+        Scores {
+          base: Score::from(7.1), // exp base score
+          temporal: Some(Score::from(6.3)), // exp temporal score
+          environmental: Some(Score::from(6.4)), // exp environmental score
+        }, // exp
+      ), (
+        "acb4565f 7.7", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:R/S:C/C:H/I:N/A:N/E:P/RL:T/RC:R/CR:M/IR:H/AR:L/MAV:N/MAC:X/MPR:N/MUI:R/MS:U/MC:H/MI:H/MA:X", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(7.7)), // exp environmental score
+        }, // exp
+      ), (
+        "94022a33 7.3", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:N/E:F/RL:X/RC:U/CR:M/IR:M/AR:H/MAV:N/MAC:H/MPR:L/MUI:R/MS:C/MC:X/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.3)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "652a8fc4 6.3", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:R/S:U/C:L/I:H/A:N/E:X/RL:W/RC:X/CR:H/IR:X/AR:X/MAV:X/MAC:X/MPR:L/MUI:R/MS:U/MC:H/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.8), // exp base score
+          temporal: Some(Score::from(4.7)), // exp temporal score
+          environmental: Some(Score::from(6.3)), // exp environmental score
+        }, // exp
+      ), (
+        "bd9f29db 7.2", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:H/E:U/RL:X/RC:U/CR:X/IR:L/AR:H/MAV:N/MAC:X/MPR:L/MUI:N/MS:U/MC:X/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(5.2), // exp base score
+          temporal: Some(Score::from(4.4)), // exp temporal score
+          environmental: Some(Score::from(7.2)), // exp environmental score
+        }, // exp
+      ), (
+        "6d000fd9 6.1", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:C/C:L/I:H/A:H/E:F/RL:T/RC:X/CR:M/IR:L/AR:X/MAV:P/MAC:H/MPR:X/MUI:N/MS:X/MC:X/MI:H/MA:H", // vec
+        Scores {
+          base: Score::from(7.5), // exp base score
+          temporal: Some(Score::from(7.0)), // exp temporal score
+          environmental: Some(Score::from(6.1)), // exp environmental score
+        }, // exp
+      ), (
+        "7b688398 7.3", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:H/E:H/RL:U/RC:U/CR:X/IR:H/AR:X/MAV:A/MAC:H/MPR:N/MUI:R/MS:X/MC:X/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(6.1), // exp base score
+          temporal: Some(Score::from(5.7)), // exp temporal score
+          environmental: Some(Score::from(7.3)), // exp environmental score
+        }, // exp
+      ), (
+        "a5d51ee2 8.0", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:L/E:H/RL:W/RC:U/CR:H/IR:H/AR:L/MAV:N/MAC:H/MPR:X/MUI:N/MS:C/MC:H/MI:N/MA:X", // vec
+        Scores {
+          base: Score::from(4.0), // exp base score
+          temporal: Some(Score::from(3.6)), // exp temporal score
+          environmental: Some(Score::from(8.0)), // exp environmental score
+        }, // exp
+      ), (
+        "295ace5b 4.7", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:L/E:P/RL:T/RC:U/CR:L/IR:X/AR:M/MAV:X/MAC:L/MPR:X/MUI:R/MS:U/MC:H/MI:H/MA:L", // vec
+        Scores {
+          base: Score::from(2.6), // exp base score
+          temporal: Some(Score::from(2.2)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "20b69338 5.9", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L/E:P/RL:U/RC:C/CR:L/IR:X/AR:M/MAV:N/MAC:H/MPR:X/MUI:X/MS:U/MC:L/MI:N/MA:H", // vec
+        Scores {
+          base: Score::from(4.3), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(5.9)), // exp environmental score
+        }, // exp
+      ), (
+        "0dd93f14 4.6", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/E:U/RL:W/RC:X/CR:X/IR:L/AR:X/MAV:P/MAC:L/MPR:L/MUI:X/MS:X/MC:H/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(2.4), // exp base score
+          temporal: Some(Score::from(2.2)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "cfaba3ea 4.6", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:C/C:N/I:N/A:H/E:H/RL:T/RC:C/CR:M/IR:M/AR:X/MAV:N/MAC:H/MPR:X/MUI:X/MS:X/MC:X/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.1), // exp base score
+          temporal: Some(Score::from(4.9)), // exp temporal score
+          environmental: Some(Score::from(4.6)), // exp environmental score
+        }, // exp
+      ), (
+        "15178b76 4.7", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:H/E:U/RL:O/RC:X/CR:M/IR:X/AR:L/MAV:A/MAC:H/MPR:L/MUI:X/MS:U/MC:X/MI:L/MA:L", // vec
+        Scores {
+          base: Score::from(5.9), // exp base score
+          temporal: Some(Score::from(5.2)), // exp temporal score
+          environmental: Some(Score::from(4.7)), // exp environmental score
+        }, // exp
+      ), (
+        "a517df88 3.3", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H/E:H/RL:W/RC:X/CR:X/IR:X/AR:L/MAV:X/MAC:H/MPR:X/MUI:X/MS:X/MC:X/MI:X/MA:L", // vec
+        Scores {
+          base: Score::from(5.4), // exp base score
+          temporal: Some(Score::from(5.3)), // exp temporal score
+          environmental: Some(Score::from(3.3)), // exp environmental score
+        }, // exp
+      ), (
+        "ee33a2b9 5.2", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:H/E:P/RL:O/RC:U/CR:L/IR:X/AR:H/MAV:L/MAC:H/MPR:L/MUI:R/MS:U/MC:L/MI:X/MA:H", // vec
+        Scores {
+          base: Score::from(4.9), // exp base score
+          temporal: Some(Score::from(4.1)), // exp temporal score
+          environmental: Some(Score::from(5.2)), // exp environmental score
+        }, // exp
+      ), (
+        "80537d5d 1.9", // test name
+        "CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N/E:P/RL:O/RC:U/CR:M/IR:L/AR:M/MAV:P/MAC:L/MPR:X/MUI:X/MS:C/MC:X/MI:N/MA:N", // vec
+        Scores {
+          base: Score::from(2.1), // exp base score
+          temporal: Some(Score::from(1.8)), // exp temporal score
+          environmental: Some(Score::from(1.9)), // exp environmental score
         }, // exp
       ));
 
