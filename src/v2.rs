@@ -3021,6 +3021,22 @@ impl From<Vector> for Scores {
       vec.get(Name::ReportConfidence) != m_rc_nd
     };
 
+    // are any environmental metrics defined?
+    let has_env_metrics = {
+      // cache "not defined" temporal metric values
+      let m_cdp_nd = Metric::CollateralDamagePotential(CollateralDamagePotential::NotDefined);
+      let m_td_nd = Metric::TargetDistribution(TargetDistribution::NotDefined);
+      let m_cr_nd = Metric::ConfidentialityRequirement(Requirement::NotDefined);
+      let m_ir_nd = Metric::IntegrityRequirement(Requirement::NotDefined);
+      let m_ar_nd = Metric::AvailabilityRequirement(Requirement::NotDefined);
+
+      vec.get(Name::CollateralDamagePotential) != m_cdp_nd ||
+      vec.get(Name::TargetDistribution) != m_td_nd ||
+      vec.get(Name::ConfidentialityRequirement) != m_cr_nd ||
+      vec.get(Name::IntegrityRequirement) != m_ir_nd ||
+      vec.get(Name::AvailabilityRequirement) != m_ar_nd
+    };
+
     let temporal_score = if has_temporal_metrics {
       // TemporalScore = round_to_1_decimal(BaseScore*Exploitability
       //                 *RemediationLevel*ReportConfidence)
@@ -3108,19 +3124,26 @@ impl From<Vector> for Scores {
     // recalculate base score with the BaseScore's Impact sub-
     // equation replaced with the AdjustedImpact equation
     let f_adj_impact = if adj_impact > 0.001 { 1.176 } else { 0.0 };
-    let adj_base_score = round1(((0.6 * adj_impact) + (0.4 * exploitability) - 1.5) * f_adj_impact);
+    let adj_base_score = ((0.6 * adj_impact) + (0.4 * round1(exploitability)) - 1.5) * f_adj_impact;
+    println!("DEBUG: adj_impact={adj_impact}, exploitability={exploitability}, f_adj_impact={f_adj_impact}");
 
     // AdjustedTemporal = TemporalScore recomputed with the BaseScore's Impact sub-
     // equation replaced with the AdjustedImpact equation
     let adj_temporal_score = if has_temporal_metrics {
-      Some(round1(adj_base_score * e * rl * rc))
+      adj_base_score * e * rl * rc
     } else {
-      None
+      adj_base_score
     };
+    println!("DEBUG: adj_base_score={adj_base_score}, e={e}, rl={rl}, rc={rc}");
 
     // EnvironmentalScore = round_to_1_decimal((AdjustedTemporal+
     // (10-AdjustedTemporal)*CollateralDamagePotential)*TargetDistribution)
-    let env_score = adj_temporal_score.map(|val| round1((val + (10.0 - val)*cdp)*td));
+    let env_score = if has_env_metrics {
+      Some(round1((adj_temporal_score + (10.0 - adj_temporal_score)*cdp)*td))
+    } else {
+      None
+    };
+    println!("DEBUG: adj_temporal_score={adj_temporal_score:?}, cdp={cdp}, td={td}");
 
     Scores {
       base: Score::from(base_score),
