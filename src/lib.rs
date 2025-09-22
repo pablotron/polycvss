@@ -185,16 +185,6 @@ pub mod v3;
 pub mod v4;
 pub mod encode;
 
-/// Round value to nearest 10th of a decimal.
-///
-/// Used by [CVSS v2][doc-v2] scoring functions.
-///
-/// [doc-v2]: https://www.first.org/cvss/v2/guide
-///   "CVSS v2.0 Documentation"
-pub fn round1(val: f64) -> f64 {
-  (10.0 * val).round() / 10.0
-}
-
 /// Parse or conversion error.
 ///
 /// # Example
