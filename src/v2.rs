@@ -67,10 +67,20 @@
 
 #[cfg(feature="serde")]
 use serde::{self,Deserialize,Serialize};
-use super::{Err, Score, round1, Version, encode::{EncodedVal, EncodedMetric}};
+use super::{Err, Score, Version, encode::{EncodedVal, EncodedMetric}};
 
 // TODO:
 // - non-v2.3 vectors (e.g. Vector::new_with_version)
+
+/// Round value to nearest 10th of a decimal.
+///
+/// Used by [CVSS v2][doc-v2] scoring functions.
+///
+/// [doc-v2]: https://www.first.org/cvss/v2/guide
+///   "CVSS v2.0 Documentation"
+pub fn round1(val: f64) -> f64 {
+  (10.0 * val).round() / 10.0
+}
 
 /// [`Metric::AccessVector`][] (`AV`) values.
 ///
@@ -4082,8 +4092,7 @@ mod tests {
           "AV:N/AC:L/Au:N/C:C/I:C/A:C/E:F/RL:OF/RC:C/CDP:H/TD:H/CR:M/IR:M/AR:L", // val
           Score(90), // exp
         ),
-
-        // TODO
+        // lots more tests in tests::scores::test_from_vector()
       );
 
       for (name, s, exp) in tests {
@@ -4171,7 +4180,9 @@ mod tests {
 
     #[test]
     fn test_from_vector() {
-      // generated manually using cvss v2 calc
+      // first few test cases generated manually using cvss v2 calc; the
+      // rest were generated with `random.js v2 1000` in `cvss-calc`
+      // repo
       let tests = vec!((
         "ba86600d 3.4", // name
         "AV:L/AC:H/Au:M/C:P/I:P/A:P", // val
@@ -4214,7 +4225,7 @@ mod tests {
         }, // exp
       ),
 
-      // randomly generated tests
+      // randomly generated with `random.js v2 1000`
       (
         "5c56f91c 0.6", // test name
         "AV:A/AC:H/Au:M/C:C/I:N/A:P/E:POC/RL:U/RC:UR/CDP:N/TD:L/CR:L/IR:L/AR:M", // vec
