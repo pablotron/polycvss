@@ -3776,14 +3776,28 @@ impl From<Vector> for Scores {
     //   None  0.85
     //   Low  0.62 (or 0.68 if Scope / Modified Scope is Changed)
     //   High  0.27 (or 0.5 if Scope / Modified Scope is Changed)
-    let mpr = match (vec.get(Name::ModifiedPrivilegesRequired), modified_scope_changed) {
-      (Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::NotDefined), _) => pr,
-      (Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::None), _) => 0.85,
-      (Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::Low), true) => 0.68,
-      (Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::Low), false) => 0.62,
-      (Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::High), true) => 0.5,
-      (Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::High), false) => 0.27,
-      _ => unreachable!(),
+    let mpr = {
+      // get mpr value
+      let mpr_val = match vec.get(Name::ModifiedPrivilegesRequired) {
+        Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::NotDefined) => {
+          match vec.get(Name::PrivilegesRequired) {
+            Metric::PrivilegesRequired(val) => val,
+            _ => unreachable!(),
+          }
+        },
+        Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::None) => PrivilegesRequired::None,
+        Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::Low) => PrivilegesRequired::Low,
+        Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::High) => PrivilegesRequired::High,
+        _ => unreachable!(),
+      };
+
+      match (mpr_val, modified_scope_changed) {
+        (PrivilegesRequired::None, _) => 0.85,
+        (PrivilegesRequired::Low, false) => 0.62,
+        (PrivilegesRequired::Low, true) => 0.68,
+        (PrivilegesRequired::High, false) => 0.27,
+        (PrivilegesRequired::High, true) => 0.5,
+      }
     };
 
     // Modified User Interaction
