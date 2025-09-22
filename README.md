@@ -62,7 +62,7 @@ This example tool is included in the [Git repository][] as
 
 ## Install
 
-[polycvss package page on crates.io][crates-io-polycvss].
+[polycvss package page on crates.io][crates-io-polycvss]
 
 Run `cargo add polycvss` to add [polycvss][] as a dependency to an
 exiting [Rust][] project:
