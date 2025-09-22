@@ -3185,7 +3185,7 @@ impl Iterator for VectorIterator {
 /// Get base score:
 ///
 /// ```
-/// # use polycvss::{Err, v3::{Scores, Vector}};
+/// # use polycvss::{Err, Score, v3::{Scores, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse vector string
 /// let v: Vector = "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H".parse()?;
@@ -3194,7 +3194,7 @@ impl Iterator for VectorIterator {
 /// let scores = Scores::from(v);
 ///
 /// // check result
-/// assert_eq!(scores.base.to_string(), "4.4");
+/// assert_eq!(scores.base, Score::from(4.4));
 /// # Ok(())
 /// # }
 /// ```
@@ -3518,7 +3518,7 @@ impl std::fmt::Display for Vector {
 /// Get base score for [CVSS v3][doc] vector:
 ///
 /// ```
-/// # use polycvss::{Err, v3::{Scores, Vector}};
+/// # use polycvss::{Err, Score, v3::{Scores, Vector}};
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v3 vector string
 /// let v: Vector = "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H".parse()?;
@@ -3527,7 +3527,7 @@ impl std::fmt::Display for Vector {
 /// let scores = Scores::from(v);
 ///
 /// // check result
-/// assert_eq!(scores.base.to_string(), "4.4");
+/// assert_eq!(scores.base, Score::from(4.4));
 /// # Ok(())
 /// # }
 /// ```
