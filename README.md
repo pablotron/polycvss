@@ -62,7 +62,7 @@ This example tool is included in the [Git repository][] as
 
 ## Install
 
-[polycvss][] is available via [crates.io][crates-io-polycvss].
+[polycvss package page on crates.io][crates-io-polycvss].
 
 Run `cargo add polycvss` to add [polycvss][] as a dependency to an
 exiting [Rust][] project:
@@ -125,7 +125,8 @@ $ du -sh target/$(arch)-unknown-linux-musl/release/cvss-score
 
 [polycvss API documentation on docs.rs][docs-rs-polycvss].
 
-Run `cargo doc` to build the [API][] documentation in `target/doc/polycvss`:
+Run `cargo doc` to build the [API][] documentation locally in
+`target/doc/polycvss/`:
 
 ```sh
 $ cargo doc
