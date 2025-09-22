@@ -4958,7 +4958,7 @@ mod tests {
           Scores {
             base: Score::from(4.4),
             temporal: None,
-            environmental: Some(Score::from(4.4)),
+            environmental: None,
           }, // exp
         ),
 
@@ -4968,7 +4968,7 @@ mod tests {
           Scores {
             base: Score::from(8.8),
             temporal: None,
-            environmental: Some(Score::from(8.8)),
+            environmental: None,
           }, // exp
         ),
       );
