@@ -1926,7 +1926,7 @@ impl std::fmt::Display for Group {
 /// assert_eq!(true, Name::AttackVector.is_mandatory());
 /// # }
 /// ```
-#[derive(Clone,Copy,Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 pub enum Name {
   /// Attack Vector (`AV`) metric name.  See [`Metric::AttackVector`][].

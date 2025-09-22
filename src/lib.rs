@@ -181,7 +181,6 @@
 //!   "Internal Representation section"
 
 // TODO:
-// deive Eq for Name
 // deive Eq for Metric
 
 pub mod v2;
@@ -537,7 +536,7 @@ impl TryFrom<u64> for Version {
 /// assert_eq!(name, Name::V4(v4::Name::AttackVector));
 /// # }
 /// ```
-#[derive(Debug,PartialEq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 pub enum Name {
   /// CVSS v2 metric name.  See [`v2::Name`].
   V2(v2::Name),
