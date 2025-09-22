@@ -98,8 +98,8 @@ $ ls target/doc/polycvss/index.html
 target/doc/polycvss/index.html
 ```
 
-Run `cargo doc --lib --no-deps` build the library documentation and
-exclude dependencies:
+Run `cargo doc --lib` build the library documentation and exclude the
+example tool:
 
 ```sh
 # remove generated docs
@@ -107,7 +107,7 @@ exclude dependencies:
 $ cargo clean --doc
 
 # generate library-only docs
-$ cargo doc --lib --no-deps
+$ cargo doc --lib
 ```
 
 ## Tests
