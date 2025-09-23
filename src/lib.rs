@@ -149,6 +149,37 @@
 //! # }
 //! ```
 //!
+//! Show that metrics are always sorted in specification order when
+//! converting a [`Vector`][] to a string. In other words, the original
+//! metric order is **not** preserved:
+//!
+//! ```
+//! # use polycvss::{Err, Vector};
+//! # fn main() -> Result<(), Err> {
+//! // parse v3 vector string with PR metric BEFORE AV and AC metric
+//! let v: Vector = "CVSS:3.1/PR:N/AV:N/AC:L/UI:N/S:U/C:H/I:H/A:H".parse()?;
+//!
+//! // check result; output string has PR metric AFTER AV and AC metric
+//! assert_eq!(v.to_string(), "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H");
+//! # Ok(())
+//! # }
+//! ```
+//!
+//! Show that metrics with a value of `Not Defined (X)` are omitted when
+//! converting a [`Vector`][] to a string:
+//!
+//! ```
+//! # use polycvss::{Err, Vector};
+//! # fn main() -> Result<(), Err> {
+//! // parse v3 vector string with MAV:X metric
+//! let v: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/MAV:X".parse()?;
+//!
+//! // check result; output string does NOT include MAV:X
+//! assert_eq!(v.to_string(), "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H");
+//! # Ok(())
+//! # }
+//! ```
+//!
 //! # Internal Representation
 //!
 //! A [`Vector`] is represented internally as a [bit field][bit-field]
