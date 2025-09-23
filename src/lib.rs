@@ -217,10 +217,6 @@
 // TODO:
 // - README.md: intro: s/rust library to (.*)/$1 in Rust/
 // - README.md: intro: document explicit v3.0 vs v3.1 scoring
-// - README.md: Examples: add section, copy existing examples
-// - README.md: Examples: document that metric order is not preserved
-// - README.md: Examples: document that undefined metrics are skipped
-// - README.md: expand internal representation docs
 // - README.md: badges, gh action for tests
 
 pub mod v2;
