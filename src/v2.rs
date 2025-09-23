@@ -90,7 +90,7 @@ pub fn round1(val: f64) -> f64 {
 ///
 /// # Properties
 ///
-/// - Metric Group: Base
+/// - Metric Group: [Base][Group::Base]
 /// - Documentation: [CVSS v2.0 Documentation, Section 2.1.1: Access Vector (`AV`)][doc]
 ///
 /// # Examples
@@ -167,7 +167,7 @@ pub enum AccessVector {
 ///
 /// # Properties
 ///
-/// - Metric Group: Base
+/// - Metric Group: [Base][Group::Base]
 /// - Documentation: [CVSS v2.0 Documentation, Section 2.1.2: Access Complexity (`AC`)][doc]
 ///
 /// # Examples
@@ -256,7 +256,7 @@ pub enum AccessComplexity {
 ///
 /// # Properties
 ///
-/// - Metric Group: Base
+/// - Metric Group: [Base][Group::Base]
 /// - Documentation: [CVSS v2.0 Documentation, Section 2.1.3: Authentication (`Au`)][doc]
 ///
 /// # Examples
@@ -333,7 +333,7 @@ pub enum Authentication {
 ///
 /// # Properties
 ///
-/// - Metric Group: Base
+/// - Metric Group: [Base][Group::Base]
 /// - Documentation:
 ///   - [CVSS v2.0 Documentation, Section 2.1.4: Confidentiality Impact (`C`)][c-doc]
 ///   - [CVSS v2.0 Documentation, Section 2.1.5: Integrity Impact (`I`)][i-doc]
@@ -429,7 +429,7 @@ pub enum Impact {
 ///
 /// # Properties
 ///
-/// - Metric Group: Temporal
+/// - Metric Group: [Temporal][Group::Temporal]
 /// - Documentation: [CVSS v2.0 Documentation, Section 2.2.1: Exploitability (`E`)][doc]
 ///
 /// # Examples
@@ -514,7 +514,7 @@ pub enum Exploitability {
 ///
 /// # Properties
 ///
-/// - Metric Group: Temporal
+/// - Metric Group: [Temporal][Group::Temporal]
 /// - Documentation: [CVSS v2.0 Documentation, Section 2.2.2: Remediation Level (`RL`)][doc]
 ///
 /// # Examples
@@ -599,7 +599,7 @@ pub enum RemediationLevel {
 ///
 /// # Properties
 ///
-/// - Metric Group: Temporal
+/// - Metric Group: [Temporal][Group::Temporal]
 /// - Documentation: [CVSS v2.0 Documentation, Section 2.2.3: Report Confidence (`RC`)][doc]
 ///
 /// # Examples
@@ -679,7 +679,7 @@ pub enum ReportConfidence {
 ///
 /// # Properties
 ///
-/// - Metric Group: Environmental
+/// - Metric Group: [Environmental][Group::Environmental]
 /// - Documentation: [CVSS v2.0 Documentation, Section 2.3.1: Collateral Damage Potential (`CDP`)][doc]
 ///
 /// # Examples
@@ -769,7 +769,7 @@ pub enum CollateralDamagePotential {
 ///
 /// # Properties
 ///
-/// - Metric Group: Environmental
+/// - Metric Group: [Environmental][Group::Environmental]
 /// - Documentation: [CVSS v2.0 Documentation, Section 2.3.2: Target Distribution (`TD`)][doc]
 ///
 /// # Examples
@@ -860,7 +860,7 @@ pub enum TargetDistribution {
 ///
 /// # Properties
 ///
-/// - Metric Group: Environmental
+/// - Metric Group: [Environmental][Group::Environmental]
 /// - Documentation: [CVSS v2.0 Documentation, Section 2.3.3: Security Requirements (`CR`, `IR`, `AR`)][doc]
 ///
 /// # Requirement Metrics
@@ -962,8 +962,36 @@ pub enum Requirement {
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 pub enum Group {
+  /// Base metrics.
+  ///
+  /// # Metrics
+  ///
+  /// - [`Metric::AccessVector`]
+  /// - [`Metric::AccessComplexity`]
+  /// - [`Metric::Authentication`]
+  /// - [`Metric::Confidentiality`]
+  /// - [`Metric::Integrity`]
+  /// - [`Metric::Availability`]
   Base,
+
+  /// Temporal metrics.
+  ///
+  /// # Metrics
+  ///
+  /// - [`Metric::Exploitability`]
+  /// - [`Metric::RemediationLevel`]
+  /// - [`Metric::ReportConfidence`]
   Temporal,
+
+  /// Environmental metrics.
+  ///
+  /// # Metrics
+  ///
+  /// - [`Metric::CollateralDamagePotential`]
+  /// - [`Metric::TargetDistribution`]
+  /// - [`Metric::ConfidentialityRequirement`]
+  /// - [`Metric::IntegrityRequirement`]
+  /// - [`Metric::AvailabilityRequirement`]
   Environmental,
 }
 
@@ -1188,7 +1216,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base
+  /// - Metric Group: [Base][Group::Base]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.1.1: Access Vector (`AV`)][doc]
   ///
   /// # Examples
@@ -1247,7 +1275,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base
+  /// - Metric Group: [Base][Group::Base]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.1.2: Access Complexity (`AC`)][doc]
   ///
   /// # Examples
@@ -1304,7 +1332,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base
+  /// - Metric Group: [Base][Group::Base]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.1.3: Authentication (`Au`)][doc]
   ///
   /// # Examples
@@ -1361,7 +1389,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base
+  /// - Metric Group: [Base][Group::Base]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.1.4: Confidentiality Impact (`C`)][c-doc]
   ///
   /// # Examples
@@ -1418,7 +1446,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base
+  /// - Metric Group: [Base][Group::Base]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.1.5: Integrity Impact (`I`)][i-doc]
   ///
   /// # Examples
@@ -1475,7 +1503,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base
+  /// - Metric Group: [Base][Group::Base]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.1.6: Availability Impact (`A`)][a-doc]
   ///
   /// # Examples
@@ -1534,7 +1562,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Temporal
+  /// - Metric Group: [Temporal][Group::Temporal]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.2.1: Exploitability (`E`)][doc]
   ///
   /// # Examples
@@ -1591,7 +1619,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Temporal
+  /// - Metric Group: [Temporal][Group::Temporal]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.2.2: Remediation Level (`RL`)][doc]
   ///
   /// # Examples
@@ -1648,7 +1676,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Temporal
+  /// - Metric Group: [Temporal][Group::Temporal]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.2.3: Report Confidence (`RC`)][doc]
   ///
   /// # Examples
@@ -1705,7 +1733,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental
+  /// - Metric Group: [Environmental][Group::Environmental]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.3.1: Collateral Damage Potential (`CDP`)][doc]
   ///
   /// # Examples
@@ -1762,7 +1790,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental
+  /// - Metric Group: [Environmental][Group::Environmental]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.3.2: Target Distribution (`TD`)][doc]
   ///
   /// # Examples
@@ -1825,7 +1853,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental
+  /// - Metric Group: [Environmental][Group::Environmental]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.3.3: Security Requirements (`CR`, `IR`, `AR`)][doc]
   ///
   /// # Examples
@@ -1888,7 +1916,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental
+  /// - Metric Group: [Environmental][Group::Environmental]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.3.3: Security Requirements (`CR`, `IR`, `AR`)][doc]
   ///
   /// # Examples
@@ -1951,7 +1979,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental
+  /// - Metric Group: [Environmental][Group::Environmental]
   /// - Documentation: [CVSS v2.0 Documentation, Section 2.3.3: Security Requirements (`CR`, `IR`, `AR`)][doc]
   ///
   /// # Examples
