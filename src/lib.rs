@@ -214,6 +214,8 @@
 //! [ir]: #internal-representation
 //!   "Internal Representation section"
 
+#![deny(missing_docs)]
+
 // TODO:
 // - README.md: intro: s/rust library to (.*)/$1 in Rust/
 // - README.md: intro: document explicit v3.0 vs v3.1 scoring
