@@ -387,13 +387,22 @@ const VAL_MASK: u64 = 0x0fff_ffff_ffff_ffff;
 ///   "Common Vulnerability Scoring System (CVSS)"
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
 enum MajorVersion {
-  /// CVSS v2
+  /// [CVSS v2][doc-v2]
+  ///
+  /// [doc-v2]: https://www.first.org/cvss/v2/guide
+  ///   "CVSS v2.0 Documentation"
   V2,
 
-  /// CVSS v3
+  /// [CVSS v3][doc-v3]
+  ///
+  /// [doc-v3]: https://www.first.org/cvss/v3-1/specification-document
+  ///   "CVSS v3.1 Specification"
   V3,
 
-  /// CVSS v4
+  /// [CVSS v4][doc-v4]
+  ///
+  /// [doc-v4]: https://www.first.org/cvss/v4-0/specification-document
+  ///   "Common Vulnerability Scoring System (CVSS) version 4.0 Specification"
   V4,
 }
 
@@ -576,13 +585,22 @@ impl TryFrom<u64> for Version {
 /// ```
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
 pub enum Name {
-  /// CVSS v2 metric name.  See [`v2::Name`].
+  /// [CVSS v2][doc-v2] metric name.  See [`v2::Name`].
+  ///
+  /// [doc-v2]: https://www.first.org/cvss/v2/guide
+  ///   "CVSS v2.0 Documentation"
   V2(v2::Name),
 
-  /// CVSS v3 metric name.  See [`v3::Name`].
+  /// [CVSS v3][doc-v3] metric name.  See [`v3::Name`].
+  ///
+  /// [doc-v3]: https://www.first.org/cvss/v3-1/specification-document
+  ///   "CVSS v3.1 Specification"
   V3(v3::Name),
 
-  /// CVSS v4 metric name.  See [`v4::Name`].
+  /// [CVSS v4][doc-v4]] metric name.  See [`v4::Name`].
+  ///
+  /// [doc-v4]: https://www.first.org/cvss/v4-0/specification-document
+  ///   "Common Vulnerability Scoring System (CVSS) version 4.0 Specification"
   V4(v4::Name),
 }
 
@@ -687,13 +705,22 @@ impl std::fmt::Display for Name {
 /// ```
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
 pub enum Metric {
-  /// CVSS v2 metric.  See [`v2::Metric`].
+  /// [CVSS v2][doc-v2] metric.  See [`v2::Metric`].
+  ///
+  /// [doc-v2]: https://www.first.org/cvss/v2/guide
+  ///   "CVSS v2.0 Documentation"
   V2(v2::Metric),
 
-  /// CVSS v3 metric.  See [`v3::Metric`].
+  /// [CVSS v3][doc-v3] metric.  See [`v3::Metric`].
+  ///
+  /// [doc-v3]: https://www.first.org/cvss/v3-1/specification-document
+  ///   "CVSS v3.1 Specification"
   V3(v3::Metric),
 
-  /// CVSS v4 metric.  See [`v4::Metric`].
+  /// [CVSS v4][doc-v4] metric.  See [`v4::Metric`].
+  ///
+  /// [doc-v4]: https://www.first.org/cvss/v4-0/specification-document
+  ///   "Common Vulnerability Scoring System (CVSS) version 4.0 Specification"
   V4(v4::Metric),
 }
 
@@ -792,13 +819,22 @@ impl std::fmt::Display for Metric {
 /// # }
 /// ```
 pub enum VectorIterator {
-  /// CVSS v2 vector iterator.  See [`v2::VectorIterator`].
+  /// [CVSS v2][doc-v2] vector iterator.  See [`v2::VectorIterator`].
+  ///
+  /// [doc-v2]: https://www.first.org/cvss/v2/guide
+  ///   "CVSS v2.0 Documentation"
   V2(v2::VectorIterator),
 
-  /// CVSS v3 vector iterator.  See [`v3::VectorIterator`].
+  /// [CVSS v3][doc-v3] vector iterator.  See [`v3::VectorIterator`].
+  ///
+  /// [doc-v3]: https://www.first.org/cvss/v3-1/specification-document
+  ///   "CVSS v3.1 Specification"
   V3(v3::VectorIterator),
 
-  /// CVSS v4 vector iterator.  See [`v4::VectorIterator`].
+  /// [CVSS v4][doc-v4] vector iterator.  See [`v4::VectorIterator`].
+  ///
+  /// [doc-v4]: https://www.first.org/cvss/v4-0/specification-document
+  ///   "Common Vulnerability Scoring System (CVSS) version 4.0 Specification"
   V4(v4::VectorIterator),
 }
 
