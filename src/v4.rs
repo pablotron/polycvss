@@ -94,7 +94,7 @@ use super::{Err, Score, VAL_MASK, Version, encode::{EncodedVal, EncodedMetric}};
 ///
 /// # Properties
 ///
-/// - Metric Group: Base Metrics
+/// - Metric Group: [Base Metrics][Group::Base]
 /// - Documentation: [CVSS v4.0 Specification, Section 2.1.1: Attack Vector (`AV`)][doc]
 ///
 /// # Examples
@@ -216,7 +216,7 @@ impl AttackVector {
 ///
 /// # Properties
 ///
-/// - Metric Group: Environmental Metrics
+/// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
@@ -272,7 +272,7 @@ pub enum ModifiedAttackVector {
 ///
 /// # Properties
 ///
-/// - Metric Group: Base Metrics
+/// - Metric Group: [Base Metrics][Group::Base]
 /// - Documentation: [CVSS v4.0 Specification, Section 2.1.2: Attack Complexity (`AC`)][doc]
 ///
 /// # Examples
@@ -372,7 +372,7 @@ impl AttackComplexity {
 ///
 /// # Properties
 ///
-/// - Metric Group: Environmental Metrics
+/// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
@@ -410,7 +410,7 @@ pub enum ModifiedAttackComplexity {
 ///
 /// # Properties
 ///
-/// - Metric Group: Base Metrics
+/// - Metric Group: [Base Metrics][Group::Base]
 /// - Base Metric Set: Exploitability Metrics
 /// - Documentation: [CVSS v4.0 Specification, Section 2.1.3: Attack Requirements (`AT`)][doc]
 ///
@@ -507,7 +507,7 @@ impl AttackRequirements {
 ///
 /// # Properties
 ///
-/// - Metric Group: Environmental Metrics
+/// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
@@ -546,7 +546,7 @@ pub enum ModifiedAttackRequirements {
 ///
 /// # Properties
 ///
-/// - Metric Group: Base Metrics
+/// - Metric Group: [Base Metrics][Group::Base]
 /// - Base Metric Set: Exploitability Metrics
 /// - Documentation: [CVSS v4.0 Specification, Section 2.1.4: Privileges Required (`PR`)][doc]
 ///
@@ -639,7 +639,7 @@ impl PrivilegesRequired {
 ///
 /// # Properties
 ///
-/// - Metric Group: Environmental Metrics
+/// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
@@ -681,7 +681,7 @@ pub enum ModifiedPrivilegesRequired {
 ///
 /// # Properties
 ///
-/// - Metric Group: Base Metrics
+/// - Metric Group: [Base Metrics][Group::Base]
 /// - Base Metric Set: Exploitability Metrics
 /// - Documentation: [CVSS v4.0 Specification, Section 2.1.5: User Interaction (`UI`)][doc]
 ///
@@ -796,7 +796,7 @@ impl UserInteraction {
 ///
 /// # Properties
 ///
-/// - Metric Group: Environmental Metrics
+/// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
@@ -839,7 +839,7 @@ pub enum ModifiedUserInteraction {
 ///
 /// # Properties
 ///
-/// - Metric Group: Base Metrics
+/// - Metric Group: [Base Metrics][Group::Base]
 /// - Base Metric Set: Impact Metrics
 /// - Documentation: [CVSS v4.0 Specification, Section 2.2: Impact Metrics][doc]
 ///
@@ -909,7 +909,7 @@ impl Impact {
 ///
 /// # Properties
 ///
-/// - Metric Group: Environmental Metrics
+/// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
@@ -985,7 +985,7 @@ impl SubsequentImpact {
 ///
 /// # Properties
 ///
-/// - Metric Group: Environmental Metrics
+/// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
@@ -1057,7 +1057,7 @@ pub enum ModifiedSubsequentImpact {
 ///
 /// # Properties
 ///
-/// - Metric Group: Threat Metrics
+/// - Metric Group: [Threat Metrics][Group::Threat]
 /// - Documentation: [CVSS v4.0 Specification, Section 3.1: Exploit Maturity (`E`)][doc]
 ///
 /// # Examples
@@ -1197,7 +1197,7 @@ impl ExploitMaturity {
 ///
 /// # Properties
 ///
-/// - Metric Group: Environmental Metrics
+/// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v4.0 Specification, Section 4.1: Confidentiality, Integrity, and Availability Requirements (CR, IR, AR)][doc]
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Confidentiality-Integrity-and-Availability-Requirements-CR-IR-AR
@@ -1274,7 +1274,7 @@ impl Requirement {
 ///
 /// # Properties
 ///
-/// - Metric Group: Supplemental Metrics
+/// - Metric Group: [Supplemental Metrics][Group::Supplemental]
 /// - Documentation: [CVSS v4.0 Specification, Section 5.1: Safety (`S`)][doc]
 ///
 /// ## IEC 61508 Definitions
@@ -1365,7 +1365,7 @@ pub enum Safety {
 ///
 /// # Properties
 ///
-/// - Metric Group: Supplemental Metrics
+/// - Metric Group: [Supplemental Metrics][Group::Supplemental]
 /// - Documentation: [CVSS v4.0 Specification, Section 5.2: Automatable (`AU`)][doc]
 ///
 /// # Examples
@@ -1446,7 +1446,7 @@ pub enum Automatable {
 ///
 /// # Properties
 ///
-/// - Metric Group: Supplemental Metrics
+/// - Metric Group: [Supplemental Metrics][Group::Supplemental]
 /// - Documentation: [CVSS v4.0 Specification, Section 5.4: Recovery (`R`)][doc]
 ///
 /// # Examples
@@ -1530,7 +1530,7 @@ pub enum Recovery {
 ///
 /// # Properties
 ///
-/// - Metric Group: Supplemental Metrics
+/// - Metric Group: [Supplemental Metrics][Group::Supplemental]
 /// - Documentation: [CVSS v4.0 Specification, Section 5.5: Value Density (`V`)][doc]
 ///
 /// # Examples
@@ -1620,7 +1620,7 @@ pub enum ValueDensity {
 ///
 /// # Properties
 ///
-/// - Metric Group: Supplemental Metrics
+/// - Metric Group: [Supplemental Metrics][Group::Supplemental]
 /// - Documentation: [CVSS v4.0 Specification, Section 5.6: Vulnerability Response Effort (`RE`)][doc]
 ///
 /// # Examples
@@ -1741,7 +1741,7 @@ pub enum VulnerabilityResponseEffort {
 ///
 /// # Properties
 ///
-/// - Metric Group: Supplemental Metrics
+/// - Metric Group: [Supplemental Metrics][Group::Supplemental]
 /// - Documentation: [CVSS v4.0 Specification, Section 5.3: Provider Urgency (`U`)][doc]
 ///
 /// # Examples
@@ -1846,10 +1846,92 @@ pub enum ProviderUrgency {
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 pub enum Group {
+  /// Base metrics.
+  ///
+  /// # Metrics
+  ///
+  /// - [`Metric::AttackVector`] (`AV`)
+  /// - [`Metric::AttackComplexity`] (`AC`)
+  /// - [`Metric::AttackRequirements`] (`AT`)
+  /// - [`Metric::PrivilegesRequired`] (`PR`)
+  /// - [`Metric::UserInteraction`] (`UI`)
+  /// - [`Metric::VulnerableSystemConfidentialityImpact`] (`VC`)
+  /// - [`Metric::VulnerableSystemIntegrityImpact`] (`VI`)
+  /// - [`Metric::VulnerableSystemAvailabilityImpact`] (`VA`)
+  /// - [`Metric::SubsequentSystemConfidentialityImpact`] (`SC`)
+  /// - [`Metric::SubsequentSystemIntegrityImpact`] (`SI`)
+  /// - [`Metric::SubsequentSystemAvailabilityImpact`] (`SA`)
   Base,
+
+  /// Threat metrics.
+  ///
+  /// # Description
+  ///
+  /// The Threat metrics measure the current state of exploit techniques
+  /// or code availability for a vulnerability.
+  ///
+  /// # Metrics
+  ///
+  /// - [`Metric::ExploitMaturity`] (`E`)
   Threat,
+
+  /// Environmental metrics.
+  ///
+  /// # Description
+  ///
+  /// These metrics enable the consumer analyst to customize the
+  /// resulting score depending on the importance of the affected IT asset
+  /// to a user’s organization, measured in terms of
+  /// complementary/alternative security controls in place,
+  /// Confidentiality, Integrity, and Availability. The metrics are the
+  /// modified equivalent of Base metrics and are assigned values based on
+  /// the system placement within organizational infrastructure.
+  ///
+  /// # Metrics
+  ///
+  /// - [`Metric::ConfidentialityRequirement`] (`CR`)
+  /// - [`Metric::IntegrityRequirement`] (`IR`)
+  /// - [`Metric::AvailabilityRequirement`] (`AR`)
+  /// - [`Metric::ModifiedAttackVector`] (`MAV`)
+  /// - [`Metric::ModifiedAttackComplexity`] (`MAC`)
+  /// - [`Metric::ModifiedAttackRequirements`] (`MAT`)
+  /// - [`Metric::ModifiedPrivilegesRequired`] (`MPR`)
+  /// - [`Metric::ModifiedUserInteraction`] (`MUI`)
+  /// - [`Metric::ModifiedVulnerableSystemConfidentiality`] (`MVC`)
+  /// - [`Metric::ModifiedVulnerableSystemIntegrity`] (`MVI`)
+  /// - [`Metric::ModifiedVulnerableSystemAvailability`] (`MVA`)
+  /// - [`Metric::ModifiedSubsequentSystemConfidentiality`] (`MSC`)
+  /// - [`Metric::ModifiedSubsequentSystemIntegrity`] (`MSI`)
+  /// - [`Metric::ModifiedSubsequentSystemAvailability`] (`MSA`)
   Environmental,
-  Supplementary,
+
+  /// Supplemental metrics.
+  ///
+  /// # Description
+  ///
+  /// A new, optional metric group called the Supplemental metric group
+  /// provides new metrics that describe and measure additional extrinsic
+  /// attributes of a vulnerability. While the assessment of Supplemental
+  /// metrics is provisioned by the provider, the usage and response plan
+  /// of each metric within the Supplemental metric group is determined by
+  /// the consumer. This contextual information may be employed
+  /// differently in each consumer’s environment. No metric will have any
+  /// impact on the final calculated CVSS score (e.g. CVSS-BTE).
+  /// Organizations may then assign importance and/or effective impact of
+  /// each metric, or set/combination of metrics, giving them more, less,
+  /// or absolutely no effect on the final risk analysis. Metrics and
+  /// values will simply convey additional extrinsic characteristics of
+  /// the vulnerability itself.
+  ///
+  /// # Metrics
+  ///
+  /// - [`Metric::Safety`] (`S`)
+  /// - [`Metric::Automatable`] (`AU`)
+  /// - [`Metric::Recovery`] (`R`)
+  /// - [`Metric::ValueDensity`] (`V`)
+  /// - [`Metric::VulnerabilityResponseEffort`] (`RE`)
+  /// - [`Metric::ProviderUrgency`] (`U`)
+  Supplemental,
 }
 
 impl From<Name> for Group {
@@ -1884,12 +1966,12 @@ impl From<Name> for Group {
       Name::ModifiedSubsequentSystemIntegrity => Group::Environmental,
       Name::ModifiedSubsequentSystemAvailability => Group::Environmental,
 
-      Name::Safety => Group::Supplementary,
-      Name::Automatable => Group::Supplementary,
-      Name::Recovery => Group::Supplementary,
-      Name::ValueDensity => Group::Supplementary,
-      Name::VulnerabilityResponseEffort => Group::Supplementary,
-      Name::ProviderUrgency => Group::Supplementary,
+      Name::Safety => Group::Supplemental,
+      Name::Automatable => Group::Supplemental,
+      Name::Recovery => Group::Supplemental,
+      Name::ValueDensity => Group::Supplemental,
+      Name::VulnerabilityResponseEffort => Group::Supplemental,
+      Name::ProviderUrgency => Group::Supplemental,
     }
   }
 }
@@ -2193,7 +2275,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base Metrics
+  /// - Metric Group: [Base Metrics][Group::Base]
   /// - Documentation: [CVSS v4.0 Specification, Section 2.1.1: Attack Vector (`AV`)][doc]
   ///
   /// # Examples
@@ -2240,7 +2322,7 @@ pub enum Metric {
   ///
   /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Attack-Vector-AV
   ///   "CVSS v4.0 Specification, Section 2.1.1: Attack Vector (AV)"
-  AttackVector(AttackVector), // Attack Vector (AC)
+  AttackVector(AttackVector), // Attack Vector (AV)
 
   /// Attack Complexity (`AC`) metric.
   ///
@@ -2265,7 +2347,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base Metrics
+  /// - Metric Group: [Base Metrics][Group::Base]
   /// - Documentation: [CVSS v4.0 Specification, Section 2.1.2: Attack Complexity (`AC`)][doc]
   ///
   /// # Examples
@@ -2329,7 +2411,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base Metrics
+  /// - Metric Group: [Base Metrics][Group::Base]
   /// - Base Metric Set: Exploitability Metrics
   /// - Documentation: [CVSS v4.0 Specification, Section 2.1.3: Attack Requirements (`AT`)][doc]
   ///
@@ -2395,7 +2477,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base Metrics
+  /// - Metric Group: [Base Metrics][Group::Base]
   /// - Base Metric Set: Exploitability Metrics
   /// - Documentation: [CVSS v4.0 Specification, Section 2.1.4: Privileges Required (`PR`)][doc]
   ///
@@ -2459,7 +2541,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base Metrics
+  /// - Metric Group: [Base Metrics][Group::Base]
   /// - Base Metric Set: Exploitability Metrics
   /// - Documentation: [CVSS v4.0 Specification, Section 2.1.5: User Interaction (`UI`)][doc]
   ///
@@ -2522,7 +2604,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base Metrics
+  /// - Metric Group: [Base Metrics][Group::Base]
   /// - Base Metric Set: Impact Metrics
   /// - Documentation: [CVSS v4.0 Specification, Section 2.2.1: Confidentiality (`VC`/`SC`)][doc]
   ///
@@ -2588,7 +2670,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base Metrics
+  /// - Metric Group: [Base Metrics][Group::Base]
   /// - Base Metric Set: Impact Metrics
   /// - Documentation: [CVSS v4.0 Specification, Section 2.2.4: Integrity (`VI`/`SI`)][doc]
   ///
@@ -2656,7 +2738,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base Metrics
+  /// - Metric Group: [Base Metrics][Group::Base]
   /// - Base Metric Set: Impact Metrics
   /// - Documentation: [CVSS v4.0 Specification, Section 2.2.6: Availability (`VA`/`SA`)][doc]
   ///
@@ -2719,7 +2801,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base Metrics
+  /// - Metric Group: [Base Metrics][Group::Base]
   /// - Base Metric Set: Impact Metrics
   /// - Documentation: [CVSS v4.0 Specification, Section 2.2.1: Confidentiality (`VC`/`SC`)][doc]
   ///
@@ -2769,7 +2851,6 @@ pub enum Metric {
   ///   "CVSS v4.0 Specification, Section 2.2.1: Confidentiality (VC/SC)"
   SubsequentSystemConfidentialityImpact(Impact), // Subsequent System Confidentiality Impact (SC)
 
-
   /// Subsequent System Integrity Impact (`SI`) metric.
   ///
   /// # Description
@@ -2786,7 +2867,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base Metrics
+  /// - Metric Group: [Base Metrics][Group::Base]
   /// - Base Metric Set: Impact Metrics
   /// - Documentation: [CVSS v4.0 Specification, Section 2.2.4: Integrity (`VI`/`SI`)][doc]
   ///
@@ -2854,7 +2935,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Base Metrics
+  /// - Metric Group: [Base Metrics][Group::Base]
   /// - Base Metric Set: Impact Metrics
   /// - Documentation: [CVSS v4.0 Specification, Section 2.2.6: Availability (`VA`/`SA`)][doc]
   ///
@@ -2938,7 +3019,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Threat Metrics
+  /// - Metric Group: [Threat Metrics][Group::Threat]
   /// - Documentation: [CVSS v4.0 Specification, Section 3.1: Exploit Maturity (`E`)][doc]
   ///
   /// # Examples
@@ -3008,7 +3089,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.1: Confidentiality, Integrity, and Availability Requirements (CR, IR, AR)][doc]
   ///
   /// # Examples
@@ -3076,7 +3157,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.1: Confidentiality, Integrity, and Availability Requirements (CR, IR, AR)][doc]
   ///
   /// # Examples
@@ -3144,7 +3225,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.1: Confidentiality, Integrity, and Availability Requirements (CR, IR, AR)][doc]
   ///
   /// # Examples
@@ -3200,7 +3281,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
   ///
   /// # Examples
@@ -3258,7 +3339,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
   ///
   /// # Examples
@@ -3316,7 +3397,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
   ///
   /// # Examples
@@ -3374,7 +3455,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
   ///
   /// # Examples
@@ -3432,7 +3513,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
   ///
   /// # Examples
@@ -3490,7 +3571,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
   ///
   /// # Examples
@@ -3548,7 +3629,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
   ///
   /// # Examples
@@ -3606,7 +3687,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
   ///
   /// # Examples
@@ -3664,7 +3745,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
   ///
   /// # Examples
@@ -3722,7 +3803,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
   ///
   /// # Examples
@@ -3780,7 +3861,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Environmental Metrics
+  /// - Metric Group: [Environmental Metrics][Group::Environmental]
   /// - Documentation: [CVSS v4.0 Specification, Section 4.2: Modified Base Metrics][doc]
   ///
   /// # Examples
@@ -3845,7 +3926,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Supplemental Metrics
+  /// - Metric Group: [Supplemental Metrics][Group::Supplemental]
   /// - Documentation: [CVSS v4.0 Specification, Section 5.1: Safety (`S`)][doc]
   ///
   /// ## IEC 61508 Definitions
@@ -3916,7 +3997,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Supplemental Metrics
+  /// - Metric Group: [Supplemental Metrics][Group::Supplemental]
   /// - Documentation: [CVSS v4.0 Specification, Section 5.2: Automatable (`AU`)][doc]
   ///
   /// # Examples
@@ -3975,7 +4056,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Supplemental Metrics
+  /// - Metric Group: [Supplemental Metrics][Group::Supplemental]
   /// - Documentation: [CVSS v4.0 Specification, Section 5.4: Recovery (`R`)][doc]
   ///
   /// # Examples
@@ -4034,7 +4115,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Supplemental Metrics
+  /// - Metric Group: [Supplemental Metrics][Group::Supplemental]
   /// - Documentation: [CVSS v4.0 Specification, Section 5.5: Value Density (`V`)][doc]
   ///
   /// # Examples
@@ -4099,7 +4180,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Supplemental Metrics
+  /// - Metric Group: [Supplemental Metrics][Group::Supplemental]
   /// - Documentation: [CVSS v4.0 Specification, Section 5.6: Vulnerability Response Effort (`RE`)][doc]
   ///
   /// # Examples
@@ -4172,7 +4253,7 @@ pub enum Metric {
   ///
   /// # Properties
   ///
-  /// - Metric Group: Supplemental Metrics
+  /// - Metric Group: [Supplemental Metrics][Group::Supplemental]
   /// - Documentation: [CVSS v4.0 Specification, Section 5.3: Provider Urgency (`U`)][doc]
   ///
   /// # Examples
@@ -5092,7 +5173,7 @@ impl Iterator for VectorIterator {
   }
 }
 
-/// [CVSS v4.0][cvss40] vector.
+/// [CVSS v4][cvss40] vector.
 ///
 /// Notes:
 ///
@@ -6469,7 +6550,7 @@ mod tests {
         (Name::AttackVector, Group::Base),
         (Name::ExploitMaturity, Group::Threat),
         (Name::ConfidentialityRequirement, Group::Environmental),
-        (Name::Safety, Group::Supplementary),
+        (Name::Safety, Group::Supplemental),
       );
 
       for (name, group) in tests {
@@ -6483,7 +6564,7 @@ mod tests {
         (Group::Base, "Base"),
         (Group::Threat, "Threat"),
         (Group::Environmental, "Environmental"),
-        (Group::Supplementary, "Supplementary"),
+        (Group::Supplemental, "Supplemental"),
       );
 
       for (group, exp) in tests {
