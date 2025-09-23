@@ -191,12 +191,15 @@
 //! | `0..60`   | Metric values    |
 //! | `60..64`  | [CVSS][] version |
 //!
-//! The lower bit packing varies by [CVSS][] version and is documented
-//! in the following modules:
+//! The bit packing varies by [CVSS][] version:
 //!
-//! - [`v2` module][v2]
-//! - [`v3` module][v3]
-//! - [`v4` module][v4]
+//! | Version | Module | Metric Bits | Unused Bits | Version Bits |
+//! | ------------ | ------ | ----------- | ----------- | ------------ |
+//! | [CVSS v2][doc-v2] | [`polycvss::v2`][v2] | `0..32` | `32..60` | `60..64` |
+//! | [CVSS v3][doc-v3] | [`polycvss::v3`][v3] | `0..44` | `44..60` | `60..64` |
+//! | [CVSS v4][doc-v4] | [`polycvss::v4`][v4] | `0..59` | `59..60` | `60..64` |
+//!
+//! See [`v2::Vector`], [`v3::Vector`], and [`v4::Vector`] for additional details.
 //!
 //! [cvss]: https://www.first.org/cvss/
 //!   "Common Vulnerability Scoring System (CVSS)"
