@@ -1233,11 +1233,11 @@ impl std::fmt::Display for Vector {
 ///
 /// Value in the range `[0.0, 10.0]`.
 ///
-/// Represented internally as a `u8`.
+/// Represented internally as a [`u8`].
 ///
-/// # Example
+/// # Examples
 ///
-/// Create `Score` from `f32`:
+/// Create [`Score`] from [`f32`]:
 ///
 /// ```
 /// # use polycvss::Score;
@@ -1250,7 +1250,7 @@ impl std::fmt::Display for Vector {
 /// # }
 /// ```
 ///
-/// Create `Score` from `f64`:
+/// Create [`Score`] from [`f64`]:
 ///
 /// ```
 /// # use polycvss::Score;
@@ -1263,9 +1263,45 @@ impl std::fmt::Display for Vector {
 /// # }
 /// ```
 ///
+/// Convert [`Score`] to [`f32`]:
+///
+/// ```
+/// # use polycvss::Score;
+/// # fn main() {
+/// assert_eq!(f32::from(Score::from(5.2)), 5.2_f32);
+/// # }
+/// ```
+///
+/// Convert [`Score`] to [`f64`]:
+///
+/// ```
+/// # use polycvss::Score;
+/// # fn main() {
+/// assert_eq!(f64::from(Score::from(6.3)), 6.3_f64);
+/// # }
+/// ```
+///
+/// Convert [`Score`] to [`String`]:
+///
+/// ```
+/// # use polycvss::Score;
+/// # fn main() {
+/// assert_eq!(Score::from(7.4).to_string(), "7.4");
+/// # }
+/// ```
+///
+/// Show that a [`Score`] is 1 byte in size:
+///
+/// ```
+/// # use polycvss::Score;
+/// # fn main() {
+/// assert_eq!(size_of::<Score>(), size_of::<u8>()); // 1 byte
+/// # }
+/// ```
+///
 /// [cvss]: https://www.first.org/cvss/
 ///   "Common Vulnerability Scoring System (CVSS)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq,Ord,PartialOrd)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq,PartialOrd,Ord)]
 pub struct Score(u8);
 
 impl From<f32> for Score {
@@ -1329,7 +1365,7 @@ impl std::ops::Sub for Score {
 ///
 /// # Examples
 ///
-/// Get [`Score`] severity:
+/// Create [`Severity`] from [`Score`]:
 ///
 /// ```
 /// # use polycvss::{Score, Severity};
@@ -1337,8 +1373,21 @@ impl std::ops::Sub for Score {
 /// // create severity from score
 /// let severity = Severity::from(Score::from(8.7));
 ///
-/// // check results
+/// // check result
 /// assert_eq!(severity, Severity::High);
+/// # }
+/// ```
+///
+/// Create [`Severity`] from [`String`]:
+///
+/// ```
+/// # use polycvss::{Severity};
+/// # fn main() {
+/// // create severity from string
+/// let severity = Severity::from("MEDIUM");
+///
+/// // check result
+/// assert_eq!(severity, Severity::Medium);
 /// # }
 /// ```
 ///
