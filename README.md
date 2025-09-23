@@ -60,6 +60,82 @@ $ cvss-score "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC:H/SI:H/SA:H"
 This example tool is included in the [Git repository][] as
 [`src/bin/cvss-score.rs`][cvss-score].
 
+## Examples
+
+Parse vector strings:
+
+```rust
+// parse CVSS v2 vector string
+let v2: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
+
+// parse CVSS v3 vector string
+let v3: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
+
+// parse CVSS v4 vector string
+let v4: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+```
+
+Get vector score:
+
+```rust
+// parse CVSS v4 vector string
+let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+
+// get score
+let score = Score::from(v);
+
+// check result
+assert_eq!(score, Score::from(10.0));
+```
+
+Compare scores:
+
+```rust
+let a = Score::from(1.2); // first score
+let b = Score::from(3.5); // second score
+assert!(a < b); // compare scores
+```
+
+Get score severity:
+
+```rust
+let severity = Severity::from(Score::from(2.3));
+assert_eq!(severity, Severity::Low);
+```
+
+Compare severities:
+
+```rust
+let a = Severity::Low; // first severity
+let b = Severity::High; // second severity
+assert!(a < b); // compare severities
+```
+
+Get metric from vector by name:
+
+```rust
+// parse CVSS v4 vector string
+let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+
+// get metric
+let metric = v.get(Name::V4(v4::Name::AttackVector))?;
+
+// check result
+assert_eq!(metric, Metric::V4(v4::Metric::AttackVector(v4::AttackVector::Network)));
+```
+
+Iterate over vector metrics:
+
+```rust
+// parse CVSS v4 vector string
+let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+
+// print metrics
+for m in v {
+  println!("metric: {m}");
+}
+```
+
 ## Install
 
 [polycvss package page on crates.io][crates-io-polycvss]
