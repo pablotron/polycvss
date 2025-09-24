@@ -1381,13 +1381,14 @@ impl std::ops::Sub for Score {
 /// Create [`Severity`] from [`String`]:
 ///
 /// ```
-/// # use polycvss::{Severity};
-/// # fn main() {
+/// # use polycvss::{Err, Severity};
+/// # fn main() -> Result<(), Err> {
 /// // create severity from string
-/// let severity = Severity::from("MEDIUM");
+/// let severity: Severity = "MEDIUM".parse()?;
 ///
 /// // check result
 /// assert_eq!(severity, Severity::Medium);
+/// # Ok(())
 /// # }
 /// ```
 ///
