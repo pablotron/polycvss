@@ -567,6 +567,104 @@ impl TryFrom<u64> for Version {
   }
 }
 
+/// [`Metric`] group.
+///
+/// # Examples
+///
+/// Get metric group:
+///
+/// ```
+/// # use polycvss::{Metric, Group, v4};
+/// # fn main() {
+/// let metric = Metric::V4(v4::Metric::AttackVector(v4::AttackVector::Local));
+/// assert_eq!(Group::from(metric), Group::V4(v4::Group::Base));
+/// # }
+/// ```
+///
+/// Convert name to group:
+///
+/// ```
+/// # use polycvss::{Name, Group, v4};
+/// # fn main() {
+/// let name = Name::V4(v4::Name::AttackVector);
+/// assert_eq!(Group::from(name), Group::V4(v4::Group::Base));
+/// # }
+/// ```
+///
+/// Convert group to string:
+///
+/// ```
+/// # use polycvss::{Name, Group, v4};
+/// # fn main() {
+/// let group = Group::V4(v4::Group::Base);
+/// assert_eq!(group.to_string(), "Base");
+/// # }
+/// ```
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
+pub enum Group {
+  /// [CVSS v2][doc-v2] metric group.  See [`v2::Group`].
+  ///
+  /// [doc-v2]: https://www.first.org/cvss/v2/guide
+  ///   "CVSS v2.0 Documentation"
+  V2(v2::Group),
+
+  /// [CVSS v3][doc-v3] metric group.  See [`v3::Group`].
+  ///
+  /// [doc-v3]: https://www.first.org/cvss/v3-1/specification-document
+  ///   "CVSS v3.1 Specification"
+  V3(v3::Group),
+
+  /// [CVSS v4][doc-v4]] metric group.  See [`v4::Group`].
+  ///
+  /// [doc-v4]: https://www.first.org/cvss/v4-0/specification-document
+  ///   "Common Vulnerability Scoring System (CVSS) version 4.0 Specification"
+  V4(v4::Group),
+}
+
+impl From<Name> for Group {
+  fn from(name: Name) -> Group {
+    Group::from(match name {
+      Name::V2(n) => Group::V2(v2::Group::from(n)),
+      Name::V3(n) => Group::V3(v3::Group::from(n)),
+      Name::V4(n) => Group::V4(v4::Group::from(n)),
+    })
+  }
+}
+
+impl From<Metric> for Group {
+  fn from(m: Metric) -> Group {
+    Group::from(Name::from(m))
+  }
+}
+
+impl From<v2::Group> for Group {
+  fn from(group: v2::Group) -> Group {
+    Group::V2(group)
+  }
+}
+
+impl From<v3::Group> for Group {
+  fn from(group: v3::Group) -> Group {
+    Group::V3(group)
+  }
+}
+
+impl From<v4::Group> for Group {
+  fn from(group: v4::Group) -> Group {
+    Group::V4(group)
+  }
+}
+
+impl std::fmt::Display for Group {
+  fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+    match self {
+      Group::V2(group) => group.fmt(f),
+      Group::V3(group) => group.fmt(f),
+      Group::V4(group) => group.fmt(f),
+    }
+  }
+}
+
 /// [`Metric`] name.
 ///
 /// # Examples
@@ -1531,6 +1629,482 @@ mod tests {
     fn test_try_from_u64_pass() {
       for t in 0..7 {
         Version::try_from(t << 60).expect(&t.to_string());
+      }
+    }
+  }
+
+  mod group {
+    use super::super::{Group, v2, v3, v4};
+
+    #[test]
+    fn test_from_name() {
+      use super::super::Name;
+
+      let tests = vec!(
+        (Name::V2(v2::Name::AccessVector), Group::V2(v2::Group::Base)),
+        (Name::V2(v2::Name::AccessComplexity), Group::V2(v2::Group::Base)),
+        (Name::V2(v2::Name::Authentication), Group::V2(v2::Group::Base)),
+        (Name::V2(v2::Name::Confidentiality), Group::V2(v2::Group::Base)),
+        (Name::V2(v2::Name::Integrity), Group::V2(v2::Group::Base)),
+        (Name::V2(v2::Name::Availability), Group::V2(v2::Group::Base)),
+        (Name::V2(v2::Name::Exploitability), Group::V2(v2::Group::Temporal)),
+        (Name::V2(v2::Name::RemediationLevel), Group::V2(v2::Group::Temporal)),
+        (Name::V2(v2::Name::ReportConfidence), Group::V2(v2::Group::Temporal)),
+        (Name::V2(v2::Name::CollateralDamagePotential), Group::V2(v2::Group::Environmental)),
+        (Name::V2(v2::Name::TargetDistribution), Group::V2(v2::Group::Environmental)),
+        (Name::V2(v2::Name::ConfidentialityRequirement), Group::V2(v2::Group::Environmental)),
+        (Name::V2(v2::Name::IntegrityRequirement), Group::V2(v2::Group::Environmental)),
+        (Name::V2(v2::Name::AvailabilityRequirement), Group::V2(v2::Group::Environmental)),
+
+        (Name::V3(v3::Name::AttackVector), Group::V3(v3::Group::Base)),
+        (Name::V3(v3::Name::AttackComplexity), Group::V3(v3::Group::Base)),
+        (Name::V3(v3::Name::PrivilegesRequired), Group::V3(v3::Group::Base)),
+        (Name::V3(v3::Name::UserInteraction), Group::V3(v3::Group::Base)),
+        (Name::V3(v3::Name::Scope), Group::V3(v3::Group::Base)),
+        (Name::V3(v3::Name::Confidentiality), Group::V3(v3::Group::Base)),
+        (Name::V3(v3::Name::Integrity), Group::V3(v3::Group::Base)),
+        (Name::V3(v3::Name::Availability), Group::V3(v3::Group::Base)),
+        (Name::V3(v3::Name::ExploitCodeMaturity), Group::V3(v3::Group::Temporal)),
+        (Name::V3(v3::Name::RemediationLevel), Group::V3(v3::Group::Temporal)),
+        (Name::V3(v3::Name::ReportConfidence), Group::V3(v3::Group::Temporal)),
+        (Name::V3(v3::Name::ConfidentialityRequirement), Group::V3(v3::Group::Environmental)),
+        (Name::V3(v3::Name::IntegrityRequirement), Group::V3(v3::Group::Environmental)),
+        (Name::V3(v3::Name::AvailabilityRequirement), Group::V3(v3::Group::Environmental)),
+        (Name::V3(v3::Name::ModifiedAttackVector), Group::V3(v3::Group::Environmental)),
+        (Name::V3(v3::Name::ModifiedAttackComplexity), Group::V3(v3::Group::Environmental)),
+        (Name::V3(v3::Name::ModifiedPrivilegesRequired), Group::V3(v3::Group::Environmental)),
+        (Name::V3(v3::Name::ModifiedUserInteraction), Group::V3(v3::Group::Environmental)),
+        (Name::V3(v3::Name::ModifiedScope), Group::V3(v3::Group::Environmental)),
+        (Name::V3(v3::Name::ModifiedConfidentiality), Group::V3(v3::Group::Environmental)),
+        (Name::V3(v3::Name::ModifiedIntegrity), Group::V3(v3::Group::Environmental)),
+        (Name::V3(v3::Name::ModifiedAvailability), Group::V3(v3::Group::Environmental)),
+
+        (Name::V4(v4::Name::AttackVector), Group::V4(v4::Group::Base)),
+        (Name::V4(v4::Name::AttackComplexity), Group::V4(v4::Group::Base)),
+        (Name::V4(v4::Name::AttackRequirements), Group::V4(v4::Group::Base)),
+        (Name::V4(v4::Name::PrivilegesRequired), Group::V4(v4::Group::Base)),
+        (Name::V4(v4::Name::UserInteraction), Group::V4(v4::Group::Base)),
+        (Name::V4(v4::Name::VulnerableSystemConfidentialityImpact), Group::V4(v4::Group::Base)),
+        (Name::V4(v4::Name::VulnerableSystemIntegrityImpact), Group::V4(v4::Group::Base)),
+        (Name::V4(v4::Name::VulnerableSystemAvailabilityImpact), Group::V4(v4::Group::Base)),
+        (Name::V4(v4::Name::SubsequentSystemConfidentialityImpact), Group::V4(v4::Group::Base)),
+        (Name::V4(v4::Name::SubsequentSystemIntegrityImpact), Group::V4(v4::Group::Base)),
+        (Name::V4(v4::Name::SubsequentSystemAvailabilityImpact), Group::V4(v4::Group::Base)),
+        (Name::V4(v4::Name::ExploitMaturity), Group::V4(v4::Group::Threat)),
+        (Name::V4(v4::Name::ConfidentialityRequirement), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::IntegrityRequirement), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::AvailabilityRequirement), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::ModifiedAttackVector), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::ModifiedAttackComplexity), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::ModifiedAttackRequirements), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::ModifiedPrivilegesRequired), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::ModifiedUserInteraction), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::ModifiedVulnerableSystemConfidentiality), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::ModifiedVulnerableSystemIntegrity), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::ModifiedVulnerableSystemAvailability), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::ModifiedSubsequentSystemConfidentiality), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::ModifiedSubsequentSystemIntegrity), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::ModifiedSubsequentSystemAvailability), Group::V4(v4::Group::Environmental)),
+        (Name::V4(v4::Name::Safety), Group::V4(v4::Group::Supplemental)),
+        (Name::V4(v4::Name::Automatable), Group::V4(v4::Group::Supplemental)),
+        (Name::V4(v4::Name::Recovery), Group::V4(v4::Group::Supplemental)),
+        (Name::V4(v4::Name::ValueDensity), Group::V4(v4::Group::Supplemental)),
+        (Name::V4(v4::Name::VulnerabilityResponseEffort), Group::V4(v4::Group::Supplemental)),
+        (Name::V4(v4::Name::ProviderUrgency), Group::V4(v4::Group::Supplemental)),
+      );
+
+      for (name, exp) in tests {
+        assert_eq!(Group::from(name), exp);
+      }
+    }
+
+    #[test]
+    fn test_from_metric() {
+      use super::super::Metric;
+
+      let tests = vec!(
+        (Metric::V2(v2::Metric::AccessVector(v2::AccessVector::Local)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::AccessVector(v2::AccessVector::AdjacentNetwork)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::AccessVector(v2::AccessVector::Network)), Group::V2(v2::Group::Base)),
+
+        (Metric::V2(v2::Metric::AccessComplexity(v2::AccessComplexity::High)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::AccessComplexity(v2::AccessComplexity::Medium)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::AccessComplexity(v2::AccessComplexity::Low)), Group::V2(v2::Group::Base)),
+
+        (Metric::V2(v2::Metric::Authentication(v2::Authentication::Multiple)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::Authentication(v2::Authentication::Single)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::Authentication(v2::Authentication::None)), Group::V2(v2::Group::Base)),
+
+        (Metric::V2(v2::Metric::Confidentiality(v2::Impact::None)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::Confidentiality(v2::Impact::Partial)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::Confidentiality(v2::Impact::Complete)), Group::V2(v2::Group::Base)),
+
+        (Metric::V2(v2::Metric::Integrity(v2::Impact::None)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::Integrity(v2::Impact::Partial)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::Integrity(v2::Impact::Complete)), Group::V2(v2::Group::Base)),
+
+        (Metric::V2(v2::Metric::Availability(v2::Impact::None)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::Availability(v2::Impact::Partial)), Group::V2(v2::Group::Base)),
+        (Metric::V2(v2::Metric::Availability(v2::Impact::Complete)), Group::V2(v2::Group::Base)),
+
+        (Metric::V2(v2::Metric::Exploitability(v2::Exploitability::NotDefined)), Group::V2(v2::Group::Temporal)),
+        (Metric::V2(v2::Metric::Exploitability(v2::Exploitability::Unproven)), Group::V2(v2::Group::Temporal)),
+        (Metric::V2(v2::Metric::Exploitability(v2::Exploitability::ProofOfConcept)), Group::V2(v2::Group::Temporal)),
+        (Metric::V2(v2::Metric::Exploitability(v2::Exploitability::Functional)), Group::V2(v2::Group::Temporal)),
+        (Metric::V2(v2::Metric::Exploitability(v2::Exploitability::High)), Group::V2(v2::Group::Temporal)),
+
+        (Metric::V2(v2::Metric::RemediationLevel(v2::RemediationLevel::NotDefined)), Group::V2(v2::Group::Temporal)),
+        (Metric::V2(v2::Metric::RemediationLevel(v2::RemediationLevel::OfficialFix)), Group::V2(v2::Group::Temporal)),
+        (Metric::V2(v2::Metric::RemediationLevel(v2::RemediationLevel::TemporaryFix)), Group::V2(v2::Group::Temporal)),
+        (Metric::V2(v2::Metric::RemediationLevel(v2::RemediationLevel::Workaround)), Group::V2(v2::Group::Temporal)),
+        (Metric::V2(v2::Metric::RemediationLevel(v2::RemediationLevel::Unavailable)), Group::V2(v2::Group::Temporal)),
+
+        (Metric::V2(v2::Metric::ReportConfidence(v2::ReportConfidence::NotDefined)), Group::V2(v2::Group::Temporal)),
+        (Metric::V2(v2::Metric::ReportConfidence(v2::ReportConfidence::Unconfirmed)), Group::V2(v2::Group::Temporal)),
+        (Metric::V2(v2::Metric::ReportConfidence(v2::ReportConfidence::Uncorroborated)), Group::V2(v2::Group::Temporal)),
+        (Metric::V2(v2::Metric::ReportConfidence(v2::ReportConfidence::Confirmed)), Group::V2(v2::Group::Temporal)),
+
+        (Metric::V2(v2::Metric::CollateralDamagePotential(v2::CollateralDamagePotential::NotDefined)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::CollateralDamagePotential(v2::CollateralDamagePotential::None)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::CollateralDamagePotential(v2::CollateralDamagePotential::Low)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::CollateralDamagePotential(v2::CollateralDamagePotential::LowMedium)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::CollateralDamagePotential(v2::CollateralDamagePotential::MediumHigh)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::CollateralDamagePotential(v2::CollateralDamagePotential::High)), Group::V2(v2::Group::Environmental)),
+
+        (Metric::V2(v2::Metric::TargetDistribution(v2::TargetDistribution::NotDefined)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::TargetDistribution(v2::TargetDistribution::None)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::TargetDistribution(v2::TargetDistribution::Low)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::TargetDistribution(v2::TargetDistribution::Medium)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::TargetDistribution(v2::TargetDistribution::High)), Group::V2(v2::Group::Environmental)),
+
+        (Metric::V2(v2::Metric::ConfidentialityRequirement(v2::Requirement::NotDefined)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::ConfidentialityRequirement(v2::Requirement::Low)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::ConfidentialityRequirement(v2::Requirement::Medium)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::ConfidentialityRequirement(v2::Requirement::High)), Group::V2(v2::Group::Environmental)),
+
+        (Metric::V2(v2::Metric::IntegrityRequirement(v2::Requirement::NotDefined)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::IntegrityRequirement(v2::Requirement::Low)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::IntegrityRequirement(v2::Requirement::Medium)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::IntegrityRequirement(v2::Requirement::High)), Group::V2(v2::Group::Environmental)),
+
+        (Metric::V2(v2::Metric::AvailabilityRequirement(v2::Requirement::NotDefined)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::AvailabilityRequirement(v2::Requirement::Low)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::AvailabilityRequirement(v2::Requirement::Medium)), Group::V2(v2::Group::Environmental)),
+        (Metric::V2(v2::Metric::AvailabilityRequirement(v2::Requirement::High)), Group::V2(v2::Group::Environmental)),
+
+        (Metric::V3(v3::Metric::AttackVector(v3::AttackVector::Network)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::AttackVector(v3::AttackVector::Adjacent)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::AttackVector(v3::AttackVector::Local)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::AttackVector(v3::AttackVector::Physical)), Group::V3(v3::Group::Base)),
+
+        (Metric::V3(v3::Metric::AttackComplexity(v3::AttackComplexity::High)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::AttackComplexity(v3::AttackComplexity::Low)), Group::V3(v3::Group::Base)),
+
+        (Metric::V3(v3::Metric::PrivilegesRequired(v3::PrivilegesRequired::High)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::PrivilegesRequired(v3::PrivilegesRequired::Low)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::PrivilegesRequired(v3::PrivilegesRequired::None)), Group::V3(v3::Group::Base)),
+
+        (Metric::V3(v3::Metric::UserInteraction(v3::UserInteraction::None)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::UserInteraction(v3::UserInteraction::Required)), Group::V3(v3::Group::Base)),
+
+        (Metric::V3(v3::Metric::Scope(v3::Scope::Unchanged)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::Scope(v3::Scope::Changed)), Group::V3(v3::Group::Base)),
+
+        (Metric::V3(v3::Metric::Confidentiality(v3::Impact::None)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::Confidentiality(v3::Impact::Low)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::Confidentiality(v3::Impact::High)), Group::V3(v3::Group::Base)),
+
+        (Metric::V3(v3::Metric::Integrity(v3::Impact::None)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::Integrity(v3::Impact::Low)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::Integrity(v3::Impact::High)), Group::V3(v3::Group::Base)),
+
+        (Metric::V3(v3::Metric::Availability(v3::Impact::None)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::Availability(v3::Impact::Low)), Group::V3(v3::Group::Base)),
+        (Metric::V3(v3::Metric::Availability(v3::Impact::High)), Group::V3(v3::Group::Base)),
+
+        (Metric::V3(v3::Metric::ExploitCodeMaturity(v3::ExploitCodeMaturity::Unproven)), Group::V3(v3::Group::Temporal)),
+        (Metric::V3(v3::Metric::ExploitCodeMaturity(v3::ExploitCodeMaturity::ProofOfConcept)), Group::V3(v3::Group::Temporal)),
+        (Metric::V3(v3::Metric::ExploitCodeMaturity(v3::ExploitCodeMaturity::Functional)), Group::V3(v3::Group::Temporal)),
+        (Metric::V3(v3::Metric::ExploitCodeMaturity(v3::ExploitCodeMaturity::High)), Group::V3(v3::Group::Temporal)),
+        (Metric::V3(v3::Metric::ExploitCodeMaturity(v3::ExploitCodeMaturity::NotDefined)), Group::V3(v3::Group::Temporal)),
+
+        (Metric::V3(v3::Metric::RemediationLevel(v3::RemediationLevel::OfficialFix)), Group::V3(v3::Group::Temporal)),
+        (Metric::V3(v3::Metric::RemediationLevel(v3::RemediationLevel::TemporaryFix)), Group::V3(v3::Group::Temporal)),
+        (Metric::V3(v3::Metric::RemediationLevel(v3::RemediationLevel::Workaround)), Group::V3(v3::Group::Temporal)),
+        (Metric::V3(v3::Metric::RemediationLevel(v3::RemediationLevel::Unavailable)), Group::V3(v3::Group::Temporal)),
+        (Metric::V3(v3::Metric::RemediationLevel(v3::RemediationLevel::NotDefined)), Group::V3(v3::Group::Temporal)),
+
+        (Metric::V3(v3::Metric::ReportConfidence(v3::ReportConfidence::Unknown)), Group::V3(v3::Group::Temporal)),
+        (Metric::V3(v3::Metric::ReportConfidence(v3::ReportConfidence::Reasonable)), Group::V3(v3::Group::Temporal)),
+        (Metric::V3(v3::Metric::ReportConfidence(v3::ReportConfidence::Confirmed)), Group::V3(v3::Group::Temporal)),
+        (Metric::V3(v3::Metric::ReportConfidence(v3::ReportConfidence::NotDefined)), Group::V3(v3::Group::Temporal)),
+
+        (Metric::V3(v3::Metric::ConfidentialityRequirement(v3::Requirement::Low)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ConfidentialityRequirement(v3::Requirement::Medium)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ConfidentialityRequirement(v3::Requirement::High)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ConfidentialityRequirement(v3::Requirement::NotDefined)), Group::V3(v3::Group::Environmental)),
+
+        (Metric::V3(v3::Metric::IntegrityRequirement(v3::Requirement::Low)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::IntegrityRequirement(v3::Requirement::Medium)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::IntegrityRequirement(v3::Requirement::High)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::IntegrityRequirement(v3::Requirement::NotDefined)), Group::V3(v3::Group::Environmental)),
+
+        (Metric::V3(v3::Metric::AvailabilityRequirement(v3::Requirement::Low)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::AvailabilityRequirement(v3::Requirement::Medium)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::AvailabilityRequirement(v3::Requirement::High)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::AvailabilityRequirement(v3::Requirement::NotDefined)), Group::V3(v3::Group::Environmental)),
+
+        (Metric::V3(v3::Metric::ModifiedAttackVector(v3::ModifiedAttackVector::Network)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedAttackVector(v3::ModifiedAttackVector::Adjacent)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedAttackVector(v3::ModifiedAttackVector::Local)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedAttackVector(v3::ModifiedAttackVector::Physical)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedAttackVector(v3::ModifiedAttackVector::NotDefined)), Group::V3(v3::Group::Environmental)),
+
+        (Metric::V3(v3::Metric::ModifiedAttackComplexity(v3::ModifiedAttackComplexity::High)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedAttackComplexity(v3::ModifiedAttackComplexity::Low)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedAttackComplexity(v3::ModifiedAttackComplexity::NotDefined)), Group::V3(v3::Group::Environmental)),
+
+        (Metric::V3(v3::Metric::ModifiedPrivilegesRequired(v3::ModifiedPrivilegesRequired::High)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedPrivilegesRequired(v3::ModifiedPrivilegesRequired::Low)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedPrivilegesRequired(v3::ModifiedPrivilegesRequired::None)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedPrivilegesRequired(v3::ModifiedPrivilegesRequired::NotDefined)), Group::V3(v3::Group::Environmental)),
+
+        (Metric::V3(v3::Metric::ModifiedUserInteraction(v3::ModifiedUserInteraction::None)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedUserInteraction(v3::ModifiedUserInteraction::Required)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedUserInteraction(v3::ModifiedUserInteraction::NotDefined)), Group::V3(v3::Group::Environmental)),
+
+        (Metric::V3(v3::Metric::ModifiedScope(v3::ModifiedScope::Unchanged)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedScope(v3::ModifiedScope::Changed)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedScope(v3::ModifiedScope::NotDefined)), Group::V3(v3::Group::Environmental)),
+
+        (Metric::V3(v3::Metric::ModifiedConfidentiality(v3::ModifiedImpact::None)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedConfidentiality(v3::ModifiedImpact::Low)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedConfidentiality(v3::ModifiedImpact::High)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedConfidentiality(v3::ModifiedImpact::NotDefined)), Group::V3(v3::Group::Environmental)),
+
+        (Metric::V3(v3::Metric::ModifiedIntegrity(v3::ModifiedImpact::None)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedIntegrity(v3::ModifiedImpact::Low)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedIntegrity(v3::ModifiedImpact::High)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedIntegrity(v3::ModifiedImpact::NotDefined)), Group::V3(v3::Group::Environmental)),
+
+        (Metric::V3(v3::Metric::ModifiedAvailability(v3::ModifiedImpact::None)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedAvailability(v3::ModifiedImpact::Low)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedAvailability(v3::ModifiedImpact::High)), Group::V3(v3::Group::Environmental)),
+        (Metric::V3(v3::Metric::ModifiedAvailability(v3::ModifiedImpact::NotDefined)), Group::V3(v3::Group::Environmental)),
+
+
+        (Metric::V4(v4::Metric::AttackVector(v4::AttackVector::Network)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::AttackVector(v4::AttackVector::Adjacent)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::AttackVector(v4::AttackVector::Local)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::AttackVector(v4::AttackVector::Physical)), Group::V4(v4::Group::Base)),
+
+        (Metric::V4(v4::Metric::AttackComplexity(v4::AttackComplexity::Low)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::AttackComplexity(v4::AttackComplexity::High)), Group::V4(v4::Group::Base)),
+
+        (Metric::V4(v4::Metric::AttackRequirements(v4::AttackRequirements::None)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::AttackRequirements(v4::AttackRequirements::Present)), Group::V4(v4::Group::Base)),
+
+        (Metric::V4(v4::Metric::PrivilegesRequired(v4::PrivilegesRequired::None)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::PrivilegesRequired(v4::PrivilegesRequired::Low)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::PrivilegesRequired(v4::PrivilegesRequired::High)), Group::V4(v4::Group::Base)),
+
+        (Metric::V4(v4::Metric::UserInteraction(v4::UserInteraction::None)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::UserInteraction(v4::UserInteraction::Passive)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::UserInteraction(v4::UserInteraction::Active)), Group::V4(v4::Group::Base)),
+
+        (Metric::V4(v4::Metric::VulnerableSystemConfidentialityImpact(v4::Impact::High)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::VulnerableSystemConfidentialityImpact(v4::Impact::Low)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::VulnerableSystemConfidentialityImpact(v4::Impact::None)), Group::V4(v4::Group::Base)),
+
+        (Metric::V4(v4::Metric::VulnerableSystemIntegrityImpact(v4::Impact::High)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::VulnerableSystemIntegrityImpact(v4::Impact::Low)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::VulnerableSystemIntegrityImpact(v4::Impact::None)), Group::V4(v4::Group::Base)),
+
+        (Metric::V4(v4::Metric::VulnerableSystemAvailabilityImpact(v4::Impact::High)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::VulnerableSystemAvailabilityImpact(v4::Impact::Low)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::VulnerableSystemAvailabilityImpact(v4::Impact::None)), Group::V4(v4::Group::Base)),
+
+        (Metric::V4(v4::Metric::SubsequentSystemConfidentialityImpact(v4::Impact::High)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::SubsequentSystemConfidentialityImpact(v4::Impact::Low)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::SubsequentSystemConfidentialityImpact(v4::Impact::None)), Group::V4(v4::Group::Base)),
+
+        (Metric::V4(v4::Metric::SubsequentSystemIntegrityImpact(v4::Impact::High)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::SubsequentSystemIntegrityImpact(v4::Impact::Low)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::SubsequentSystemIntegrityImpact(v4::Impact::None)), Group::V4(v4::Group::Base)),
+
+        (Metric::V4(v4::Metric::SubsequentSystemAvailabilityImpact(v4::Impact::High)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::SubsequentSystemAvailabilityImpact(v4::Impact::Low)), Group::V4(v4::Group::Base)),
+        (Metric::V4(v4::Metric::SubsequentSystemAvailabilityImpact(v4::Impact::None)), Group::V4(v4::Group::Base)),
+
+        (Metric::V4(v4::Metric::ExploitMaturity(v4::ExploitMaturity::NotDefined)), Group::V4(v4::Group::Threat)),
+        (Metric::V4(v4::Metric::ExploitMaturity(v4::ExploitMaturity::Attacked)), Group::V4(v4::Group::Threat)),
+        (Metric::V4(v4::Metric::ExploitMaturity(v4::ExploitMaturity::ProofOfConcept)), Group::V4(v4::Group::Threat)),
+        (Metric::V4(v4::Metric::ExploitMaturity(v4::ExploitMaturity::Unreported)), Group::V4(v4::Group::Threat)),
+
+        (Metric::V4(v4::Metric::ConfidentialityRequirement(v4::Requirement::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ConfidentialityRequirement(v4::Requirement::High)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ConfidentialityRequirement(v4::Requirement::Medium)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ConfidentialityRequirement(v4::Requirement::Low)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::IntegrityRequirement(v4::Requirement::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::IntegrityRequirement(v4::Requirement::High)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::IntegrityRequirement(v4::Requirement::Medium)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::IntegrityRequirement(v4::Requirement::Low)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::AvailabilityRequirement(v4::Requirement::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::AvailabilityRequirement(v4::Requirement::High)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::AvailabilityRequirement(v4::Requirement::Medium)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::AvailabilityRequirement(v4::Requirement::Low)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::ModifiedAttackVector(v4::ModifiedAttackVector::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedAttackVector(v4::ModifiedAttackVector::Network)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedAttackVector(v4::ModifiedAttackVector::Adjacent)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedAttackVector(v4::ModifiedAttackVector::Local)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedAttackVector(v4::ModifiedAttackVector::Physical)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::ModifiedAttackComplexity(v4::ModifiedAttackComplexity::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedAttackComplexity(v4::ModifiedAttackComplexity::Low)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedAttackComplexity(v4::ModifiedAttackComplexity::High)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::ModifiedAttackRequirements(v4::ModifiedAttackRequirements::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedAttackRequirements(v4::ModifiedAttackRequirements::None)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedAttackRequirements(v4::ModifiedAttackRequirements::Present)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::ModifiedPrivilegesRequired(v4::ModifiedPrivilegesRequired::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedPrivilegesRequired(v4::ModifiedPrivilegesRequired::None)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedPrivilegesRequired(v4::ModifiedPrivilegesRequired::Low)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedPrivilegesRequired(v4::ModifiedPrivilegesRequired::High)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::ModifiedUserInteraction(v4::ModifiedUserInteraction::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedUserInteraction(v4::ModifiedUserInteraction::None)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedUserInteraction(v4::ModifiedUserInteraction::Passive)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedUserInteraction(v4::ModifiedUserInteraction::Active)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemConfidentiality(v4::ModifiedImpact::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemConfidentiality(v4::ModifiedImpact::High)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemConfidentiality(v4::ModifiedImpact::Low)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemConfidentiality(v4::ModifiedImpact::None)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemIntegrity(v4::ModifiedImpact::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemIntegrity(v4::ModifiedImpact::High)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemIntegrity(v4::ModifiedImpact::Low)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemIntegrity(v4::ModifiedImpact::None)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemAvailability(v4::ModifiedImpact::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemAvailability(v4::ModifiedImpact::High)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemAvailability(v4::ModifiedImpact::Low)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedVulnerableSystemAvailability(v4::ModifiedImpact::None)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemConfidentiality(v4::ModifiedImpact::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemConfidentiality(v4::ModifiedImpact::High)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemConfidentiality(v4::ModifiedImpact::Low)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemConfidentiality(v4::ModifiedImpact::None)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemIntegrity(v4::ModifiedSubsequentImpact::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemIntegrity(v4::ModifiedSubsequentImpact::High)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemIntegrity(v4::ModifiedSubsequentImpact::Low)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemIntegrity(v4::ModifiedSubsequentImpact::None)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemIntegrity(v4::ModifiedSubsequentImpact::Safety)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemAvailability(v4::ModifiedSubsequentImpact::NotDefined)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemAvailability(v4::ModifiedSubsequentImpact::High)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemAvailability(v4::ModifiedSubsequentImpact::Low)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemAvailability(v4::ModifiedSubsequentImpact::None)), Group::V4(v4::Group::Environmental)),
+        (Metric::V4(v4::Metric::ModifiedSubsequentSystemAvailability(v4::ModifiedSubsequentImpact::Safety)), Group::V4(v4::Group::Environmental)),
+
+        (Metric::V4(v4::Metric::Safety(v4::Safety::NotDefined)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::Safety(v4::Safety::Present)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::Safety(v4::Safety::Negligible)), Group::V4(v4::Group::Supplemental)),
+
+        (Metric::V4(v4::Metric::Automatable(v4::Automatable::NotDefined)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::Automatable(v4::Automatable::No)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::Automatable(v4::Automatable::Yes)), Group::V4(v4::Group::Supplemental)),
+
+        (Metric::V4(v4::Metric::Recovery(v4::Recovery::NotDefined)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::Recovery(v4::Recovery::Automatic)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::Recovery(v4::Recovery::User)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::Recovery(v4::Recovery::Irrecoverable)), Group::V4(v4::Group::Supplemental)),
+
+        (Metric::V4(v4::Metric::ValueDensity(v4::ValueDensity::NotDefined)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::ValueDensity(v4::ValueDensity::Diffuse)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::ValueDensity(v4::ValueDensity::Concentrated)), Group::V4(v4::Group::Supplemental)),
+
+        (Metric::V4(v4::Metric::VulnerabilityResponseEffort(v4::VulnerabilityResponseEffort::NotDefined)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::VulnerabilityResponseEffort(v4::VulnerabilityResponseEffort::Low)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::VulnerabilityResponseEffort(v4::VulnerabilityResponseEffort::Moderate)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::VulnerabilityResponseEffort(v4::VulnerabilityResponseEffort::High)), Group::V4(v4::Group::Supplemental)),
+
+        (Metric::V4(v4::Metric::ProviderUrgency(v4::ProviderUrgency::NotDefined)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::ProviderUrgency(v4::ProviderUrgency::Red)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::ProviderUrgency(v4::ProviderUrgency::Amber)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::ProviderUrgency(v4::ProviderUrgency::Green)), Group::V4(v4::Group::Supplemental)),
+        (Metric::V4(v4::Metric::ProviderUrgency(v4::ProviderUrgency::Clear)), Group::V4(v4::Group::Supplemental)),
+      );
+
+      for (metric, exp) in tests {
+        assert_eq!(Group::from(metric), exp);
+      }
+    }
+
+    #[test]
+    fn test_from_v2_group() {
+      let tests = vec!(
+        (v2::Group::Base, Group::V2(v2::Group::Base)),
+        (v2::Group::Temporal, Group::V2(v2::Group::Temporal)),
+        (v2::Group::Environmental, Group::V2(v2::Group::Environmental)),
+      );
+
+      for (group, exp) in tests {
+        assert_eq!(Group::from(group), exp);
+      }
+    }
+
+    #[test]
+    fn test_from_v3_group() {
+      let tests = vec!(
+        (v3::Group::Base, Group::V3(v3::Group::Base)),
+        (v3::Group::Temporal, Group::V3(v3::Group::Temporal)),
+        (v3::Group::Environmental, Group::V3(v3::Group::Environmental)),
+      );
+
+      for (group, exp) in tests {
+        assert_eq!(Group::from(group), exp);
+      }
+    }
+
+    #[test]
+    fn test_from_v4_group() {
+      let tests = vec!(
+        (v4::Group::Base, Group::V4(v4::Group::Base)),
+        (v4::Group::Threat, Group::V4(v4::Group::Threat)),
+        (v4::Group::Environmental, Group::V4(v4::Group::Environmental)),
+        (v4::Group::Supplemental, Group::V4(v4::Group::Supplemental)),
+      );
+
+      for (group, exp) in tests {
+        assert_eq!(Group::from(group), exp);
+      }
+    }
+
+    #[test]
+    fn test_to_string() {
+      let tests = vec!(
+        (Group::V2(v2::Group::Base), "Base"),
+        (Group::V2(v2::Group::Temporal), "Temporal"),
+        (Group::V2(v2::Group::Environmental), "Environmental"),
+
+        (Group::V3(v3::Group::Base), "Base"),
+        (Group::V3(v3::Group::Temporal), "Temporal"),
+        (Group::V3(v3::Group::Environmental), "Environmental"),
+
+        (Group::V4(v4::Group::Base), "Base"),
+        (Group::V4(v4::Group::Threat), "Threat"),
+        (Group::V4(v4::Group::Environmental), "Environmental"),
+        (Group::V4(v4::Group::Supplemental), "Supplemental"),
+      );
+
+      for (group, exp) in tests {
+        assert_eq!(group.to_string(), exp);
       }
     }
   }
