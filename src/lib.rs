@@ -653,9 +653,9 @@ impl From<v4::Name> for Name {
 impl std::fmt::Display for Name {
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
     match self {
-      Name::V2(name) => v2::Name::fmt(name, f),
-      Name::V3(name) => v3::Name::fmt(name, f),
-      Name::V4(name) => v4::Name::fmt(name, f),
+      Name::V2(name) => name.fmt(f),
+      Name::V3(name) => name.fmt(f),
+      Name::V4(name) => name.fmt(f),
     }
   }
 }
@@ -745,9 +745,9 @@ impl From<v4::Metric> for Metric {
 impl std::fmt::Display for Metric {
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
     match self {
-      Metric::V2(m) => v2::Metric::fmt(m, f),
-      Metric::V3(m) => v3::Metric::fmt(m, f),
-      Metric::V4(m) => v4::Metric::fmt(m, f),
+      Metric::V2(m) => m.fmt(f),
+      Metric::V3(m) => m.fmt(f),
+      Metric::V4(m) => m.fmt(f),
     }
   }
 }
@@ -1222,9 +1222,9 @@ impl std::fmt::Display for Vector {
   // Format CVSSv4.0 vector as a string.
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
     match MajorVersion::from(*self) {
-      MajorVersion::V2 => v2::Vector::fmt(&v2::Vector::from(*self), f),
-      MajorVersion::V3 => v3::Vector::fmt(&v3::Vector::from(*self), f),
-      MajorVersion::V4 => v4::Vector::fmt(&v4::Vector::from(*self), f),
+      MajorVersion::V2 => v2::Vector::from(*self).fmt(f),
+      MajorVersion::V3 => v3::Vector::from(*self).fmt(f),
+      MajorVersion::V4 => v4::Vector::from(*self).fmt(f),
     }
   }
 }
