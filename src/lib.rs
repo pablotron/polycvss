@@ -1372,6 +1372,16 @@ impl std::fmt::Display for Vector {
 /// # }
 /// ```
 ///
+/// Convert [`Score`] to [`Severity`]:
+///
+/// ```
+/// # use polycvss::{Severity, Score};
+/// # fn main() {
+/// assert_eq!(Severity::from(Score::from(5.2)), Severity::Medium);
+/// assert_eq!(Severity::from(Score::from(9.9)), Severity::Critical);
+/// # }
+/// ```
+///
 /// Convert [`Score`] to [`f32`]:
 ///
 /// ```
