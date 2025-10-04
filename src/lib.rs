@@ -429,6 +429,11 @@ impl From<Vector> for MajorVersion {
 
 /// [CVSS][] version.
 ///
+/// **Note:** The version of a CVSS v2 vector string is always reported
+/// as [`Version::V23`]; there is currently no way to create a
+/// [`Vector`][] with a version of [`V20`][Version::V20],
+/// [`V21`][Version::V21], or [`V22`][Version::V22].
+///
 /// # Examples
 ///
 /// Check version:
