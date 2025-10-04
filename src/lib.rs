@@ -1,5 +1,14 @@
-//! [CVSS][cvss] [v2][doc-v2], [v3][doc-v3], and [v4][doc-v4] vector
+//! [CVSS][] [v2][doc-v2], [v3][doc-v3], and [v4][doc-v4] vector
 //! string parser and score calculator.
+//!
+//! This crate includes:
+//!
+//! - Three [CVSS][] version-specific modules for parsing and scoring
+//!   vector strings.
+//! - A high-level [API][] which abstracts over version-specific parsing
+//!   and scoring differences.
+//!
+//! # Basic Use
 //!
 //! Parse a vector string:
 //!
@@ -203,6 +212,8 @@
 //!
 //! [cvss]: https://www.first.org/cvss/
 //!   "Common Vulnerability Scoring System (CVSS)"
+//! [api]: https://en.wikipedia.org/wiki/API
+//!   "Application Programming Interface (API)"
 //! [doc-v2]: https://www.first.org/cvss/v2/guide
 //!   "CVSS v2.0 Documentation"
 //! [doc-v3]: https://www.first.org/cvss/v3-1/specification-document
