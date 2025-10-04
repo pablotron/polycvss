@@ -2,7 +2,8 @@
 //!
 //! # Examples
 //!
-//! Parse [vector string][vector-string], then get a [`Metric`][] by [`Name`][]:
+//! Parse [CVSS v3][doc] [vector string][vector-string], then get a
+//! [`Metric`][] by [`Name`][]:
 //!
 //! ```
 //! # use polycvss::{Err, v3::{AttackVector, Vector, Metric, Name}};
@@ -19,8 +20,7 @@
 //! # }
 //! ```
 //!
-//! Parse [vector string][vector-string], then build a list of metric
-//! [`Name`s][Name]:
+//! Build [`Vec`] of metric names:
 //!
 //! ```
 //! # use polycvss::{Err, v3::{Name, Vector}};
