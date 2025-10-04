@@ -623,11 +623,11 @@ pub enum Group {
 
 impl From<Name> for Group {
   fn from(name: Name) -> Group {
-    Group::from(match name {
+    match name {
       Name::V2(n) => Group::V2(v2::Group::from(n)),
       Name::V3(n) => Group::V3(v3::Group::from(n)),
       Name::V4(n) => Group::V4(v4::Group::from(n)),
-    })
+    }
   }
 }
 
