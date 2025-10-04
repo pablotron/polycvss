@@ -1,11 +1,9 @@
 //! [CVSS v4][doc] parser and score calculator.
 //!
-//! Parse a [CVSS v4.0 vector string][vector-string] into a
-//! [`Vector`][].
-//!
 //! # Examples
 //!
-//! Parse [vector string][vector-string], then get a [`Metric`][] by [`Name`][]:
+//! Parse [CVSS v4][doc] [vector string][vector-string], then get a
+//! [`Metric`][] by [`Name`][]:
 //!
 //! ```
 //! # use polycvss::{Err, v4::{AttackVector, Vector, Metric, Name}};
@@ -22,8 +20,7 @@
 //! # }
 //! ```
 //!
-//! Parse [vector string][vector-string], then build a list of metric
-//! [`Name`s][Name]:
+//! Build [`Vec`] of metric names:
 //!
 //! ```
 //! # use polycvss::{Err, v4::{Name, Vector}};
