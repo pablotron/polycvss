@@ -870,7 +870,7 @@ impl std::fmt::Display for Metric {
 ///
 /// # Description
 ///
-/// Iterate over [`Metric`s][Metric] in a [`Vector`].
+/// Iterate over [`Metrics`][Metric] in a [`Vector`].
 ///
 /// Notes:
 /// - [`Metrics`][Metric] with a value of `Not Defined (X)` are skipped.
@@ -1350,6 +1350,34 @@ impl std::fmt::Display for Vector {
 /// Represented internally as a [`u8`].
 ///
 /// # Examples
+///
+/// Calculate vector score:
+///
+/// ```
+/// # use polycvss::{Err, Score, Vector};
+/// # fn main() -> Result<(), Err> {
+/// // parse vector string
+/// let vec: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
+///
+/// // get score
+/// let score = Score::from(vec);
+///
+/// // check result
+/// assert_eq!(score, Score::from(9.8));
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Get score severity:
+///
+/// ```
+/// # use polycvss::{Err, Score, Severity};
+/// # fn main() -> Result<(), Err> {
+/// # let score = Score::from(9.3);
+/// let severity = Severity::from(score);
+/// # Ok(())
+/// # }
+/// ```
 ///
 /// Create [`Score`] from [`f32`]:
 ///
