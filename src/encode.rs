@@ -1,5 +1,4 @@
-//! Data structures for encoding [CVSS][] metrics in a [bit
-//! field][bit-field].
+//! [bit field][bit-field] encoding for [CVSS][] metrics.
 //!
 //! [cvss]: https://www.first.org/cvss
 //!   "Common Vulnerability Scoring System (CVSS)"

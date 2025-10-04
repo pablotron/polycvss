@@ -1,4 +1,4 @@
-//! [CVSS v4][doc] parser and score calculator.
+//! [CVSS v4][doc] parsing and scoring.
 //!
 //! # Examples
 //!
