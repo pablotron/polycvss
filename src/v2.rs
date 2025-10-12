@@ -82,7 +82,7 @@ pub fn round1(val: f64) -> f64 {
   (10.0 * val).round() / 10.0
 }
 
-/// [`Metric::AccessVector`][] (`AV`) values.
+/// [`Metric::AccessVector`] (`AV`) values.
 ///
 /// # Description
 ///
@@ -157,7 +157,7 @@ pub enum AccessVector {
   Network, // (AV:N)
 }
 
-/// [`Metric::AccessComplexity`][] (`AC`) values.
+/// [`Metric::AccessComplexity`] (`AC`) values.
 ///
 /// # Description
 ///
@@ -248,7 +248,7 @@ pub enum AccessComplexity {
   Low, // (AC:L)
 }
 
-/// [`Metric::Authentication`][] (`Au`) values.
+/// [`Metric::Authentication`] (`Au`) values.
 ///
 /// # Description
 ///
@@ -327,9 +327,9 @@ pub enum Authentication {
 ///
 /// # Impact Metrics
 ///
-/// - [`Metric::Confidentiality`][] (`C`)
-/// - [`Metric::Integrity`][] (`I`)
-/// - [`Metric::Availability`][] (`A`)
+/// - [`Metric::Confidentiality`] (`C`)
+/// - [`Metric::Integrity`] (`I`)
+/// - [`Metric::Availability`] (`A`)
 ///
 /// # Properties
 ///
@@ -395,31 +395,31 @@ pub enum Impact {
   ///
   /// | Metric | Description |
   /// | ------ | ----------- |
-  /// | [`Metric::Confidentiality`][] | There is no impact to the confidentiality of the system. |
-  /// | [`Metric::Integrity`][] | There is no impact to the integrity of the system. |
-  /// | [`Metric::Availability`][] | There is no impact to the availability of the system. |
+  /// | [`Metric::Confidentiality`] | There is no impact to the confidentiality of the system. |
+  /// | [`Metric::Integrity`] | There is no impact to the integrity of the system. |
+  /// | [`Metric::Availability`] | There is no impact to the availability of the system. |
   None, // (N)
 
   /// Partial (`P`)
   ///
   /// | Metric | Description |
   /// | ------ | ----------- |
-  /// | [`Metric::Confidentiality`][] | There is considerable informational disclosure. Access to some system files is possible, but the attacker does not have control over what is obtained, or the scope of the loss is constrained. An example is a vulnerability that divulges only certain tables in a database. |
-  /// | [`Metric::Integrity`][] | Modification of some system files or information is possible, but the attacker does not have control over what can be modified, or the scope of what the attacker can affect is limited. For example, system or application files may be overwritten or modified, but either the attacker has no control over which files are affected or the attacker can modify files within only a limited context or scope. |
-  /// | [`Metric::Availability`][] | There is reduced performance or interruptions in resource availability. An example is a network-based flood attack that permits a limited number of successful connections to an Internet service. |
+  /// | [`Metric::Confidentiality`] | There is considerable informational disclosure. Access to some system files is possible, but the attacker does not have control over what is obtained, or the scope of the loss is constrained. An example is a vulnerability that divulges only certain tables in a database. |
+  /// | [`Metric::Integrity`] | Modification of some system files or information is possible, but the attacker does not have control over what can be modified, or the scope of what the attacker can affect is limited. For example, system or application files may be overwritten or modified, but either the attacker has no control over which files are affected or the attacker can modify files within only a limited context or scope. |
+  /// | [`Metric::Availability`] | There is reduced performance or interruptions in resource availability. An example is a network-based flood attack that permits a limited number of successful connections to an Internet service. |
   Partial, // (P)
 
   /// Complete (`C`)
   ///
   /// | Metric | Description |
   /// | ------ | ----------- |
-  /// | [`Metric::Confidentiality`][] | There is total information disclosure, resulting in all system files being revealed. The attacker is able to read all of the system's data (memory, files, etc.) |
-  /// | [`Metric::Integrity`][] | There is a total compromise of system integrity. There is a complete loss of system protection, resulting in the entire system being compromised. The attacker is able to modify any files on the target system. |
-  /// | [`Metric::Availability`][] | There is a total shutdown of the affected resource. The attacker can render the resource completely unavailable. |
+  /// | [`Metric::Confidentiality`] | There is total information disclosure, resulting in all system files being revealed. The attacker is able to read all of the system's data (memory, files, etc.) |
+  /// | [`Metric::Integrity`] | There is a total compromise of system integrity. There is a complete loss of system protection, resulting in the entire system being compromised. The attacker is able to modify any files on the target system. |
+  /// | [`Metric::Availability`] | There is a total shutdown of the affected resource. The attacker can render the resource completely unavailable. |
   Complete, // (C)
 }
 
-/// [`Metric::Exploitability`][] (`E`) values.
+/// [`Metric::Exploitability`] (`E`) values.
 ///
 /// # Description
 ///
@@ -506,7 +506,7 @@ pub enum Exploitability {
   High, // (E:H)
 }
 
-/// [`Metric::RemediationLevel`][] (`RL`) values.
+/// [`Metric::RemediationLevel`] (`RL`) values.
 ///
 /// # Description
 ///
@@ -591,7 +591,7 @@ pub enum RemediationLevel {
   Unavailable, // (RL:U)
 }
 
-/// [`Metric::ReportConfidence`][] (`RC`) values.
+/// [`Metric::ReportConfidence`] (`RC`) values.
 ///
 /// # Description
 ///
@@ -671,7 +671,7 @@ pub enum ReportConfidence {
   Confirmed, // (RC:C)
 }
 
-/// [`Metric::CollateralDamagePotential`][] (`CDP`) values.
+/// [`Metric::CollateralDamagePotential`] (`CDP`) values.
 ///
 /// # Description
 ///
@@ -761,7 +761,7 @@ pub enum CollateralDamagePotential {
   High, // (CDP:H)
 }
 
-/// [`Metric::TargetDistribution`][] (`TD`) values.
+/// [`Metric::TargetDistribution`] (`TD`) values.
 ///
 /// # Description
 ///
@@ -865,9 +865,9 @@ pub enum TargetDistribution {
 ///
 /// # Requirement Metrics
 ///
-/// - [`Metric::ConfidentialityRequirement`][] (`CR`)
-/// - [`Metric::IntegrityRequirement`][] (`IR`)
-/// - [`Metric::AvailabilityRequirement`][] (`AR`)
+/// - [`Metric::ConfidentialityRequirement`] (`CR`)
+/// - [`Metric::IntegrityRequirement`] (`IR`)
+/// - [`Metric::AvailabilityRequirement`] (`AR`)
 ///
 /// # Examples
 ///
@@ -938,7 +938,7 @@ pub enum Requirement {
   High, // (H)
 }
 
-/// [`Metric`][] group.
+/// [`Metric`] group.
 ///
 /// See [CVSS v2.0 Documentation, Section 2: Metric Groups][doc].
 ///
@@ -1022,7 +1022,7 @@ impl std::fmt::Display for Group {
   }
 }
 
-/// [`Metric`][] name.
+/// [`Metric`] name.
 ///
 /// # Examples
 ///
@@ -1050,33 +1050,33 @@ impl std::fmt::Display for Group {
 /// ```
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
 pub enum Name {
-  /// Access Vector (`AV`) metric name.  See [`Metric::AccessVector`][].
+  /// Access Vector (`AV`) metric name.  See [`Metric::AccessVector`].
   AccessVector,
-  /// Access Complexity (`AC`) metric name.  See [`Metric::AccessComplexity`][].
+  /// Access Complexity (`AC`) metric name.  See [`Metric::AccessComplexity`].
   AccessComplexity,
-  /// Authentication (`Au`) metric name.  See [`Metric::Authentication`][].
+  /// Authentication (`Au`) metric name.  See [`Metric::Authentication`].
   Authentication,
-  /// Confidentiality Impact (`C`) metric name.  See [`Metric::Confidentiality`][].
+  /// Confidentiality Impact (`C`) metric name.  See [`Metric::Confidentiality`].
   Confidentiality,
-  /// Integrity Impact (`I`) metric name.  See [`Metric::Integrity`][].
+  /// Integrity Impact (`I`) metric name.  See [`Metric::Integrity`].
   Integrity,
-  /// Availability Impact (`I`) metric name.  See [`Metric::Availability`][].
+  /// Availability Impact (`I`) metric name.  See [`Metric::Availability`].
   Availability,
-  /// Exploitability (`E`) metric name.  See [`Metric::Exploitability`][].
+  /// Exploitability (`E`) metric name.  See [`Metric::Exploitability`].
   Exploitability,
-  /// Remediation Level (`RL`) metric name.  See [`Metric::RemediationLevel`][].
+  /// Remediation Level (`RL`) metric name.  See [`Metric::RemediationLevel`].
   RemediationLevel,
-  /// Report Confidence (`RC`) metric name.  See [`Metric::ReportConfidence`][].
+  /// Report Confidence (`RC`) metric name.  See [`Metric::ReportConfidence`].
   ReportConfidence,
-  /// Collateral Damage Potential (`CDP`) metric name.  See [`Metric::CollateralDamagePotential`][].
+  /// Collateral Damage Potential (`CDP`) metric name.  See [`Metric::CollateralDamagePotential`].
   CollateralDamagePotential,
-  /// Target Distribution (`TD`) metric name.  See [`Metric::TargetDistribution`][].
+  /// Target Distribution (`TD`) metric name.  See [`Metric::TargetDistribution`].
   TargetDistribution,
-  /// Confidentiality Requirement (`CR`) metric name.  See [`Metric::ConfidentialityRequirement`][].
+  /// Confidentiality Requirement (`CR`) metric name.  See [`Metric::ConfidentialityRequirement`].
   ConfidentialityRequirement,
-  /// Integrity Requirement (`IR`) metric name.  See [`Metric::IntegrityRequirement`][].
+  /// Integrity Requirement (`IR`) metric name.  See [`Metric::IntegrityRequirement`].
   IntegrityRequirement,
-  /// Availability Requirement (`AR`) metric name.  See [`Metric::AvailabilityRequirement`][].
+  /// Availability Requirement (`AR`) metric name.  See [`Metric::AvailabilityRequirement`].
   AvailabilityRequirement,
 }
 
@@ -1162,7 +1162,7 @@ impl std::fmt::Display for Name {
   }
 }
 
-/// [`Vector`][] component.
+/// [`Vector`] component.
 ///
 /// # Examples
 ///
@@ -2399,20 +2399,20 @@ const DECODES: [Decode; 14] = [
   Decode::Shift(Name::AvailabilityRequirement, 30, (51, 55)), // AR
 ];
 
-/// [`Vector`][] iterator.
+/// [`Vector`] iterator.
 ///
 /// # Description
 ///
 /// Used to iterate over the defined [`Metric`s][Metric] of a
-/// [`Vector`][] in the order specified in Table 11 in [Section 2.4 of
+/// [`Vector`] in the order specified in Table 11 in [Section 2.4 of
 /// the CVSS v2.0 documentation][vector-string].
 ///
-/// Created by [`Vector::into_iter()`][].
+/// Created by [`Vector::into_iter()`].
 ///
 /// # Examples
 ///
-/// Iterate over [`Vector`][] and appending each [`Metric`][]
-/// to a [`std::vec::Vec`][]:
+/// Iterate over [`Vector`] and appending each [`Metric`]
+/// to a [`std::vec::Vec`]:
 ///
 /// ```
 /// # use polycvss::{Err, v2::{AccessVector, AccessComplexity, Authentication, Impact, Metric, Vector}};
@@ -2463,8 +2463,8 @@ const DECODES: [Decode; 14] = [
 /// # }
 /// ```
 ///
-/// Create a explicit iterator over [`Vector`][] and get the first
-/// [`Metric`][]:
+/// Create a explicit iterator over [`Vector`] and get the first
+/// [`Metric`]:
 ///
 /// ```
 /// # use polycvss::{Err, v2::{AccessVector, Metric, Vector}};
@@ -2531,18 +2531,18 @@ impl Iterator for VectorIterator {
 /// Notes:
 ///
 /// - Represented internally as a `u64`.  See "Internal Representation" below.
-/// - When iterating the metrics in a [`Vector`][] or converting a
-///   [`Vector`][] to a string, the metrics are sorted in the order
+/// - When iterating the metrics in a [`Vector`] or converting a
+///   [`Vector`] to a string, the metrics are sorted in the order
 ///   specified in Table 11 of [Section 2.4 of the CVSS v2.0
 ///   documentation][vector-string]; the sort order of metrics within
 ///   the source vector string is **not** preserved. See "Examples" below.
 /// - Optional metrics with a value of `Not Defined (ND)` are skipped
-///   when iterating the metrics in a [`Vector`][] and when converting a
-///   [`Vector`][] to a string. See "Examples" below.
+///   when iterating the metrics in a [`Vector`] and when converting a
+///   [`Vector`] to a string. See "Examples" below.
 ///
 /// # Examples
 ///
-/// Parse a [`&str`][] into a [`Vector`][]:
+/// Parse a [`&str`] into a [`Vector`]:
 ///
 /// ```
 /// # use polycvss::{Err, v2::Vector};
@@ -2573,7 +2573,7 @@ impl Iterator for VectorIterator {
 /// # }
 /// ```
 ///
-/// Iterate over [`Metric`s][Metric] in a [`Vector`][]:
+/// Iterate over [`Metric`s][Metric] in a [`Vector`]:
 ///
 /// ```
 /// # use polycvss::{Err, v2::Vector};
@@ -2608,7 +2608,7 @@ impl Iterator for VectorIterator {
 ///
 /// Show that the order of metrics within a vector string is **not**
 /// preserved when parsing a vector string and then converting the
-/// [`Vector`][] back to a string:
+/// [`Vector`] back to a string:
 ///
 /// ```
 /// # use polycvss::{Err, v2::Vector};
@@ -2631,7 +2631,7 @@ impl Iterator for VectorIterator {
 ///
 /// Show that optional metrics with a value of `Not Defined (ND)` are
 /// **not** preserved when parsing a vector string and then converting the
-/// [`Vector`][] back to a string:
+/// [`Vector`] back to a string:
 ///
 /// ```
 /// # use polycvss::{Err, v2::Vector};
@@ -2664,8 +2664,8 @@ impl Iterator for VectorIterator {
 ///
 /// # Internal Representation
 ///
-/// A [`Vector`][] is represented internally as a [bit field][bit-field]
-/// in the lower 32 bits (bits `0..32`) of a [`u64`][],  The number of
+/// A [`Vector`] is represented internally as a [bit field][bit-field]
+/// in the lower 32 bits (bits `0..32`) of a [`u64`],  The number of
 /// bits used by a metric value is calculated by the number of possible
 /// values for that metric (e.g. `num_bits = ceil(log2(num_vals))`):
 ///
@@ -2688,7 +2688,7 @@ impl Iterator for VectorIterator {
 pub struct Vector(u64);
 
 impl Vector {
-  /// Get [`Metric`][] from [`Vector`][] by [`Name`][].
+  /// Get [`Metric`] from [`Vector`] by [`Name`].
   ///
   /// # Examples
   ///
@@ -2862,8 +2862,8 @@ impl std::fmt::Display for Vector {
 
 /// [CVSS v2][doc] base, temporal, and environmental scores.
 ///
-/// You can convert a [`Scores`][] structure to an overall vector
-/// [`Score`][] with [`Score::from()`].
+/// You can convert a [`Scores`] structure to an overall vector
+/// [`Score`] with [`Score::from()`].
 ///
 /// See [CVSS v2.0 Documentation, Section 3. Scoring][scoring].
 ///
