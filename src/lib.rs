@@ -379,6 +379,19 @@ pub enum Err {
   /// # }
   /// ```
   UnknownVersion,
+
+  /// Unknown [`v4::Nomenclature`].
+  ///
+  /// # Example
+  ///
+  /// ```
+  /// # use polycvss::{Err, v4::Nomenclature};
+  /// # fn main() {
+  /// // parse unknown CVSS v4 nomenclature, check result
+  /// assert_eq!("asdf".parse::<Nomenclature>(), Err(Err::UnknownNomenclature));
+  /// # }
+  /// ```
+  UnknownNomenclature,
 }
 
 impl std::fmt::Display for Err {
