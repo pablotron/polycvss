@@ -226,6 +226,7 @@
 //!   "Internal Representation section"
 
 #![deny(missing_docs)]
+#![deny(unsafe_code)]
 
 // TODO:
 // - README.md: intro: s/rust library to (.*)/$1 in Rust/
