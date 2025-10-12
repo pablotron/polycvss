@@ -2210,7 +2210,228 @@ impl std::fmt::Display for Name {
   }
 }
 
-/// [`Vector`][] component.
+/// [`Vector`] nomenclature.
+///
+/// # Description
+///
+/// Numerical CVSS Scores have very different meanings based on the
+/// metrics used to calculate them. Regarding prioritization, the
+/// usefulness of a numerical CVSS score is directly proportional to the
+/// CVSS metrics leveraged to generate that score. Therefore, numerical
+/// CVSS scores should be labeled using nomenclature that communicates the
+/// metrics used in its generation.
+///
+/// | CVSS Nomenclature | CVSS Metrics Used |
+/// | ----------------- | ----------------- |
+/// | `CVSS-B` | Base metrics. |
+/// | `CVSS-BE` | Base and Environmental metrics. |
+/// | `CVSS-BT` | Base and Threat metrics. |
+/// | `CVSS-BTE` | Base, Threat, Environmental metrics. |
+///
+/// Additional Notes:
+///
+/// - This nomenclature should be used wherever a numerical CVSS value is displayed or communicated.
+/// - The application of Environmental and Threat metrics is the responsibility of the CVSS consumer. Assessment providers such as product maintainers and other public/private entities such as the National Vulnerability Database (NVD) typically provide only the Base Scores enumerated as CVSS-B.
+/// - The inclusion of the “E” in the nomenclature is appropriate if any Environmental metrics are used to generate the resulting score.
+/// - The inclusion of the “T” in the nomenclature is appropriate if any Threat metrics are used to generate the resulting score.
+/// - In CVSS v4.0, Base, Threat, and Environmental metric values are always considered in the calculation of the final score. The absence of explicit Threat and/or Environmental metric selections will still result in a complete score using default (“Not Defined”) values. This nomenclature makes it explicit and clear about which metric groups were considered in the numerical CVSS score provided.
+///
+/// See [CVSS v4.0 Specification, Section 1.3: Nomenclature][doc].
+///
+/// # Examples
+///
+/// Convert nomenclatures to strings:
+///
+/// ```
+/// # use polycvss::v4::Nomenclature;
+/// # fn main() {
+/// assert_eq!(Nomenclature::CvssB.to_string(), "CVSS-B");
+/// assert_eq!(Nomenclature::CvssBe.to_string(), "CVSS-BE");
+/// assert_eq!(Nomenclature::CvssBt.to_string(), "CVSS-BT");
+/// assert_eq!(Nomenclature::CvssBte.to_string(), "CVSS-BTE");
+/// # }
+/// ```
+///
+/// Get nomenclature from string:
+///
+/// ```
+/// # use polycvss::{Err, v4::Nomenclature};
+/// # fn main() -> Result<(), Err> {
+/// let n: Nomenclature = "CVSS-BT".parse()?;
+/// assert_eq!(n, Nomenclature::CvssBt);
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Get nomenclature for vector string with only base metrics:
+///
+/// ```
+/// # use polycvss::{Err, v4::{Nomenclature, Vector}};
+/// # fn main() -> Result<(), Err> {
+/// // parse vector string with only base metrics
+/// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+///
+/// // get nomenclature, check result
+/// assert_eq!(Nomenclature::from(v), Nomenclature::CvssB);
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Get nomenclature for vector string with base and environmental metrics:
+///
+/// ```
+/// # use polycvss::{Err, v4::{Nomenclature, Vector}};
+/// # fn main() -> Result<(), Err> {
+/// // parse vector string with base and environmental metrics
+/// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/MAV:N".parse()?;
+///
+/// // get nomenclature, check result
+/// assert_eq!(Nomenclature::from(v), Nomenclature::CvssBe);
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Get nomenclature for vector string with base and threat metrics:
+///
+/// ```
+/// # use polycvss::{Err, v4::{Nomenclature, Vector}};
+/// # fn main() -> Result<(), Err> {
+/// // parse vector string with base and threat metrics
+/// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A".parse()?;
+///
+/// // get nomenclature, check result
+/// assert_eq!(Nomenclature::from(v), Nomenclature::CvssBt);
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Get nomenclature for vector string with base, threat, and environmental metrics:
+///
+/// ```
+/// # use polycvss::{Err, v4::{Nomenclature, Vector}};
+/// # fn main() -> Result<(), Err> {
+/// // parse vector string with base, threat, and environmental metrics
+/// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A/MAV:N".parse()?;
+///
+/// // get nomenclature, check result
+/// assert_eq!(Nomenclature::from(v), Nomenclature::CvssBte);
+/// # Ok(())
+/// # }
+/// ```
+///
+/// [doc]: https://www.first.org/cvss/v4-0/specification-document#Nomenclature
+///   "CVSS v4.0 Specification, Section 1.3: Nomenclature"
+#[derive(Debug,PartialEq,Eq)]
+pub enum Nomenclature {
+  /// Base metrics.
+  ///
+  /// # Example
+  ///
+  /// ```
+  /// # use polycvss::{Err, v4::{Nomenclature, Vector}};
+  /// # fn main() -> Result<(), Err> {
+  /// // parse vector string with only base metrics
+  /// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+  ///
+  /// // get nomenclature, check result
+  /// assert_eq!(Nomenclature::from(v), Nomenclature::CvssB);
+  /// # Ok(())
+  /// # }
+  /// ```
+  CvssB,
+
+  /// Base and Environmental metrics.
+  ///
+  /// # Example
+  ///
+  /// ```
+  /// # use polycvss::{Err, v4::{Nomenclature, Vector}};
+  /// # fn main() -> Result<(), Err> {
+  /// // parse vector string with base and environmental metrics
+  /// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/MAV:N".parse()?;
+  ///
+  /// // get nomenclature, check result
+  /// assert_eq!(Nomenclature::from(v), Nomenclature::CvssBe);
+  /// # Ok(())
+  /// # }
+  /// ```
+  CvssBe,
+
+  /// Base and Threat metrics.
+  ///
+  /// # Example
+  ///
+  /// ```
+  /// # use polycvss::{Err, v4::{Nomenclature, Vector}};
+  /// # fn main() -> Result<(), Err> {
+  /// // parse vector string with base and threat metrics
+  /// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A".parse()?;
+  ///
+  /// // get nomenclature, check result
+  /// assert_eq!(Nomenclature::from(v), Nomenclature::CvssBt);
+  /// # Ok(())
+  /// # }
+  /// ```
+  CvssBt,
+
+  /// Base, Threat, Environmental metrics.
+  ///
+  /// # Example
+  ///
+  /// ```
+  /// # use polycvss::{Err, v4::{Nomenclature, Vector}};
+  /// # fn main() -> Result<(), Err> {
+  /// // parse vector string with base, threat, and environmental metrics
+  /// let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A/MAV:N".parse()?;
+  ///
+  /// // get nomenclature, check result
+  /// assert_eq!(Nomenclature::from(v), Nomenclature::CvssBte);
+  /// # Ok(())
+  /// # }
+  /// ```
+  CvssBte,
+}
+
+impl std::fmt::Display for Nomenclature {
+  fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+    write!(f, "{}", match self {
+      Nomenclature::CvssB => "CVSS-B",
+      Nomenclature::CvssBe => "CVSS-BE",
+      Nomenclature::CvssBt => "CVSS-BT",
+      Nomenclature::CvssBte => "CVSS-BTE",
+    })
+  }
+}
+
+impl std::str::FromStr for Nomenclature {
+  type Err = Err;
+
+  fn from_str(s: &str) -> Result<Self, Self::Err> {
+    match s {
+      "CVSS-B" => Ok(Nomenclature::CvssB),
+      "CVSS-BE" => Ok(Nomenclature::CvssBe),
+      "CVSS-BT" => Ok(Nomenclature::CvssBt),
+      "CVSS-BTE" => Ok(Nomenclature::CvssBte),
+      _ => Err(Err::UnknownNomenclature),
+    }
+  }
+}
+
+impl From<Vector> for Nomenclature {
+  fn from(vec: Vector) -> Nomenclature {
+    let e = vec.into_iter().map(Name::from).map(Group::from).find(|g| *g == Group::Environmental).is_some();
+    let t = vec.into_iter().map(Name::from).map(Group::from).find(|g| *g == Group::Threat).is_some();
+
+    match (e, t) {
+      (false, false) => Nomenclature::CvssB,
+      (false, true) => Nomenclature::CvssBt,
+      (true, false) => Nomenclature::CvssBe,
+      (true, true) => Nomenclature::CvssBte,
+    }
+  }
+}
+
+/// [`Vector`] component.
 ///
 /// # Examples
 ///
@@ -6666,6 +6887,63 @@ mod tests {
 
       for (name, exp) in tests {
         assert_eq!(name.to_string(), exp, "{exp}");
+      }
+    }
+  }
+
+  mod nomenclature {
+    use super::super::{super::Err, Nomenclature, Vector};
+
+    #[test]
+    fn test_from_str_pass() {
+      let tests = vec!(
+        ("CVSS-B", Nomenclature::CvssB),
+        ("CVSS-BE", Nomenclature::CvssBe),
+        ("CVSS-BT", Nomenclature::CvssBt),
+        ("CVSS-BTE", Nomenclature::CvssBte),
+      );
+
+      for (s, exp) in tests {
+        assert_eq!(s.parse::<Nomenclature>().unwrap(), exp, "{exp}");
+      }
+    }
+
+    #[test]
+    fn test_from_str_fail() {
+      let tests = vec!(
+        "asdf",
+      );
+
+      for s in tests {
+        assert_eq!(s.parse::<Nomenclature>(), Err(Err::UnknownNomenclature), "{s}");
+      }
+    }
+
+    #[test]
+    fn test_to_string() {
+      let tests = vec!(
+        (Nomenclature::CvssB, "CVSS-B"),
+        (Nomenclature::CvssBe, "CVSS-BE"),
+        (Nomenclature::CvssBt, "CVSS-BT"),
+        (Nomenclature::CvssBte, "CVSS-BTE"),
+      );
+
+      for (n, exp) in tests {
+        assert_eq!(n.to_string(), exp, "{exp}");
+      }
+    }
+
+    fn test_from_vector() {
+      let tests = vec!(
+        ("CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", Nomenclature::CvssB),
+        ("CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/MAV:N", Nomenclature::CvssBe),
+        ("CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A", Nomenclature::CvssBt),
+        ("CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A/MAV:N", Nomenclature::CvssBte),
+      );
+
+      for (s, exp) in tests {
+        let vec: Vector = s.parse().unwrap();
+        assert_eq!(Nomenclature::from(vec), exp, "{exp}");
       }
     }
   }
