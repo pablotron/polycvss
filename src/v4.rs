@@ -2321,7 +2321,7 @@ impl std::fmt::Display for Name {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Nomenclature
 ///   "CVSS v4.0 Specification, Section 1.3: Nomenclature"
-#[derive(Debug,PartialEq,Eq)]
+#[derive(Clone,Copy,Debug,PartialEq,Eq)]
 pub enum Nomenclature {
   /// Base metrics.
   ///
