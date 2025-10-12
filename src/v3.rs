@@ -313,11 +313,13 @@ impl Name {
   ///
   /// # Example
   ///
+  /// ```
   /// # use polycvss::v3::{AttackVector, Name};
   /// # fn main() {
   /// // check if metric is mandatory
   /// assert_eq!(true, Name::AttackVector.is_mandatory());
   /// # }
+  /// ```
   pub fn is_mandatory(self) -> bool {
     Group::from(self) == Group::Base
   }
