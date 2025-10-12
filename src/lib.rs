@@ -1343,9 +1343,13 @@ impl std::fmt::Display for Vector {
   }
 }
 
-/// [CVSS][] score.
+/// [CVSS][] quantitative score.
 ///
-/// Value in the range `[0.0, 10.0]`.
+/// Numerical value in the range `[0.0, 10.0]` with one decimal place
+/// of precision.
+///
+/// When converting to a [`Score`], [`f32`] and [`f64`] values are
+/// clamped to the allowed range.
 ///
 /// Represented internally as a [`u8`].
 ///
@@ -1442,6 +1446,17 @@ impl std::fmt::Display for Vector {
 /// # }
 /// ```
 ///
+/// Show that values outside the allowed range of a [`Score`] are
+/// clamped to the allowed range:
+///
+/// ```
+/// # use polycvss::Score;
+/// # fn main() {
+/// assert_eq!(Score::from(-100.0), Score::from(0.0)); // clamp to minimum
+/// assert_eq!(Score::from(100.0), Score::from(10.0)); // clamp to maximum
+/// # }
+/// ```
+///
 /// Show that a [`Score`] is 1 byte in size:
 ///
 /// ```
@@ -1458,13 +1473,13 @@ pub struct Score(u8);
 
 impl From<f32> for Score {
   fn from(val: f32) -> Score {
-    Score((val * 10.0).round() as u8)
+    Score((val * 10.0).round().clamp(0.0, 100.0) as u8)
   }
 }
 
 impl From<f64> for Score {
   fn from(val: f64) -> Score {
-    Score((val * 10.0).round() as u8)
+    Score((val * 10.0).round().clamp(0.0, 100.0) as u8)
   }
 }
 
@@ -3052,8 +3067,10 @@ mod tests {
     #[test]
     fn test_from_f32() {
       let tests = vec!(
-        (12.3_f32, Score(123)),
+        (1.2_f32, Score(12)),
         (5.23_f32, Score(52)),
+        (-1_f32, Score(0)), // test clamp min
+        (12345_f32, Score(100)), // test clamp max
       );
 
       for (val, exp) in tests {
@@ -3064,8 +3081,10 @@ mod tests {
     #[test]
     fn test_from_f64() {
       let tests = vec!(
-        (12.3_f64, Score(123)),
+        (1.2_f64, Score(12)),
         (5.23_f64, Score(52)),
+        (-1_f64, Score(0)), // test clamp min
+        (12345_f64, Score(100)), // test clamp max
       );
 
       for (val, exp) in tests {
