@@ -2419,8 +2419,8 @@ impl std::str::FromStr for Nomenclature {
 
 impl From<Vector> for Nomenclature {
   fn from(vec: Vector) -> Nomenclature {
-    let e = vec.into_iter().map(Name::from).map(Group::from).find(|g| *g == Group::Environmental).is_some();
-    let t = vec.into_iter().map(Name::from).map(Group::from).find(|g| *g == Group::Threat).is_some();
+    let e = vec.into_iter().map(Name::from).map(Group::from).any(|g| g == Group::Environmental);
+    let t = vec.into_iter().map(Name::from).map(Group::from).any(|g| g == Group::Threat);
 
     match (e, t) {
       (false, false) => Nomenclature::CvssB,
