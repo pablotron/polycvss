@@ -158,6 +158,24 @@
 //! # }
 //! ```
 //!
+//! Convert a version-agnostic vector to a version-specific vector to
+//! access version-specific behavior:
+//!
+//! ```
+//! # use polycvss::{Err, Vector, v4};
+//! # fn main() -> Result<(), Err> {
+//! // parse CVSS v4 vector string
+//! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+//!
+//! // convert version-agnosic vector to a v4 vector
+//! let v = v4::Vector::from(v);
+//!
+//! // get nomenclature
+//! assert_eq!(v4::Nomenclature::from(v), v4::Nomenclature::CvssB);
+//! # Ok(())
+//! # }
+//! ```
+//!
 //! Show that metrics are always sorted in specification order when
 //! converting a [`Vector`] to a string. In other words, the original
 //! metric order is **not** preserved:
