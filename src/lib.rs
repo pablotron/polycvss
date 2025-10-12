@@ -159,7 +159,7 @@
 //! ```
 //!
 //! Show that metrics are always sorted in specification order when
-//! converting a [`Vector`][] to a string. In other words, the original
+//! converting a [`Vector`] to a string. In other words, the original
 //! metric order is **not** preserved:
 //!
 //! ```
@@ -175,7 +175,7 @@
 //! ```
 //!
 //! Show that metrics with a value of `Not Defined (X)` are omitted when
-//! converting a [`Vector`][] to a string:
+//! converting a [`Vector`] to a string:
 //!
 //! ```
 //! # use polycvss::{Err, Vector};
@@ -444,7 +444,7 @@ impl From<Vector> for MajorVersion {
 ///
 /// **Note:** The version of a CVSS v2 vector string is always reported
 /// as [`Version::V23`]; there is currently no way to create a
-/// [`Vector`][] with a version of [`V20`][Version::V20],
+/// [`Vector`] with a version of [`V20`][Version::V20],
 /// [`V21`][Version::V21], or [`V22`][Version::V22].
 ///
 /// # Examples
