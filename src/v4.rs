@@ -3,7 +3,7 @@
 //! # Examples
 //!
 //! Parse [CVSS v4][doc] [vector string][vector-string], then get a
-//! [`Metric`][] by [`Name`][]:
+//! [`Metric`] by [`Name`]:
 //!
 //! ```
 //! # use polycvss::{Err, v4::{AttackVector, Vector, Metric, Name}};
@@ -75,7 +75,7 @@
 use serde::{self,Deserialize,Serialize};
 use super::{Err, Score, VAL_MASK, Version, encode::{EncodedVal, EncodedMetric}};
 
-/// [`Metric::AttackVector`][] (`AV`) values.
+/// [`Metric::AttackVector`] (`AV`) values.
 ///
 /// # Description
 ///
@@ -204,11 +204,11 @@ impl AttackVector {
   }
 }
 
-/// [`Metric::ModifiedAttackVector`][] (`MAV`) values.
+/// [`Metric::ModifiedAttackVector`] (`MAV`) values.
 ///
 /// # Description
 ///
-/// Metric value which overrides the base [`Metric::AttackVector`][]
+/// Metric value which overrides the base [`Metric::AttackVector`]
 /// (`AV`) metric value.
 ///
 /// # Properties
@@ -227,26 +227,26 @@ pub enum ModifiedAttackVector {
 
   /// Network (`N`)
   ///
-  /// See [AttackVector::Network][].
+  /// See [`AttackVector::Network`].
   Network,
 
   /// Adjacent (`A`)
   ///
-  /// See [AttackVector::Adjacent][].
+  /// See [`AttackVector::Adjacent`].
   Adjacent,
 
   /// Local (`L`)
   ///
-  /// See [AttackVector::Local][].
+  /// See [`AttackVector::Local`].
   Local,
 
   /// Physical (`P`)
   ///
-  /// See [AttackVector::Physical][].
+  /// See [`AttackVector::Physical`].
   Physical,
 }
 
-/// [`Metric::AttackComplexity`][] (`AC`) values.
+/// [`Metric::AttackComplexity`] (`AC`) values.
 ///
 /// # Description
 ///
@@ -360,11 +360,11 @@ impl AttackComplexity {
   }
 }
 
-/// [`Metric::ModifiedAttackComplexity`][] (`MAC`) values.
+/// [`Metric::ModifiedAttackComplexity`] (`MAC`) values.
 ///
 /// # Description
 ///
-/// Metric value which overrides the base [`Metric::AttackComplexity`][]
+/// Metric value which overrides the base [`Metric::AttackComplexity`]
 /// (`AC`) metric value.
 ///
 /// # Properties
@@ -383,16 +383,16 @@ pub enum ModifiedAttackComplexity {
 
   /// Low (`L`)
   ///
-  /// See [`AttackComplexity::Low`][].
+  /// See [`AttackComplexity::Low`].
   Low,
 
   /// High (`H`)
   ///
-  /// See [`AttackComplexity::High`][].
+  /// See [`AttackComplexity::High`].
   High,
 }
 
-/// [`Metric::AttackRequirements`][] (`AT`) values.
+/// [`Metric::AttackRequirements`] (`AT`) values.
 ///
 /// # Description
 ///
@@ -495,11 +495,11 @@ impl AttackRequirements {
   }
 }
 
-/// [`Metric::ModifiedAttackRequirements`][] (`MAT`) values.
+/// [`Metric::ModifiedAttackRequirements`] (`MAT`) values.
 ///
 /// # Description
 ///
-/// Metric value which overrides the base [`Metric::AttackRequirements`][]
+/// Metric value which overrides the base [`Metric::AttackRequirements`]
 /// (`AT`) metric value.
 ///
 /// # Properties
@@ -518,16 +518,16 @@ pub enum ModifiedAttackRequirements {
 
   /// None (`N`)
   ///
-  /// See [`AttackRequirements::None`][].
+  /// See [`AttackRequirements::None`].
   None,
 
   /// Present (`P`)
   ///
-  /// See [`AttackRequirements::Present`][].
+  /// See [`AttackRequirements::Present`].
   Present,
 }
 
-/// [`Metric::PrivilegesRequired`][] (`PR`) values.
+/// [`Metric::PrivilegesRequired`] (`PR`) values.
 ///
 /// # Description
 ///
@@ -627,11 +627,11 @@ impl PrivilegesRequired {
   }
 }
 
-/// [`Metric::ModifiedPrivilegesRequired`][] (`MPR`) values.
+/// [`Metric::ModifiedPrivilegesRequired`] (`MPR`) values.
 ///
 /// # Description
 ///
-/// Metric value which overrides the base [`Metric::PrivilegesRequired`][]
+/// Metric value which overrides the base [`Metric::PrivilegesRequired`]
 /// (`PR`) metric value.
 ///
 /// # Properties
@@ -650,21 +650,21 @@ pub enum ModifiedPrivilegesRequired {
 
   /// None (`N`)
   ///
-  /// See [`PrivilegesRequired::None`][]
+  /// See [`PrivilegesRequired::None`]
   None,
 
   /// Low (`L`)
   ///
-  /// See [`PrivilegesRequired::Low`][]
+  /// See [`PrivilegesRequired::Low`]
   Low,
 
   /// High (`H`)
   ///
-  /// See [`PrivilegesRequired::High`][]
+  /// See [`PrivilegesRequired::High`]
   High,
 }
 
-/// [`Metric::UserInteraction`][] (`UI`) values.
+/// [`Metric::UserInteraction`] (`UI`) values.
 ///
 /// # Description
 ///
@@ -784,11 +784,11 @@ impl UserInteraction {
   }
 }
 
-/// [`Metric::ModifiedUserInteraction`][] (`MUI`) values.
+/// [`Metric::ModifiedUserInteraction`] (`MUI`) values.
 ///
 /// # Description
 ///
-/// Metric value which overrides the base [`Metric::UserInteraction`][]
+/// Metric value which overrides the base [`Metric::UserInteraction`]
 /// (`UI`) metric value.
 ///
 /// # Properties
@@ -807,17 +807,17 @@ pub enum ModifiedUserInteraction {
 
   /// None (`N`)
   ///
-  /// See [`UserInteraction::None`][].
+  /// See [`UserInteraction::None`].
   None,
 
   /// Passive (`P`)
   ///
-  /// See [`UserInteraction::Passive`][].
+  /// See [`UserInteraction::Passive`].
   Passive,
 
   /// Active (`A`)
   ///
-  /// See [`UserInteraction::Active`][].
+  /// See [`UserInteraction::Active`].
   Active,
 }
 
@@ -827,12 +827,12 @@ pub enum ModifiedUserInteraction {
 ///
 /// Impact metrics:
 ///
-/// - `VC`: [`Metric::VulnerableSystemConfidentialityImpact`][]
-/// - `VI`: [`Metric::VulnerableSystemIntegrityImpact`][]
-/// - `VA`: [`Metric::VulnerableSystemAvailabilityImpact`][]
-/// - `SC`: [`Metric::SubsequentSystemConfidentialityImpact`][]
-/// - `SI`: [`Metric::SubsequentSystemIntegrityImpact`][]
-/// - `SA`: [`Metric::SubsequentSystemAvailabilityImpact`][]
+/// - `VC`: [`Metric::VulnerableSystemConfidentialityImpact`]
+/// - `VI`: [`Metric::VulnerableSystemIntegrityImpact`]
+/// - `VA`: [`Metric::VulnerableSystemAvailabilityImpact`]
+/// - `SC`: [`Metric::SubsequentSystemConfidentialityImpact`]
+/// - `SI`: [`Metric::SubsequentSystemIntegrityImpact`]
+/// - `SA`: [`Metric::SubsequentSystemAvailabilityImpact`]
 ///
 /// # Properties
 ///
@@ -899,10 +899,10 @@ impl Impact {
 ///
 /// Modified Impact metrics:
 ///
-/// - `MVC`: [`Metric::ModifiedVulnerableSystemConfidentiality`][]
-/// - `MVI`: [`Metric::ModifiedVulnerableSystemIntegrity`][]
-/// - `MVA`: [`Metric::ModifiedVulnerableSystemAvailability`][]
-/// - `MSC`: [`Metric::ModifiedSubsequentSystemConfidentiality`][]
+/// - `MVC`: [`Metric::ModifiedVulnerableSystemConfidentiality`]
+/// - `MVI`: [`Metric::ModifiedVulnerableSystemIntegrity`]
+/// - `MVA`: [`Metric::ModifiedVulnerableSystemAvailability`]
+/// - `MSC`: [`Metric::ModifiedSubsequentSystemConfidentiality`]
 ///
 /// # Properties
 ///
@@ -920,17 +920,17 @@ pub enum ModifiedImpact {
 
   /// High (`H`)
   ///
-  /// See [`Impact::High`][].
+  /// See [`Impact::High`].
   High,
 
   /// Low (`L`)
   ///
-  /// See [`Impact::Low`][].
+  /// See [`Impact::Low`].
   Low,
 
   /// None (`N`)
   ///
-  /// See [`Impact::None`][].
+  /// See [`Impact::None`].
   None,
 }
 
@@ -938,24 +938,24 @@ pub enum ModifiedImpact {
 ///
 /// # Description
 ///
-/// Used for `si` and `sa` fields of [`Values`][] struct.  Excludes `Not
+/// Used for `si` and `sa` fields of [`Values`] struct.  Excludes `Not
 /// Defined (X)` and includes `Safety (S)`.
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[repr(u8)]
 enum SubsequentImpact {
   /// None (`N`)
   ///
-  /// See [`Impact::None`][].
+  /// See [`Impact::None`].
   None = 0,
 
   /// Low (`L`)
   ///
-  /// See [`Impact::Low`][].
+  /// See [`Impact::Low`].
   Low = 1,
 
   /// High (`H`)
   ///
-  /// See [`Impact::High`][].
+  /// See [`Impact::High`].
   High = 2,
 
   /// Safety (`S`)
@@ -977,8 +977,8 @@ impl SubsequentImpact {
 ///
 /// Modified Subsequent Impact metrics:
 ///
-/// - `MSI`: [`Metric::ModifiedSubsequentSystemIntegrity`][]
-/// - `MSA`: [`Metric::ModifiedSubsequentSystemAvailability`][]
+/// - `MSI`: [`Metric::ModifiedSubsequentSystemIntegrity`]
+/// - `MSA`: [`Metric::ModifiedSubsequentSystemAvailability`]
 ///
 /// # Properties
 ///
@@ -996,17 +996,17 @@ pub enum ModifiedSubsequentImpact {
 
   /// High (`H`)
   ///
-  /// See [`Impact::High`][].
+  /// See [`Impact::High`].
   High,
 
   /// Low (`L`)
   ///
-  /// See [`Impact::Low`][].
+  /// See [`Impact::Low`].
   Low,
 
   /// None (`N`)
   ///
-  /// See [`Impact::None`][].
+  /// See [`Impact::None`].
   None,
 
   /// Safety (`S`)
@@ -1020,7 +1020,7 @@ pub enum ModifiedSubsequentImpact {
   Safety,
 }
 
-/// [`Metric::ExploitMaturity`][] (`E`) values.
+/// [`Metric::ExploitMaturity`] (`E`) values.
 ///
 /// # Description
 ///
@@ -1188,9 +1188,9 @@ impl ExploitMaturity {
 ///
 /// # Metrics
 ///
-/// - `CR`: [`Metric::ConfidentialityRequirement`][]
-/// - `IR`: [`Metric::IntegrityRequirement`][]
-/// - `AR`: [`Metric::AvailabilityRequirement`][]
+/// - `CR`: [`Metric::ConfidentialityRequirement`]
+/// - `IR`: [`Metric::IntegrityRequirement`]
+/// - `AR`: [`Metric::AvailabilityRequirement`]
 ///
 /// # Properties
 ///
@@ -1255,7 +1255,7 @@ impl Requirement {
   }
 }
 
-/// [`Metric::Safety`][] (`S`) values.
+/// [`Metric::Safety`] (`S`) values.
 ///
 /// # Description
 ///
@@ -1349,7 +1349,7 @@ pub enum Safety {
   Negligible,
 }
 
-/// [`Metric::Automatable`][] (`AU`) values.
+/// [`Metric::Automatable`] (`AU`) values.
 ///
 /// # Description
 ///
@@ -1433,7 +1433,7 @@ pub enum Automatable {
   Yes,
 }
 
-/// [`Metric::Recovery`][] (`R`) values.
+/// [`Metric::Recovery`] (`R`) values.
 ///
 /// # Description
 ///
@@ -1517,7 +1517,7 @@ pub enum Recovery {
   Irrecoverable,
 }
 
-/// [`Metric::ValueDensity`][] (`V`) values.
+/// [`Metric::ValueDensity`] (`V`) values.
 ///
 /// # Description
 ///
@@ -1601,7 +1601,7 @@ pub enum ValueDensity {
   Concentrated,
 }
 
-/// [`Metric::VulnerabilityResponseEffort`][] (`RE`) values.
+/// [`Metric::VulnerabilityResponseEffort`] (`RE`) values.
 ///
 /// # Description
 ///
@@ -1714,7 +1714,7 @@ pub enum VulnerabilityResponseEffort {
   High,
 }
 
-/// [`Metric::ProviderUrgency`][] (`U`) values.
+/// [`Metric::ProviderUrgency`] (`U`) values.
 ///
 /// # Description
 ///
@@ -1819,7 +1819,7 @@ pub enum ProviderUrgency {
   Clear,
 }
 
-/// [`Metric`][] group.
+/// [`Metric`] group.
 ///
 /// See [CVSS v4.0 Specification, Section 1.1: Metrics][doc].
 ///
@@ -1979,7 +1979,7 @@ impl std::fmt::Display for Group {
   }
 }
 
-/// [`Metric`][] name.
+/// [`Metric`] name.
 ///
 /// # Examples
 ///
@@ -2008,69 +2008,69 @@ impl std::fmt::Display for Group {
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 pub enum Name {
-  /// Attack Vector (`AV`) metric name.  See [`Metric::AttackVector`][].
+  /// Attack Vector (`AV`) metric name.  See [`Metric::AttackVector`].
   AttackVector,
-  /// Attack Complexity (`AC`) metric name.  See [`Metric::AttackComplexity`][].
+  /// Attack Complexity (`AC`) metric name.  See [`Metric::AttackComplexity`].
   AttackComplexity,
-  /// Attack Requirements (`AT`) metric name.  See [`Metric::AttackRequirements`][].
+  /// Attack Requirements (`AT`) metric name.  See [`Metric::AttackRequirements`].
   AttackRequirements,
-  /// Privileges Required (`PR`) metric name.  See [`Metric::PrivilegesRequired`][].
+  /// Privileges Required (`PR`) metric name.  See [`Metric::PrivilegesRequired`].
   PrivilegesRequired,
-  /// User Interaction (`UI`) metric name.  See [`Metric::UserInteraction`][].
+  /// User Interaction (`UI`) metric name.  See [`Metric::UserInteraction`].
   UserInteraction,
-  /// Vulnerable System Confidentiality Impact (`VC`) metric name.  See [`Metric::VulnerableSystemConfidentialityImpact`][].
+  /// Vulnerable System Confidentiality Impact (`VC`) metric name.  See [`Metric::VulnerableSystemConfidentialityImpact`].
   VulnerableSystemConfidentialityImpact,
-  /// Vulnerable System Integrity Impact (`VI`) metric name.  See [`Metric::VulnerableSystemIntegrityImpact`][].
+  /// Vulnerable System Integrity Impact (`VI`) metric name.  See [`Metric::VulnerableSystemIntegrityImpact`].
   VulnerableSystemIntegrityImpact,
-  /// Vulnerable System Availability Impact (`VA`) metric name.  See [`Metric::VulnerableSystemAvailabilityImpact`][].
+  /// Vulnerable System Availability Impact (`VA`) metric name.  See [`Metric::VulnerableSystemAvailabilityImpact`].
   VulnerableSystemAvailabilityImpact,
-  /// Subsequent System Confidentiality Impact (`SC`) metric name.  See [`Metric::SubsequentSystemConfidentialityImpact`][].
+  /// Subsequent System Confidentiality Impact (`SC`) metric name.  See [`Metric::SubsequentSystemConfidentialityImpact`].
   SubsequentSystemConfidentialityImpact,
-  /// Subsequent System Integrity Impact (`SI`) metric name.  See [`Metric::SubsequentSystemIntegrityImpact`][].
+  /// Subsequent System Integrity Impact (`SI`) metric name.  See [`Metric::SubsequentSystemIntegrityImpact`].
   SubsequentSystemIntegrityImpact,
-  /// Subsequent System Availability Impact (`SA`) metric name.  See [`Metric::SubsequentSystemAvailabilityImpact`][].
+  /// Subsequent System Availability Impact (`SA`) metric name.  See [`Metric::SubsequentSystemAvailabilityImpact`].
   SubsequentSystemAvailabilityImpact,
-  /// Exploit Maturity (`E`) metric name.  See [`Metric::ExploitMaturity`][].
+  /// Exploit Maturity (`E`) metric name.  See [`Metric::ExploitMaturity`].
   ExploitMaturity,
-  /// Confidentiality Requirement (`CR`) metric name.  See [`Metric::ConfidentialityRequirement`][].
+  /// Confidentiality Requirement (`CR`) metric name.  See [`Metric::ConfidentialityRequirement`].
   ConfidentialityRequirement,
-  /// Integrity Requirement (`IR`) metric name.  See [`Metric::IntegrityRequirement`][].
+  /// Integrity Requirement (`IR`) metric name.  See [`Metric::IntegrityRequirement`].
   IntegrityRequirement,
-  /// Availability Requirement (`AR`) metric name.  See [`Metric::AvailabilityRequirement`][].
+  /// Availability Requirement (`AR`) metric name.  See [`Metric::AvailabilityRequirement`].
   AvailabilityRequirement,
-  /// Modified Attack Vector (`MAV`) metric name.  See [`Metric::ModifiedAttackVector`][].
+  /// Modified Attack Vector (`MAV`) metric name.  See [`Metric::ModifiedAttackVector`].
   ModifiedAttackVector,
-  /// Modified Attack Complexity (`MAC`) metric name.  See [`Metric::ModifiedAttackComplexity`][].
+  /// Modified Attack Complexity (`MAC`) metric name.  See [`Metric::ModifiedAttackComplexity`].
   ModifiedAttackComplexity,
-  /// Modified Attack Requirements (`MAT`) metric name.  See [`Metric::ModifiedAttackRequirements`][].
+  /// Modified Attack Requirements (`MAT`) metric name.  See [`Metric::ModifiedAttackRequirements`].
   ModifiedAttackRequirements,
-  /// Modified Privileges Required (`MPR`) metric name.  See [`Metric::ModifiedPrivilegesRequired`][].
+  /// Modified Privileges Required (`MPR`) metric name.  See [`Metric::ModifiedPrivilegesRequired`].
   ModifiedPrivilegesRequired,
-  /// Modified User Interaction (`MUI`) metric name.  See [`Metric::ModifiedUserInteraction`][].
+  /// Modified User Interaction (`MUI`) metric name.  See [`Metric::ModifiedUserInteraction`].
   ModifiedUserInteraction,
-  /// Modified Vulnerable System Confidentiality (`MVC`) metric name.  See [`Metric::ModifiedVulnerableSystemConfidentiality`][].
+  /// Modified Vulnerable System Confidentiality (`MVC`) metric name.  See [`Metric::ModifiedVulnerableSystemConfidentiality`].
   ModifiedVulnerableSystemConfidentiality,
-  /// Modified Vulnerable System Integrity (`MVI`) metric name.  See [`Metric::ModifiedVulnerableSystemIntegrity`][].
+  /// Modified Vulnerable System Integrity (`MVI`) metric name.  See [`Metric::ModifiedVulnerableSystemIntegrity`].
   ModifiedVulnerableSystemIntegrity,
-  /// Modified Vulnerable System Availability (`MVA`) metric name.  See [`Metric::ModifiedVulnerableSystemAvailability`][].
+  /// Modified Vulnerable System Availability (`MVA`) metric name.  See [`Metric::ModifiedVulnerableSystemAvailability`].
   ModifiedVulnerableSystemAvailability,
-  /// Modified Subsequent System Confidentiality (`MSC`) metric name.  See [`Metric::ModifiedSubsequentSystemConfidentiality`][].
+  /// Modified Subsequent System Confidentiality (`MSC`) metric name.  See [`Metric::ModifiedSubsequentSystemConfidentiality`].
   ModifiedSubsequentSystemConfidentiality,
-  /// Modified Subsequent System Integrity (`MSI`) metric name.  See [`Metric::ModifiedSubsequentSystemIntegrity`][].
+  /// Modified Subsequent System Integrity (`MSI`) metric name.  See [`Metric::ModifiedSubsequentSystemIntegrity`].
   ModifiedSubsequentSystemIntegrity,
-  /// Modified Subsequent System Availability (`MSA`) metric name.  See [`Metric::ModifiedSubsequentSystemAvailability`][].
+  /// Modified Subsequent System Availability (`MSA`) metric name.  See [`Metric::ModifiedSubsequentSystemAvailability`].
   ModifiedSubsequentSystemAvailability,
-  /// Safety (`S`) metric name.  See [`Metric::Safety`][].
+  /// Safety (`S`) metric name.  See [`Metric::Safety`].
   Safety,
-  /// Automatable (`AU`) metric name.  See [`Metric::Automatable`][].
+  /// Automatable (`AU`) metric name.  See [`Metric::Automatable`].
   Automatable,
-  /// Recovery (`R`) metric name.  See [`Metric::Recovery`][].
+  /// Recovery (`R`) metric name.  See [`Metric::Recovery`].
   Recovery,
-  /// Value Density (`V`) metric name.  See [`Metric::ValueDensity`][].
+  /// Value Density (`V`) metric name.  See [`Metric::ValueDensity`].
   ValueDensity,
-  /// Vulnerability Response Effort (`RE`) metric name.  See [`Metric::VulnerabilityResponseEffort`][].
+  /// Vulnerability Response Effort (`RE`) metric name.  See [`Metric::VulnerabilityResponseEffort`].
   VulnerabilityResponseEffort,
-  /// Provider Urgency (`U`) metric name.  See [`Metric::ProviderUrgency`][].
+  /// Provider Urgency (`U`) metric name.  See [`Metric::ProviderUrgency`].
   ProviderUrgency,
 }
 
@@ -3494,7 +3494,7 @@ pub enum Metric {
   ///
   /// # Description
   ///
-  /// Metric value which overrides the base [`Metric::AttackVector`][]
+  /// Metric value which overrides the base [`Metric::AttackVector`]
   /// (`AV`) metric value.
   ///
   /// # Properties
@@ -3552,7 +3552,7 @@ pub enum Metric {
   ///
   /// # Description
   ///
-  /// Metric value which overrides the base [`Metric::AttackComplexity`][]
+  /// Metric value which overrides the base [`Metric::AttackComplexity`]
   /// (`AC`) metric value.
   ///
   /// # Properties
@@ -3610,7 +3610,7 @@ pub enum Metric {
   ///
   /// # Description
   ///
-  /// Metric value which overrides the base [`Metric::AttackRequirements`][]
+  /// Metric value which overrides the base [`Metric::AttackRequirements`]
   /// (`AT`) metric value.
   ///
   /// # Properties
@@ -3668,7 +3668,7 @@ pub enum Metric {
   ///
   /// # Description
   ///
-  /// Metric value which overrides the base [`Metric::PrivilegesRequired`][]
+  /// Metric value which overrides the base [`Metric::PrivilegesRequired`]
   /// (`PR`) metric value.
   ///
   /// # Properties
@@ -3726,7 +3726,7 @@ pub enum Metric {
   ///
   /// # Description
   ///
-  /// Metric value which overrides the base [`Metric::UserInteraction`][]
+  /// Metric value which overrides the base [`Metric::UserInteraction`]
   /// (`UI`) metric value.
   ///
   /// # Properties
@@ -3784,7 +3784,7 @@ pub enum Metric {
   ///
   /// # Description
   ///
-  /// Metric value which overrides the base [`Metric::VulnerableSystemConfidentialityImpact`][]
+  /// Metric value which overrides the base [`Metric::VulnerableSystemConfidentialityImpact`]
   /// (`VC`) metric value.
   ///
   /// # Properties
@@ -3842,7 +3842,7 @@ pub enum Metric {
   ///
   /// # Description
   ///
-  /// Metric value which overrides the base [`Metric::VulnerableSystemIntegrityImpact`][]
+  /// Metric value which overrides the base [`Metric::VulnerableSystemIntegrityImpact`]
   /// (`VI`) metric value.
   ///
   /// # Properties
@@ -3900,7 +3900,7 @@ pub enum Metric {
   ///
   /// # Description
   ///
-  /// Metric value which overrides the base [`Metric::VulnerableSystemAvailabilityImpact`][]
+  /// Metric value which overrides the base [`Metric::VulnerableSystemAvailabilityImpact`]
   /// (`VA`) metric value.
   ///
   /// # Properties
@@ -3958,7 +3958,7 @@ pub enum Metric {
   ///
   /// # Description
   ///
-  /// Metric value which overrides the base [`Metric::SubsequentSystemConfidentialityImpact`][]
+  /// Metric value which overrides the base [`Metric::SubsequentSystemConfidentialityImpact`]
   /// (`SC`) metric value.
   ///
   /// # Properties
@@ -4016,7 +4016,7 @@ pub enum Metric {
   ///
   /// # Description
   ///
-  /// Metric value which overrides the base [`Metric::SubsequentSystemIntegrityImpact`][]
+  /// Metric value which overrides the base [`Metric::SubsequentSystemIntegrityImpact`]
   /// (`SI`) metric value.
   ///
   /// # Properties
@@ -4074,7 +4074,7 @@ pub enum Metric {
   ///
   /// # Description
   ///
-  /// Metric value which overrides the base [`Metric::SubsequentSystemAvailabilityImpact`][]
+  /// Metric value which overrides the base [`Metric::SubsequentSystemAvailabilityImpact`]
   /// (`SA`) metric value.
   ///
   /// # Properties
@@ -5285,20 +5285,20 @@ const DECODES: [Decode; 32] = [
   Decode::Arith(Name::ProviderUrgency, 3*3*3*3*3*3*3*3*5*3*3*5*5*3*3*3, (110, 115)),
 ];
 
-/// [`Vector`][] iterator.
+/// [`Vector`] iterator.
 ///
 /// # Description
 ///
 /// Used to iterate over the defined [`Metric`s][Metric] of a
-/// [`Vector`][] in the order specified in Table 23 in [Section 7 of
+/// [`Vector`] in the order specified in Table 23 in [Section 7 of
 /// the CVSS v4.0 specification][vector-string].
 ///
-/// Created by [`Vector::into_iter()`][].
+/// Created by [`Vector::into_iter()`].
 ///
 /// # Examples
 ///
-/// Iterate over [`Vector`][] and appending each [`Metric`][]
-/// to a [`std::vec::Vec`][]:
+/// Iterate over [`Vector`] and appending each [`Metric`]
+/// to a [`std::vec::Vec`]:
 ///
 /// ```
 /// # use polycvss::{Err, v4::{AttackVector, AttackComplexity, AttackRequirements, PrivilegesRequired, UserInteraction, Impact, Metric, Vector}};
@@ -5330,8 +5330,8 @@ const DECODES: [Decode; 32] = [
 /// # }
 /// ```
 ///
-/// Create a explicit iterator over [`Vector`][] and get the first
-/// [`Metric`][]:
+/// Create a explicit iterator over [`Vector`] and get the first
+/// [`Metric`]:
 ///
 /// ```
 /// # use polycvss::{Err, v4::{AttackVector, Metric, Vector}};
@@ -5396,18 +5396,18 @@ impl Iterator for VectorIterator {
 /// Notes:
 ///
 /// - Represented internally as a `u64`.  See "Internal Representation" below.
-/// - When iterating the metrics in a [`Vector`][] or converting a
-///   [`Vector`][] to a string, the metrics are sorted in the order
+/// - When iterating the metrics in a [`Vector`] or converting a
+///   [`Vector`] to a string, the metrics are sorted in the order
 ///   specified in Table 23 of [Section 7 of the CVSS v4.0
 ///   specification][vector-string]; the sort order of metrics within
 ///   the source vector string is **not** preserved. See "Examples" below.
 /// - Optional metrics with a value of `Not Defined (X)` are skipped
-///   when iterating the metrics in a [`Vector`][] and when converting a
-///   [`Vector`][] to a string. See "Examples" below.
+///   when iterating the metrics in a [`Vector`] and when converting a
+///   [`Vector`] to a string. See "Examples" below.
 ///
 /// # Examples
 ///
-/// Parse a [`&str`][] into a [`Vector`][]:
+/// Parse a [`&str`] into a [`Vector`]:
 ///
 /// ```
 /// # use polycvss::{Err, v4::{Vector}};
@@ -5421,7 +5421,7 @@ impl Iterator for VectorIterator {
 /// # }
 /// ```
 ///
-/// Iterate over [`Metric`s][Metric] in a [`Vector`][]:
+/// Iterate over [`Metric`s][Metric] in a [`Vector`]:
 ///
 /// ```
 /// # use polycvss::{Err, v4::Vector};
@@ -5456,7 +5456,7 @@ impl Iterator for VectorIterator {
 ///
 /// Show that the order of metrics within a vector string is **not**
 /// preserved when parsing a vector string and then converting the
-/// [`Vector`][] back to a string:
+/// [`Vector`] back to a string:
 ///
 /// ```
 /// # use polycvss::{Err, v4::Vector};
@@ -5479,7 +5479,7 @@ impl Iterator for VectorIterator {
 ///
 /// Show that optional metrics with a value of `Not Defined (X)` are
 /// **not** preserved when parsing a vector string and then converting the
-/// [`Vector`][] back to a string:
+/// [`Vector`] back to a string:
 ///
 /// ```
 /// # use polycvss::{Err, v4::Vector};
@@ -5512,8 +5512,8 @@ impl Iterator for VectorIterator {
 ///
 /// # Internal Representation
 ///
-/// A CVSS v4 [`Vector`][] is represented internally as a [bit
-/// field][bit-field] within a [`u64`][].  Metric values are stored in
+/// A CVSS v4 [`Vector`] is represented internally as a [bit
+/// field][bit-field] within a [`u64`].  Metric values are stored in
 /// the lower 59 bits (bits `0..59`) and the CVSS version is stored in
 /// the in the upper 4 bits (bits `60..64`):
 ///
@@ -5544,7 +5544,7 @@ impl Iterator for VectorIterator {
 pub struct Vector(u64);
 
 impl Vector {
-  /// Get [`Metric`][] from [`Vector`][] by [`Name`][].
+  /// Get [`Metric`] from [`Vector`] by [`Name`].
   ///
   /// # Examples
   ///
@@ -5720,7 +5720,7 @@ impl std::fmt::Display for Vector {
 
 /// [CVSS v4][doc] effective vector metric values.
 ///
-/// Used to calculate scores in [`MacroVector`][].
+/// Used to calculate scores in [`MacroVector`].
 #[derive(Clone,Debug,PartialEq,Eq)]
 struct Values {
   /// Effective Attack Vector (`AV`) metric value.
@@ -5971,7 +5971,7 @@ const EQS: [EqClass; 6] = [
 ///
 /// # Example
 ///
-/// Get [`MacroVector`][] for [CVSS v4][doc] vector string:
+/// Get [`MacroVector`] for [CVSS v4][doc] vector string:
 ///
 /// ```
 /// # use polycvss::{Err, v4::{MacroVector,Vector}};
