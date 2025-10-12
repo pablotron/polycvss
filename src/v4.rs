@@ -6933,6 +6933,7 @@ mod tests {
       }
     }
 
+    #[test]
     fn test_from_vector() {
       let tests = vec!(
         ("CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", Nomenclature::CvssB),
