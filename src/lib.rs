@@ -250,6 +250,8 @@
 // - README.md: intro: s/rust library to (.*)/$1 in Rust/
 // - README.md: intro: document explicit v3.0 vs v3.1 scoring
 // - README.md: badges, gh action for tests
+// - features to convert to/from json/xml representations
+//   see <https://www.first.org/cvss/data-representations>
 
 pub mod v2;
 pub mod v3;
