@@ -332,7 +332,7 @@ pub enum Err {
   /// ```
   UnknownName,
 
-  /// Vector string contains a metric with an unknown value.
+  /// Vector string contains an unknown metric.
   ///
   /// # Example
   ///
