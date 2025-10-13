@@ -260,16 +260,13 @@ mod encode;
 ///
 /// # Examples
 ///
-/// Try to parse an invalid vector string and check the error:
+/// Try to parse an invalid vector string:
 ///
 /// ```
 /// # use polycvss::{Err, Vector};
 /// # fn main() {
-/// // try to parse an invalid vector string
-/// let err = "asdf".parse::<Vector>();
-///
-/// // check error
-/// assert_eq!(err, Err(Err::Len));
+/// // try to parse invalid vector string, then the check result
+/// assert_eq!("asdf".parse::<Vector>(), Err(Err::Len));
 /// # }
 /// ```
 ///
@@ -322,7 +319,7 @@ pub enum Err {
   /// ```
   DuplicateName,
 
-  /// Vector string contains an unknown metric name.
+  /// Unknown metric name.
   ///
   /// # Example
   ///
@@ -431,8 +428,8 @@ impl std::fmt::Display for Err {
       Err::Len => "String is too short to contain a CVSS vector string",
       Err::Prefix => "String does not begin with a `CVSS:` prefix",
       Err::DuplicateName => "Vector string contains a duplicate metric name",
-      Err::UnknownName => "Vector string contains an unknown metric name",
-      Err::UnknownMetric => "Vector string contains a metric with an unknown value",
+      Err::UnknownName => "Unknown metric name",
+      Err::UnknownMetric => "Vector string contains an unknown metric",
       Err::MissingMandatoryMetrics => "Vector string is missing mandatory metrics",
       Err::UnknownSeverity => "Unknown severity name",
       Err::InvalidMacroVector => "Invalid macro vector digit",
@@ -1701,8 +1698,8 @@ mod tests {
         (Err::Len, "String is too short to contain a CVSS vector string"),
         (Err::Prefix, "String does not begin with a `CVSS:` prefix"),
         (Err::DuplicateName, "Vector string contains a duplicate metric name"),
-        (Err::UnknownName, "Vector string contains an unknown metric name"),
-        (Err::UnknownMetric, "Vector string contains a metric with an unknown value"),
+        (Err::UnknownName, "Unknown metric name"),
+        (Err::UnknownMetric, "Vector string contains an unknown metric"),
         (Err::MissingMandatoryMetrics, "Vector string is missing mandatory metrics"),
         (Err::UnknownSeverity, "Unknown severity name"),
         (Err::InvalidMacroVector, "Invalid macro vector digit"),
