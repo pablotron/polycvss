@@ -136,6 +136,20 @@ for m in v {
 }
 ```
 
+Convert a version-agnostic vector to a version-specific vector to
+access version-specific behavior:
+
+```rust
+// parse vector string
+let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+
+// convert version-agnosic vector to a v4 vector
+let v = v4::Vector::from(v);
+
+// get nomenclature
+assert_eq!(v4::Nomenclature::from(v), v4::Nomenclature::CvssB);
+```
+
 ## Install
 
 [polycvss package page on crates.io][crates-io-polycvss]
