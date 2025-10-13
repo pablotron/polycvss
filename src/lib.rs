@@ -258,20 +258,32 @@ mod encode;
 
 /// Parse or conversion error.
 ///
-/// # Example
+/// # Examples
+///
+/// Try to parse an invalid vector string and check the error:
 ///
 /// ```
 /// # use polycvss::{Err, Vector};
 /// # fn main() {
-/// // parse invalid string as vector
+/// // try to parse an invalid vector string
 /// let err = "asdf".parse::<Vector>();
 ///
-/// // check result
+/// // check error
 /// assert_eq!(err, Err(Err::Len));
 /// # }
+/// ```
+///
+/// Convert an [`Err`] to a printable string:
+///
+/// ```
+/// # use polycvss::Err;
+/// # fn main() {
+/// assert_eq!(Err::DuplicateName.to_string(), "Vector string contains a duplicate metric name");
+/// # }
+/// ```
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
 pub enum Err {
-  /// String is too short.
+  /// String is too short to contain a CVSS vector string.
   ///
   /// # Example
   ///
@@ -284,7 +296,7 @@ pub enum Err {
   /// ```
   Len,
 
-  /// String does not begin with a CVSS prefix.
+  /// String does not begin with a `CVSS:` prefix.
   ///
   /// # Example
   ///
@@ -297,7 +309,7 @@ pub enum Err {
   /// ```
   Prefix,
 
-  /// Vector string contains a duplicate metric.
+  /// Vector string contains a duplicate metric name.
   ///
   /// # Example
   ///
@@ -310,7 +322,7 @@ pub enum Err {
   /// ```
   DuplicateName,
 
-  /// Unknown metric name.
+  /// Vector string contains an unknown metric name.
   ///
   /// # Example
   ///
@@ -323,7 +335,7 @@ pub enum Err {
   /// ```
   UnknownName,
 
-  /// String contains a metric with an unknown value.
+  /// Vector string contains a metric with an unknown value.
   ///
   /// # Example
   ///
@@ -386,7 +398,7 @@ pub enum Err {
   /// ```
   InvalidMacroVector,
 
-  /// Unknown version.
+  /// Unknown CVSS version.
   ///
   /// # Example
   ///
@@ -415,7 +427,18 @@ pub enum Err {
 
 impl std::fmt::Display for Err {
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-    write!(f, "{self:?}")
+    write!(f, "{}", match self {
+      Err::Len => "String is too short to contain a CVSS vector string",
+      Err::Prefix => "String does not begin with a `CVSS:` prefix",
+      Err::DuplicateName => "Vector string contains a duplicate metric name",
+      Err::UnknownName => "Vector string contains an unknown metric name",
+      Err::UnknownMetric => "Vector string contains a metric with an unknown value",
+      Err::MissingMandatoryMetrics => "Vector string is missing mandatory metrics",
+      Err::UnknownSeverity => "Unknown severity name",
+      Err::InvalidMacroVector => "Invalid macro vector digit",
+      Err::UnknownVersion => "Unknown CVSS version",
+      Err::UnknownNomenclature => "Unknown nomenclature",
+    })
   }
 }
 
@@ -1669,6 +1692,30 @@ impl std::fmt::Display for Severity {
 
 #[cfg(test)]
 mod tests {
+  mod err {
+    use super::super::Err;
+
+    #[test]
+    fn test_to_string() {
+      let tests = vec!(
+        (Err::Len, "String is too short to contain a CVSS vector string"),
+        (Err::Prefix, "String does not begin with a `CVSS:` prefix"),
+        (Err::DuplicateName, "Vector string contains a duplicate metric name"),
+        (Err::UnknownName, "Vector string contains an unknown metric name"),
+        (Err::UnknownMetric, "Vector string contains a metric with an unknown value"),
+        (Err::MissingMandatoryMetrics, "Vector string is missing mandatory metrics"),
+        (Err::UnknownSeverity, "Unknown severity name"),
+        (Err::InvalidMacroVector, "Invalid macro vector digit"),
+        (Err::UnknownVersion, "Unknown CVSS version"),
+        (Err::UnknownNomenclature, "Unknown nomenclature"),
+      );
+
+      for (err, exp) in tests {
+        assert_eq!(err.to_string(), exp, "{err:?}");
+      }
+    }
+  }
+
   mod version {
     use super::super::{Err, Version};
 
