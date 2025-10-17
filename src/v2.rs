@@ -71,6 +71,11 @@ use super::{Err, Score, Version, encode::{EncodedVal, EncodedMetric}};
 
 // TODO:
 // - non-v2.3 vectors (e.g. Vector::new_with_version)
+//   ref: https://www.first.org/cvss/v2/history#Appendix-D-CVSS-2-0-Base-Score-Equation
+//   (maybe add coefs for v2.5-v2.9?)
+// - other idea: remove all non-v2.0 versions, because they appear to be
+//   drafts on the history page linked above (check coefs and eqs to be
+//   sure)
 
 /// Round value to nearest 10th of a decimal.
 ///
