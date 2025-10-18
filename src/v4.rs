@@ -1845,6 +1845,31 @@ pub enum ProviderUrgency {
 pub enum Group {
   /// Base metrics.
   ///
+  /// The Base metric group represents the intrinsic characteristics of
+  /// a vulnerability that are constant over time and across user
+  /// environments. It is composed of two sets of metrics: the
+  /// Exploitability metrics and the Impact metrics.
+  ///
+  /// The Exploitability metrics reflect the ease and technical means by
+  /// which the vulnerability can be exploited. That is, they represent
+  /// characteristics of the “thing that is vulnerable”, which we refer to
+  /// formally as the “vulnerable system”. The Impact metrics reflect the
+  /// direct consequence of a successful exploit, and represent the
+  /// consequence to the “things that suffer the impact”, which may
+  /// include impact on the vulnerable system and/or the downstream impact
+  /// on what is formally called the “subsequent system(s)”.
+  ///
+  /// While the vulnerable system is typically a software application,
+  /// operating system, module, driver, etc. (or possibly a hardware
+  /// device), the subsequent system could be any of those examples but
+  /// also includes human safety. This potential for measuring the impact
+  /// of a vulnerability other than the vulnerable system, was a key
+  /// feature introduced with CVSS v3.0. This property (formerly known as
+  /// “Scope”), is captured by the separation of impacts to the vulnerable
+  /// system and to subsequent systems, discussed later.
+  ///
+  /// See [CVSS v4.0 Specification, Section 2: Base Metrics][doc].
+  ///
   /// # Metrics
   ///
   /// - [`Metric::AttackVector`] (`AV`)
@@ -1858,18 +1883,53 @@ pub enum Group {
   /// - [`Metric::SubsequentSystemConfidentialityImpact`] (`SC`)
   /// - [`Metric::SubsequentSystemIntegrityImpact`] (`SI`)
   /// - [`Metric::SubsequentSystemAvailabilityImpact`] (`SA`)
+  ///
+  /// # Example
+  ///
+  /// Get metric group:
+  ///
+  /// ```
+  /// # use polycvss::v4::{Group, Name};
+  /// # fn main() {
+  /// assert_eq!(Group::from(Name::AttackVector), Group::Base);
+  /// # }
+  /// ```
+  ///
+  /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Base-Metrics
+  ///   "CVSS v4.0 Specification, Section 2: Base Metrics"
   Base,
 
   /// Threat metrics.
   ///
   /// # Description
   ///
-  /// The Threat metrics measure the current state of exploit techniques
-  /// or code availability for a vulnerability.
+  /// The Threat metric group reflects the characteristics of a
+  /// vulnerability related to threat that may change over time but not
+  /// necessarily across user environments. For example, confirmation that
+  /// the vulnerability has neither been exploited nor has any
+  /// proof-of-concept exploit code or instructions publicly available
+  /// will lower the resulting CVSS score. The values found in this metric
+  /// group may change over time.
+  ///
+  /// See [CVSS v4.0 Specification, Section 3: Threat Metrics][doc].
   ///
   /// # Metrics
   ///
   /// - [`Metric::ExploitMaturity`] (`E`)
+  ///
+  /// # Example
+  ///
+  /// Get metric group:
+  ///
+  /// ```
+  /// # use polycvss::v4::{Group, Name};
+  /// # fn main() {
+  /// assert_eq!(Group::from(Name::ExploitMaturity), Group::Threat);
+  /// # }
+  /// ```
+  ///
+  /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Threat-Metrics
+  ///   "CVSS v4.0 Specification, Section 3: Threat Metrics"
   Threat,
 
   /// Environmental metrics.
@@ -1883,6 +1943,8 @@ pub enum Group {
   /// Confidentiality, Integrity, and Availability. The metrics are the
   /// modified equivalent of Base metrics and are assigned values based on
   /// the system placement within organizational infrastructure.
+  ///
+  /// See [CVSS v4.0 Specification, Section 4: Environmental Metrics][doc].
   ///
   /// # Metrics
   ///
@@ -1900,6 +1962,20 @@ pub enum Group {
   /// - [`Metric::ModifiedSubsequentSystemConfidentiality`] (`MSC`)
   /// - [`Metric::ModifiedSubsequentSystemIntegrity`] (`MSI`)
   /// - [`Metric::ModifiedSubsequentSystemAvailability`] (`MSA`)
+  ///
+  /// # Example
+  ///
+  /// Get metric group:
+  ///
+  /// ```
+  /// # use polycvss::v4::{Group, Name};
+  /// # fn main() {
+  /// assert_eq!(Group::from(Name::ConfidentialityRequirement), Group::Environmental);
+  /// # }
+  /// ```
+  ///
+  /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Environmental-Metrics
+  ///   "CVSS v4.0 Specification, Section 4: Environmental Metrics"
   Environmental,
 
   /// Supplemental metrics.
@@ -1920,6 +1996,8 @@ pub enum Group {
   /// values will simply convey additional extrinsic characteristics of
   /// the vulnerability itself.
   ///
+  /// See [CVSS v4.0 Specification, Section 5: Supplemental Metrics][doc].
+  ///
   /// # Metrics
   ///
   /// - [`Metric::Safety`] (`S`)
@@ -1928,6 +2006,20 @@ pub enum Group {
   /// - [`Metric::ValueDensity`] (`V`)
   /// - [`Metric::VulnerabilityResponseEffort`] (`RE`)
   /// - [`Metric::ProviderUrgency`] (`U`)
+  ///
+  /// # Example
+  ///
+  /// Get metric group:
+  ///
+  /// ```
+  /// # use polycvss::v4::{Group, Name};
+  /// # fn main() {
+  /// assert_eq!(Group::from(Name::Safety), Group::Supplemental);
+  /// # }
+  /// ```
+  ///
+  /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Supplemental-Metrics
+  ///   "CVSS v4.0 Specification, Section 5: Supplemental Metrics"
   Supplemental,
 }
 
