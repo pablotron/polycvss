@@ -139,6 +139,29 @@ pub fn roundup(val: f64, version: Version) -> f64 {
 pub enum Group {
   /// Base metrics.
   ///
+  /// The Base metric group represents the intrinsic characteristics of
+  /// a vulnerability that are constant over time and across user
+  /// environments. It is composed of two sets of metrics: the
+  /// Exploitability metrics and the Impact metrics.
+  ///
+  /// The Exploitability metrics reflect the ease and technical means by
+  /// which the vulnerability can be exploited. That is, they represent
+  /// characteristics of the thing that is vulnerable, which we refer to
+  /// formally as the vulnerable component. The Impact metrics reflect the
+  /// direct consequence of a successful exploit, and represent the
+  /// consequence to the thing that suffers the impact, which we refer to
+  /// formally as the impacted component.
+  ///
+  /// While the vulnerable component is typically a software
+  /// application, module, driver, etc. (or possibly a hardware device),
+  /// the impacted component could be a software application, a hardware
+  /// device or a network resource. This potential for measuring the
+  /// impact of a vulnerability other than the vulnerable component, was a
+  /// key feature introduced with CVSS v3.0. This property is captured by
+  /// the Scope metric, discussed later.
+  ///
+  /// See [CVSS v3.1 Specification, Section 2: Base Metrics][doc].
+  ///
   /// # Metrics
   ///
   /// - [`Metric::AttackVector`]
@@ -149,18 +172,63 @@ pub enum Group {
   /// - [`Metric::Confidentiality`]
   /// - [`Metric::Integrity`]
   /// - [`Metric::Availability`]
+  ///
+  /// # Example
+  ///
+  /// Get metric group:
+  ///
+  /// ```
+  /// # use polycvss::v3::{Group, Name};
+  /// # fn main() {
+  /// assert_eq!(Group::from(Name::AttackVector), Group::Base);
+  /// # }
+  /// ```
+  ///
+  /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Base-Metrics
+  ///   "CVSS v3.1 Specification, Section 2: Base Metrics"
   Base,
 
   /// Temporal metrics.
+  ///
+  /// The Temporal metric group reflects the characteristics of a
+  /// vulnerability that may change over time but not across user
+  /// environments. For example, the presence of a simple-to-use exploit
+  /// kit would increase the CVSS score, while the creation of an official
+  /// patch would decrease it.
+  ///
+  /// See [CVSS v3.1 Specification, Section 3: Temporal Metrics][doc].
   ///
   /// # Metrics
   ///
   /// - [`Metric::ExploitCodeMaturity`]
   /// - [`Metric::RemediationLevel`]
   /// - [`Metric::ReportConfidence`]
+  ///
+  /// # Example
+  ///
+  /// Get metric group:
+  ///
+  /// ```
+  /// # use polycvss::v3::{Group, Name};
+  /// # fn main() {
+  /// assert_eq!(Group::from(Name::ExploitCodeMaturity), Group::Temporal);
+  /// # }
+  /// ```
+  ///
+  /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Temporal-Metrics
+  ///   "CVSS v3.1 Specification, Section 3: Temporal Metrics"
   Temporal,
 
   /// Environmental metrics.
+  ///
+  /// The Environmental metric group represents the characteristics of a
+  /// vulnerability that are relevant and unique to a particular user’s
+  /// environment. Considerations include the presence of security
+  /// controls which may mitigate some or all consequences of a successful
+  /// attack, and the relative importance of a vulnerable system within a
+  /// technology infrastructure.
+  ///
+  /// See [CVSS v3.1 Specification, Section 4: Environmental Metrics][doc].
   ///
   /// # Metrics
   ///
@@ -175,6 +243,20 @@ pub enum Group {
   /// - [`Metric::ModifiedConfidentiality`]
   /// - [`Metric::ModifiedIntegrity`]
   /// - [`Metric::ModifiedAvailability`]
+  ///
+  /// # Example
+  ///
+  /// Get metric group:
+  ///
+  /// ```
+  /// # use polycvss::v3::{Group, Name};
+  /// # fn main() {
+  /// assert_eq!(Group::from(Name::ConfidentialityRequirement), Group::Environmental);
+  /// # }
+  /// ```
+  ///
+  /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Environmental-Metrics
+  ///   "CVSS v3.1 Specification, Section 4: Environmental Metrics"
   Environmental,
 }
 
