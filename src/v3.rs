@@ -3276,15 +3276,15 @@ impl Iterator for VectorIterator {
 ///
 /// - Supports [CVSS v3.0][cvss30] and [CVSS v3.1][cvss31] score
 ///   calculations.
-/// - Represented internally as a [`u64`].  See "Internal Representation" below.
+/// - Represented internally as a [`u64`].  See [Internal Representation][] below.
 /// - When iterating the metrics in a [`Vector`] or converting a
 ///   [`Vector`] to a string, the metrics are sorted in the order
 ///   specified in Table 23 of [Section 7 of the CVSS v4.0
 ///   specification][vector-string]; the sort order of metrics within
-///   the source vector string is **not** preserved. See "Examples" below.
+///   the source vector string is **not** preserved. See [Examples][] below.
 /// - Optional metrics with a value of `Not Defined (X)` are skipped
 ///   when iterating the metrics in a [`Vector`] and when converting a
-///   [`Vector`] to a string. See "Examples" below.
+///   [`Vector`] to a string. See [Examples][] below.
 ///
 /// # Examples
 ///
@@ -3440,6 +3440,10 @@ impl Iterator for VectorIterator {
 ///   "Bit field (Wikipedia)"
 /// [vector-string]: https://www.first.org/cvss/v3-1/specification-document#Vector-String
 ///   "CVSS v3.1 Specification, Section 6: Vector String"
+/// [internal representation]: #internal-representation
+///   "Internal Representation section"
+/// [examples]: #examples
+///   "Examples section"
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
 #[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
 #[cfg_attr(feature="serde", serde(try_from="String"))]
