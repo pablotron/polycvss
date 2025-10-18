@@ -70,7 +70,7 @@ use serde::{self,Deserialize,Serialize};
 use super::{Err, Score, Version, encode::{EncodedVal, EncodedMetric}};
 
 // TODO:
-// - add v2::severity
+// - add v2::severity? (missing None and Critical, used by NVD)
 
 /// Round value to nearest 10th of a decimal.
 ///
