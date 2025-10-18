@@ -546,7 +546,7 @@ impl std::fmt::Display for Name {
 /// # }
 /// ```
 ///
-/// Get metric name
+/// Get metric name:
 ///
 /// ```
 /// # use polycvss::v3::{AttackVector, Metric, Name};
@@ -623,6 +623,48 @@ pub enum AttackVector {
 ///
 /// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v3.1 Specification, Section 4.2: Modified Base Metrics][doc]
+///
+/// # Examples
+///
+/// Parse string as metric and check it:
+///
+/// ```
+/// # use polycvss::{Err, v3::{ModifiedAttackVector, Metric}};
+/// # fn main() -> Result<(), Err> {
+/// // parse string as metric
+/// let metric: Metric = "MAV:N".parse()?;
+///
+/// // check result
+/// assert_eq!(metric, Metric::ModifiedAttackVector(ModifiedAttackVector::Network));
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Convert metric to string:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedAttackVector, Metric};
+/// # fn main() {
+/// // convert metric to string
+/// let s = Metric::ModifiedAttackVector(ModifiedAttackVector::Adjacent).to_string();
+///
+/// // check result
+/// assert_eq!(s, "MAV:A");
+/// # }
+/// ```
+///
+/// Get metric name:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedAttackVector, Metric, Name};
+/// # fn main() {
+/// // get metric name
+/// let name = Name::from(Metric::ModifiedAttackVector(ModifiedAttackVector::Local));
+///
+/// // check result
+/// assert_eq!(name, Name::ModifiedAttackVector);
+/// # }
+/// ```
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
@@ -703,7 +745,7 @@ pub enum ModifiedAttackVector {
 /// # }
 /// ```
 ///
-/// Get metric name
+/// Get metric name:
 ///
 /// ```
 /// # use polycvss::v3::{AttackComplexity, Metric, Name};
@@ -765,6 +807,48 @@ pub enum AttackComplexity {
 ///
 /// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v3.1 Specification, Section 4.2: Modified Base Metrics][doc]
+///
+/// # Examples
+///
+/// Parse string as metric:
+///
+/// ```
+/// # use polycvss::{Err, v3::{ModifiedAttackComplexity, Metric}};
+/// # fn main() -> Result<(), Err> {
+/// // parse string as metric
+/// let metric: Metric = "MAC:L".parse()?;
+///
+/// // check result
+/// assert_eq!(metric, Metric::ModifiedAttackComplexity(ModifiedAttackComplexity::Low));
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Convert metric to string:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedAttackComplexity, Metric};
+/// # fn main() {
+/// // convert metric to string
+/// let s = Metric::ModifiedAttackComplexity(ModifiedAttackComplexity::High).to_string();
+///
+/// // check result
+/// assert_eq!(s, "MAC:H");
+/// # }
+/// ```
+///
+/// Get metric name:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedAttackComplexity, Metric, Name};
+/// # fn main() {
+/// // get metric name
+/// let name = Name::from(Metric::ModifiedAttackComplexity(ModifiedAttackComplexity::High));
+///
+/// // check result
+/// assert_eq!(name, Name::ModifiedAttackComplexity);
+/// # }
+/// ```
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
@@ -829,7 +913,7 @@ pub enum ModifiedAttackComplexity {
 /// # }
 /// ```
 ///
-/// Get metric name
+/// Get metric name:
 ///
 /// ```
 /// # use polycvss::v3::{PrivilegesRequired, Metric, Name};
@@ -882,6 +966,48 @@ pub enum PrivilegesRequired {
 ///
 /// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v3.1 Specification, Section 4.2: Modified Base Metrics][doc]
+///
+/// # Examples
+///
+/// Parse string as metric:
+///
+/// ```
+/// # use polycvss::{Err, v3::{ModifiedPrivilegesRequired, Metric}};
+/// # fn main() -> Result<(), Err> {
+/// // parse string as metric
+/// let metric: Metric = "MPR:N".parse()?;
+///
+/// // check result
+/// assert_eq!(metric, Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::None));
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Convert metric to string:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedPrivilegesRequired, Metric};
+/// # fn main() {
+/// // convert metric to string
+/// let s = Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::Low).to_string();
+///
+/// // check result
+/// assert_eq!(s, "MPR:L");
+/// # }
+/// ```
+///
+/// Get metric name:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedPrivilegesRequired, Metric, Name};
+/// # fn main() {
+/// // get metric name
+/// let name = Name::from(Metric::ModifiedPrivilegesRequired(ModifiedPrivilegesRequired::High));
+///
+/// // check result
+/// assert_eq!(name, Name::ModifiedPrivilegesRequired);
+/// # }
+/// ```
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
@@ -999,6 +1125,48 @@ pub enum UserInteraction {
 ///
 /// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v3.1 Specification, Section 4.2: Modified Base Metrics][doc]
+///
+/// # Examples
+///
+/// Parse string as metric:
+///
+/// ```
+/// # use polycvss::{Err, v3::{ModifiedUserInteraction, Metric}};
+/// # fn main() -> Result<(), Err> {
+/// // parse string as metric
+/// let metric: Metric = "MUI:N".parse()?;
+///
+/// // check result
+/// assert_eq!(metric, Metric::ModifiedUserInteraction(ModifiedUserInteraction::None));
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Convert metric to string:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedUserInteraction, Metric};
+/// # fn main() {
+/// // convert metric to string
+/// let s = Metric::ModifiedUserInteraction(ModifiedUserInteraction::Required).to_string();
+///
+/// // check result
+/// assert_eq!(s, "MUI:R");
+/// # }
+/// ```
+///
+/// Get metric name:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedUserInteraction, Metric, Name};
+/// # fn main() {
+/// // get metric name
+/// let name = Name::from(Metric::ModifiedUserInteraction(ModifiedUserInteraction::None));
+///
+/// // check result
+/// assert_eq!(name, Name::ModifiedUserInteraction);
+/// # }
+/// ```
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
@@ -1134,6 +1302,48 @@ pub enum Scope {
 /// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v3.1 Specification, Section 4.2: Modified Base Metrics][doc]
 ///
+/// # Examples
+///
+/// Parse string as metric:
+///
+/// ```
+/// # use polycvss::{Err, v3::{ModifiedScope, Metric}};
+/// # fn main() -> Result<(), Err> {
+/// // parse string as metric
+/// let metric: Metric = "MS:U".parse()?;
+///
+/// // check result
+/// assert_eq!(metric, Metric::ModifiedScope(ModifiedScope::Unchanged));
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Convert metric to string:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedScope, Metric};
+/// # fn main() {
+/// // convert metric to string
+/// let s = Metric::ModifiedScope(ModifiedScope::Changed).to_string();
+///
+/// // check result
+/// assert_eq!(s, "MS:C");
+/// # }
+/// ```
+///
+/// Get metric name:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedScope, Metric, Name};
+/// # fn main() {
+/// // get metric name
+/// let name = Name::from(Metric::ModifiedScope(ModifiedScope::Changed));
+///
+/// // check result
+/// assert_eq!(name, Name::ModifiedScope);
+/// # }
+/// ```
+///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
@@ -1176,6 +1386,48 @@ pub enum ModifiedScope {
 /// - Metric Group: [Base Metrics][Group::Base]
 /// - Base Metric Set: Impact Metrics
 /// - Documentation: [CVSS v3.1 Specification, Section 2.3: Impact Metrics][doc]
+///
+/// # Examples
+///
+/// Parse string as metric:
+///
+/// ```
+/// # use polycvss::{Err, v3::{Impact, Metric}};
+/// # fn main() -> Result<(), Err> {
+/// // parse string as metric
+/// let metric: Metric = "C:N".parse()?;
+///
+/// // check result
+/// assert_eq!(metric, Metric::Confidentiality(Impact::None));
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Convert metric to string:
+///
+/// ```
+/// # use polycvss::v3::{Impact, Metric};
+/// # fn main() {
+/// // convert metric to string
+/// let s = Metric::Integrity(Impact::Low).to_string();
+///
+/// // check result
+/// assert_eq!(s, "I:L");
+/// # }
+/// ```
+///
+/// Get metric name:
+///
+/// ```
+/// # use polycvss::v3::{Impact, Metric, Name};
+/// # fn main() {
+/// // get metric name
+/// let name = Name::from(Metric::Availability(Impact::High));
+///
+/// // check result
+/// assert_eq!(name, Name::Availability);
+/// # }
+/// ```
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Impact-Metrics
 ///   "CVSS v3.1 Specification, Section 2.3: Impact Metrics"
@@ -1225,6 +1477,48 @@ pub enum Impact {
 ///
 /// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v3.1 Specification, Section 4.2: Modified Base Metrics][doc]
+///
+/// # Examples
+///
+/// Parse string as metric:
+///
+/// ```
+/// # use polycvss::{Err, v3::{ModifiedImpact, Metric}};
+/// # fn main() -> Result<(), Err> {
+/// // parse string as metric
+/// let metric: Metric = "MC:N".parse()?;
+///
+/// // check result
+/// assert_eq!(metric, Metric::ModifiedConfidentiality(ModifiedImpact::None));
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Convert metric to string:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedImpact, Metric};
+/// # fn main() {
+/// // convert metric to string
+/// let s = Metric::ModifiedIntegrity(ModifiedImpact::Low).to_string();
+///
+/// // check result
+/// assert_eq!(s, "MI:L");
+/// # }
+/// ```
+///
+/// Get metric name:
+///
+/// ```
+/// # use polycvss::v3::{ModifiedImpact, Metric, Name};
+/// # fn main() {
+/// // get metric name
+/// let name = Name::from(Metric::ModifiedAvailability(ModifiedImpact::High));
+///
+/// // check result
+/// assert_eq!(name, Name::ModifiedAvailability);
+/// # }
+/// ```
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Modified-Base-Metrics
 ///   "CVSS v3.1 Specification, Section 4.2: Modified Base Metrics"
@@ -1638,6 +1932,48 @@ pub enum ReportConfidence {
 /// - Metric Group: [Environmental Metrics][Group::Environmental]
 /// - Documentation: [CVSS v3.1 Specification, Section 4.1: Security Requirements][doc]
 ///
+/// # Examples
+///
+/// Parse string as metric:
+///
+/// ```
+/// # use polycvss::{Err, v3::{Requirement, Metric}};
+/// # fn main() -> Result<(), Err> {
+/// // parse string as metric
+/// let metric: Metric = "CR:L".parse()?;
+///
+/// // check result
+/// assert_eq!(metric, Metric::ConfidentialityRequirement(Requirement::Low));
+/// # Ok(())
+/// # }
+/// ```
+///
+/// Convert metric to string:
+///
+/// ```
+/// # use polycvss::v3::{Requirement, Metric};
+/// # fn main() {
+/// // convert metric to string
+/// let s = Metric::IntegrityRequirement(Requirement::Medium).to_string();
+///
+/// // check result
+/// assert_eq!(s, "IR:M");
+/// # }
+/// ```
+///
+/// Get metric name:
+///
+/// ```
+/// # use polycvss::v3::{Requirement, Metric, Name};
+/// # fn main() {
+/// // get metric name
+/// let name = Name::from(Metric::AvailabilityRequirement(Requirement::High));
+///
+/// // check result
+/// assert_eq!(name, Name::AvailabilityRequirement);
+/// # }
+/// ```
+///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Security-Requirements
 ///   "CVSS v3.1 Specification, Section 4.1: Security Requirements"
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
@@ -1707,7 +2043,7 @@ pub enum Requirement {
 /// # }
 /// ```
 ///
-/// Get metric name
+/// Get metric name:
 ///
 /// ```
 /// # use polycvss::v3::{AttackVector, Metric, Name};
@@ -1769,7 +2105,7 @@ pub enum Metric {
   /// # }
   /// ```
   ///
-  /// Get metric name
+  /// Get metric name:
   ///
   /// ```
   /// # use polycvss::v3::{AttackVector, Metric, Name};
@@ -1845,7 +2181,7 @@ pub enum Metric {
   /// # }
   /// ```
   ///
-  /// Get metric name
+  /// Get metric name:
   ///
   /// ```
   /// # use polycvss::v3::{PrivilegesRequired, Metric, Name};
