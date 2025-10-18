@@ -973,6 +973,11 @@ pub enum Requirement {
 pub enum Group {
   /// Base metrics.
   ///
+  /// Represents the intrinsic and fundamental characteristics of a
+  /// vulnerability that are constant over time and user environments.
+  ///
+  /// See [CVSS v2.0 Documentation, Section 2.1: Base Metrics][doc].
+  ///
   /// # Metrics
   ///
   /// - [`Metric::AccessVector`]
@@ -981,18 +986,56 @@ pub enum Group {
   /// - [`Metric::Confidentiality`]
   /// - [`Metric::Integrity`]
   /// - [`Metric::Availability`]
+  ///
+  /// # Example
+  ///
+  /// Get metric group:
+  ///
+  /// ```
+  /// # use polycvss::v2::{Group, Name};
+  /// # fn main() {
+  /// assert_eq!(Group::from(Name::AccessVector), Group::Base);
+  /// # }
+  /// ```
+  ///
+  /// [doc]: https://www.first.org/cvss/v2/guide#2-1-Base-Metrics
+  ///   "CVSS v2.0 Documentation, Section 2.1: Base Metrics"
   Base,
 
   /// Temporal metrics.
+  ///
+  /// Represents the characteristics of a vulnerability that change over
+  /// time but not among user environments.
+  ///
+  /// See [CVSS v2.0 Documentation, Section 2.2: Temporal Metrics][doc].
   ///
   /// # Metrics
   ///
   /// - [`Metric::Exploitability`]
   /// - [`Metric::RemediationLevel`]
   /// - [`Metric::ReportConfidence`]
+  ///
+  /// # Example
+  ///
+  /// Get metric group:
+  ///
+  /// ```
+  /// # use polycvss::v2::{Group, Name};
+  /// # fn main() {
+  /// assert_eq!(Group::from(Name::Exploitability), Group::Temporal);
+  /// # }
+  /// ```
+  ///
+  /// [doc]: https://www.first.org/cvss/v2/guide#2-2-Temporal-Metrics
+  ///   "CVSS v2.0 Documentation, Section 2.2: Temporal Metrics"
   Temporal,
 
   /// Environmental metrics.
+  ///
+  /// Represents the characteristics of a vulnerability that are
+  /// relevant and unique to a particular user's environment.
+  ///
+  /// See [CVSS v2.0 Documentation, Section 2.3: Environmental Metrics][doc].
   ///
   /// # Metrics
   ///
@@ -1001,6 +1044,20 @@ pub enum Group {
   /// - [`Metric::ConfidentialityRequirement`]
   /// - [`Metric::IntegrityRequirement`]
   /// - [`Metric::AvailabilityRequirement`]
+  ///
+  /// # Example
+  ///
+  /// Get metric group:
+  ///
+  /// ```
+  /// # use polycvss::v2::{Group, Name};
+  /// # fn main() {
+  /// assert_eq!(Group::from(Name::CollateralDamagePotential), Group::Environmental);
+  /// # }
+  /// ```
+  ///
+  /// [doc]: https://www.first.org/cvss/v2/guide#2-3-Environmental-Metrics
+  ///   "CVSS v2.0 Documentation, Section 2.3: Environmental Metrics"
   Environmental,
 }
 
