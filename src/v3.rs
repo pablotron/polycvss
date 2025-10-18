@@ -3625,7 +3625,7 @@ impl std::fmt::Display for Vector {
   }
 }
 
-/// [CVSS v3][doc] base, temporal, and environmental scores for a
+/// Base, temporal, and environmental scores for a [CVSS v3][doc]
 /// [`Vector`].
 ///
 /// You can convert a [`Scores`] structure to an overall vector
