@@ -76,6 +76,15 @@ use super::{Err, Score, Version, encode::{EncodedVal, EncodedMetric}};
 ///
 /// Used by [CVSS v2][doc-v2] scoring functions.
 ///
+/// # Example
+///
+/// ```
+/// # use polycvss::v2::round1;
+/// # fn main() {
+/// assert_eq!(round1(5.32), 5.3);
+/// # }
+/// ```
+///
 /// [doc-v2]: https://www.first.org/cvss/v2/guide
 ///   "CVSS v2.0 Documentation"
 pub fn round1(val: f64) -> f64 {
