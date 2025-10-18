@@ -3276,7 +3276,7 @@ impl Iterator for VectorIterator {
 ///
 /// - Supports [CVSS v3.0][cvss30] and [CVSS v3.1][cvss31] score
 ///   calculations.
-/// - Represented internally as a `u64`.  See "Internal Representation" below.
+/// - Represented internally as a [`u64`].  See "Internal Representation" below.
 /// - When iterating the metrics in a [`Vector`] or converting a
 ///   [`Vector`] to a string, the metrics are sorted in the order
 ///   specified in Table 23 of [Section 7 of the CVSS v4.0
@@ -3399,7 +3399,7 @@ impl Iterator for VectorIterator {
 /// # }
 /// ```
 ///
-/// Verify that a vector is the same size as a `u64`:
+/// Verify that a vector is the same size as a [`u64`]:
 ///
 /// ```
 /// # use polycvss::v3::Vector;
@@ -3411,7 +3411,7 @@ impl Iterator for VectorIterator {
 /// # Internal Representation
 ///
 /// A CVSS v3 [`Vector`] is represented internally as a [bit
-/// field][bit-field] within a `u64`.  Metric values are stored in the
+/// field][bit-field] within a [`u64`].  Metric values are stored in the
 /// lower 44 bits (bits `0..44`) and the CVSS version is stored in the
 /// upper 4 bits (bits `60..64`):
 ///
