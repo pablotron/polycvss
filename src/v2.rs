@@ -2596,15 +2596,15 @@ impl Iterator for VectorIterator {
 ///
 /// Notes:
 ///
-/// - Represented internally as a [`u64`].  See "Internal Representation" below.
+/// - Represented internally as a [`u64`].  See [Internal Representation][ir].
 /// - When iterating the metrics in a [`Vector`] or converting a
 ///   [`Vector`] to a string, the metrics are sorted in the order
 ///   specified in Table 11 of [Section 2.4 of the CVSS v2.0
 ///   documentation][vector-string]; the sort order of metrics within
-///   the source vector string is **not** preserved. See "Examples" below.
+///   the source vector string is **not** preserved. See [Examples][] below.
 /// - Optional metrics with a value of `Not Defined (ND)` are skipped
 ///   when iterating the metrics in a [`Vector`] and when converting a
-///   [`Vector`] to a string. See "Examples" below.
+///   [`Vector`] to a string. See [Examples][] below.
 ///
 /// # Examples
 ///
@@ -2748,6 +2748,10 @@ impl Iterator for VectorIterator {
 ///   "Bit field (Wikipedia)"
 /// [vector-string]: https://www.first.org/cvss/v2/guide#2-4-Base-Temporal-Environmental-Vectors
 ///   "CVSS v2.0 Documentation, Section 2.4: Base, Temporal, Environmental Vectors"
+/// [ir]: #internal-representation
+///   "Internal Representation section"
+/// [examples]: #examples
+///   "Examples section"
 #[derive(Clone,Copy,Debug,PartialEq,Eq)]
 // #[cfg_attr(feature="serde", serde(try_from="String"))]
 // #[cfg_attr(feature="serde", derive(Deserialize,Serialize)]
