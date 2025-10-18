@@ -3681,7 +3681,7 @@ pub enum Metric {
   /// # }
   /// ```
   ///
-  /// Get metric name
+  /// Get metric name:
   ///
   /// ```
   /// # use polycvss::v4::{ModifiedAttackComplexity, Metric, Name};
@@ -5593,7 +5593,7 @@ impl Iterator for VectorIterator {
 /// # }
 /// ```
 ///
-/// Verify that a vector is the same size as a `u64`:
+/// Verify that a vector is the same size as a [`u64`]:
 ///
 /// ```
 /// # use polycvss::v4::Vector;
@@ -6532,9 +6532,7 @@ impl std::fmt::Display for MacroVector {
   }
 }
 
-/// [CVSS v4][doc] macro vector and score.
-///
-/// [CVSS v4][doc] vector score and macrovector.
+/// Macro vector and score of [CVSS v4][doc] vector.
 ///
 /// See [CVSS v4.0 Specification, Section 8: CVSS v4.0 Scoring][scoring].
 ///
