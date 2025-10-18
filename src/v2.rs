@@ -2596,7 +2596,7 @@ impl Iterator for VectorIterator {
 ///
 /// Notes:
 ///
-/// - Represented internally as a [`u64`].  See [Internal Representation][ir].
+/// - Represented internally as a [`u64`].  See [Internal Representation][] below.
 /// - When iterating the metrics in a [`Vector`] or converting a
 ///   [`Vector`] to a string, the metrics are sorted in the order
 ///   specified in Table 11 of [Section 2.4 of the CVSS v2.0
@@ -2748,7 +2748,7 @@ impl Iterator for VectorIterator {
 ///   "Bit field (Wikipedia)"
 /// [vector-string]: https://www.first.org/cvss/v2/guide#2-4-Base-Temporal-Environmental-Vectors
 ///   "CVSS v2.0 Documentation, Section 2.4: Base, Temporal, Environmental Vectors"
-/// [ir]: #internal-representation
+/// [internal representation]: #internal-representation
 ///   "Internal Representation section"
 /// [examples]: #examples
 ///   "Examples section"
