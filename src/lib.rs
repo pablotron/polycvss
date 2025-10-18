@@ -474,7 +474,7 @@ enum MajorVersion {
 impl From<Vector> for MajorVersion {
   fn from(vec: Vector) -> MajorVersion {
     match Version::from(vec) {
-      Version::V20 | Version::V21 | Version::V22 | Version::V23 => MajorVersion::V2,
+      Version::V20 => MajorVersion::V2,
       Version::V30 | Version::V31 => MajorVersion::V3,
       Version::V40 => MajorVersion::V4,
     }
@@ -482,11 +482,6 @@ impl From<Vector> for MajorVersion {
 }
 
 /// [CVSS][] version.
-///
-/// **Note:** The version of a CVSS v2 vector string is always reported
-/// as [`Version::V23`]; there is currently no way to create a
-/// [`Vector`] with a version of [`V20`][Version::V20],
-/// [`V21`][Version::V21], or [`V22`][Version::V22].
 ///
 /// # Examples
 ///
@@ -497,7 +492,7 @@ impl From<Vector> for MajorVersion {
 /// # fn main() -> Result<(), Err> {
 /// // parse CVSS v2 vector string, check version
 /// let v2: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
-/// assert_eq!(Version::from(v2), Version::V23);
+/// assert_eq!(Version::from(v2), Version::V20);
 ///
 /// // parse CVSS v3 vector string, check version
 /// let v3: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
@@ -552,32 +547,20 @@ pub enum Version {
   /// CVSS v2.0
   V20 = 0,
 
-  /// CVSS v2.1
-  V21 = 1,
-
-  /// CVSS v2.2
-  V22 = 2,
-
-  /// CVSS v2.3
-  V23 = 3,
-
   /// CVSS v3.0
-  V30 = 4,
+  V30 = 1,
 
   /// CVSS v3.1
-  V31 = 5,
+  V31 = 2,
 
   /// CVSS v4.0
-  V40 = 6,
+  V40 = 3,
 }
 
 impl std::fmt::Display for Version {
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
     write!(f, "{}", match self {
       Version::V20 => "2.0",
-      Version::V21 => "2.1",
-      Version::V22 => "2.2",
-      Version::V23 => "2.3",
       Version::V30 => "3.0",
       Version::V31 => "3.1",
       Version::V40 => "4.0",
@@ -591,9 +574,6 @@ impl std::str::FromStr for Version {
   fn from_str(s: &str) -> Result<Self, Self::Err> {
     match s {
       "2.0" => Ok(Version::V20),
-      "2.1" => Ok(Version::V21),
-      "2.2" => Ok(Version::V22),
-      "2.3" => Ok(Version::V23),
       "3.0" => Ok(Version::V30),
       "3.1" => Ok(Version::V31),
       "4.0" => Ok(Version::V40),
@@ -626,12 +606,9 @@ impl TryFrom<u64> for Version {
   fn try_from(val: u64) -> Result<Version, Self::Error> {
     match val >> 60 {
       0 => Ok(Version::V20),
-      1 => Ok(Version::V21),
-      2 => Ok(Version::V22),
-      3 => Ok(Version::V23),
-      4 => Ok(Version::V30),
-      5 => Ok(Version::V31),
-      6 => Ok(Version::V40),
+      1 => Ok(Version::V30),
+      2 => Ok(Version::V31),
+      3 => Ok(Version::V40),
       _ => Err(Err::UnknownVersion),
     }
   }
@@ -1735,9 +1712,6 @@ mod tests {
     fn test_from_str_pass() {
       let tests = vec!(
         ("2.0", Version::V20),
-        ("2.1", Version::V21),
-        ("2.2", Version::V22),
-        ("2.3", Version::V23),
         ("3.0", Version::V30),
         ("3.1", Version::V31),
         ("4.0", Version::V40),
@@ -1752,9 +1726,6 @@ mod tests {
     fn test_to_string() {
       let tests = vec!(
         (Version::V20, "2.0"),
-        (Version::V21, "2.1"),
-        (Version::V22, "2.2"),
-        (Version::V23, "2.3"),
         (Version::V30, "3.0"),
         (Version::V31, "3.1"),
         (Version::V40, "4.0"),
@@ -1774,7 +1745,7 @@ mod tests {
 
     #[test]
     fn test_try_from_u64_pass() {
-      for t in 0..7 {
+      for t in 0..4 {
         Version::try_from(t << 60).expect(&t.to_string());
       }
     }

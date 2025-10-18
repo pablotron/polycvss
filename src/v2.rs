@@ -70,12 +70,7 @@ use serde::{self,Deserialize,Serialize};
 use super::{Err, Score, Version, encode::{EncodedVal, EncodedMetric}};
 
 // TODO:
-// - non-v2.3 vectors (e.g. Vector::new_with_version)
-//   ref: https://www.first.org/cvss/v2/history#Appendix-D-CVSS-2-0-Base-Score-Equation
-//   (maybe add coefs for v2.5-v2.9?)
-// - other idea: remove all non-v2.0 versions, because they appear to be
-//   drafts on the history page linked above (check coefs and eqs to be
-//   sure)
+// - add v2::severity
 
 /// Round value to nearest 10th of a decimal.
 ///
@@ -2820,8 +2815,8 @@ impl std::str::FromStr for Vector {
       return Err(Err::MissingMandatoryMetrics);
     }
 
-    // return encoded vector (assume v2.3)
-    Ok(Vector(u64::from(Version::V23) | val))
+    // add version and return encoded vector
+    Ok(Vector(u64::from(Version::V20) | val))
   }
 }
 
@@ -4130,7 +4125,7 @@ mod tests {
     #[test]
     fn test_into_version() {
       let tests = vec!(
-        ("AV:N/AC:L/Au:N/C:N/I:N/A:C", Version::V23),
+        ("AV:N/AC:L/Au:N/C:N/I:N/A:C", Version::V20),
       );
 
       for (s, exp) in tests {
