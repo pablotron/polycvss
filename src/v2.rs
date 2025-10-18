@@ -2639,7 +2639,7 @@ impl Iterator for VectorIterator {
 /// # }
 /// ```
 ///
-/// Iterate over [`Metric`s][Metric] in a [`Vector`]:
+//! Iterate over vector metrics:
 ///
 /// ```
 /// # use polycvss::{Err, v2::Vector};
