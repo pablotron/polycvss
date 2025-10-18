@@ -2596,7 +2596,7 @@ impl Iterator for VectorIterator {
 ///
 /// Notes:
 ///
-/// - Represented internally as a `u64`.  See "Internal Representation" below.
+/// - Represented internally as a [`u64`].  See "Internal Representation" below.
 /// - When iterating the metrics in a [`Vector`] or converting a
 ///   [`Vector`] to a string, the metrics are sorted in the order
 ///   specified in Table 11 of [Section 2.4 of the CVSS v2.0
@@ -2719,7 +2719,7 @@ impl Iterator for VectorIterator {
 /// # }
 /// ```
 ///
-/// Verify that a vector is the same size as a `u64`:
+/// Verify that a vector is the same size as a [`u64`]:
 ///
 /// ```
 /// # use polycvss::v2::Vector;
