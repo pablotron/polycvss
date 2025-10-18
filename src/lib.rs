@@ -245,6 +245,9 @@
 
 #![deny(missing_docs)]
 #![deny(unsafe_code)]
+// nightly-only:
+// #![feature(rustdoc_missing_doc_code_examples)]
+// #![deny(rustdoc::missing_doc_code_examples)]
 
 // TODO:
 // - README.md: intro: s/rust library to (.*)/$1 in Rust/
