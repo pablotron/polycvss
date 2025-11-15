@@ -1,4 +1,4 @@
-//! Print macro vectors for a [CVSS v4][] vector strings.
+//! Print macro vectors for [CVSS v4][] vector strings.
 //!
 //! # Usage
 //!
