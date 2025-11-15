@@ -22,6 +22,9 @@ name = "cvss-score"
 [[example]]
 name = "versions"
 
+[[example]]
+name = "severities"
+
 # ref: https://gist.github.com/SmallEndian/05e11181b687e0aba1cfe23475b4dc04
 # note: this does not work, but this seems to:
 #
