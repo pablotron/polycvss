@@ -3,7 +3,7 @@
 //! # Usage
 //!
 //! ```sh
-//! cvss-score [VECTOR]
+//! cargo run --example cvss-score [VECTOR]
 //! ```
 //!
 //! # Examples
@@ -11,20 +11,20 @@
 //! Score CVSS v2 vector string:
 //!
 //! ```sh
-//! $ cvss-score "AV:A/AC:H/Au:N/C:C/I:C/A:C"
+//! $ cargo run -q --example cvss-score "AV:A/AC:H/Au:N/C:C/I:C/A:C"
 //! 6.8 MEDIUM
 //! ```
 //! Score CVSS v3 vector string:
 //!
 //! ```sh
-//! cvss-score "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+//! $ cargo run -q --example cvss-score "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 //! 9.8 CRITICAL
 //! ```
 //!
 //! Score CVSS v4 vector string:
 //!
 //! ```sh
-//! cvss-score "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC:H/SI:H/SA:H"
+//! $ cargo run -q --example cvss-score "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC:H/SI:H/SA:H"
 //! 5.2 MEDIUM
 //! ```
 //! 

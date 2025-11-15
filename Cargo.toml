@@ -16,6 +16,9 @@ categories = ["security", "parser-implementations"]
 [dependencies]
 serde = { version = "1.0", features = ["derive"], optional = true }
 
+[[example]]
+name = "cvss-score"
+
 # ref: https://gist.github.com/SmallEndian/05e11181b687e0aba1cfe23475b4dc04
 # note: this does not work, but this seems to:
 #
