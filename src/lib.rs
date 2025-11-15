@@ -1566,6 +1566,23 @@ impl std::ops::Sub for Score {
 ///
 /// # Examples
 ///
+/// Calculate vector severity:
+///
+/// ```
+/// # use polycvss::{Err, Severity, Vector};
+/// # fn main() -> Result<(), Err> {
+/// // parse vector string
+/// let vec: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
+///
+/// // get severity
+/// let severity = Severity::from(vec);
+///
+/// // check result
+/// assert_eq!(severity, Severity::Critical);
+/// # Ok(())
+/// # }
+/// ```
+///
 /// Create [`Severity`] from [`Score`]:
 ///
 /// ```
@@ -1639,6 +1656,12 @@ impl From<Score> for Severity {
       70..90 => Severity::High,
       _ => Severity::Critical,
     }
+  }
+}
+
+impl From<Vector> for Severity {
+  fn from(vec: Vector) -> Severity {
+    Severity::from(Score::from(vec))
   }
 }
 
@@ -3210,7 +3233,7 @@ mod tests {
   }
 
   mod severity {
-    use super::super::{Err, Score, Severity};
+    use super::super::{Err, Score, Severity, Vector};
 
     #[test]
     fn test_from_str_fail() {
@@ -3269,6 +3292,20 @@ mod tests {
 
       for (score, exp) in tests {
         assert_eq!(Severity::from(score), exp, "{score}");
+      }
+    }
+
+    #[test]
+    fn test_from_vector() {
+      let tests = vec!(
+        ("AV:A/AC:H/Au:N/C:C/I:C/A:C", Severity::Medium),
+        ("CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", Severity::Critical),
+        ("CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:H/VI:L/VA:L/SC:H/SI:H/SA:H", Severity::High),
+      );
+
+      for (s, exp) in tests {
+        let vec: Vector = s.parse().unwrap();
+        assert_eq!(Severity::from(vec), exp, "{exp}");
       }
     }
 
