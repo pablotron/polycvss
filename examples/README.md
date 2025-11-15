@@ -10,8 +10,11 @@
 - `versions.rs`: Print version of several vector strings.
 - `v2-scores.rs`: Print base, temporal, and environmental scores for a
   [CVSS v2][] vector string.
+- `v4-macrovectors.rs`: Print macro vectors for [CVSS v4][] vector strings.
 
 [polycvss]: https://github.com/pablotron/polycvss
   "polycvss Rust library"
 [cvss v2]: https://www.first.org/cvss/v2/guide
   "CVSS v2.0 Documentation"
+[cvss v4]: https://www.first.org/cvss/v4-0/specification-document
+  "CVSS v4.0 Specification"
