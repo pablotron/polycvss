@@ -29,7 +29,7 @@ name = "severities"
 name = "v2-scores"
 
 [[example]]
-name = "v4-macrovectors"
+name = "v4-macrovector"
 
 [[example]]
 name = "versions"

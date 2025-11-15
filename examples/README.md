@@ -8,9 +8,9 @@
   name, and metric group.
 - `severities.rs`: Print severity of several vector strings.
 - `versions.rs`: Print version of several vector strings.
-- `v2-scores.rs`: Print base, temporal, and environmental scores for a
+- `v2-scores.rs`: Print base, temporal, and environmental scores for
   [CVSS v2][] vector string.
-- `v4-macrovectors.rs`: Print macro vectors for [CVSS v4][] vector strings.
+- `v4-macrovector.rs`: Print macro vector for [CVSS v4][] vector strings.
 
 [polycvss]: https://github.com/pablotron/polycvss
   "polycvss Rust library"
