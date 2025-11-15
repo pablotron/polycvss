@@ -32,6 +32,9 @@ name = "v2-scores"
 name = "v4-macrovector"
 
 [[example]]
+name = "v4-nomenclature"
+
+[[example]]
 name = "versions"
 
 # ref: https://gist.github.com/SmallEndian/05e11181b687e0aba1cfe23475b4dc04
