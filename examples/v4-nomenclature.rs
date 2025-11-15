@@ -1,4 +1,4 @@
-//! Print nomenclature for [CVSS v4][] vector strings.
+//! Print nomenclature for [CVSS v4][cvss-v4] vector strings.
 //!
 //! # Usage
 //!
@@ -6,8 +6,8 @@
 //! cargo run --example v4-nomenclatures
 //! ```
 //!
-/// [cvss v4]: https://www.first.org/cvss/v4-0/specification-document
-///   "CVSS v4.0 Specification"
+//! [cvss-v4]: https://www.first.org/cvss/v4-0/specification-document
+//!   "CVSS v4.0 Specification"
 
 use polycvss::{Err, v4::{Nomenclature, Vector}};
 

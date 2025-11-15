@@ -1,4 +1,4 @@
-//! Print base, temporal, and environmental scores for a [CVSS v2][]
+//! Print base, temporal, and environmental scores for a [CVSS v2][cvss-v2]
 //! vector string.
 //!
 //! # Usage
@@ -7,7 +7,7 @@
 //! cargo run --example v2-scores
 //! ```
 //!
-//! [cvss v2]: https://www.first.org/cvss/v2/guide
+//! [cvss-v2]: https://www.first.org/cvss/v2/guide
 //!   "CVSS v2.0 Documentation"
 
 use polycvss::{Err, v2::{Scores, Vector}};

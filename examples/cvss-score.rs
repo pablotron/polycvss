@@ -27,7 +27,7 @@
 //! $ cargo run -q --example cvss-score "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC:H/SI:H/SA:H"
 //! 5.2 MEDIUM
 //! ```
-//! 
+//!
 //! [cvss]: https://first.org/cvss/
 //!   "Common Vulnerability Scoring System (CVSS)"
 

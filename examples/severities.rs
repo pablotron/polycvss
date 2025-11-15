@@ -5,7 +5,7 @@
 //! ```sh
 //! cargo run --example severities
 //! ```
-//! 
+//!
 //! [cvss]: https://first.org/cvss/
 //!   "Common Vulnerability Scoring System (CVSS)"
 

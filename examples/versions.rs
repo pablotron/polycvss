@@ -5,6 +5,10 @@
 //! ```sh
 //! cargo run --example versions
 //! ```
+//!
+//! [cvss]: https://first.org/cvss/
+//!   "Common Vulnerability Scoring System (CVSS)"
+
 use polycvss::{Err, Version, Vector};
 
 fn main() -> Result<(), Err> {

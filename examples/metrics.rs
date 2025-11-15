@@ -6,7 +6,7 @@
 //! ```sh
 //! cargo run --example metrics
 //! ```
-//! 
+//!
 //! [cvss]: https://first.org/cvss/
 //!   "Common Vulnerability Scoring System (CVSS)"
 
