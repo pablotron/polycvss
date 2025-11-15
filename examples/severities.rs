@@ -9,7 +9,7 @@
 //! [cvss]: https://first.org/cvss/
 //!   "Common Vulnerability Scoring System (CVSS)"
 
-use polycvss::{Err, Score, Severity, Vector};
+use polycvss::{Err, Severity, Vector};
 
 fn main() -> Result<(), Err> {
   // vector strings
@@ -22,7 +22,7 @@ fn main() -> Result<(), Err> {
 
   for s in strs {
     let vec: Vector = s.parse()?; // parse vector string
-    let severity = Severity::from(Score::from(vec)); // get severity
+    let severity = Severity::from(vec); // get severity
     println!("{severity} {s}"); // print severity and vector string
   }
 
