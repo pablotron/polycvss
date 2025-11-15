@@ -171,7 +171,7 @@ $ cargo install polycvss
 ## Build
 
 Run `cargo build` to create a debug build of the example tool in
-`target/debug`:
+`target/debug/`:
 
 ```sh
 $ cargo build
@@ -180,8 +180,8 @@ $ target/debug/cvss-score "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 9.8 CRITICAL
 ```
 
-Run `cargo build --release` to create a release build of the example
-tool in `target/release`:
+Run `cargo build --release` to create a release build of the example tool in
+`target/release/`:
 
 ```sh
 $ cargo build --release
