@@ -1,9 +1,9 @@
-//! Print macro vectors for [CVSS v4][cvss-v4] vector strings.
+//! Print macro vector for several [CVSS v4][cvss-v4] vector strings.
 //!
 //! # Usage
 //!
 //! ```sh
-//! cargo run --example v4-macrovectors
+//! cargo run --example v4-macrovector
 //! ```
 //!
 //! [cvss-v4]: https://www.first.org/cvss/v4-0/specification-document

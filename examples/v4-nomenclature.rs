@@ -3,7 +3,7 @@
 //! # Usage
 //!
 //! ```sh
-//! cargo run --example v4-nomenclatures
+//! cargo run --example v4-nomenclature
 //! ```
 //!
 //! [cvss-v4]: https://www.first.org/cvss/v4-0/specification-document

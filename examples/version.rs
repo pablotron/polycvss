@@ -3,7 +3,7 @@
 //! # Usage
 //!
 //! ```sh
-//! cargo run --example versions
+//! cargo run --example version
 //! ```
 //!
 //! [cvss]: https://first.org/cvss/

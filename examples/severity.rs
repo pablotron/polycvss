@@ -1,9 +1,9 @@
-//! Parse [CVSS][] vector strings and print their severities.
+//! Print severity of several [CVSS][] vector strings.
 //!
 //! # Usage
 //!
 //! ```sh
-//! cargo run --example severities
+//! cargo run --example severity
 //! ```
 //!
 //! [cvss]: https://first.org/cvss/
