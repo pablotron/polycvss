@@ -2,6 +2,7 @@
 
 [polycvss][] examples:
 
+- `base-score.rs`: Print score and base score for several vectors.
 - `cvss-score.rs`: Parse command line argument as vector, then print the
   score and severity.
 - `errors.rs`: Show various errors.

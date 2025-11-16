@@ -17,6 +17,9 @@ categories = ["security", "parser-implementations"]
 serde = { version = "1.0", features = ["derive"], optional = true }
 
 [[example]]
+name = "base-score"
+
+[[example]]
 name = "cvss-score"
 
 [[example]]
@@ -33,6 +36,9 @@ name = "sort-by-score"
 
 [[example]]
 name = "v2-scores"
+
+[[example]]
+name = "v3-scores"
 
 [[example]]
 name = "v4-macrovector"
