@@ -150,6 +150,8 @@ let v = v4::Vector::from(v);
 assert_eq!(v4::Nomenclature::from(v), v4::Nomenclature::CvssB);
 ```
 
+See the [`examples/`][examples] directory for more examples.
+
 ## Install
 
 [polycvss package page on crates.io][crates-io-polycvss]
@@ -316,3 +318,5 @@ The generated test cases can be found in [`src/v3.rs`][src-v2-rs],
   "polycvss on crates.io"
 [serde]: https://serde.rs/
   "Rust serializing and deserializing framework."
+[examples]: examples/
+  "polycvss examples/ directory"
