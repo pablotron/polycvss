@@ -29,6 +29,9 @@ name = "metrics"
 name = "severity"
 
 [[example]]
+name = "sort-by-score"
+
+[[example]]
 name = "v2-scores"
 
 [[example]]

@@ -8,6 +8,7 @@
 - `metrics.rs`: Iterate over vector metrics and print the metric, metric
   name, and metric group.
 - `severity.rs`: Print severity of several vector strings.
+- `sort-by-score.rs`: Sort vector strings by score.
 - `version.rs`: Print version of several vector strings.
 - `v2-scores.rs`: Print base, temporal, and environmental scores for
   [CVSS v2][] vector string.
