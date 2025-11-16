@@ -1,9 +1,10 @@
 # Examples
 
-[polycvss][] examples.
+[polycvss][] examples:
 
 - `cvss-score.rs`: Parse command line argument as vector, then print the
   score and severity.
+- `errors.rs`: Show various errors.
 - `metrics.rs`: Iterate over vector metrics and print the metric, metric
   name, and metric group.
 - `severity.rs`: Print severity of several vector strings.
@@ -12,6 +13,13 @@
   [CVSS v2][] vector string.
 - `v4-macrovector.rs`: Print [macro vector][] for [CVSS v4][] vector strings.
 - `v4-nomenclature.rs`: Print [nomenclature][] for [CVSS v4][] vector strings.
+
+Each example can be run with `cargo run --example NAME`, like this:
+
+```sh
+# run "metrics" example
+$ cargo run --example metrics
+```
 
 [polycvss]: https://github.com/pablotron/polycvss
   "polycvss Rust library"
