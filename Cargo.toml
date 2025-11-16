@@ -20,10 +20,13 @@ serde = { version = "1.0", features = ["derive"], optional = true }
 name = "cvss-score"
 
 [[example]]
+name = "errors"
+
+[[example]]
 name = "metrics"
 
 [[example]]
-name = "severities"
+name = "severity"
 
 [[example]]
 name = "v2-scores"
@@ -35,7 +38,7 @@ name = "v4-macrovector"
 name = "v4-nomenclature"
 
 [[example]]
-name = "versions"
+name = "version"
 
 # ref: https://gist.github.com/SmallEndian/05e11181b687e0aba1cfe23475b4dc04
 # note: this does not work, but this seems to:
