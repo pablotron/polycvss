@@ -12,6 +12,8 @@
 - `version.rs`: Print version of several vector strings.
 - `v2-scores.rs`: Print base, temporal, and environmental scores for
   [CVSS v2][] vector string.
+- `v3-scores.rs`: Print base, temporal, and environmental scores for
+  [CVSS v3][] vector string.
 - `v4-macrovector.rs`: Print [macro vector][] for [CVSS v4][] vector strings.
 - `v4-nomenclature.rs`: Print [nomenclature][] for [CVSS v4][] vector strings.
 
@@ -26,6 +28,8 @@ $ cargo run --example metrics
   "polycvss Rust library"
 [cvss v2]: https://www.first.org/cvss/v2/guide
   "CVSS v2.0 Documentation"
+[cvss v3]: https://www.first.org/cvss/v3-1/specification-document
+  "CVSS v3.1 Specification"
 [cvss v4]: https://www.first.org/cvss/v4-0/specification-document
   "CVSS v4.0 Specification"
 [nomenclature]: https://www.first.org/cvss/v4-0/specification-document#Nomenclature
