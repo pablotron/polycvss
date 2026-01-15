@@ -25,7 +25,7 @@ use polycvss::{Err, Vector, Score};
 fn main() -> Result<(), Err> {
   // vector strings
   let strs = vec!(
-	  "AV:N/AC:L/Au:N/C:C/I:C/A:C/E:F/RL:OF/RC:C/CDP:H/TD:H/CR:M/IR:M/AR:L",
+    "AV:N/AC:L/Au:N/C:C/I:C/A:C/E:F/RL:OF/RC:C/CDP:H/TD:H/CR:M/IR:M/AR:L",
     "CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H/E:H/RL:W/AR:L/MAC:H/MA:L",
     "CVSS:4.0/AV:N/AC:L/AT:P/PR:H/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N",
   );
