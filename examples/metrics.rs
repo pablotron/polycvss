@@ -13,8 +13,8 @@
 use polycvss::{Err, Group, Name, Vector};
 
 fn main() -> Result<(), Err> {
-	// vector string
-	let s = "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC:H/SI:H/SA:H/CR:H/IR:H/E:A/S:N";
+  // vector string
+  let s = "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC:H/SI:H/SA:H/CR:H/IR:H/E:A/S:N";
 
   // parse vector string
   let vector: Vector = s.parse()?;
