@@ -13,8 +13,8 @@
 use polycvss::{Err, v3::{Scores, Vector}};
 
 fn main() -> Result<(), Err> {
-	// CVSS v3 vector string
-	let s = "CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H/E:H/RL:W/AR:L/MAC:H/MA:L";
+  // CVSS v3 vector string
+  let s = "CVSS:3.1/AV:P/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H/E:H/RL:W/AR:L/MAC:H/MA:L";
 
   let vector: Vector = s.parse()?; // parse string
   let scores = Scores::from(vector); // get scores
