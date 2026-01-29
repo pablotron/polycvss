@@ -270,7 +270,7 @@ mod encode;
 /// ```
 /// # use polycvss::{Err, Vector};
 /// # fn main() {
-/// // try to parse invalid vector string, then the check result
+/// // try to parse an invalid vector string, then check the result
 /// assert_eq!("asdf".parse::<Vector>(), Err(Err::Len));
 /// # }
 /// ```
@@ -318,7 +318,7 @@ pub enum Err {
   /// ```
   /// # use polycvss::{Err, v4::Vector};
   /// # fn main() {
-  /// // parse invalid string as vector, then check result
+  /// // parse invalid string as vector, check result
   /// assert_eq!("CVSS:4.0/AV:N/AV:N".parse::<Vector>(), Err(Err::DuplicateName));
   /// # }
   /// ```
@@ -376,7 +376,7 @@ pub enum Err {
   /// ```
   /// # use polycvss::{Err, Severity};
   /// # fn main() {
-  /// // vector string missing mandatory metric
+  /// // string containing unknown severity name
   /// let s = "asdf";
   ///
   /// // parse string, check result
@@ -394,7 +394,7 @@ pub enum Err {
   /// ```
   /// # use polycvss::{Err, v4::MacroVector};
   /// # fn main() {
-  /// // parse unknown CVSS version, check result
+  /// // parse invalid CVSS v4 macro vector, check result
   /// assert_eq!(MacroVector::try_from(123456), Err(Err::InvalidMacroVector));
   /// # }
   /// ```
