@@ -32,7 +32,7 @@
 //! let names: Vec<Name> = v.into_iter().map(Name::from).collect();
 //!
 //! // check result
-//! assert_eq!(names, vec!(
+//! assert_eq!(names, vec![
 //!   Name::AttackVector,
 //!   Name::AttackComplexity,
 //!   Name::PrivilegesRequired,
@@ -41,7 +41,7 @@
 //!   Name::Confidentiality,
 //!   Name::Integrity,
 //!   Name::Availability,
-//! ));
+//! ]);
 //! # Ok(())
 //! # }
 //! ```
@@ -3530,7 +3530,7 @@ const DECODES: [Decode; 22] = [
 /// }
 ///
 /// // check result
-/// assert_eq!(metrics, vec!(
+/// assert_eq!(metrics, vec![
 ///   Metric::AttackVector(AttackVector::Network),
 ///   Metric::AttackComplexity(AttackComplexity::Low),
 ///   Metric::PrivilegesRequired(PrivilegesRequired::None),
@@ -3539,7 +3539,7 @@ const DECODES: [Decode; 22] = [
 ///   Metric::Confidentiality(Impact::High),
 ///   Metric::Integrity(Impact::High),
 ///   Metric::Availability(Impact::High),
-/// ));
+/// ]);
 /// # Ok(())
 /// # }
 /// ```
@@ -4477,12 +4477,12 @@ mod tests {
   #[test]
   fn test_roundup() {
     use super::{super::Version, roundup};
-    let tests = vec!(
+    let tests = vec![
       (4.000_002, Version::V30, 4.1),
       (4.000_002, Version::V31, 4.0),
       (4.02, Version::V31, 4.1),
       (4.00, Version::V31, 4.0),
-    );
+    ];
 
     for (val, version, exp) in tests {
       assert_eq!(roundup(val, version), exp, "{val}, {version}");
@@ -4494,11 +4494,11 @@ mod tests {
 
     #[test]
     fn test_from_name() {
-      let tests = vec!(
+      let tests = vec![
         (Name::AttackVector, Group::Base),
         (Name::ExploitCodeMaturity, Group::Temporal),
         (Name::ConfidentialityRequirement, Group::Environmental),
-      );
+      ];
 
       for (name, group) in tests {
         assert_eq!(Group::from(name), group, "{group}");
@@ -4507,11 +4507,11 @@ mod tests {
 
     #[test]
     fn test_to_string() {
-      let tests = vec!(
+      let tests = vec![
         (Group::Base, "Base"),
         (Group::Temporal, "Temporal"),
         (Group::Environmental, "Environmental"),
-      );
+      ];
 
       for (group, exp) in tests {
         assert_eq!(group.to_string(), exp, "{exp}");
@@ -4524,10 +4524,10 @@ mod tests {
 
     #[test]
     fn test_from_str_fail() {
-      let tests = vec!(
+      let tests = vec![
         ("empty", "", Err::UnknownName),
         ("asdf", "asdf", Err::UnknownName),
-      );
+      ];
 
       for (test_name, s, exp) in tests {
         assert_eq!(s.parse::<Name>(), Err(exp), "{test_name}");
@@ -4536,7 +4536,7 @@ mod tests {
 
     #[test]
     fn test_from_str_pass() {
-      let tests = vec!(
+      let tests = vec![
         ("AV", Name::AttackVector),
         ("AC", Name::AttackComplexity),
         ("PR", Name::PrivilegesRequired),
@@ -4559,7 +4559,7 @@ mod tests {
         ("MC", Name::ModifiedConfidentiality),
         ("MI", Name::ModifiedIntegrity),
         ("MA", Name::ModifiedAvailability),
-      );
+      ];
 
       for (s, exp) in tests {
         assert_eq!(s.parse::<Name>(), Ok(exp), "{s}");
@@ -4568,7 +4568,7 @@ mod tests {
 
     #[test]
     fn test_to_string() {
-      let tests = vec!(
+      let tests = vec![
         (Name::AttackVector, "AV"),
         (Name::AttackComplexity, "AC"),
         (Name::PrivilegesRequired, "PR"),
@@ -4591,7 +4591,7 @@ mod tests {
         (Name::ModifiedConfidentiality, "MC"),
         (Name::ModifiedIntegrity, "MI"),
         (Name::ModifiedAvailability, "MA"),
-      );
+      ];
 
       for (name, exp) in tests {
         assert_eq!(name.to_string(), exp, "{exp}");
@@ -4623,7 +4623,7 @@ mod tests {
 
     #[test]
     fn test_from_str_fail() {
-      let tests = vec!("foo", "bar", "baz");
+      let tests = vec!["foo", "bar", "baz"];
       for t in tests {
         assert_eq!(t.parse::<Metric>(), Err(Err::UnknownMetric), "{t}");
       }
@@ -4631,7 +4631,7 @@ mod tests {
 
     #[test]
     fn test_from_str_pass() {
-      let tests = vec!(
+      let tests = vec![
         ("AV:N", Metric::AttackVector(AttackVector::Network)),
         ("AV:A", Metric::AttackVector(AttackVector::Adjacent)),
         ("AV:L", Metric::AttackVector(AttackVector::Local)),
@@ -4731,7 +4731,7 @@ mod tests {
         ("MA:L", Metric::ModifiedAvailability(ModifiedImpact::Low)),
         ("MA:H", Metric::ModifiedAvailability(ModifiedImpact::High)),
         ("MA:X", Metric::ModifiedAvailability(ModifiedImpact::NotDefined)),
-      );
+      ];
 
       for (s, exp) in tests {
         assert_eq!(s.parse::<Metric>(), Ok(exp), "{s}");
@@ -4740,7 +4740,7 @@ mod tests {
 
     #[test]
     fn test_to_string() {
-      let tests = vec!(
+      let tests = vec![
         (Metric::AttackVector(AttackVector::Network), "AV:N"),
         (Metric::AttackVector(AttackVector::Adjacent), "AV:A"),
         (Metric::AttackVector(AttackVector::Local), "AV:L"),
@@ -4840,7 +4840,7 @@ mod tests {
         (Metric::ModifiedAvailability(ModifiedImpact::Low), "MA:L"),
         (Metric::ModifiedAvailability(ModifiedImpact::High), "MA:H"),
         (Metric::ModifiedAvailability(ModifiedImpact::NotDefined), "MA:X"),
-      );
+      ];
 
       for (m, exp) in tests {
         assert_eq!(m.to_string(), exp, "{exp}");
@@ -4880,7 +4880,7 @@ mod tests {
 
     #[test]
     fn test_from_str_fail() {
-      let tests = vec!(
+      let tests = vec![
         ("", Err::Len),
         ("CVSS:3.2/", Err::Prefix),
         ("CVSS:3.1/AV:N/AV:N", Err::DuplicateName),
@@ -4895,7 +4895,7 @@ mod tests {
         ("CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/I:H/A:H", Err::MissingMandatoryMetrics),
         ("CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/A:H", Err::MissingMandatoryMetrics),
         ("CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H", Err::MissingMandatoryMetrics),
-      );
+      ];
 
       for (s, exp) in tests {
         assert_eq!(s.parse::<Vector>(), Err(exp), "{s}");
@@ -4904,7 +4904,7 @@ mod tests {
 
     #[test]
     fn test_from_str_pass() {
-      let tests = vec!(
+      let tests = vec![
         // AV
         "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", // AV:N
         "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", // AV:A
@@ -5026,7 +5026,7 @@ mod tests {
         "CVSS:3.1/MA:N/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H", // MA:N
         "CVSS:3.1/MA:L/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H", // MA:L
         "CVSS:3.1/MA:H/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H", // MA:H
-      );
+      ];
 
       for t in tests {
         t.parse::<Vector>().expect(t);
@@ -5035,7 +5035,7 @@ mod tests {
 
     #[test]
     fn test_to_string() {
-      let tests = vec!(
+      let tests = vec![
         (
           "default", // name
           "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", // val
@@ -5256,7 +5256,7 @@ mod tests {
           "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:H/E:H/RL:X/RC:C/CR:M/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:R/MS:U/MC:H/MI:L/MA:X", // val
           "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:H/E:H/RC:C/CR:M/AR:M/MAV:P/MPR:L/MUI:R/MS:U/MC:H/MI:L", // exp
         ),
-      );
+      ];
 
       for (name, val, exp) in tests {
         assert_eq!(val.parse::<Vector>().expect(name).to_string(), exp, "{name}");
@@ -5265,7 +5265,7 @@ mod tests {
 
     #[test]
     fn test_get() {
-      let tests = vec!((
+      let tests = vec![(
         "base metric", // test name
         "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", // val
         Name::AttackVector, // metric name
@@ -5280,7 +5280,7 @@ mod tests {
         "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:H/E:H/RL:X/RC:C/CR:M/IR:X/AR:M/MAV:P/MAC:X/MPR:L/MUI:R/MS:U/MC:H/MI:L/MA:X", // val
         Name::Integrity, // metric name
         Metric::Integrity(Impact::Low), // exp
-      ));
+      )];
 
       for (test_name, s, metric_name, exp) in tests {
         let v: Vector = s.parse().unwrap();
@@ -5290,11 +5290,11 @@ mod tests {
 
     #[test]
     fn test_iter_explicit() {
-      let tests = vec!(
+      let tests = vec![
         (
           "basic",
           "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          vec!(
+          vec![
             Metric::AttackVector(AttackVector::Network),
             Metric::AttackComplexity(AttackComplexity::Low),
             Metric::PrivilegesRequired(PrivilegesRequired::None),
@@ -5303,13 +5303,13 @@ mod tests {
             Metric::Confidentiality(Impact::High),
             Metric::Integrity(Impact::High),
             Metric::Availability(Impact::High),
-          )
+          ]
         ),
 
         (
           "everything",
           "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:N/A:N/E:U/RL:O/RC:U/CR:L/IR:L/AR:L/MAV:P/MAC:H/MPR:H/MUI:R/MS:C/MC:H/MI:H/MA:H",
-          vec!(
+          vec![
             Metric::AttackVector(AttackVector::Physical),
             Metric::AttackComplexity(AttackComplexity::High),
             Metric::PrivilegesRequired(PrivilegesRequired::High),
@@ -5332,9 +5332,9 @@ mod tests {
             Metric::ModifiedConfidentiality(ModifiedImpact::High),
             Metric::ModifiedIntegrity(ModifiedImpact::High),
             Metric::ModifiedAvailability(ModifiedImpact::High),
-          )
+          ]
         ),
-      );
+      ];
 
       for (name, s, exp) in tests {
         let got: Vec<Metric> = s.parse::<Vector>().unwrap().into_iter().collect();
@@ -5344,11 +5344,11 @@ mod tests {
 
     #[test]
     fn test_iter_implicit() {
-      let tests = vec!(
+      let tests = vec![
         (
           "basic",
           "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          vec!(
+          vec![
             Metric::AttackVector(AttackVector::Network),
             Metric::AttackComplexity(AttackComplexity::Low),
             Metric::PrivilegesRequired(PrivilegesRequired::None),
@@ -5357,13 +5357,13 @@ mod tests {
             Metric::Confidentiality(Impact::High),
             Metric::Integrity(Impact::High),
             Metric::Availability(Impact::High),
-          )
+          ]
         ),
 
         (
           "everything",
           "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:N/A:N/E:U/RL:O/RC:U/CR:L/IR:L/AR:L/MAV:P/MAC:H/MPR:H/MUI:R/MS:C/MC:H/MI:H/MA:H",
-          vec!(
+          vec![
             Metric::AttackVector(AttackVector::Physical),
             Metric::AttackComplexity(AttackComplexity::High),
             Metric::PrivilegesRequired(PrivilegesRequired::High),
@@ -5386,9 +5386,9 @@ mod tests {
             Metric::ModifiedConfidentiality(ModifiedImpact::High),
             Metric::ModifiedIntegrity(ModifiedImpact::High),
             Metric::ModifiedAvailability(ModifiedImpact::High),
-          )
+          ]
         ),
-      );
+      ];
 
       for (name, s, exp) in tests {
         let mut got: Vec<Metric> = Vec::new();
@@ -5401,10 +5401,10 @@ mod tests {
 
     #[test]
     fn test_into_version() {
-      let tests = vec!(
+      let tests = vec![
         ("CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H", Version::V30),
         ("CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H", Version::V31),
-      );
+      ];
 
       for (s, exp) in tests {
         let got = Version::from(s.parse::<Vector>().unwrap());
@@ -5415,7 +5415,7 @@ mod tests {
     #[test]
     fn test_into_score() {
       // actual CVEs from tests/data
-      let tests = vec!(
+      let tests = vec![
         (
           "CVE-2024-12345", // name
           "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H", // val
@@ -5427,7 +5427,7 @@ mod tests {
           "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H", // val
           Score(88), // exp
         ),
-      );
+      ];
 
       for (name, s, exp) in tests {
         let got = Score::from(s.parse::<Vector>().unwrap());
@@ -5446,7 +5446,7 @@ mod tests {
 
     #[test]
     fn test_into_score() {
-      let tests = vec!((
+      let tests = vec![(
         Scores { base: Score(43), temporal: None, environmental: None },
         Score(43), // exp score
       ), (
@@ -5455,7 +5455,7 @@ mod tests {
       ), (
         Scores { base: Score(43), temporal: Some(Score(32)), environmental: Some(Score(15)) },
         Score(15), // exp score
-      ));
+      )];
 
       for (scores, exp) in tests {
         assert_eq!(Score::from(scores), exp);
@@ -5465,7 +5465,7 @@ mod tests {
     #[test]
     fn test_examples() {
       // actual CVEs from tests/data
-      let tests = vec!(
+      let tests = vec![
         (
           "CVE-2024-12345", // name
           "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:N/I:N/A:H", // val
@@ -5485,7 +5485,7 @@ mod tests {
             environmental: None,
           }, // exp
         ),
-      );
+      ];
 
       for (name, vs, exp) in tests {
         let vec: Vector = vs.parse().unwrap(); // parse vector
@@ -5503,7 +5503,7 @@ mod tests {
       //    JSON
       // 2. run `ruby v3-gen-tests.rb < v3-tests.json` to convert the
       //    test cases from JSON to Rust.
-      let tests = vec!((
+      let tests = vec![(
         "4131e324 8.5", // test name
         "CVSS:3.0/AV:A/AC:H/PR:H/UI:N/S:C/C:L/I:N/A:H/E:F/RL:W/RC:C/CR:X/IR:L/AR:M/MAV:A/MAC:L/MPR:N/MUI:N/MS:X/MC:X/MI:H/MA:H", // vec
         Scores {
@@ -13503,7 +13503,7 @@ mod tests {
           temporal: Some(Score::from(1.8)), // exp temporal score
           environmental: Some(Score::from(1.9)), // exp environmental score
         }, // exp
-      ));
+      )];
 
       for (name, s, exp) in tests {
         let vec: Vector = s.parse().unwrap(); // parse vector

@@ -13,12 +13,12 @@ use polycvss::{Err, v4::{Nomenclature, Vector}};
 
 fn main() -> Result<(), Err> {
   // vector strings
-  let strs = vec!(
+  let strs = vec![
     "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H",
     "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/MAV:N",
     "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A",
     "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A/MAV:N",
-  );
+  ];
 
   for s in strs {
     let vec: Vector = s.parse()?; // parse vector string
