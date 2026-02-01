@@ -2669,7 +2669,7 @@ mod tests {
   }
 
   mod vector {
-    use super::super::{Err, Name, Metric, Score, Vector, v2, v3, v4};
+    use super::super::{Err, Metric, Name, Score, Vector, v2, v3, v4};
 
     #[test]
     fn test_from_str_fail() {
