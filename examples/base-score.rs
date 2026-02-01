@@ -20,7 +20,7 @@
 //! [cvss-v4]: https://www.first.org/cvss/v4-0/specification-document
 //!   "CVSS v4.0 Specification"
 
-use polycvss::{Err, Vector, Score};
+use polycvss::{Err, Score, Vector};
 
 fn main() -> Result<(), Err> {
   // vector strings

@@ -256,10 +256,10 @@
 // - features to convert to/from json/xml representations
 //   see <https://www.first.org/cvss/data-representations>
 
+mod encode;
 pub mod v2;
 pub mod v3;
 pub mod v4;
-mod encode;
 
 /// Parse or conversion error.
 ///
@@ -283,7 +283,7 @@ mod encode;
 /// assert_eq!(Err::DuplicateName.to_string(), "Vector string contains a duplicate metric name");
 /// # }
 /// ```
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Err {
   /// String is too short to contain a CVSS vector string.
   ///
@@ -453,7 +453,7 @@ const VAL_MASK: u64 = 0x0fff_ffff_ffff_ffff;
 ///
 /// [cvss]: https://www.first.org/cvss/
 ///   "Common Vulnerability Scoring System (CVSS)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum MajorVersion {
   /// [CVSS v2][doc-v2]
   ///
@@ -544,7 +544,7 @@ impl From<Vector> for MajorVersion {
 ///
 /// [cvss]: https://www.first.org/cvss/
 ///   "Common Vulnerability Scoring System (CVSS)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq,PartialOrd,Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
 #[repr(u8)]
 pub enum Version {
   /// CVSS v2.0
@@ -650,7 +650,7 @@ impl TryFrom<u64> for Version {
 /// assert_eq!(group.to_string(), "Base");
 /// # }
 /// ```
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Group {
   /// [CVSS v2][doc-v2] metric group.  See [`v2::Group`].
   ///
@@ -731,7 +731,7 @@ impl std::fmt::Display for Group {
 /// assert_eq!(name, Name::V4(v4::Name::AttackVector));
 /// # }
 /// ```
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Name {
   /// [CVSS v2][doc-v2] metric name.  See [`v2::Name`].
   ///
@@ -851,7 +851,7 @@ impl std::fmt::Display for Name {
 /// assert_eq!(name, Name::V4(v4::Name::AttackVector));
 /// # }
 /// ```
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Metric {
   /// [CVSS v2][doc-v2] metric.  See [`v2::Metric`].
   ///
@@ -1204,7 +1204,7 @@ impl Iterator for VectorIterator {
 ///   "Bit field (Wikipedia)"
 /// [vector-string]: https://www.first.org/cvss/v4-0/specification-document#Vector-String
 ///   "CVSS v4.0 Specification, Section 7: Vector String"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Vector(u64);
 
 impl Vector {
@@ -1502,7 +1502,7 @@ impl std::fmt::Display for Vector {
 ///
 /// [cvss]: https://www.first.org/cvss/
 ///   "Common Vulnerability Scoring System (CVSS)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq,PartialOrd,Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Score(u8);
 
 impl From<f32> for Score {
@@ -1628,7 +1628,7 @@ impl std::ops::Sub for Score {
 ///   "CVSS v3.1 Specification, Section 5: Qualitative Severity Rating Scale"
 /// [doc-v4]: https://www.first.org/cvss/v4-0/specification-document#Qualitative-Severity-Rating-Scale
 ///   "CVSS v4.0 Specification, Section 6: Qualitative Severity Rating Scale"
-#[derive(Clone,Copy,Debug,PartialEq,Eq,PartialOrd,Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
 #[repr(u8)]
 pub enum Severity {
   /// None.  Score = `0.0`.
@@ -1723,11 +1723,7 @@ mod tests {
 
     #[test]
     fn test_from_str_fail() {
-      let tests = vec![
-        "",
-        "asdf",
-        "1.0",
-      ];
+      let tests = vec!["", "asdf", "1.0"];
 
       for t in tests {
         assert_eq!(t.parse::<Version>(), Err(Err::UnknownVersion), "{t}");

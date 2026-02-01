@@ -9,7 +9,7 @@
 //! [cvss]: https://first.org/cvss/
 //!   "Common Vulnerability Scoring System (CVSS)"
 
-use polycvss::{Err, Version, Vector};
+use polycvss::{Err, Vector, Version};
 
 fn main() -> Result<(), Err> {
   // vector strings

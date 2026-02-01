@@ -6,7 +6,7 @@
 //! cargo run --example sort-by-score
 //! ```
 
-use polycvss::{Vector, Score};
+use polycvss::{Score, Vector};
 
 fn main() {
   // vector strings

@@ -71,9 +71,9 @@
 //! [vector-string]: https://www.first.org/cvss/v4-0/specification-document#Vector-String
 //!   "CVSS v4.0 Specification, Section 7: Vector String"
 
-#[cfg(feature="serde")]
-use serde::{self,Deserialize,Serialize};
-use super::{Err, Score, VAL_MASK, Version, encode::{EncodedVal, EncodedMetric}};
+use super::{Err, Score, VAL_MASK, Version, encode::{EncodedMetric, EncodedVal}};
+#[cfg(feature = "serde")]
+use serde::{self, Deserialize, Serialize};
 
 /// [`Metric::AttackVector`] (`AV`) values.
 ///
@@ -138,9 +138,9 @@ use super::{Err, Score, VAL_MASK, Version, encode::{EncodedVal, EncodedMetric}};
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Attack-Vector-AV
 ///   "CVSS v4.0 Specification, Section 2.1.1: Attack Vector (AV)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 #[repr(u8)]
 pub enum AttackVector {
   /// Network (`N`)
@@ -260,9 +260,9 @@ impl AttackVector {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
 ///   "CVSS v4.0 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum ModifiedAttackVector {
   /// Not Defined (`X`)
   NotDefined,
@@ -358,9 +358,9 @@ pub enum ModifiedAttackVector {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Attack-Complexity-AC
 ///   "CVSS v4.0 Specification, Section 2.1.2: Attack Complexity (AC)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 #[repr(u8)]
 pub enum AttackComplexity {
   /// Low (`L`)
@@ -458,9 +458,9 @@ impl AttackComplexity {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
 ///   "CVSS v4.0 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum ModifiedAttackComplexity {
   /// Not Defined (`X`)
   NotDefined,
@@ -539,9 +539,9 @@ pub enum ModifiedAttackComplexity {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Attack-Requirements-AT
 ///   "CVSS v4.0 Specification, Section 2.1.3: Attack Requirements (AT)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 #[repr(u8)]
 pub enum AttackRequirements {
   /// None (`N`)
@@ -635,9 +635,9 @@ impl AttackRequirements {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
 ///   "CVSS v4.0 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum ModifiedAttackRequirements {
   /// Not Defined (`X`)
   NotDefined,
@@ -717,9 +717,9 @@ pub enum ModifiedAttackRequirements {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Privileges-Required-PR
 ///   "CVSS v4.0 Specification, Section 2.1.4: Privileges Required (PR)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum PrivilegesRequired {
   /// None (`N`)
   ///
@@ -810,9 +810,9 @@ impl PrivilegesRequired {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
 ///   "CVSS v4.0 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum ModifiedPrivilegesRequired {
   /// Not Defined (`X`)
   NotDefined,
@@ -895,9 +895,9 @@ pub enum ModifiedPrivilegesRequired {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#User-Interaction-UI
 ///   "CVSS v4.0 Specification, Section 2.1.5: User Interaction (UI)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 #[repr(u8)]
 pub enum UserInteraction {
   /// None (`N`)
@@ -1009,9 +1009,9 @@ impl UserInteraction {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
 ///   "CVSS v4.0 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum ModifiedUserInteraction {
   /// Not Defined (`X`)
   NotDefined,
@@ -1095,9 +1095,9 @@ pub enum ModifiedUserInteraction {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Impact-Metrics
 ///   "CVSS v4.0 Specification, Section 2.2: Impact Metrics"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 #[repr(u8)]
 pub enum Impact {
   /// High (`H`)
@@ -1206,9 +1206,9 @@ impl Impact {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
 ///   "CVSS v4.0 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum ModifiedImpact {
   /// Not Defined (`X`)
   NotDefined,
@@ -1235,7 +1235,7 @@ pub enum ModifiedImpact {
 ///
 /// Used for `si` and `sa` fields of [`Values`] struct.  Excludes `Not
 /// Defined (X)` and includes `Safety (S)`.
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 enum SubsequentImpact {
   /// None (`N`)
@@ -1324,9 +1324,9 @@ impl SubsequentImpact {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Modified-Base-Metrics
 ///   "CVSS v4.0 Specification, Section 4.2: Modified Base Metrics"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum ModifiedSubsequentImpact {
   /// Not Defined (`X`)
   NotDefined,
@@ -1438,9 +1438,9 @@ pub enum ModifiedSubsequentImpact {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Exploit-Maturity-E
 ///   "CVSS v4.0 Specification, Section 3.1: Exploit Maturity (E)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 #[repr(u8)]
 pub enum ExploitMaturity {
   /// Not Defined (`X`)
@@ -1578,9 +1578,9 @@ impl ExploitMaturity {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Confidentiality-Integrity-and-Availability-Requirements-CR-IR-AR
 ///   "CVSS v4.0 Specification, Section 4.1: Confidentiality, Integrity, and Availability Requirements (CR, IR, AR)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 #[repr(u8)]
 pub enum Requirement {
   /// Not Defined (`X`)
@@ -1706,9 +1706,9 @@ impl Requirement {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Safety-S
 ///   "CVSS v4.0 Specification, Section 5.1: Safety (S)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum Safety {
   /// Not Defined (`X`)
   ///
@@ -1788,9 +1788,9 @@ pub enum Safety {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Automatable-AU
 ///   "CVSS v4.0 Specification, Section 5.2: Automatable (AU)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum Automatable {
   /// Not Defined (`X`)
   ///
@@ -1869,9 +1869,9 @@ pub enum Automatable {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Recovery-R
 ///   "CVSS v4.0 Specification, Section 5.4: Recovery (R)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum Recovery {
   /// Not Defined (`X`)
   ///
@@ -1953,9 +1953,9 @@ pub enum Recovery {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Value-Density-V
 ///   "CVSS v4.0 Specification, Section 5.5: Value Density (V)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum ValueDensity {
   /// Not Defined (`X`)
   ///
@@ -2043,9 +2043,9 @@ pub enum ValueDensity {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Vulnerability-Response-Effort-RE
 ///   "CVSS v4.0 Specification, Section 5.6: Vulnerability Response Effort (RE)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum VulnerabilityResponseEffort {
   /// Not Defined (`X`)
   ///
@@ -2164,9 +2164,9 @@ pub enum VulnerabilityResponseEffort {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Provider-Urgency-U
 ///   "CVSS v4.0 Specification, Section 5.3: Provider Urgency (U)"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(rename_all="UPPERCASE"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "UPPERCASE"))]
 pub enum ProviderUrgency {
   /// Not Defined (`X`)
   ///
@@ -2219,8 +2219,8 @@ pub enum ProviderUrgency {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Metrics
 ///   "CVSS v4.0 Specification, Section 1.1: Metrics"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Group {
   /// Base metrics.
   ///
@@ -2476,8 +2476,8 @@ impl std::fmt::Display for Group {
 /// assert_eq!(true, Name::AttackVector.is_mandatory());
 /// # }
 /// ```
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Name {
   /// Attack Vector (`AV`) metric name.  See [`Metric::AttackVector`].
   AttackVector,
@@ -2792,7 +2792,7 @@ impl std::fmt::Display for Name {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Nomenclature
 ///   "CVSS v4.0 Specification, Section 1.3: Nomenclature"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Nomenclature {
   /// Base metrics.
   ///
@@ -2945,8 +2945,8 @@ impl From<Vector> for Nomenclature {
 /// assert_eq!(name, Name::AttackVector);
 /// # }
 /// ```
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Metric {
   /// Attack Vector (`AV`) metric.
   ///
@@ -6013,9 +6013,9 @@ impl Iterator for VectorIterator {
 ///   "Internal Representation section"
 /// [examples]: #examples
 ///   "Examples section"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
-#[cfg_attr(feature="serde", derive(Deserialize,Serialize))]
-#[cfg_attr(feature="serde", serde(try_from="String"))]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", serde(try_from = "String"))]
 pub struct Vector(u64);
 
 impl Vector {
@@ -6065,7 +6065,7 @@ impl Vector {
       },
       Decode::Arith(_, denom, range) => {
         let vals = &METRICS[range.0..range.1];
-        let ofs = ((((self.0 & VAL_MASK) >> 28) as usize)/(denom)) % vals.len();
+        let ofs = ((((self.0 & VAL_MASK) >> 28) as usize) / (denom)) % vals.len();
         vals[ofs]
       },
     }
@@ -6179,7 +6179,7 @@ impl std::fmt::Display for Vector {
         },
         Decode::Arith(name, denom, range) => {
           let vals = &METRICS[range.0..range.1];
-          let ofs = ((((self.0 & VAL_MASK) >> 28) as usize)/(denom)) % vals.len();
+          let ofs = ((((self.0 & VAL_MASK) >> 28) as usize) / (denom)) % vals.len();
           (name.is_mandatory() || ofs > 0, vals[ofs])
         },
       };
@@ -6196,7 +6196,7 @@ impl std::fmt::Display for Vector {
 /// [CVSS v4][doc] effective vector metric values.
 ///
 /// Used to calculate scores in [`MacroVector`].
-#[derive(Clone,Debug,PartialEq,Eq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 struct Values {
   /// Effective Attack Vector (`AV`) metric value.
   av: AttackVector,
@@ -6471,7 +6471,7 @@ const EQS: [EqClass; 6] = [
 ///   "CVSS v4.0 Specification"
 /// [scoring]: https://www.first.org/cvss/v4-0/specification-document#CVSS-v4-0-Scoring
 ///   "CVSS v4.0 Specification, Section 8: CVSS v4.0 Scoring"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct MacroVector(u16);
 
 impl MacroVector {
@@ -6942,7 +6942,7 @@ impl std::fmt::Display for MacroVector {
 ///   "CVSS v4.0 Specification"
 /// [scoring]: https://www.first.org/cvss/v4-0/specification-document#CVSS-v4-0-Scoring
 ///   "CVSS v4.0 Specification, Section 8: CVSS v4.0 Scoring"
-#[derive(Clone,Copy,Debug,PartialEq,Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Scores {
   /// Macrovector
   pub macrovector: MacroVector,
@@ -8907,7 +8907,7 @@ mod tests {
             Metric::ValueDensity(ValueDensity::Concentrated),
             Metric::VulnerabilityResponseEffort(VulnerabilityResponseEffort::High),
             Metric::ProviderUrgency(ProviderUrgency::Clear),
-          ]
+          ],
         ),
       ];
 
