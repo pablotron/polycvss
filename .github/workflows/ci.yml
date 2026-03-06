@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
 
-env: 
+env:
   CARGO_TERM_COLOR: always
 
 jobs:
@@ -23,9 +23,12 @@ jobs:
       - run: cargo build --verbose
       - run: cargo test --verbose
   coverage:
-    name: coverage
+    name: "coverage"
     runs-on: "ubuntu-latest"
+    container:
+      image: "xd009642/tarpaulin:develop-nightly"
+      options: --security-opt seccomp=unconfined
     steps:
       - uses: actions/checkout@v4
-      - run: cargo install cargo-tarpaulin
-      - run: cargo tarpaulin --fail-under 95
+      - run: |
+          cargo +nightly tarpaulin --verbose --all-features --timeout 120 --fail-under 95
