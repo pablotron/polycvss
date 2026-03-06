@@ -1,4 +1,4 @@
-name: Cargo Build & Test
+name: CI
 
 on:
   push:
@@ -9,7 +9,7 @@ env:
 
 jobs:
   build_and_test:
-    name: Rust project - latest
+    name: "build and test"
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
@@ -22,3 +22,10 @@ jobs:
       - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
       - run: cargo build --verbose
       - run: cargo test --verbose
+  coverage:
+    name: coverage
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo install cargo-tarpaulin
+      - run: cargo tarpaulin --fail-under 95
