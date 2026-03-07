@@ -34,4 +34,5 @@ jobs:
           cargo +nightly tarpaulin --verbose -o stdout -o html --all-features --timeout 120 --fail-under 95
       - uses: actions/upload-artifact@v4
         with:
+          name: tarpaulin-report.html
           path: tarpaulin-report.html
