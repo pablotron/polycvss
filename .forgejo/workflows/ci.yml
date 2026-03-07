@@ -1,0 +1,39 @@
+# ci.yml ported to forgejo
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build_and_test:
+    name: "build and test"
+    runs-on: "docker"
+    strategy:
+      matrix:
+        toolchain:
+          - stable
+          - beta
+          - nightly
+    steps:
+      - uses: actions/checkout@v4
+      - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
+      - run: cargo build --verbose
+      - run: cargo test --verbose
+  coverage:
+    name: "coverage"
+    runs-on: "docker"
+    container:
+      image: "github.com/xd009642/tarpaulin:develop-nightly"
+      options: --security-opt seccomp=unconfined
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          cargo +nightly tarpaulin -o stdout -o html --all-features --timeout 120 --fail-under 95
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tarpaulin-report.zip
+          path: tarpaulin-report.html
