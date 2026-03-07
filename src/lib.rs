@@ -13,9 +13,11 @@
 //! Parse a vector string:
 //!
 //! ```
-//! # use polycvss::{Err, Vector};
-//! # fn main() -> Result<(), Err> {
-//! let vec: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::Vector;
+//!
+//! let s = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"; // vector string
+//! let vec: Vector = s.parse()?; // parse vector string
 //! # Ok(())
 //! # }
 //! ```
@@ -23,10 +25,12 @@
 //! Calculate vector score:
 //!
 //! ```
-//! # use polycvss::{Err, Score, Vector};
-//! # fn main() -> Result<(), Err> {
-//! # let vec: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse()?;
-//! let score = Score::from(vec);
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::{Score, Vector};
+//!
+//! let s = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"; // vector string
+//! let vec: Vector = s.parse()?; // parse vector string
+//! let score = Score::from(vec); // get vector score
 //! # Ok(())
 //! # }
 //! ```
@@ -34,10 +38,11 @@
 //! Get score severity:
 //!
 //! ```
-//! # use polycvss::{Err, Score, Severity};
-//! # fn main() -> Result<(), Err> {
-//! # let score = Score::from(9.3);
-//! let severity = Severity::from(score);
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::{Score, Severity};
+//!
+//! let score = Score::from(9.3); // create score
+//! let severity = Severity::from(score); // get severity
 //! # Ok(())
 //! # }
 //! ```
@@ -46,8 +51,9 @@
 //! Representation"][ir]):
 //!
 //! ```
-//! # use polycvss::{Score, Severity, Vector};
 //! # fn main() {
+//! use polycvss::{Score, Severity, Vector};
+//!
 //! assert_eq!(size_of::<Score>(), size_of::<u8>()); // 1 byte
 //! assert_eq!(size_of::<Severity>(), size_of::<u8>()); // 1 byte
 //! assert_eq!(size_of::<Vector>(), size_of::<u64>()); // 8 bytes
@@ -59,8 +65,9 @@
 //! Parse vector strings:
 //!
 //! ```
-//! # use polycvss::{Err, Vector};
-//! # fn main() -> Result<(), Err> {
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::Vector;
+//!
 //! // parse CVSS v2 vector string
 //! let v2: Vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C".parse()?;
 //!
@@ -76,16 +83,13 @@
 //! Get vector score:
 //!
 //! ```
-//! # use polycvss::{Err, Score, Vector};
-//! # fn main() -> Result<(), Err> {
-//! // parse CVSS v4 vector string
-//! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::{Score, Vector};
 //!
-//! // get score
-//! let score = Score::from(v);
-//!
-//! // check result
-//! assert_eq!(score, Score::from(10.0));
+//! let s = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H"; // v4 vector string
+//! let v: Vector = s.parse()?; // parse vector string
+//! let score = Score::from(v); // get score
+//! assert_eq!(score, Score::from(10.0)); // check result
 //! # Ok(())
 //! # }
 //! ```
@@ -93,8 +97,9 @@
 //! Compare scores:
 //!
 //! ```
-//! # use polycvss::{Err, Score};
-//! # fn main() -> Result<(), Err> {
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::Score;
+//!
 //! let a = Score::from(1.2); // first score
 //! let b = Score::from(3.5); // second score
 //! assert!(a < b); // compare scores
@@ -105,10 +110,11 @@
 //! Get score severity:
 //!
 //! ```
-//! # use polycvss::{Err, Score, Severity};
-//! # fn main() -> Result<(), Err> {
-//! let severity = Severity::from(Score::from(2.3));
-//! assert_eq!(severity, Severity::Low);
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::{Score, Severity};
+//!
+//! let severity = Severity::from(Score::from(2.3)); // get severity
+//! assert_eq!(severity, Severity::Low); // check result
 //! # Ok(())
 //! # }
 //! ```
@@ -116,8 +122,9 @@
 //! Compare severities:
 //!
 //! ```
-//! # use polycvss::{Err, Severity};
-//! # fn main() -> Result<(), Err> {
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::Severity;
+//!
 //! let a = Severity::Low; // first severity
 //! let b = Severity::High; // second severity
 //! assert!(a < b); // compare severities
@@ -128,8 +135,9 @@
 //! Get metric from vector by name:
 //!
 //! ```
-//! # use polycvss::{Err, Vector, Metric, Name, v4};
-//! # fn main() -> Result<(), Err> {
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::{Metric, Name, Vector, v4};
+//!
 //! // parse CVSS v4 vector string
 //! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
 //!
@@ -145,8 +153,9 @@
 //! Iterate over vector metrics:
 //!
 //! ```
-//! # use polycvss::{Err, Vector};
-//! # fn main() -> Result<(), Err> {
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::Vector;
+//!
 //! // parse CVSS v4 vector string
 //! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
 //!
@@ -162,8 +171,9 @@
 //! access version-specific behavior:
 //!
 //! ```
-//! # use polycvss::{Err, Vector, v4};
-//! # fn main() -> Result<(), Err> {
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::{Vector, v4};
+//!
 //! // parse CVSS v4 vector string
 //! let v: Vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H".parse()?;
 //!
@@ -181,8 +191,9 @@
 //! metric order is **not** preserved:
 //!
 //! ```
-//! # use polycvss::{Err, Vector};
-//! # fn main() -> Result<(), Err> {
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::Vector;
+//!
 //! // parse v3 vector string with PR metric BEFORE AV and AC metric
 //! let v: Vector = "CVSS:3.1/PR:N/AV:N/AC:L/UI:N/S:U/C:H/I:H/A:H".parse()?;
 //!
@@ -196,8 +207,9 @@
 //! converting a [`Vector`] to a string:
 //!
 //! ```
-//! # use polycvss::{Err, Vector};
-//! # fn main() -> Result<(), Err> {
+//! # fn main() -> Result<(), polycvss::Err> {
+//! use polycvss::Vector;
+//!
 //! // parse v3 vector string with MAV:X metric
 //! let v: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/MAV:X".parse()?;
 //!
