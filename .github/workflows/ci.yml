@@ -31,4 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          cargo +nightly tarpaulin --verbose --all-features --timeout 120 --fail-under 95
+          cargo +nightly tarpaulin --verbose -o stdout -o html --all-features --timeout 120 --fail-under 95
+      - uses: actions/upload-artifact@v4
+        with:
+          path: tarpaulin-report.html
