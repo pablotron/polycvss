@@ -265,6 +265,8 @@
 // - README.md: intro: s/rust library to (.*)/$1 in Rust/
 // - README.md: intro: document explicit v3.0 vs v3.1 scoring
 // - README.md: badges
+// - README.md: tarpaulin instrs
+// - README.md: ref to ci/cd?
 // - gh actions: fuzzing and mutation?
 // - features to convert to/from json/xml representations
 //   see <https://www.first.org/cvss/data-representations>
