@@ -41,12 +41,11 @@ jobs:
     runs-on: "rust-x86-64"
 
     container:
-      image: "xd009642/tarpaulin:develop-nightly"
+      # image: "xd009642/tarpaulin:develop-nightly"
       options: --security-opt seccomp=unconfined
     steps:
-      - run: apt-get install nodejs
       - uses: actions/checkout@v4
-      # - run: cargo install cargo-tarpaulin
+      - run: cargo install cargo-tarpaulin
       - run: cargo +nightly tarpaulin -o stdout -o html --timeout 120 --fail-under 95
       - uses: actions/upload-artifact@v4
         with:
