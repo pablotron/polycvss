@@ -8,8 +8,8 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build_and_test:
-    name: "build, lint, and test"
+  build_lint_test:
+    name: "build, lint, test (${{ matrix.toolchain }})"
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
