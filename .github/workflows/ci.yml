@@ -38,7 +38,7 @@ jobs:
   coverage:
     name: "coverage"
     runs-on: "ubuntu-latest"
-    if: "env.RUNNER_ARCH == 'amd64'"
+    if: "${{ env.RUNNER_ARCH == 'amd64' }}"
     container:
       image: "xd009642/tarpaulin:develop-nightly"
       options: --security-opt seccomp=unconfined
