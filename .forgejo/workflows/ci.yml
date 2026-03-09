@@ -40,16 +40,14 @@ jobs:
     name: "coverage"
     runs-on: "rust-x86-64"
 
-    # FIXME: this works for forgejo but breaks for github actions
-    # if: "${{ env.RUNNER_ARCH == 'amd64' }}"
-    # container:
-    #   image: "xd009642/tarpaulin:develop-nightly"
-    #   options: --security-opt seccomp=unconfined
+    container:
+      image: "xd009642/tarpaulin:develop-nightly"
+      options: --security-opt seccomp=unconfined
     steps:
+      - run: apt-get install nodejs
       - uses: actions/checkout@v4
-      - run: |
-          cargo install cargo-tarpaulin
-          cargo +nightly tarpaulin -o stdout -o html --timeout 120 --fail-under 95
+      # - run: cargo install cargo-tarpaulin
+      - run: cargo +nightly tarpaulin -o stdout -o html --timeout 120 --fail-under 95
       - uses: actions/upload-artifact@v4
         with:
           name: tarpaulin-report.zip
