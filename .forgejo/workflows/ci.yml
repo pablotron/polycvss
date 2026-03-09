@@ -42,12 +42,13 @@ jobs:
 
     # FIXME: this works for forgejo but breaks for github actions
     # if: "${{ env.RUNNER_ARCH == 'amd64' }}"
-    container:
-      image: "xd009642/tarpaulin:develop-nightly"
-      options: --security-opt seccomp=unconfined
+    # container:
+    #   image: "xd009642/tarpaulin:develop-nightly"
+    #   options: --security-opt seccomp=unconfined
     steps:
       - uses: actions/checkout@v4
       - run: |
+          cargo install cargo-tarpaulin
           cargo +nightly tarpaulin -o stdout -o html --timeout 120 --fail-under 95
       - uses: actions/upload-artifact@v4
         with:
