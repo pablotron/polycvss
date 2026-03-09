@@ -38,7 +38,9 @@ jobs:
   coverage:
     name: "coverage"
     runs-on: "ubuntu-latest"
-    if: "${{ env.RUNNER_ARCH == 'amd64' }}"
+
+    # FIXME: this works for forgejo but breaks for github actions
+    # if: "${{ env.RUNNER_ARCH == 'amd64' }}"
     container:
       image: "xd009642/tarpaulin:develop-nightly"
       options: --security-opt seccomp=unconfined
