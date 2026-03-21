@@ -1,4 +1,3 @@
-# copied from .github/workflows/ci.yml w/ forgejo-specific mods
 name: CI
 
 on:
@@ -19,7 +18,7 @@ jobs:
           - beta
           - nightly
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/cache@v5
         with:
           path: |
@@ -35,28 +34,42 @@ jobs:
       - run: cargo clippy
       - run: cargo test --verbose
 
+  # generate documentation
   doc:
     name: "doc"
     runs-on: "rust"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: cargo doc
 
-  # check code coverage (disabled in forgejo)
+  # check code coverage (disabled in forgejo for now)
   # - fails if coverage drops below 95%
-  # - generates "tarpaulin-report.zip" artifact
-  # coverage:
-  #   name: "coverage"
-  #   runs-on: "rust-x86-64"
+  # - generates artifact "tarpaulin-report.zip"
+  coverage:
+    name: "coverage"
+    runs-on: "rust"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-  #   container:
-  #     image: "xd009642/tarpaulin:develop-nightly"
-  #     options: --security-opt seccomp=unconfined
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - run: cargo install cargo-tarpaulin
-  #     - run: cargo +nightly tarpaulin -o stdout -o html --timeout 120 --fail-under 95
-  #     - uses: actions/upload-artifact@v4
-  #       with:
-  #         name: tarpaulin-report.zip
-  #         path: tarpaulin-report.html
+      # install tarpaulin
+      # note: comically slow w/o cache; try binstall instead
+      - run: cargo install cargo-tarpaulin
+
+      # run tarpaulin with llvm engine (required for forgejo)
+      - run: cargo +nightly tarpaulin --engine llvm -o html --timeout 120 --fail-under 95
+
+      # upload report
+      # note: forgejo does not support actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v3
+        with:
+          name: tarpaulin-report
+          path: tarpaulin-report.html
