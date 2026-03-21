@@ -60,9 +60,9 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      # install tarpaulin
-      # note: comically slow w/o cache; try binstall instead
-      - run: cargo install cargo-tarpaulin
+      # install cargo-binstall, then use it to install tarpaulin
+      - run: cargo install cargo-binstall
+      - run: cargo binstall cargo-binstall
 
       # run tarpaulin with llvm engine (required for forgejo)
       - run: cargo +nightly tarpaulin --engine llvm -o html --timeout 120 --fail-under 95
