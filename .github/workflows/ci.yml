@@ -18,7 +18,16 @@ jobs:
           - beta
           - nightly
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+      - uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
       - run: rustup component add clippy
       - run: cargo build --verbose
@@ -29,7 +38,7 @@ jobs:
     name: "doc"
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: cargo doc
 
   # check code coverage
@@ -39,16 +48,14 @@ jobs:
     name: "coverage"
     runs-on: "ubuntu-latest"
 
-    # FIXME: this works for forgejo but breaks for github actions
-    # if: "${{ env.RUNNER_ARCH == 'amd64' }}"
     container:
       image: "xd009642/tarpaulin:develop-nightly"
       options: --security-opt seccomp=unconfined
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: |
           cargo +nightly tarpaulin -o stdout -o html --timeout 120 --fail-under 95
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: tarpaulin-report.zip
           path: tarpaulin-report.html
