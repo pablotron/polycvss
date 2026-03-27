@@ -1,0 +1,21 @@
+FROM docker.io/rust:1-slim
+
+RUN apt-get update && \
+    apt-get install -y libssl-dev pkg-config && \
+    apt-get clean
+
+RUN --mount=type=cache,target=/usr/local/rustup \
+    --mount=type=cache,target=/usr/local/cargo/registry \
+  rustup default stable && \
+  cargo install "cargo-tarpaulin@0.35.*"
+
+# entry point
+#
+# note: you should specify the following parameters via the `with`
+# directive in the step declaration:
+#
+# - engine
+# - output
+# - timeout
+# - fail_under
+ENTRYPOINT ["cargo", "tarpaulin"]

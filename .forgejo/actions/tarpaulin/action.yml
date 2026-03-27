@@ -1,0 +1,27 @@
+inputs:
+  engine:
+    description: 'Engine'
+    default: 'llvm'
+  output:
+    description: 'Output format'
+    default: 'html'
+  timeout:
+    description: 'Timeout (seconds)'
+    default: '120'
+  fail_under:
+    description: 'Fail if coverage is below this percentage'
+    default: '95'
+
+runs:
+  using: "docker"
+  image: "Containerfile"
+  args:
+    - "--engine"
+    - "${{ inputs.engine }}"
+    - "-o"
+    - "${{ inputs.output }}"
+    - "--timeout"
+    - "${{ inputs.timeout }}"
+    - "--fail-under"
+    - "${{ inputs.fail_under }}"
+
