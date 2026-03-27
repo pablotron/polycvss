@@ -52,10 +52,11 @@ jobs:
       image: "xd009642/tarpaulin:develop-nightly"
       options: --security-opt seccomp=unconfined
     steps:
+      - run: echo "DATESTAMP=$(date +%Y%m%d)" >> $GITHUB_ENV
       - uses: actions/checkout@v6
-      - run: |
-          cargo +nightly tarpaulin -o stdout -o html --timeout 120 --fail-under 95
+      - run: cargo +nightly tarpaulin -o stdout -o html --timeout 120 --fail-under 95
+      - run: mv tarpaulin-report.html polycvss-coverage-${{ env.DATESTAMP }}.html
       - uses: actions/upload-artifact@v6
         with:
-          name: tarpaulin-report.zip
-          path: tarpaulin-report.html
+          name: polycvss-coverage-${{ env.DATESTAMP }}.zip
+          path: polycvss-coverage-${{ env.DATESTAMP }}.html
