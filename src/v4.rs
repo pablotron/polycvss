@@ -5332,6 +5332,7 @@ impl std::str::FromStr for Metric {
   }
 }
 
+// FIXME: remove this
 impl TryFrom<String> for Metric {
   type Error = Err;
 
@@ -6155,6 +6156,7 @@ impl std::str::FromStr for Vector {
   }
 }
 
+// FIXME: remove this
 impl TryFrom<String> for Vector {
   type Error = Err;
 
@@ -9379,6 +9381,42 @@ mod tests {
     fn test_try_from_u32_pass() {
       let tests = vec![
         (000000, MacroVector(0), Score(100)),
+        (000201, MacroVector(198), Score(90)),
+        (000211, MacroVector(252), Score(80)),
+        (000001, MacroVector(162), Score(99)),
+        (000010, MacroVector(54), Score(98)),
+        (000011, MacroVector(216), Score(95)),
+        (000020, MacroVector(108), Score(95)),
+        (000021, MacroVector(270), Score(92)),
+        (000100, MacroVector(18), Score(100)),
+        (000101, MacroVector(180), Score(96)),
+        (000110, MacroVector(72), Score(93)),
+        (000111, MacroVector(234), Score(87)),
+        (000221, MacroVector(306), Score(68)),
+        (001021, MacroVector(276), Score(84)),
+        (001220, MacroVector(150), Score(69)),
+        (001221, MacroVector(312), Score(48)),
+        (002011, MacroVector(228), Score(82)),
+        (002021, MacroVector(282), Score(72)),
+        (010000, MacroVector(3), Score(99)),
+        (010001, MacroVector(165), Score(97)),
+        (010010, MacroVector(57), Score(95)),
+        (010011, MacroVector(219), Score(92)),
+        (010020, MacroVector(111), Score(92)),
+        (010021, MacroVector(273), Score(85)),
+        (010100, MacroVector(21), Score(95)),
+        (010101, MacroVector(183), Score(91)),
+        (010121, MacroVector(291), Score(71)),
+        (010201, MacroVector(201), Score(81)),
+        (010211, MacroVector(255), Score(71)),
+        (010220, MacroVector(147), Score(72)),
+        (010221, MacroVector(309), Score(53)),
+        (011120, MacroVector(135), Score(70)),
+        (011211, MacroVector(261), Score(52)),
+        (011220, MacroVector(153), Score(50)),
+        (011221, MacroVector(315), Score(30)),
+        (100221, MacroVector(307), Score(49)),
+        (200211, MacroVector(254), Score(40)),
         (202211, MacroVector(266), Score(9)),
         (202221, MacroVector(320), Score(4)),
         (210000, MacroVector(5), Score(88)),
