@@ -1,0 +1,10 @@
+inputs:
+  glob:
+    description: 'input file glob'
+    default: '**/.md'
+
+runs:
+  using: "docker"
+  image: "ghcr.io/igorshubovych/markdownlint-cli:latest"
+  args:
+    - "${{ inputs.glob }}"
