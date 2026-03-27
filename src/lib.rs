@@ -2268,6 +2268,42 @@ mod tests {
     use super::super::{Name, v2, v3, v4};
 
     #[test]
+    fn test_from_v2_metric() {
+      let tests = vec![(
+        v2::Metric::AccessVector(v2::AccessVector::Network),
+        Name::V2(v2::Name::AccessVector),
+      )];
+
+      for (metric, exp) in tests {
+        assert_eq!(Name::from(metric), exp, "{metric:?}");
+      }
+    }
+
+    #[test]
+    fn test_from_v3_metric() {
+      let tests = vec![(
+        v3::Metric::AttackVector(v3::AttackVector::Network),
+        Name::V3(v3::Name::AttackVector),
+      )];
+
+      for (metric, exp) in tests {
+        assert_eq!(Name::from(metric), exp, "{metric:?}");
+      }
+    }
+
+    #[test]
+    fn test_from_v4_metric() {
+      let tests = vec![(
+        v4::Metric::AttackVector(v4::AttackVector::Network),
+        Name::V4(v4::Name::AttackVector),
+      )];
+
+      for (metric, exp) in tests {
+        assert_eq!(Name::from(metric), exp, "{metric:?}");
+      }
+    }
+
+    #[test]
     fn test_to_string() {
       let tests = vec![
         (Name::V2(v2::Name::AccessVector), "AV"),
