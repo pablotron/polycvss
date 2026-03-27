@@ -3323,6 +3323,18 @@ mod tests {
     }
 
     #[test]
+    fn test_add() {
+      let tests = vec![
+        (Score(10), Score(20), Score(30)),
+        (Score(90), Score(20), Score(100)), // test clamp
+      ];
+
+      for (a, b, exp) in tests {
+        assert_eq!(a + b, exp, "{a} + {b}");
+      }
+    }
+
+    #[test]
     fn test_from_vector() {
       use super::super::Vector;
 
