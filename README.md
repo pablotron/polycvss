@@ -261,7 +261,7 @@ $
 The test suite includes a large number of scored [CVSS][] vector string
 test cases.  The test cases were generated using [cvss-calcs][].
 
-The generated test cases can be found in [`src/v3.rs`][src-v2-rs],
+The generated test cases can be found in [`src/v2.rs`][src-v2-rs],
 [`src/v3.rs`][src-v3-rs], and [`src/v4.rs`][src-v4-rs].
 
 [html]: https://en.wikipedia.org/wiki/HTML
