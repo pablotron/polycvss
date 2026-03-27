@@ -51,22 +51,22 @@ jobs:
     steps:
       - run: echo "DATESTAMP=$(date +%Y%m%d)" >> $FORGEJO_ENV
       - uses: actions/checkout@v5
-
-      - uses: ./.forgejo/actions/tarpaulin
+      - uses: actions/cache@v5
         with:
-          # llvm engine (required for non-x86 and forgejo)
-          engine: "llvm"
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-          # generate html report
-          output: "html"
+      # install cargo-binstall, then use it to install cargo-tarpaulin
+      - run: cargo install cargo-binstall
+      - run: cargo binstall --no-confirm cargo-tarpaulin
 
-          # time out after 120s
-          timeout: "120"
-
-          # fail under 95% coverage
-          fail_under: "95"
-
-      # rename coverage report
+      # run tarpaulin with llvm engine (required for forgejo)
+      - run: cargo +nightly tarpaulin --engine llvm -o html --timeout 120 --fail-under 95
       - run: mv tarpaulin-report.html polycvss-coverage-${{ env.DATESTAMP }}.html
 
       # upload report
@@ -75,3 +75,21 @@ jobs:
         with:
           name: polycvss-coverage-${{ env.DATESTAMP }}
           path: polycvss-coverage-${{ env.DATESTAMP }}.html
+
+# busted_coverage:
+# - uses: ./.forgejo/actions/tarpaulin
+#   with:
+#     # llvm engine (required for non-x86 and forgejo)
+#     engine: "llvm"
+# 
+#     # generate html report
+#     output: "html"
+# 
+#     # time out after 120s
+#     timeout: "120"
+# 
+#     # fail under 95% coverage
+#     fail_under: "95"
+# 
+# # rename coverage report
+# - run: mv tarpaulin-report.html polycvss-coverage-${{ env.DATESTAMP }}.html
