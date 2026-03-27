@@ -7232,6 +7232,24 @@ impl From<Vector> for Scores {
 
 #[cfg(test)]
 mod tests {
+  mod exploitmaturity {
+    use super::super::ExploitMaturity;
+
+    #[test]
+    fn test_ordinal() {
+      let tests = vec![
+        (ExploitMaturity::NotDefined, 1), // remapped by ordinal()
+        (ExploitMaturity::Attacked, 1),
+        (ExploitMaturity::ProofOfConcept, 2),
+        (ExploitMaturity::Unreported, 3),
+      ];
+
+      for (val, exp) in tests {
+        assert_eq!(val.ordinal(), exp, "{val:?}");
+      }
+    }
+  }
+
   mod group {
     use super::super::{Name, Group};
 
