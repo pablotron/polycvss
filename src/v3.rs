@@ -3897,7 +3897,6 @@ impl std::str::FromStr for Vector {
 
     // split into metrics, then encode as u64
     let mut val = 0; // encoded Pot metrics
-    let mut _acc = 0; // encoded non-PoT metrics (unused for cvss v3)
     let mut seen: u32 = 0; // seen keys
     for s in s[9..].split('/') {
       let c = EncodedMetric::from(s.parse::<Metric>()?); // encode
@@ -3910,7 +3909,7 @@ impl std::str::FromStr for Vector {
       seen |= c.bit; // mark name as seen
       match c.val {
         EncodedVal::Shift(v) => val |= v, // encode PoT value
-        EncodedVal::Arith(v) => _acc += v, // encode non-PoT value
+        EncodedVal::Arith(_) => unreachable!(), // non-PoT value (unused in v3)
       }
     }
 
