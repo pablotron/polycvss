@@ -3104,6 +3104,7 @@ impl std::str::FromStr for Metric {
   }
 }
 
+// FIXME: remove this
 impl TryFrom<String> for Metric {
   type Error = Err;
 
@@ -3923,6 +3924,7 @@ impl std::str::FromStr for Vector {
   }
 }
 
+// FIXME: remove this
 impl TryFrom<String> for Vector {
   type Error = Err;
 
