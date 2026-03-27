@@ -2304,6 +2304,39 @@ mod tests {
     }
 
     #[test]
+    fn test_from_v2_name() {
+      let tests = vec![
+        (v2::Name::AccessVector, Name::V2(v2::Name::AccessVector)),
+      ];
+
+      for (name, exp) in tests {
+        assert_eq!(Name::from(name), exp, "{name:?}");
+      }
+    }
+
+    #[test]
+    fn test_from_v3_name() {
+      let tests = vec![
+        (v3::Name::AttackVector, Name::V3(v3::Name::AttackVector)),
+      ];
+
+      for (name, exp) in tests {
+        assert_eq!(Name::from(name), exp, "{name:?}");
+      }
+    }
+
+    #[test]
+    fn test_from_v4_name() {
+      let tests = vec![
+        (v4::Name::AttackVector, Name::V4(v4::Name::AttackVector)),
+      ];
+
+      for (name, exp) in tests {
+        assert_eq!(Name::from(name), exp, "{name:?}");
+      }
+    }
+
+    #[test]
     fn test_to_string() {
       let tests = vec![
         (Name::V2(v2::Name::AccessVector), "AV"),
