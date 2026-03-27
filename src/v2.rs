@@ -2573,7 +2573,7 @@ impl Iterator for VectorIterator {
         Decode::Shift(key, shift, range) => {
           let vals = &METRICS[range.0..range.1];
           let mask = match vals.len() {
-            2 => 0b001,
+            // 2 => 0b001, // unused
             3 | 4 => 0b011,
             5 | 6 => 0b111,
             _ => unreachable!(),
@@ -2801,7 +2801,7 @@ impl Vector {
       Decode::Shift(_, shift, range) => {
         let vals = &METRICS[range.0..range.1];
         let mask = match vals.len() {
-          2 => 0b001,
+          // 2 => 0b001, // unused
           3 | 4 => 0b011,
           5 | 6 => 0b111,
           _ => unreachable!(),
@@ -2909,7 +2909,7 @@ impl std::fmt::Display for Vector {
         Decode::Shift(key, shift, range) => {
           let vals = &METRICS[range.0..range.1];
           let mask = match vals.len() {
-            2 => 0b001,
+            // 2 => 0b001, // unused
             3 | 4 => 0b011,
             5 | 6 => 0b111,
             _ => unreachable!(),
