@@ -8813,6 +8813,66 @@ mod tests {
         "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/MAV:P", // val
         Name::ModifiedAttackVector, // metric name
         Metric::ModifiedAttackVector(ModifiedAttackVector::Physical), // exp
+      ), (
+        "supplemental, safety, not defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // val
+        Name::Safety,
+        Metric::Safety(Safety::NotDefined), // exp
+      ), (
+        "supplemental, safety, defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/S:P", // val
+        Name::Safety,
+        Metric::Safety(Safety::Present), // exp
+      ), (
+        "supplemental, automatable, not defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // val
+        Name::Automatable,
+        Metric::Automatable(Automatable::NotDefined), // exp
+      ), (
+        "supplemental, automatable, defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/AU:N", // val
+        Name::Automatable,
+        Metric::Automatable(Automatable::No), // exp
+      ), (
+        "supplemental, recovery, not defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // val
+        Name::Recovery,
+        Metric::Recovery(Recovery::NotDefined), // exp
+      ), (
+        "supplemental, recovery, defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/R:A", // val
+        Name::Recovery,
+        Metric::Recovery(Recovery::Automatic), // exp
+      ), (
+        "supplemental, valuedensity, not defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // val
+        Name::ValueDensity,
+        Metric::ValueDensity(ValueDensity::NotDefined), // exp
+      ), (
+        "supplemental, valuedensity, defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/V:D", // val
+        Name::ValueDensity,
+        Metric::ValueDensity(ValueDensity::Diffuse), // exp
+      ), (
+        "supplemental, vulnerabilityresponseeffort, not defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // val
+        Name::VulnerabilityResponseEffort,
+        Metric::VulnerabilityResponseEffort(VulnerabilityResponseEffort::NotDefined), // exp
+      ), (
+        "supplemental, vulnerabilityresponseeffort, defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/RE:L", // val
+        Name::VulnerabilityResponseEffort,
+        Metric::VulnerabilityResponseEffort(VulnerabilityResponseEffort::Low), // exp
+      ), (
+        "supplemental, providerurgency, not defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // val
+        Name::ProviderUrgency,
+        Metric::ProviderUrgency(ProviderUrgency::NotDefined), // exp
+      ), (
+        "supplemental, providerurgency, defined", // test name
+        "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/U:Red", // val
+        Name::ProviderUrgency,
+        Metric::ProviderUrgency(ProviderUrgency::Red), // exp
       )];
 
       for (test_name, s, metric_name, exp) in tests {
