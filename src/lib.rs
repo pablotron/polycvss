@@ -442,6 +442,8 @@ pub enum Err {
   UnknownNomenclature,
 }
 
+impl std::error::Error for Err {}
+
 impl std::fmt::Display for Err {
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
     write!(f, "{}", match self {
