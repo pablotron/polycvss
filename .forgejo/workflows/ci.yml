@@ -40,9 +40,7 @@ jobs:
     runs-on: "rust"
     steps:
       - uses: actions/checkout@v5
-      - uses: ./.forgejo/actions/markdownlint
-        with:
-          glob: "**/.md"
+      - run: cargo doc
 
   # lint README
   lint_markdown:
@@ -50,6 +48,9 @@ jobs:
     runs-on: "rust"
     steps:
       - uses: actions/checkout@v5
+      - uses: ./.forgejo/actions/markdownlint
+        with:
+          glob: "**/.md"
 
   # check code coverage (disabled in forgejo for now)
   # - fails if coverage drops below 95%
