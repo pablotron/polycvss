@@ -269,7 +269,7 @@
 // - gh actions: fuzzing and mutation?
 // - features to convert to/from json/xml representations
 //   see <https://www.first.org/cvss/data-representations>
-// - remove pointless TryFrom<String> (src/lib.rs, src/v4.rs, etc)
+// - remove pointless TryFrom<String> (src/{lib,v2,v3,v4}.rs, etc)
 
 mod encode;
 pub mod v2;
