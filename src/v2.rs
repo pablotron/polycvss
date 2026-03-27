@@ -3281,7 +3281,19 @@ impl From<Vector> for Scores {
 
 impl std::fmt::Display for Scores {
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-    write!(f, "{self:?}")
+    write!(f, "({}, ", self.base)?;
+
+    match self.temporal {
+      Some(score) => write!(f, "{score}, ")?,
+      None => write!(f, "N/A, ")?,
+    };
+
+    match self.environmental {
+      Some(score) => write!(f, "{score})")?,
+      None => write!(f, "N/A)")?,
+    };
+
+    Ok(())
   }
 }
 
@@ -4248,6 +4260,24 @@ mod tests {
 
       for (scores, exp) in tests {
         assert_eq!(Score::from(scores), exp);
+      }
+    }
+
+    #[test]
+    fn test_to_string() {
+      let tests = vec![(
+        Scores { base: Score(43), temporal: None, environmental: None },
+        "(4.3, N/A, N/A)",
+      ), (
+        Scores { base: Score(43), temporal: Some(Score(32)), environmental: None },
+        "(4.3, 3.2, N/A)",
+      ), (
+        Scores { base: Score(43), temporal: Some(Score(32)), environmental: Some(Score(15)) },
+        "(4.3, 3.2, 1.5)",
+      )];
+
+      for (scores, exp) in tests {
+        assert_eq!(scores.to_string(), exp, "{scores:?}");
       }
     }
 
