@@ -250,6 +250,11 @@ test result: ok. 369 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fi
 $
 ```
 
+**Note:** The test suite includes a large number of scored [CVSS][]
+vector string test cases.  The test cases were generated using
+[cvss-calcs][] and can be found in [`src/v2.rs`][src-v2-rs],
+[`src/v3.rs`][src-v3-rs], and [`src/v4.rs`][src-v4-rs].
+
 Use `cargo clippy` to run the [linter][]:
 
 ```sh
@@ -258,11 +263,31 @@ $ cargo clippy
 $
 ```
 
-The test suite includes a large number of scored [CVSS][] vector string
-test cases.  The test cases were generated using [cvss-calcs][].
+Install [cargo-tarpaulin][] and use `cargo tarpaulin` to check [code
+coverage][code coverage]:
 
-The generated test cases can be found in [`src/v2.rs`][src-v2-rs],
-[`src/v3.rs`][src-v3-rs], and [`src/v4.rs`][src-v4-rs].
+```sh
+$ cargo tarpaulin --engine llvm --fail-under 95
+...
+2026-03-27T03:03:08.336541Z  INFO cargo_tarpaulin::report: Coverage Results:
+|| Uncovered Lines:
+|| src/bin/cvss-score.rs: 36-37, 39-43, 45-46, 49
+|| src/lib.rs: 616, 781-782, 787-788, 793-794, 799-800, 805-806, 811-812, 891-892, 897-898, 903
+-904, 1369-1370, 1555-1556
+|| src/v2.rs: 2255-2256, 2575, 2803, 2896-2897, 2910, 3281-3282
+|| src/v3.rs: 3110-3111, 3912, 3929-3930, 3941
+|| src/v4.rs: 1494, 1624, 5338-5339, 5704-5709, 6161-6162, 6638-6646, 6652, 6654, 6660, 6671-66
+72, 6674-6675, 6682-6689, 6693, 6695, 6697-6699, 6710, 6715-6717, 6744, 6832, 6907, 7139, 7170,
+ 7172, 7177-7178, 7181, 7184-7185
+|| Tested/Total Lines:
+|| src/bin/cvss-score.rs: 0/10 +0.00%
+|| src/lib.rs: 149/172 -0.28%
+|| src/v2.rs: 439/448 +0.03%
+|| src/v3.rs: 628/634 +0.01%
+|| src/v4.rs: 1061/1117 +0.06%
+||
+95.63% coverage, 2277/2381 lines covered, +0.00% change in coverage
+```
 
 [html]: https://en.wikipedia.org/wiki/HTML
   "HyperText Markup Language"
@@ -320,3 +345,7 @@ The generated test cases can be found in [`src/v2.rs`][src-v2-rs],
   "Rust serializing and deserializing framework."
 [examples]: examples/
   "polycvss examples/ directory"
+[cargo-tarpaulin]: https://crates.io/crates/cargo-tarpaulin
+  "Tarpaulin code coverage reporting tool."
+[code coverage]: https://en.wikipedia.org/wiki/Code_coverage
+  "Code coverage (Wikipedia)"
