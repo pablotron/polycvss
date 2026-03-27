@@ -1363,6 +1363,7 @@ impl std::str::FromStr for Vector {
   }
 }
 
+// FIXME: remove this
 impl TryFrom<String> for Vector {
   type Error = Err;
 
