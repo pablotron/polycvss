@@ -49,6 +49,7 @@ jobs:
     name: "coverage"
     runs-on: "rust"
     steps:
+      - run: echo "DATESTAMP=$(date +%Y%m%d)" >> $FORGEJO_ENV
       - uses: actions/checkout@v5
       - uses: actions/cache@v5
         with:
@@ -66,10 +67,11 @@ jobs:
 
       # run tarpaulin with llvm engine (required for forgejo)
       - run: cargo +nightly tarpaulin --engine llvm -o html --timeout 120 --fail-under 95
+      - run: mv tarpaulin-report.html polycvss-coverage-${{ env.DATESTAMP }}.html
 
       # upload report
       # note: forgejo does not support actions/upload-artifact@v6
       - uses: actions/upload-artifact@v3
         with:
-          name: tarpaulin-report
-          path: tarpaulin-report.html
+          name: polycvss-coverage-${{ env.DATESTAMP }}
+          path: polycvss-coverage-${{ env.DATESTAMP }}.html
