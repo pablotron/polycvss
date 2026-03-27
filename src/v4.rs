@@ -7250,6 +7250,24 @@ mod tests {
     }
   }
 
+  mod requirement {
+    use super::super::Requirement;
+
+    #[test]
+    fn test_ordinal() {
+      let tests = vec![
+        (Requirement::NotDefined, 1), // remapped by ordinal()
+        (Requirement::High, 1),
+        (Requirement::Medium, 2),
+        (Requirement::Low, 3),
+      ];
+
+      for (val, exp) in tests {
+        assert_eq!(val.ordinal(), exp, "{val:?}");
+      }
+    }
+  }
+
   mod group {
     use super::super::{Name, Group};
 
