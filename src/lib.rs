@@ -615,6 +615,7 @@ impl From<Vector> for Version {
 
       // should never happen; it means we have a vector with a
       // corrupt version component
+      // FIXME: change to unreachable!()?
       Err(err) => panic!("{err}"),
     }
   }
