@@ -161,6 +161,7 @@ exiting [Rust][] project:
 
 ```sh
 $ cargo add polycvss
+...
 ```
 
 Run `cargo install polycvss` to install the example `cvss-score` tool:
@@ -202,10 +203,14 @@ $ target/release/cvss-score "CVSS:4.0/AV:L/AC:H/AT:N/PR:N/UI:P/VC:L/VI:L/VA:L/SC
 5.2 MEDIUM
 ```
 
-To build a static binary of the example `cvss-score` tool in a container:
+To build a static binary of the `cvss-score` tool in a container:
 
 ```sh
-$ podman run --rm -it -v .:/src -w /src rust sh -c "rustup target add $(arch)-unknown-linux-musl && cargo build --release --target $(arch)-unknown-linux-musl"
+# build cvss-score static binary
+$ podman run --rm -it -v .:/src -w /src rust sh -c "
+  rustup target add $(arch)-unknown-linux-musl &&
+    cargo build --release --target $(arch)-unknown-linux-musl
+"
 ...
 $ ldd target/$(arch)-unknown-linux-musl/release/cvss-score
         statically linked
@@ -289,8 +294,6 @@ $ cargo tarpaulin --engine llvm --fail-under 95
 95.63% coverage, 2277/2381 lines covered, +0.00% change in coverage
 ```
 
-[html]: https://en.wikipedia.org/wiki/HTML
-  "HyperText Markup Language"
 [rust]: https://rust-lang.org/
   "Rust programming language."
 [cvss]: https://www.first.org/cvss/
@@ -301,22 +304,12 @@ $ cargo tarpaulin --engine llvm --fail-under 95
   "CVSS v3.1 Specification"
 [doc-v4]: https://www.first.org/cvss/v4-0/specification-document
   "Common Vulnerability Scoring System (CVSS) version 4.0 Specification"
-[bit-field]: https://en.wikipedia.org/wiki/Bit_field
-  "Bit field (Wikipedia)"
 [cvss-score]: src/bin/cvss-score.rs
   "Example command-line tool which parses a CVSS vector and prints the score and severity to standard output."
 [git repository]: https://github.com/pablotron/polycvss
   "polycvss git repository"
 [polycvss]: https://github.com/pablotron/polycvss
   "polycvss Rust library"
-[v2-calc]: https://nvd.nist.gov/vuln-metrics/cvss/v2-calculator
-  "NVD CVSS v2 calculator"
-[v3-calc]: https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator
-  "NVD CVSS v3 calculator"
-[v4-calc]: https://nvd.nist.gov/site-scripts/cvss-v4-calculator-main/
-  "NVD CVSS v4 calculator"
-[cargo]: https://doc.rust-lang.org/cargo/
-  "Rust package manager"
 [podman]: https://podman.io/
   "Podman container management tool"
 [docker]: https://docker.com/
@@ -335,8 +328,6 @@ $ cargo tarpaulin --engine llvm --fail-under 95
   "National Vulnerability Database (NVD)"
 [cvss-calcs]: https://github.com/pablotron/cvss-calcs
   "Generate random CVSS vector strings and score them."
-[crates.io]: https://crates.io/
-  "Rust package registry"
 [docs-rs-polycvss]: https://docs.rs/polycvss
   "polycvss API documentation on docs.rs"
 [crates-io-polycvss]: https://crates.io/crates/polycvss
