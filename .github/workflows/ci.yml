@@ -41,9 +41,18 @@ jobs:
       - uses: actions/checkout@v6
       - run: cargo doc
 
+  # lint all markdown
+  lint_markdown:
+    name: "lint markdown"
+    runs-on: "rust"
+    steps:
+      - uses: actions/checkout@v5
+      - run: npm config set update-notifier false
+      - run: npx -y markdownlint-cli '**/*.md'
+
   # check code coverage
-  # - fails if coverage drops below 95%
-  # - generates "tarpaulin-report.zip" artifact
+  # - fails if coverage drops below 98%
+  # - generates "polycvss-coverage-YYYYMMDD.zip" artifact
   coverage:
     name: "coverage"
     runs-on: "ubuntu-latest"
@@ -54,7 +63,7 @@ jobs:
     steps:
       - run: echo "DATESTAMP=$(date +%Y%m%d)" >> $GITHUB_ENV
       - uses: actions/checkout@v6
-      - run: cargo +nightly tarpaulin -o stdout -o html --timeout 120 --fail-under 95
+      - run: cargo +nightly tarpaulin -o html --timeout 120 --fail-under 98
       - run: mv tarpaulin-report.html polycvss-coverage-${{ env.DATESTAMP }}.html
       - uses: actions/upload-artifact@v6
         with:
