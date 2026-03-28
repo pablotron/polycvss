@@ -44,7 +44,7 @@ jobs:
   # lint all markdown
   lint_markdown:
     name: "lint markdown"
-    runs-on: "rust"
+    runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v5
       - run: npm config set update-notifier false
