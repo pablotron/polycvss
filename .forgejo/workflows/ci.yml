@@ -8,6 +8,23 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  audit:
+    name: "audit"
+    runs-on: "rust"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - run: cargo install cargo-audit
+      - run: cargo audit
+
   build_lint_test:
     name: "build, lint, test (${{ matrix.toolchain }})"
     runs-on: "rust"
