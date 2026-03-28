@@ -1,0 +1,7 @@
+# ref: https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.yaml
+# default settings
+default: true
+
+MD013:
+  # increase code line lenth to 100 chars
+  code_block_line_length: 100
