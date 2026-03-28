@@ -4,4 +4,4 @@ default: true
 
 MD013:
   # increase code line lenth to 100 chars
-  code_block_line_length: 100
+  # code_block_line_length: 100
