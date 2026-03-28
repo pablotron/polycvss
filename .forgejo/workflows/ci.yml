@@ -52,8 +52,8 @@ jobs:
       - run: npx -y markdownlint-cli '**/*.md'
 
   # check code coverage (disabled in forgejo for now)
-  # - fails if coverage drops below 95%
-  # - generates artifact "tarpaulin-report.zip"
+  # - fails if coverage drops below 98%
+  # - generates artifact "polycvss-coverage-YYYYMMDD.zip"
   coverage:
     name: "coverage"
     runs-on: "rust"
@@ -75,7 +75,7 @@ jobs:
       - run: cargo binstall --no-confirm cargo-tarpaulin
 
       # run tarpaulin with llvm engine (required for forgejo)
-      - run: cargo +nightly tarpaulin --engine llvm -o html --timeout 120 --fail-under 95
+      - run: cargo +nightly tarpaulin --engine llvm -o html --timeout 120 --fail-under 98
       - run: mv tarpaulin-report.html polycvss-coverage-${{ env.DATESTAMP }}.html
 
       # upload report
@@ -84,21 +84,3 @@ jobs:
         with:
           name: polycvss-coverage-${{ env.DATESTAMP }}
           path: polycvss-coverage-${{ env.DATESTAMP }}.html
-
-# busted_coverage:
-# - uses: ./.forgejo/actions/tarpaulin
-#   with:
-#     # llvm engine (required for non-x86 and forgejo)
-#     engine: "llvm"
-# 
-#     # generate html report
-#     output: "html"
-# 
-#     # time out after 120s
-#     timeout: "120"
-# 
-#     # fail under 95% coverage
-#     fail_under: "95"
-# 
-# # rename coverage report
-# - run: mv tarpaulin-report.html polycvss-coverage-${{ env.DATESTAMP }}.html
