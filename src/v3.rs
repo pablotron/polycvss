@@ -134,7 +134,7 @@ pub fn roundup(val: f64, version: Version) -> f64 {
 ///
 /// [doc]: https://www.first.org/cvss/v3-1/specification-document#Metrics
 ///   "CVSS v3.1 Specification, Section 1.1: Metrics"
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Group {
   /// Base metrics.

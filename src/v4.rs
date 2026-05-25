@@ -2219,7 +2219,7 @@ pub enum ProviderUrgency {
 ///
 /// [doc]: https://www.first.org/cvss/v4-0/specification-document#Metrics
 ///   "CVSS v4.0 Specification, Section 1.1: Metrics"
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Group {
   /// Base metrics.

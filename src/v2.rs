@@ -968,7 +968,7 @@ pub enum Requirement {
 ///
 /// [doc]: https://www.first.org/cvss/v2/guide#Metric-Groups
 ///   "CVSS v2.0 Documentation, Section 2: Metric Groups"
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Group {
   /// Base metrics.

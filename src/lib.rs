@@ -669,7 +669,7 @@ impl TryFrom<u64> for Version {
 /// assert_eq!(group.to_string(), "Base");
 /// # }
 /// ```
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum Group {
   /// [CVSS v2][doc-v2] metric group.  See [`v2::Group`].
   ///
