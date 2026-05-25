@@ -6473,7 +6473,7 @@ const EQS: [EqClass; 6] = [
 ///   "CVSS v4.0 Specification"
 /// [scoring]: https://www.first.org/cvss/v4-0/specification-document#CVSS-v4-0-Scoring
 ///   "CVSS v4.0 Specification, Section 8: CVSS v4.0 Scoring"
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub struct MacroVector(u16);
 
 impl MacroVector {
@@ -6944,7 +6944,7 @@ impl std::fmt::Display for MacroVector {
 ///   "CVSS v4.0 Specification"
 /// [scoring]: https://www.first.org/cvss/v4-0/specification-document#CVSS-v4-0-Scoring
 ///   "CVSS v4.0 Specification, Section 8: CVSS v4.0 Scoring"
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub struct Scores {
   /// Macrovector
   pub macrovector: MacroVector,
