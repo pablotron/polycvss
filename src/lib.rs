@@ -270,7 +270,6 @@
 //   see <https://www.first.org/cvss/data-representations>
 // - remove pointless TryFrom<String> (src/{lib,v2,v3,v4}.rs, etc)
 //   (will increase coverage but change api; requires version bump)
-// - remove one panic (change to unreachable)
 
 mod encode;
 pub mod v2;
@@ -614,10 +613,8 @@ impl From<Vector> for Version {
     match Version::try_from(vec.0) {
       Ok(version) => version,
 
-      // should never happen; it means we have a vector with a
-      // corrupt version component
-      // FIXME: change to unreachable!()?
-      Err(err) => panic!("{err}"),
+      // should never happen; vector with corrupt version component
+      Err(err) => unreachable!("vector with corrupt version component: {err}"),
     }
   }
 }
