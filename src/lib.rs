@@ -750,7 +750,7 @@ impl std::fmt::Display for Group {
 /// assert_eq!(name, Name::V4(v4::Name::AttackVector));
 /// # }
 /// ```
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum Name {
   /// [CVSS v2][doc-v2] metric name.  See [`v2::Name`].
   ///
