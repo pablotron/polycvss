@@ -6014,7 +6014,7 @@ impl Iterator for VectorIterator {
 ///   "Internal Representation section"
 /// [examples]: #examples
 ///   "Examples section"
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[cfg_attr(feature = "serde", serde(try_from = "String"))]
 pub struct Vector(u64);
@@ -9027,6 +9027,34 @@ mod tests {
     #[test]
     fn test_size() {
       assert_eq!(size_of::<Vector>(), size_of::<u64>());
+    }
+
+    // hash vector to u64
+    fn hash(v: Vector) -> u64 {
+      use std::hash::{Hash, Hasher};
+
+      let mut s = std::hash::DefaultHasher::new();
+      v.hash(&mut s);
+      s.finish()
+    }
+
+    #[test]
+    fn test_hash() {
+      let tests = vec![(
+        "v4, basic", // name
+        "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // a
+        "CVSS:4.0/AC:L/AV:N/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // b
+      ), (
+        "v4, everything", // name
+        "CVSS:4.0/AV:P/AC:H/AT:P/PR:H/UI:A/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A/CR:H/IR:H/AR:H/MAV:P/MAC:H/MAT:P/MPR:H/MUI:A/MVC:N/MVI:N/MVA:N/MSC:N/MSI:S/MSA:S/S:N/AU:Y/R:I/V:C/RE:H/U:Clear", // a
+        "CVSS:4.0/AC:H/AV:P/AT:P/PR:H/UI:A/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A/CR:H/IR:H/AR:H/MAV:P/MAC:H/MAT:P/MPR:H/MUI:A/MVC:N/MVI:N/MVA:N/MSC:N/MSI:S/MSA:S/S:N/AU:Y/R:I/V:C/RE:H/U:Clear", // b
+      )];
+
+      for (name, a, b) in tests {
+        let ah = hash(a.parse::<Vector>().unwrap());
+        let bh = hash(b.parse::<Vector>().unwrap());
+        assert_eq!(ah, bh, "{name}");
+      }
     }
   }
 
