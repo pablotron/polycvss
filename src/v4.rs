@@ -9697,6 +9697,28 @@ mod tests {
         assert_eq!(got, exp, "{s}");
       }
     }
+
+    // hash macrovecor to u64
+    fn hash(m: MacroVector) -> u64 {
+      use std::hash::{Hash, Hasher};
+
+      let mut s = std::hash::DefaultHasher::new();
+      m.hash(&mut s);
+      s.finish()
+    }
+
+    #[test]
+    fn test_hash() {
+      let tests = vec![(
+        "hash",
+        MacroVector::try_from(010011_u32).unwrap(),
+        MacroVector(219),
+      )];
+
+      for (name, a, b) in tests {
+        assert_eq!(hash(a), hash(b), "{name}");
+      }
+    }
   }
 
   mod scores {
