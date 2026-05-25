@@ -1114,7 +1114,7 @@ impl std::fmt::Display for Group {
 /// assert_eq!(true, Name::AccessVector.is_mandatory());
 /// # }
 /// ```
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum Name {
   /// Access Vector (`AV`) metric name.  See [`Metric::AccessVector`].
   AccessVector,
