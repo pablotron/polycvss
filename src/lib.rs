@@ -1171,6 +1171,35 @@ impl Iterator for VectorIterator {
 /// # }
 /// ```
 ///
+/// Vector strings with the same metrics in a different order parse as
+/// identical vectors with identical hashes:
+///
+/// ```
+/// # fn main() {
+/// # use std::hash::{DefaultHasher, Hash, Hasher};
+/// # use polycvss::Vector;
+/// // first vector string
+/// let av: Vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H".parse().unwrap();
+///
+/// // second vector string.  identical to the first vector
+/// // string except for the order of the metrics.
+/// let bv: Vector = "CVSS:3.1/AC:L/AV:N/PR:N/UI:N/S:U/C:H/I:H/A:H".parse().unwrap();
+///
+/// // hash first vector string
+/// let mut s = DefaultHasher::new(); // create hasher
+/// av.hash(&mut s); // hash vector
+/// let ah = s.finish(); // finalize hash
+///
+/// // hash second vector string
+/// let mut s = DefaultHasher::new(); // create hasher
+/// bv.hash(&mut s); // hash vector
+/// let bh = s.finish(); // finalize hash
+///
+/// assert_eq!(av, bv); // verify that vectors are equal
+/// assert_eq!(ah, bh); // verify that hashes are equal
+/// # }
+/// ```
+///
 /// Verify that a [`Vector`] is the same size as a `u64`:
 ///
 /// ```
@@ -1223,7 +1252,7 @@ impl Iterator for VectorIterator {
 ///   "Bit field (Wikipedia)"
 /// [vector-string]: https://www.first.org/cvss/v4-0/specification-document#Vector-String
 ///   "CVSS v4.0 Specification, Section 7: Vector String"
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub struct Vector(u64);
 
 impl Vector {
@@ -3253,6 +3282,46 @@ mod tests {
     #[test]
     fn test_size() {
       assert_eq!(size_of::<Vector>(), size_of::<u64>());
+    }
+
+    // hash vector to u64
+    fn hash(v: Vector) -> u64 {
+      use std::hash::{Hash, Hasher};
+
+      let mut s = std::hash::DefaultHasher::new();
+      v.hash(&mut s);
+      s.finish()
+    }
+
+    #[test]
+    fn test_hash() {
+      let tests = vec![(
+        "v2, basic", // name
+        "AV:N/AC:L/Au:N/C:C/I:C/A:C", // a: 1st test value
+        "AC:L/AV:N/Au:N/C:C/I:C/A:C", // b: 2nd test value
+      ), (
+        "v3, basic", // name
+        "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", // a
+        "CVSS:3.1/AC:L/AV:N/PR:N/UI:N/S:U/C:H/I:H/A:H", // b
+      ), (
+        "v3, everything", // name
+        "CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:C/C:N/I:N/A:N/E:U/RL:O/RC:U/CR:L/IR:L/AR:L/MAV:P/MAC:H/MPR:H/MUI:R/MS:C/MC:H/MI:H/MA:H", // a
+        "CVSS:3.1/AC:H/AV:P/PR:H/UI:R/S:C/C:N/I:N/A:N/E:U/RL:O/RC:U/CR:L/IR:L/AR:L/MAV:P/MAC:H/MPR:H/MUI:R/MS:C/MC:H/MI:H/MA:H", // b
+      ), (
+        "v4, basic", // name
+        "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // a
+        "CVSS:4.0/AC:L/AV:N/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H", // b
+      ), (
+        "v4, everything", // name
+        "CVSS:4.0/AV:P/AC:H/AT:P/PR:H/UI:A/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A/CR:H/IR:H/AR:H/MAV:P/MAC:H/MAT:P/MPR:H/MUI:A/MVC:N/MVI:N/MVA:N/MSC:N/MSI:S/MSA:S/S:N/AU:Y/R:I/V:C/RE:H/U:Clear", // a
+        "CVSS:4.0/AC:H/AV:P/AT:P/PR:H/UI:A/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H/E:A/CR:H/IR:H/AR:H/MAV:P/MAC:H/MAT:P/MPR:H/MUI:A/MVC:N/MVI:N/MVA:N/MSC:N/MSI:S/MSA:S/S:N/AU:Y/R:I/V:C/RE:H/U:Clear", // b
+      )];
+
+      for (name, a, b) in tests {
+        let ah = hash(a.parse::<Vector>().unwrap());
+        let bh = hash(b.parse::<Vector>().unwrap());
+        assert_eq!(ah, bh, "{name}");
+      }
     }
   }
 
