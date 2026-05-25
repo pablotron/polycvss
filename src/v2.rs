@@ -2753,7 +2753,7 @@ impl Iterator for VectorIterator {
 ///   "Internal Representation section"
 /// [examples]: #examples
 ///   "Examples section"
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 // #[cfg_attr(feature="serde", serde(try_from="String"))]
 // #[cfg_attr(feature="serde", derive(Deserialize,Serialize)]
 pub struct Vector(u64);
@@ -4238,6 +4238,30 @@ mod tests {
       for (name, s, exp) in tests {
         let got = Score::from(s.parse::<Vector>().unwrap());
         assert_eq!(got, exp, "{name}");
+      }
+    }
+
+    // hash vector to u64
+    fn hash(v: Vector) -> u64 {
+      use std::hash::{Hash, Hasher};
+
+      let mut s = std::hash::DefaultHasher::new();
+      v.hash(&mut s);
+      s.finish()
+    }
+
+    #[test]
+    fn test_hash() {
+      let tests = vec![(
+        "v2, basic", // name
+        "AV:N/AC:L/Au:N/C:C/I:C/A:C", // a: 1st test value
+        "AC:L/AV:N/Au:N/C:C/I:C/A:C", // b: 2nd test value
+      )];
+
+      for (name, a, b) in tests {
+        let ah = hash(a.parse::<Vector>().unwrap());
+        let bh = hash(b.parse::<Vector>().unwrap());
+        assert_eq!(ah, bh, "{name}");
       }
     }
   }
