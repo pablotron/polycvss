@@ -1551,7 +1551,7 @@ impl std::fmt::Display for Vector {
 ///
 /// [cvss]: https://www.first.org/cvss/
 ///   "Common Vulnerability Scoring System (CVSS)"
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct Score(u8);
 
 impl From<f32> for Score {
@@ -3431,6 +3431,29 @@ mod tests {
       }
     }
 
+    // hash score to u64
+    fn hash(score: Score) -> u64 {
+      use std::hash::{Hash, Hasher};
+
+      let mut s = std::hash::DefaultHasher::new();
+      score.hash(&mut s);
+      s.finish()
+    }
+
+    #[test]
+    fn test_hash() {
+      let tests = vec![(
+        "score", // name
+        Score(100), // a: 1st score
+        Score::from(10.0), // b: 2nd score
+      )];
+
+      for (name, a, b) in tests {
+        let ah = hash(a);
+        let bh = hash(b);
+        assert_eq!(ah, bh, "{name}");
+      }
+    }
   }
 
   mod severity {
