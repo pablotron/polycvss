@@ -470,7 +470,7 @@ const VAL_MASK: u64 = 0x0fff_ffff_ffff_ffff;
 ///
 /// [cvss]: https://www.first.org/cvss/
 ///   "Common Vulnerability Scoring System (CVSS)"
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 enum MajorVersion {
   /// [CVSS v2][doc-v2]
   ///
@@ -561,7 +561,7 @@ impl From<Vector> for MajorVersion {
 ///
 /// [cvss]: https://www.first.org/cvss/
 ///   "Common Vulnerability Scoring System (CVSS)"
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[repr(u8)]
 pub enum Version {
   /// CVSS v2.0
@@ -1674,7 +1674,7 @@ impl std::ops::Sub for Score {
 ///   "CVSS v3.1 Specification, Section 5: Qualitative Severity Rating Scale"
 /// [doc-v4]: https://www.first.org/cvss/v4-0/specification-document#Qualitative-Severity-Rating-Scale
 ///   "CVSS v4.0 Specification, Section 6: Qualitative Severity Rating Scale"
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[repr(u8)]
 pub enum Severity {
   /// None.  Score = `0.0`.
