@@ -40,3 +40,17 @@ path = "fuzz_targets/v2-vector-parse.rs"
 test = false
 doc = false
 bench = false
+
+[[bin]]
+name = "v3-vector-parse"
+path = "fuzz_targets/v3-vector-parse.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "v4-vector-parse"
+path = "fuzz_targets/v4-vector-parse.rs"
+test = false
+doc = false
+bench = false
