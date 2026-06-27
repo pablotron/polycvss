@@ -270,6 +270,7 @@
 //   see <https://www.first.org/cvss/data-representations>
 // - remove pointless TryFrom<String> (src/{lib,v2,v3,v4}.rs, etc)
 //   (will increase coverage but change api; requires version bump)
+// - err: add discriminants (e.g. InvalidChar(pos, char))
 
 mod encode;
 pub mod v2;
@@ -307,11 +308,24 @@ pub enum Err {
   /// ```
   /// # use polycvss::{Err, v4::Vector};
   /// # fn main() {
-  /// // parse invalid string as vector, then check result
+  /// // parse short string as vector, then check result
   /// assert_eq!("asdf".parse::<Vector>(), Err(Err::Len));
   /// # }
   /// ```
   Len,
+
+  /// String contains an invalid (e.g., non-ASCII) character.
+  ///
+  /// # Example
+  ///
+  /// ```
+  /// # use polycvss::{Err, Vector};
+  /// # fn main() {
+  /// // parse string with invalid character as vector, then check result
+  /// assert_eq!("asdfasdf-π".parse::<Vector>(), Err(Err::InvalidChar));
+  /// # }
+  /// ```
+  InvalidChar,
 
   /// String does not begin with a `CVSS:` prefix.
   ///
@@ -448,6 +462,7 @@ impl std::fmt::Display for Err {
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
     write!(f, "{}", match self {
       Err::Len => "String is too short to contain a CVSS vector string",
+      Err::InvalidChar => "String contain an invalid character",
       Err::Prefix => "String does not begin with a `CVSS:` prefix",
       Err::DuplicateName => "Vector string contains a duplicate metric name",
       Err::UnknownName => "Unknown metric name",
@@ -1384,6 +1399,11 @@ impl std::str::FromStr for Vector {
       return Err(Err::Len);
     }
 
+    // check for non-ascii characters
+    if s.chars().find(|c| !c.is_ascii()).is_some() {
+      return Err(Err::InvalidChar);
+    }
+
     // check string prefix
     Ok(Vector(match &s[0..9] {
       "CVSS:4.0/" => u64::from(v4::Vector::from_str(s)?),
@@ -1747,6 +1767,7 @@ mod tests {
     fn test_to_string() {
       let tests = vec![
         (Err::Len, "String is too short to contain a CVSS vector string"),
+        (Err::InvalidChar, "String contain an invalid character"),
         (Err::Prefix, "String does not begin with a `CVSS:` prefix"),
         (Err::DuplicateName, "Vector string contains a duplicate metric name"),
         (Err::UnknownName, "Unknown metric name"),
