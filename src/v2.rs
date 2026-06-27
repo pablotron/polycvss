@@ -2863,6 +2863,11 @@ impl std::str::FromStr for Vector {
       return Err(Err::Len);
     }
 
+    // check for non-ascii characters
+    if s.chars().find(|c| !c.is_ascii()).is_some() {
+      return Err(Err::InvalidChar);
+    }
+
     // split into metrics, then encode as u64
     let mut val = 0; // encoded PoT metrics
     let mut seen: u32 = 0; // seen keys
