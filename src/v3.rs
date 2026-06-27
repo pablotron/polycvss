@@ -3879,6 +3879,11 @@ impl std::str::FromStr for Vector {
       return Err(Err::Len);
     }
 
+    // check for non-ascii characters
+    if s.chars().find(|c| !c.is_ascii()).is_some() {
+      return Err(Err::InvalidChar);
+    }
+
     // check string prefix, get version
     let version = u64::from(match &s[0..9] {
       "CVSS:3.0/" => Version::V30,
@@ -4865,6 +4870,7 @@ mod tests {
     fn test_from_str_fail() {
       let tests = vec![
         ("", Err::Len),
+        ("asdfasdf-π", Err::InvalidChar),
         ("CVSS:3.2/", Err::Prefix),
         ("CVSS:3.1/AV:N/AV:N", Err::DuplicateName),
         ("CVSS:3.1/AV:N/AV:A", Err::DuplicateName),
