@@ -3622,6 +3622,7 @@ mod tests {
     fn test_from_str_fail() {
       let tests = vec![
         ("empty", "", Err::Len),
+        ("invalid char", "asdfasdfasdfasdfasdfasdf-π", Err::InvalidChar),
         ("dup metric", "AV:N/AV:N/Au:N/C:C/I:C/A:C", Err::DuplicateName),
         ("dup key", "AV:N/AV:A/Au:N/C:C/I:C/A:C", Err::DuplicateName),
         ("unknown val", "AV:Z/AC:L/Au:N/C:C/I:C/A:C", Err::UnknownMetric),
