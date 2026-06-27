@@ -33,3 +33,10 @@ path = "fuzz_targets/severity-parse.rs"
 test = false
 doc = false
 bench = false
+
+[[bin]]
+name = "v2-vector-parse"
+path = "fuzz_targets/v2-vector-parse.rs"
+test = false
+doc = false
+bench = false
