@@ -2847,6 +2847,7 @@ mod tests {
     fn test_from_str_fail() {
       let tests = vec![
         ("empty", "", Err::Len),
+        ("invalid char", "asdfasdf-π", Err::InvalidChar),
       ];
 
       for (name, s, exp) in tests {
