@@ -268,8 +268,6 @@
 // - gh actions: fuzzing and mutation?
 // - features to convert to/from json/xml representations
 //   see <https://www.first.org/cvss/data-representations>
-// - remove pointless TryFrom<String> (src/{lib,v2,v3,v4}.rs, etc)
-//   (will increase coverage but change api; requires version bump)
 // - err: add discriminants (e.g. InvalidChar(pos, char))
 
 mod encode;
@@ -1410,15 +1408,6 @@ impl std::str::FromStr for Vector {
       "CVSS:3.0/" | "CVSS:3.1/" => u64::from(v3::Vector::from_str(s)?),
       _ => u64::from(v2::Vector::from_str(s)?),
     }))
-  }
-}
-
-// FIXME: remove this
-impl TryFrom<String> for Vector {
-  type Error = Err;
-
-  fn try_from(s: String) -> Result<Self, Self::Error> {
-    s.parse::<Vector>()
   }
 }
 

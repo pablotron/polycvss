@@ -2249,15 +2249,6 @@ impl std::str::FromStr for Metric {
   }
 }
 
-// FIXME: remove this
-impl TryFrom<String> for Metric {
-  type Error = Err;
-
-  fn try_from(s: String) -> Result<Self, Self::Error> {
-    s.parse::<Metric>()
-  }
-}
-
 impl From<Metric> for EncodedMetric {
   fn from(metric: Metric) -> EncodedMetric {
     let (bit, val) = match metric {
@@ -2893,15 +2884,6 @@ impl std::str::FromStr for Vector {
 
     // add version and return encoded vector
     Ok(Vector(u64::from(Version::V20) | val))
-  }
-}
-
-// FIXME: remove this
-impl TryFrom<String> for Vector {
-  type Error = Err;
-
-  fn try_from(s: String) -> Result<Self, Self::Error> {
-    s.parse::<Vector>()
   }
 }
 

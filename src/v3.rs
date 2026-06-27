@@ -3104,15 +3104,6 @@ impl std::str::FromStr for Metric {
   }
 }
 
-// FIXME: remove this
-impl TryFrom<String> for Metric {
-  type Error = Err;
-
-  fn try_from(s: String) -> Result<Self, Self::Error> {
-    s.parse::<Metric>()
-  }
-}
-
 impl std::fmt::Display for Metric {
   // Format CVSS v3 metric as a string.
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
@@ -3920,15 +3911,6 @@ impl std::str::FromStr for Vector {
 
     // return encoded vector
     Ok(Vector(version | val))
-  }
-}
-
-// FIXME: remove this
-impl TryFrom<String> for Vector {
-  type Error = Err;
-
-  fn try_from(s: String) -> Result<Self, Self::Error> {
-    s.parse::<Vector>()
   }
 }
 
