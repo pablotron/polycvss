@@ -6113,6 +6113,11 @@ impl std::str::FromStr for Vector {
       return Err(Err::Len);
     }
 
+    // check for non-ascii characters
+    if s.chars().find(|c| !c.is_ascii()).is_some() {
+      return Err(Err::InvalidChar);
+    }
+
     // check string prefix
     if &s[0..9] != "CVSS:4.0/" {
       return Err(Err::Prefix);
@@ -7862,6 +7867,7 @@ mod tests {
     fn test_from_str_fail() {
       let tests = vec![
         ("empty", "", Err::Len),
+        ("invalid char", "asdfasdf-π", Err::InvalidChar),
         ("wrong prefix", "CVSS:3.1/", Err::Prefix),
         ("dup metric", "CVSS:4.0/AV:N/AV:N", Err::DuplicateName),
         ("dup name", "CVSS:4.0/AV:N/AV:A", Err::DuplicateName),
