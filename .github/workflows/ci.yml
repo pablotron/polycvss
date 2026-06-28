@@ -51,6 +51,15 @@ jobs:
       - run: npm config set update-notifier false
       - run: npx -y markdownlint-cli '**/*.md'
 
+  # fuzzing (disabled for now)
+  # - disabled for now
+  # - limit to nightly
+  # - add different fuzz targets
+  # fuzz:
+  #   name: "fuzz"
+  #     - run: cargo fuzz run --sanitizer none vector -- -max_total_time=60
+
+
   # check code coverage
   # - fails if coverage drops below 98%
   # - generates "polycvss-coverage-YYYYMMDD.zip" artifact
