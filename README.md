@@ -252,7 +252,6 @@ Use `cargo test` to run the test suite:
 $ cargo test
 ...
 test result: ok. 369 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
-$
 ```
 
 **Note:** The test suite includes a large number of scored [CVSS][]
@@ -267,7 +266,6 @@ Use `cargo clippy` to run the [linter][]:
 ```sh
 $ cargo clippy
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.04s
-$
 ```
 
 ## Coverage
