@@ -1,10 +1,10 @@
 #![no_main]
 
 use libfuzzer_sys::fuzz_target;
-use polycvss::Version;
+use polycvss::v4::Vector;
 
 fuzz_target!(|data: &[u8]| {
   if let Ok(s) = std::str::from_utf8(data) {
-    let _ = s.parse::<Version>();
+    let _ = s.parse::<Vector>();
   }
 });

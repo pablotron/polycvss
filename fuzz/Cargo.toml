@@ -14,43 +14,29 @@ libfuzzer-sys = "0.4"
 path = ".."
 
 [[bin]]
-name = "vector-parse"
-path = "fuzz_targets/vector-parse.rs"
+name = "vector"
+path = "fuzz_targets/vector.rs"
 test = false
 doc = false
 bench = false
 
 [[bin]]
-name = "version-parse"
-path = "fuzz_targets/version-parse.rs"
+name = "v2-vector"
+path = "fuzz_targets/v2-vector.rs"
 test = false
 doc = false
 bench = false
 
 [[bin]]
-name = "severity-parse"
-path = "fuzz_targets/severity-parse.rs"
+name = "v3-vector"
+path = "fuzz_targets/v3-vector.rs"
 test = false
 doc = false
 bench = false
 
 [[bin]]
-name = "v2-vector-parse"
-path = "fuzz_targets/v2-vector-parse.rs"
-test = false
-doc = false
-bench = false
-
-[[bin]]
-name = "v3-vector-parse"
-path = "fuzz_targets/v3-vector-parse.rs"
-test = false
-doc = false
-bench = false
-
-[[bin]]
-name = "v4-vector-parse"
-path = "fuzz_targets/v4-vector-parse.rs"
+name = "v4-vector"
+path = "fuzz_targets/v4-vector.rs"
 test = false
 doc = false
 bench = false
