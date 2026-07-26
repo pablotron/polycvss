@@ -262,12 +262,14 @@
 // #![deny(rustdoc::missing_doc_code_examples)]
 
 // TODO:
-// - README.md: intro: s/rust library to (.*)/$1 in Rust/
 // - README.md: intro: document explicit v3.0 vs v3.1 scoring
 // - README.md: ref to ci/cd?
 // - features to convert to/from json/xml representations
 //   see <https://www.first.org/cvss/data-representations>
 // - err: add discriminants (e.g. InvalidChar(pos, char))
+// - lib.rs: harden clippy lints, add miri support
+//   see: <https://corrode.dev/blog/hardening-rust/> and
+//   <https://rust-lang.github.io/rust-clippy/master/index.html>
 
 mod encode;
 pub mod v2;
