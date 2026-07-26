@@ -1,13 +1,14 @@
 # polycvss
 
-[Rust][] library to parse and score [CVSS][] vector strings.
+[CVSS][] vector string parser and and score calculator.
 
 Features:
 
+- Written in [Rust][].
 - [CVSS v2][doc-v2], [CVSS v3][doc-v3], and [CVSS v4][doc-v4] support.
 - Version-agnostic parsing and scoring [API][].
 - Memory efficient: Vectors are 8 bytes. Scores and severities are 1 byte.
-- No dependencies by default except the standard library.
+- No dependencies by default except the [Rust][] standard library.
 - Optional [serde][] integration via the `serde` build feature.
 - Extensive tests: Tested against thousands of vectors and scores from
   the [NVD][] [CVSS][] calculators.
