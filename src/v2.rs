@@ -1151,11 +1151,13 @@ impl Name {
   ///
   /// # Example
   ///
+  /// ```
   /// # use polycvss::v2::{AccessVector, Name};
   /// # fn main() {
   /// // check if metric is mandatory
   /// assert_eq!(true, Name::AccessVector.is_mandatory());
   /// # }
+  /// ```
   pub fn is_mandatory(self) -> bool {
     Group::from(self) == Group::Base
   }
