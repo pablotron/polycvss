@@ -6,7 +6,6 @@ edition = "2024"
 authors = ["Paul Duncan"]
 description = "CVSS v2, v3, and v4 vector string parser and score calculator."
 readme = "README.md"
-homepage = "https://github.com/pablotron/polycvss"
 repository = "https://github.com/pablotron/polycvss"
 documentation = "https://docs.rs/polycvss"
 license = "MIT-0"
