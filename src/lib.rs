@@ -270,6 +270,8 @@
 // - lib.rs: harden clippy lints, add miri support
 //   see: <https://corrode.dev/blog/hardening-rust/> and
 //   <https://rust-lang.github.io/rust-clippy/master/index.html>
+// - Cargo.toml: set -W clippy::pedantic by default,
+//   ref: <https://old.reddit.com/r/rust/comments/1veqxhc/if_youre_as_pedantic_as_me_add_this_clippy_config/>
 
 mod encode;
 pub mod v2;
